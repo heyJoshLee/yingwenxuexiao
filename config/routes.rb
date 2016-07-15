@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'pages#index'
 
   get "signin", to: "sessions#new"
   post "signin", to: "sessions#create"
   get "signout", to: "sessions#destroy"
 
+  get "signup", to: "users#new"
 
   get "blog", to: "articles#index"
+
+  resources :users, only: [:create]
 
   resources :articles, only: [:show] do
 
   end
 
   namespace :admin do
-    resources :articles
+    resources :articles, only: [:new, :create, :edit, :destroy]
   end
 
 

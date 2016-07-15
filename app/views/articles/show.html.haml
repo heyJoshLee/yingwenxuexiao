@@ -1,41 +1,13 @@
 = render "shared/nav"
 %main
   .feature-image
-    %h1 Article Title
+    %h1= @article.title
   .container
     .col-sm-8
-      .article_show
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora mollitia tempore, quibusdam voluptates voluptatibus, sint et possimus, aperiam ut ducimus, in quis! Sequi qui veritatis, accusamus vero esse dicta sit?
-
-        %h3 oinad ad oiasdaobd adba 
-
-        %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores praesentium, nihil vero odit minima harum facere voluptas tenetur assumenda nesciunt itaque qui dolor animi quod aut ipsum, quos saepe adipisci.
-
-        %strong This is tpoe aoin fdf p keino qeq qweon 
-
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi sapiente, modi totam assumenda animi doloremque ducimus, enim, reiciendis voluptatibus impedit tempore asperiores atque expedita architecto praesentium nostrum magnam neque at.
-        %h3 oinad ad oiasdaobd adba 
-
-        %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores praesentium, nihil vero odit minima harum facere voluptas tenetur assumenda nesciunt itaque qui dolor animi quod aut ipsum, quos saepe adipisci.
-
-        %strong This is tpoe aoin fdf p keino qeq qweon 
-
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi sapiente, modi totam assumenda animi doloremque ducimus, enim, reiciendis voluptatibus impedit tempore asperiores atque expedita architecto praesentium nostrum magnam neque at.
-        %h3 oinad ad oiasdaobd adba 
-
-        %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores praesentium, nihil vero odit minima harum facere voluptas tenetur assumenda nesciunt itaque qui dolor animi quod aut ipsum, quos saepe adipisci.
-
-        %strong This is tpoe aoin fdf p keino qeq qweon 
-
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi sapiente, modi totam assumenda animi doloremque ducimus, enim, reiciendis voluptatibus impedit tempore asperiores atque expedita architecto praesentium nostrum magnam neque at.
-        %h3 oinad ad oiasdaobd adba 
-
-        %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores praesentium, nihil vero odit minima harum facere voluptas tenetur assumenda nesciunt itaque qui dolor animi quod aut ipsum, quos saepe adipisci.
-
-        %strong This is tpoe aoin fdf p keino qeq qweon 
-
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi sapiente, modi totam assumenda animi doloremque ducimus, enim, reiciendis voluptatibus impedit tempore asperiores atque expedita architecto praesentium nostrum magnam neque at.
-
+      %small
+        = link_to "Edit", edit_admin_article_path(@article)
+      .article_show= @article.body.html_safe
+        
       .comments_section
         %form#commnt_form{:action => ""}
           %textarea.form-control{:name => "", :cols => "30", :rows => "10"}

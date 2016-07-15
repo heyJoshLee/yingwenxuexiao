@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default
+%header.navbar.navbar-default#main_header
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -10,17 +10,20 @@
       %a.navbar-brand{:href => "#"} Brand
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{:href => "#"} Link
       %ul.nav.navbar-nav.navbar-right
         %li.hidden-xs
           %a{:href => "#"} Free Gift
         %li
           =link_to "Blog", blog_path
         %li
-          %a{:href => "#"} Sign In
+          - if logged_in?
+            = link_to "Sign Out", signout_path
+          - else
+            = link_to "Sign In", signin_path
         %li
-          %a{:href => "#"} Sign Up
+          - if logged_in?
+            = link_to "Profile", root_path
+          - else
+            = link_to "Sign Up", signup_path
     / /.navbar-collapse
   / /.container-fluid

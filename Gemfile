@@ -5,6 +5,8 @@ gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'haml-rails'
 gem 'bootstrap-sass', '3.1.1.1'
+gem 'bootstrap_form'
+gem "font-awesome-rails"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -13,6 +15,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootsy'
+gem "carrierwave"
+gem 'carrierwave-aws'
+gem "figaro"
+gem "sluggable_jl"
 
 
 gem 'unicorn'
@@ -21,6 +28,7 @@ gem 'unicorn'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem "pry"
 end
 
 group :development do

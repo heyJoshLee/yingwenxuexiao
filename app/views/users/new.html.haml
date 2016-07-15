@@ -1,0 +1,18 @@
+= render "shared/nav"
+%main
+  .row
+    %h1 Sign Up For Free
+    %h4 Sign up to:
+    %ul.sign_up_features
+      %li <i class="fa fa-check"></i> Free lessons 
+      %li <i class="fa fa-check"></i> Comment on articles
+      %li <i class="fa fa-check"></i> Never miss an article
+      %li <i class="fa fa-check"></i> Communicate with English teachers
+  .row
+    .col-sm-6
+      = bootstrap_form_for @user do |f|
+        = f.email_field :email
+        = f.text_field :name
+        = f.password_field :password
+        = f.submit "Sign Up", class: "btn btn-primary pull-right"
+

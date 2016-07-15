@@ -12,6 +12,8 @@
  *
  *= require_self
  *= require bootstrap
+ *= require font-awesome
+ *= require bootsy
  *= require_tree .
 
  */
@@ -19,6 +21,11 @@
 body, html {
   height: 100%;
   width: 100%;
+}
+
+.btn-primary {
+  background-color: rgba(0,182,245, 1) !important;
+  border-color: rgba(0,182,245, 1) !important;
 }
 
 li {
@@ -29,9 +36,6 @@ header li {
   display: inline-block;
 }
 
-.navbar-default {
-  margin: 0 !important;
-}
 
 #main_splash {
   background-color: #F4F4F4;
@@ -43,6 +47,10 @@ header li {
 .sign_up_nav_button {
   position: relative;
   height: 50%;
+}
+
+#main_header {
+  margin: 0 !important;
 }
 
 .spash_highlights {
@@ -80,7 +88,6 @@ header li {
 
 
 #main_nav {
-  display: relative;
   width: 100%;
   height: 50px;
 }
@@ -126,11 +133,26 @@ main {
 }
 
 .feature-image {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .comments_section {
   padding: 10px;
   background: rgba(175,190,213, 0.4)
+}
+
+.sign_up_features {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.alert {
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+    main {
+        margin-top: 200px;
+    }
 
 }
