@@ -1,1 +1,20 @@
-This is the blogs index
+= render "shared/nav"
+%main
+  .feature-image
+    %h1 Blog
+  .row
+    .container
+      .col-sm-8
+        .articles_container
+          - 5.times do |article|
+            .article_preview
+              .row
+                .col-sm-4
+                  %img{:src => "http://placehold.it/140x140", :alt => ""}/
+                .col-sm-8
+                  %h1 Article title
+                  %small Aug 12, 2015
+                  %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quam repellat voluptate tempore nam quis ab, accusantium, dolor iste molestiae nihil. Dolores repellat quae optio nobis quibusdam, voluptatibus, distinctio sint!
+      .col-sm-4
+        = render "shared/sidebar"
+        

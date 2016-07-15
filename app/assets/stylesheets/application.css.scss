@@ -56,3 +56,81 @@ header li {
 .large_splash_highlights {
   background-color: #F4F4F4;
 }
+
+.nav_item {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 10px;
+  color: white;
+  font-weight: bold;
+  border-right: 1px solid white;
+  height: 50px;
+  background-color: rgba(0,182,245, 1);
+
+}
+
+.nav_item:hover {
+  cursor: pointer;
+  background-color: rgba(0,182,245, .8);
+}
+
+.nav_item:last-child {
+  border: none;
+}
+
+
+#main_nav {
+  display: relative;
+  width: 100%;
+  height: 50px;
+}
+
+main {
+  padding: 20px 30px;
+}
+
+.articles_container {
+  margin-top: 110px;
+}
+
+.feature-image {
+  background: url('books-colorful.jpg') 0 0 no-repeat;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+.feature-image h1 {
+  font-size: 100px;
+  letter-spacing: 20px;
+}
+
+.article_preview {
+  padding: 15px 0;
+}
+
+.article_preview h1 {
+  color: rgba(0,182,245, 1);
+}
+.article_preview + .article_preview {
+  border-top: 1px solid rgba(0,182,245, 0.4);
+}
+
+.article_show {
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(0,182,245, 0.4);
+}
+
+.feature-image {
+  margin-bottom: 40px;
+}
+
+.comments_section {
+  padding: 10px;
+  background: rgba(175,190,213, 0.4)
+
+}
