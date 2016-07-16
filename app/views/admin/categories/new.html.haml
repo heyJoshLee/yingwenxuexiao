@@ -1,0 +1,10 @@
+= render "shared/nav"
+.row
+  .container
+    .col-sm-6
+      %h1 Create new category
+      = bootstrap_form_for [:admin, @category] do |f|
+        = f.text_field :name
+        = f.text_area :description
+        = f.file_field :image_url, class: "btn btn-file"
+        = f.submit "Create category", class: "btn btn-primary pull-right"

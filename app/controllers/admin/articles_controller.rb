@@ -22,7 +22,7 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :main_image_url, :body, :category_id, :bootsy_image_gallery_id)
+    params.require(:article).permit(:title, :main_image_url, :body, :category_id, :bootsy_image_gallery_id, :category_ids)
   end
 
 end

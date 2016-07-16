@@ -20,6 +20,8 @@ gem "carrierwave"
 gem 'carrierwave-aws'
 gem "figaro"
 gem "sluggable_jl"
+gem "mini_magick"
+
 
 
 gem 'unicorn'

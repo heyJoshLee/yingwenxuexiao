@@ -23,6 +23,11 @@ body, html {
   width: 100%;
 }
 
+a {
+  color: inherit !important;
+  text-decoration: inherit !important;
+}
+
 .btn-primary {
   background-color: rgba(0,182,245, 1) !important;
   border-color: rgba(0,182,245, 1) !important;
@@ -101,9 +106,9 @@ main {
 }
 
 .feature-image {
-  background: url('books-colorful.jpg') 0 0 no-repeat;
-  background-size: cover;
-  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% 250px;
+  height: 250px;
   width: 100%;
   color: white;
   text-align: center;
@@ -112,8 +117,12 @@ main {
 }
 
 .feature-image h1 {
-  font-size: 100px;
+  font-size: 4.5vw;
   letter-spacing: 20px;
+}
+
+.feature_image_role {
+  margin-bottom: 50px;
 }
 
 .article_preview {
@@ -150,9 +159,39 @@ main {
   margin: 0;
 }
 
+.v_margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.article_category_checkbox_container {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 !important;
+}
+
+.article_category_checkbox_container .checkbox {
+  margin: 0;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-top: 33px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.article_category_checkbox_container .checkbox + .checkbox {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.article_category_checkbox_container .checkbox:checked {
+  background-color: rgba(0,182,245, 1) !important;
+}
+
+.article_preview img {
+  width: 100%;
+}
+
 @media screen and (max-width: 767px) {
     main {
         margin-top: 200px;
     }
-
 }

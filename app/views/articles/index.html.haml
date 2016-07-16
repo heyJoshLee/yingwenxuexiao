@@ -6,15 +6,16 @@
     .container
       .col-sm-8
         .articles_container
-          - 5.times do |article|
+          - @articles.each do |article|
             .article_preview
               .row
                 .col-sm-4
-                  %img{:src => "http://placehold.it/140x140", :alt => ""}/
+                  =image_tag(article.main_image_url)
                 .col-sm-8
-                  %h1 Article title
-                  %small Aug 12, 2015
-                  %p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quam repellat voluptate tempore nam quis ab, accusantium, dolor iste molestiae nihil. Dolores repellat quae optio nobis quibusdam, voluptatibus, distinctio sint!
+                  %h1
+                    = link_to article.title, article_path(article)
+                  %small= article.created_at
+                  %p= article.preview_text
       .col-sm-4
         = render "shared/sidebar"
         

@@ -210,6 +210,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  mini_magick
   pg (~> 0.15)
   pry
   rails (= 4.2.6)

@@ -1,7 +1,7 @@
 = render "shared/nav"
 %main
-  .feature-image
-    %h1= @article.title
+  = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
+
   .container
     .col-sm-8
       %small

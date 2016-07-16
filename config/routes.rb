@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   get "blog", to: "articles#index"
 
   resources :users, only: [:create]
-
-  resources :articles, only: [:show] do
-
-  end
+  resources :articles, only: [:show]
+  resources :categories, only: [:show]
 
   namespace :admin do
+    resources :users
+    resources :categories
     resources :articles, only: [:new, :create, :edit, :destroy]
   end
 

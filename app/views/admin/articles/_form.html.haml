@@ -1,4 +1,11 @@
-= bootstrap_form_for [:admin, @article] do |f|
-    = f.text_field :title
-    = f.bootsy_area :body
-    = f.submit "Create", class: "btn btn-primary"
+%h1 Create Article
+.row
+  = bootstrap_form_for [:admin, @article] do |f|
+    .col-sm-6
+      = f.text_field :title
+      = f.file_field :main_image_url, class: "btn btn-file"
+      = f.bootsy_area :body, class: "form-control", rows: 20
+      = f.submit "Create", class: "btn btn-primary pull-right v_margin"
+    .col-sm-2.article_category_checkbox_container
+      = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
+        - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
