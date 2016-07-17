@@ -1,0 +1,10 @@
+.article_preview
+  .row
+    .col-sm-5
+      = link_to article_path(article) do
+        =image_tag(article.main_image_url)
+    .col-sm-7
+      %h1
+        = link_to article.title, article_path(article)
+      %small= article.created_at
+      %p= article.preview_text

@@ -1,0 +1,19 @@
+#campaign_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title= "Get #{title}" 
+      .modal-body
+        = image_tag "ebook_test.png"
+        %p Enter your email to get the book for free!
+        %small When you enter your email I will send you an email to get the book. I will also send you a few emails about the upcoming course I am working on. I won't send you spam. <i class="fa fa-smile-o" aria-hidden="true"></i>
+        
+        = bootstrap_form_for EmailSignup.new do |t|
+          = t.email_field :email
+          = hidden_field_tag :page, request.original_url
+          = hidden_field_tag :campaign, campaign
+          = t.submit "Get the book", class: "btn btn-primary"
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

@@ -10,11 +10,17 @@ Rails.application.routes.draw do
 
   get "blog", to: "articles#index"
 
+  get "email_confirm", to: "email_signups#confirm"
+
   resources :users, only: [:create]
   resources :articles, only: [:show]
   resources :categories, only: [:show]
+  resources :email_signups, only: [:create]
+
+
 
   namespace :admin do
+    resources :email_signups, only: [:index]
     resources :users
     resources :categories
     resources :articles, only: [:new, :create, :edit, :destroy]

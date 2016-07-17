@@ -1,22 +1,22 @@
 = render "shared/nav"
 %main
-  = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
+  = render "shared/breadcrumbs"
+  .col-sm-8
+    = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
+    %small
+      = link_to "Edit", edit_admin_article_path(@article)
+    .article_show= @article.body.html_safe
+      
+    .article_comments_section
+      %h2 Comments
+      %form#commnt_form{:action => ""}
+        %textarea.form-control{:name => "", :cols => "30", :rows => "10"}
+        %input.form-control.btn.btn-primary{:type => "submit"}/
+      - 5.times do  |comment|
+        .comment
+          %h5 Author <small> says </small>
+          .comment_body
+            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt beatae, distinctio reiciendis facilis molestias quia eius obcaecati voluptatum doloremque laboriosam praesentium amet qui quidem architecto assumenda harum consequatur iste nobis.
 
-  .container
-    .col-sm-8
-      %small
-        = link_to "Edit", edit_admin_article_path(@article)
-      .article_show= @article.body.html_safe
-        
-      .comments_section
-        %form#commnt_form{:action => ""}
-          %textarea.form-control{:name => "", :cols => "30", :rows => "10"}
-          %input.form-control.btn.btn-primary{:type => "submit"}/
-        - 5.times do  |comment|
-          .comment
-            %h5 Author <small> says </small>
-            .comment_body
-              %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt beatae, distinctio reiciendis facilis molestias quia eius obcaecati voluptatum doloremque laboriosam praesentium amet qui quidem architecto assumenda harum consequatur iste nobis.
-
-    .col-sm-4
-      = render "shared/sidebar"
+  .col-sm-3
+    = render "shared/sidebar"

@@ -145,7 +145,7 @@ main {
   margin-bottom: 10px;
 }
 
-.comments_section {
+.article_comments_section {
   padding: 10px;
   background: rgba(175,190,213, 0.4)
 }
@@ -188,6 +188,21 @@ main {
 
 .article_preview img {
   width: 100%;
+}
+
+.blog_sidebar .widget {
+  background-color: #F8F8F8;
+  text-align: justify;
+
+  padding: 10px;
+}
+
+.blog_sidebar .widget + .widget {
+  margin-top: 20px;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 767px) {

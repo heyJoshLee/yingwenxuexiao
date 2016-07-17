@@ -1,7 +1,14 @@
-.blog_side_bar
-  .widget
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ratione eligendi, facilis accusamus minima vero ipsum ex quo provident amet aliquam nemo, voluptas sapiente cupiditate suscipit deleniti totam illum illo!        
+.blog_sidebar
+  .widget.ebook_sign_up
+    = render "shared/campaign_modal", { title: "50 English Idioms", image: "ebook.png", campaign: "launch_idioms"}
+    %p Get Josh's new book "50+ English Idioms" for free
+
+    %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the Book
+
+
   .widget
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ratione eligendi, facilis accusamus minima vero ipsum ex quo provident amet aliquam nemo, voluptas sapiente cupiditate suscipit deleniti totam illum illo!        
   .widget
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ratione eligendi, facilis accusamus minima vero ipsum ex quo provident amet aliquam nemo, voluptas sapiente cupiditate suscipit deleniti totam illum illo!
+
+

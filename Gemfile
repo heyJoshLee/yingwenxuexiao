@@ -21,6 +21,8 @@ gem 'carrierwave-aws'
 gem "figaro"
 gem "sluggable_jl"
 gem "mini_magick"
+gem "breadcrumbs_on_rails"
+
 
 
 

@@ -1,9 +1,18 @@
 class ArticlesController < ApplicationController
 
-  before_action :set_article
+  before_action :set_article, only: [:show]
+  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Blog", :blog_path
+
+
+  def show
+    add_breadcrumb @article.title, @article
+
+  end
 
   def index
     @articles = Article.all
+
   end
 
   private
