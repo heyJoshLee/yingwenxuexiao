@@ -9,14 +9,17 @@
       
     .article_comments_section
       %h2 Comments
-      %form#commnt_form{:action => ""}
-        %textarea.form-control{:name => "", :cols => "30", :rows => "10"}
-        %input.form-control.btn.btn-primary{:type => "submit"}/
-      - 5.times do  |comment|
+
+      = bootstrap_form_for [@article, @comment] do |f|
+        = f.text_area :body
+        = f.submit "Create Comment", class: "btn btn-primary"
+
+      - @article.comments.each do  |comment|
         .comment
-          %h5 Author <small> says </small>
+          %h5
+            %strong #{comment.author.name} <small> says </small>
           .comment_body
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt beatae, distinctio reiciendis facilis molestias quia eius obcaecati voluptatum doloremque laboriosam praesentium amet qui quidem architecto assumenda harum consequatur iste nobis.
+            %p= comment.body
 
   .col-sm-3
     = render "shared/sidebar"

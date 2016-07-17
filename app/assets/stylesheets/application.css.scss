@@ -18,6 +18,8 @@
 
  */
 
+// Blue rgba(0,182,245, 0.4)
+
 body, html {
   height: 100%;
   width: 100%;
@@ -79,7 +81,6 @@ header li {
   border-right: 1px solid white;
   height: 50px;
   background-color: rgba(0,182,245, 1);
-
 }
 
 .nav_item:hover {
@@ -102,7 +103,7 @@ main {
 }
 
 .articles_container {
-  margin-top: 110px;
+  margin-top: 10px;
 }
 
 .feature-image {
@@ -155,6 +156,27 @@ main {
   margin-bottom: 20px;
 }
 
+.ebook_sign_up.widget {
+  padding: 0 !important;
+}
+
+.ebook_sign_up.widget .btn {
+  margin: 0 auto;
+}
+
+.ebook_sign_up.widget .topline {
+  background-color: #31C2F5;
+  color: white;
+  padding: 5px 5px 20px 5px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.widget_body {
+  padding: 10px;
+  text-align: center;
+}
+
 .alert {
   margin: 0;
 }
@@ -191,9 +213,8 @@ main {
 }
 
 .blog_sidebar .widget {
-  background-color: #F8F8F8;
+  border: 1px solid rgba(20, 20, 20, 0.1);
   text-align: justify;
-
   padding: 10px;
 }
 
@@ -206,7 +227,5 @@ main {
 }
 
 @media screen and (max-width: 767px) {
-    main {
-        margin-top: 200px;
-    }
+
 }

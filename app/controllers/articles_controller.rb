@@ -6,8 +6,8 @@ class ArticlesController < ApplicationController
 
 
   def show
+    @comment = Comment.new
     add_breadcrumb @article.title, @article
-
   end
 
   def index

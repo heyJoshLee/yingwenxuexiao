@@ -6,5 +6,5 @@
     .col-sm-7
       %h1
         = link_to article.title, article_path(article)
-      %small= article.created_at
+      %small= format_datetime(article.created_at)
       %p= article.preview_text

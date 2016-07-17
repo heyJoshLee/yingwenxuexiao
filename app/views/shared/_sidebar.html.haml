@@ -1,9 +1,10 @@
 .blog_sidebar
   .widget.ebook_sign_up
-    = render "shared/campaign_modal", { title: "50 English Idioms", image: "ebook.png", campaign: "launch_idioms"}
-    %p Get Josh's new book "50+ English Idioms" for free
+    .topline Get 50 Free Lessons Right Now
+    .widget_body
+      %p Get Josh's new book "50+ English Idioms" for free!
 
-    %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the Book
+      %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the book
 
 
   .widget

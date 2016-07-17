@@ -6,5 +6,9 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
   validates :password, presence: true, length: {minimum: 5, maximum: 20}
+
+  has_many :comments
+  has_many :articles
+
 end
 

@@ -1,3 +1,5 @@
+= render "shared/campaign_modal", { title: "50 English Idioms", image: "ebook.png", campaign: "launch_idioms"}
+
 %header.navbar.navbar-default#main_header
   .container-fluid
     / Brand and toggle get grouped for better mobile display
@@ -11,10 +13,16 @@
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li.hidden-xs
-          %a{:href => "#"} Free Gift
         %li
-          =link_to "Blog", blog_path
+          %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Free Gift
+        %li
+          = link_to "Blog", blog_path
+        %li.hidden-sm.hidden-md.hidden-lg
+          = link_to "Free Stuff", blog_path
+        %li.hidden-sm.hidden-md.hidden-lg
+          = link_to "Courses", blog_path
+        %li.hidden-sm.hidden-md.hidden-lg
+          = link_to "Premium Membership", blog_path
         %li
           - if logged_in?
             = link_to "Sign Out", signout_path

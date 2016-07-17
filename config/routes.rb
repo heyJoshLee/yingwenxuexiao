@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get "email_confirm", to: "email_signups#confirm"
 
   resources :users, only: [:create]
-  resources :articles, only: [:show]
+  resources :articles, only: [:show] do
+    resources :comments, only: [:create]
+  end
   resources :categories, only: [:show]
   resources :email_signups, only: [:create]
 
