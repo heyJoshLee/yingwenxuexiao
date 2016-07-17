@@ -25,6 +25,10 @@ body, html {
   width: 100%;
 }
 
+img {
+  width: 100%;
+}
+
 a {
   color: inherit !important;
   text-decoration: inherit !important;
@@ -45,7 +49,34 @@ header li {
 
 
 #main_splash {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.course_splash_preview {
+  padding: 40px 0;
   background-color: #F4F4F4;
+}
+
+.course_splash_preview h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.course_splash_preview .course_preview {
+  text-align: center;
+}
+
+.course_splash_preview .course_preview img {
+  border-radius: 100%;
+}
+
+.spash_highlights div {
+  vertical-align: top;
+}
+
+.spash_highlights .fa{
+  font-size: 32px;
 }
 
 .sign_up_nav_button a {
@@ -70,6 +101,17 @@ header li {
 
 .large_splash_highlights {
   background-color: #F4F4F4;
+  padding: 40px;
+}
+
+
+.icon_wrapper {
+  box-sizing: border-box; 
+}
+
+.icon_wrapper img {
+  max-width: 100px;  
+  margin-top: 50%;
 }
 
 .nav_item {
@@ -226,6 +268,9 @@ main {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 400px) {
+.icon_wrapper img {
+  margin-top: 0;
+}
 
 }

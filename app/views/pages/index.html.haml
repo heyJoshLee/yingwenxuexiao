@@ -1,31 +1,101 @@
 %section#main_splash.row
-  .col-md-5.col-md-offset-1
-    %h1 Your Teacher
-    %img{:alt => "", :src => ""}
-      %p Josh Lee, Professional English Teacher
-      %small I've taught English to Chinese students for years. I want to help you pass the CET, IELTS or just make you a better English speaker.
-  .col-md-5.col-md-offset-1
-    %h4 English Learning for all levels
-    %p Learn with our video lessons quizzes and smartphone apps
-    .btn.btn-primary
-      Sign up for free
+  .container
+    .col-sm-5.col-sm-offset-4
+      %h1 Improve Your English Right Now
+      %h4 Learn English with Video Lessons, Fun Quizzes and more
+      .btn.btn-primary Sign Up Now
+
 %section.row.spash_highlights
-  .col-sm-3 Over 10 hours of video lessons
-  .col-sm-3 Hundreds of quiz questions to reinforce what you have learned
-  .col-sm-3 Smartphone APPS to practice your English
-  .col-sm-3 Ask the teacher if you have questions
+  .container
+    .col-sm-1
+      %i.fa.fa-video-camera
+    .col-sm-2 Over 10 hours of video lessons
+
+    .col-sm-1
+      %i.fa.fa-check-circle
+    .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
+
+    .col-sm-1
+      %i.fa.fa-mobile-phone
+    .col-sm-2 Smartphone APPS to practice your English
+
+    .col-sm-1
+      %i.fa.fa-question
+    .col-sm-2 Ask the teacher if you have questions
+
 %section.large_splash_highlights
-  .row
-    .col-sm-5.col-sm-offset-1
-      %h4 Video Lessons
-      %p Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member.
-    .col-sm-5.col-sm-offset-1
-      %h4 Quizzes
-      %p Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material.
-  .row
-    .col-sm-5.col-sm-offset-1
-      %h4 Lesson Notes
-      %p Each lesson contains notes that you can download and print off so you can study later.
-    .col-sm-5.col-sm-offset-1
-      %h4 Smart Phone App
-      %p With our smart phone app you can practice English when you are away from your computer.
+  .container
+    .row
+      .col-sm-1
+        .icon_wrapper
+          = image_tag("icons/presentation")
+      .col-sm-5
+        %h4  Video Lessons
+        %p Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member.
+      .col-sm-1
+        .icon_wrapper
+          = image_tag("icons/test")
+      .col-sm-5
+        %h4 Quizzes
+        %p Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material.
+
+    .row
+      .col-sm-1
+        .icon_wrapper
+          = image_tag("icons/notepad")
+      .col-sm-5
+        %h4 Lesson Notes
+        %p Each lesson contains notes that you can download and print off so you can study later.
+      .col-sm-1
+        .icon_wrapper
+          = image_tag("icons/smartphone")
+      .col-sm-5.col
+        %h4 Smart Phone App
+        %p With our smart phone app you can practice English when you are away from your computer.
+
+%section.row.meet_your_teacher
+  .container
+    .row
+      .col-sm-6.col-sm-offset-4
+        %h1 Meet Your Teacher - Josh Lee
+        %ul
+          %li
+            %h4 Experienced
+            %p Taught over 2,000 Chinese students at Universities, Training Centers and Online. Josh has even lead training sessions for other TEFL teachers.
+          %li
+            %h4 Knowledgeable
+            %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations.
+
+%section.row.course_splash_preview
+  .container
+    %h1 Premium Courses
+    .row
+
+      .col-sm-3
+        .ielts_test_prep.course_preview
+          = image_tag("sales_page/white_board")
+          %h4 IELTS test preparation
+          %p Pass the IELTS and get a high score.
+          %small Coming soon
+
+      .col-sm-3
+        .business_english.course_preview
+          = image_tag("sales_page/meeting")
+          %h4 Business English
+          %p Learn how to do business, negotiate be speak the language of business.
+          %small Coming soon
+
+      .col-sm-3
+        .beginner_english.course_preview
+          = image_tag("sales_page/letter_cubes")
+          %h4 Beginner English
+          %p For complete beginners.
+          %small Coming soon
+
+      .col-sm-3
+        .english_idioms.course_preview
+          = image_tag("sales_page/notebook")
+          %h4 English Idioms
+          %p Learn how to talk like a native speaker with this class.
+          %small Coming soon
+
