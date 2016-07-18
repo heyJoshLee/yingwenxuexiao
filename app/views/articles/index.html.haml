@@ -1,11 +1,9 @@
-= render "shared/nav"
-%main
-  = render "shared/breadcrumbs"
+= render "shared/breadcrumbs"
 
-  .col-sm-8
-    %hr/
-    .articles_container
-      = render @articles
-  .col-sm-4
-    = render "shared/sidebar"
-      
+.col-sm-8
+  %hr/
+  .articles_container
+    = render @articles
+.col-sm-4
+  = render "shared/sidebar"
+    

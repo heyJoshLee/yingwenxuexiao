@@ -1,18 +1,17 @@
-%main
-  .row
-    .container
-      .col-sm-10
-        %table.table.table-bordered.table-striped.table-hover.v_margin
-          %thead
+.row
+  .container
+    .col-sm-10
+      %table.table.table-bordered.table-striped.table-hover.v_margin
+        %thead
+          %tr
+            %th Email
+            %th Created at
+            %th Page
+            %th Campagin 
+        %tbody
+          - @email_signups.each do |email_signup|
             %tr
-              %th Email
-              %th Created at
-              %th Page
-              %th Campagin 
-          %tbody
-            - @email_signups.each do |email_signup|
-              %tr
-                %td= email_signup.email
-                %td= email_signup.created_at
-                %td= email_signup.page
-                %td= email_signup.campaign
+              %td= email_signup.email
+              %td= email_signup.created_at
+              %td= email_signup.page
+              %td= email_signup.campaign
