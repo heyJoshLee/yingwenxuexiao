@@ -1,0 +1,9 @@
+= bootstrap_form_for([:admin, @course]) do |f|
+  = f.text_field :name
+  = f.text_area :description
+  = f.file_field :main_image_url, class: "btn btn-file"
+  = label :premium_course, 'Premium Course'
+  = f.radio_button :premium_course, true, class: "radio-inline"
+  = label :premium_course, 'Free Course'
+  = f.radio_button :premium_course, false, class: "radio-inline"
+  = f.submit "Create Course", class: "btn btn-primary"

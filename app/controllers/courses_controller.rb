@@ -1,6 +1,6 @@
-class Admin::CoursesController < ApplicationController
+class CoursesController < ApplicationController
 
-  before_action :set_course, only: [:show]
+  before_action :set_course
   
   def new
     @course = Course.new
@@ -10,7 +10,7 @@ class Admin::CoursesController < ApplicationController
     @course = Course.new(course_params)
     if @course.save
       flash[:success] = "course was saved"
-      redirect_to admin_course_path(@course)
+      redirect_to course_path(@course)
     else
       flash.now[:danger] = "There was a problem and the course was not saved"
       render :new
@@ -18,7 +18,6 @@ class Admin::CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find_by(slug: params[:id])
   end
 
   private
@@ -28,7 +27,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit!
+    params.require(:course).permit()
   end
 
 end

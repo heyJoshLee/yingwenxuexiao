@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-1
+      = bootstrap_form_for([:admin, @course, @lesson]) do |f|
+        = f.text_field :name
+        = f.text_area :script_english
+        = f.text_area :script_chinese
+        = f.text_field :video_url
+        = f.text_field :notes_url
+        = f.text_area :description
+        = hidden_field_tag :course_id, @course.id
+        = f.submit "Add Lesson to Course", class: "btn btn-primary pull-right"

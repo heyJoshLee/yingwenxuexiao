@@ -1,4 +1,4 @@
-class CategoryImageUploader < CarrierWave::Uploader::Base
+class CourseMainImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   def extension_white_list
@@ -9,6 +9,3 @@ class CategoryImageUploader < CarrierWave::Uploader::Base
       ActionController::Base.helpers.asset_path("image_not_found_fallbacks/" + [version_name, "default.png"].compact.join('_'))
     end
 end
-
-
-

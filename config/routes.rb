@@ -18,11 +18,13 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:show]
   resources :email_signups, only: [:create]
-
+  resources :courses, only: [:index, :show]
 
 
   namespace :admin do
-    resources :courses
+    resources :courses do
+      resources :lessons
+    end
     resources :email_signups, only: [:index]
     resources :users
     resources :categories
