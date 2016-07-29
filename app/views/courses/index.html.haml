@@ -1,0 +1,11 @@
+= render_breadcrumbs
+%h1 Courses
+%ul.row
+- @courses.each do |course|
+  %li.course_preview.col-sm-3
+    = image_tag(course.main_image_url)
+    %h3= course.name
+    %p= course.description
+    = link_to course_path(course) do
+      .btn.btn-primary Enroll in Class
+

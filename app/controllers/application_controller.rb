@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
       redirect_to sign_in_path unless current_user
     end
 
+    def require_admin
+      unless logged_in? && current_user.is_admin? || logged_in? && current_user.is_editor?
+        flash[:danger] = "You do not have permission to do that"
+        redirect_to root_path
+      end
+    end
+
 end

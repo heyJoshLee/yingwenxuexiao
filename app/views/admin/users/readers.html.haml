@@ -1,0 +1,7 @@
+%h1 Readers
+%ul
+  - @users.each do |u|
+    %li
+      = u.name
+      = u.email
+      = u.role

@@ -10,5 +10,13 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :articles
 
+  def is_editor?
+    role == "editor"
+  end
+
+  def is_admin?
+    role == "admin"
+  end
+
 end
 

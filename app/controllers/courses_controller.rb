@@ -1,6 +1,14 @@
 class CoursesController < ApplicationController
 
+  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Courses"
+
+
   before_action :set_course
+
+  def index
+    @courses = Course.all
+  end
   
   def new
     @course = Course.new

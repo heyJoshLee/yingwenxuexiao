@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :articles, only: [:show] do
     resources :comments, only: [:create]
   end
+
   resources :categories, only: [:show]
+  
   resources :email_signups, only: [:create]
   resources :courses, only: [:index, :show]
 

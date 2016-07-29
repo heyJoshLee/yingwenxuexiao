@@ -1,37 +1,40 @@
 = render "shared/campaign_modal", { title: "50 English Idioms", image: "ebook.png", campaign: "launch_idioms"}
 
 %header.navbar.navbar-default#main_header
-  .container-fluid
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => "#"} Brand
-    / Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Free Gift
-        %li
-          = link_to "Blog", blog_path
-        %li.hidden-sm.hidden-md.hidden-lg
-          = link_to "Free Stuff", blog_path
-        %li.hidden-sm.hidden-md.hidden-lg
-          = link_to "Courses", blog_path
-        %li.hidden-sm.hidden-md.hidden-lg
-          = link_to "Premium Membership", blog_path
-        %li
-          - if logged_in?
-            = link_to "Sign Out", signout_path
-          - else
-            = link_to "Sign In", signin_path
-        %li
-          - if logged_in?
-            = link_to "Profile", root_path
-          - else
-            = link_to "Sign Up", signup_path
-    / /.navbar-collapse
-  / /.container-fluid
+  .row
+    .col-sm-3
+      = link_to root_path do 
+        = image_tag("english_school_logo", class: "header_logo_image")
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right.nav-links
+          %li
+            %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Free Gift
+          %li
+            = link_to "Blog", blog_path
+          %li.hidden-sm.hidden-md.hidden-lg
+            = link_to "Free Stuff", blog_path
+          %li.hidden-sm.hidden-md.hidden-lg
+            = link_to "Courses", blog_path
+          %li.hidden-sm.hidden-md.hidden-lg
+            = link_to "Premium Membership", blog_path
+          %li
+            - if logged_in?
+              = link_to "Sign Out", signout_path
+            - else
+              = link_to "Sign In", signin_path
+          %li
+            - if logged_in?
+              = link_to "Profile", root_path
+            - else
+              = link_to "Sign Up", signup_path
+      / /.navbar-collapse
+    / /.container-fluid

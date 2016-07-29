@@ -28,11 +28,25 @@ gem "breadcrumbs_on_rails"
 
 gem 'unicorn'
 
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem "pry"
+  gem 'rspec-rails', '~> 3.4'
+  gem 'database_cleaner', '1.4.1'
+  gem 'capybara'
+  gem 'capybara-email'
+  gem 'shoulda-matchers', '2.7.0'
+  gem 'fabrication'
+  gem "faker"
+  gem "launchy"
+  gem 'vcr', '2.9.3'
+  gem 'webmock', '1.11.0'
+  gem 'selenium-webdriver'
 end
 
 group :development do

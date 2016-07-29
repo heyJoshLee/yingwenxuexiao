@@ -1,11 +1,13 @@
 %nav#main_nav.navbar.navbar-default.navbar-static-top.hidden-xs
   .row
     .col-sm-2.nav_item
-      .nav_text Home
+      .nav_text
+        = link_to "Home", root_path
     .col-sm-2.nav_item
       .nav_text Free Stuff
     .col-sm-2.nav_item
-      .nav_text Courses
+      .nav_text
+        = link_to "Courses", courses_path
     .col-sm-4.nav_item
       .nav_text Premium Membership
     .col-sm-2.nav_item

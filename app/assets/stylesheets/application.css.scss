@@ -25,6 +25,10 @@ body, html {
   width: 100%;
 }
 
+main {
+  padding: 20px 30px;
+}
+
 img {
   width: 100%;
 }
@@ -87,10 +91,6 @@ header li {
   height: 50%;
 }
 
-#main_header {
-  margin: 0 !important;
-}
-
 .spash_highlights {
   background-color: #56CDD4;
   color: white;
@@ -134,15 +134,29 @@ header li {
   border: none;
 }
 
+/********
+HEADER
+********/
+
+.nav-links {
+  font-size: 24px;
+  padding-top: 30px;
+}
+
+#main_header {
+  margin: 0 !important;
+  background-color: white;
+  padding: 0 !important;
+  border: none;
+}
+
+
 
 #main_nav {
   width: 100%;
   height: 50px;
 }
 
-main {
-  padding: 20px 30px;
-}
 
 .articles_container {
   margin-top: 10px;
@@ -275,6 +289,26 @@ main {
   font-size: 38px;
   background: green;
   border-radius: 100%;
+}
+
+/*********
+COURSE
+**********/
+
+.course_preview {
+  margin: 0 4px;
+  padding: 4px 2px;
+  background-color: #F8F8F8;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.course_preview img {
+  width: 100%;
+  height: 250px;
+  border-radius: 100%;
+  text-align: center;
 }
 
 @media screen and (max-width: 400px) {
