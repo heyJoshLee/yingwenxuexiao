@@ -6,6 +6,10 @@
     = image_tag(course.main_image_url)
     %h3= course.name
     %p= course.description
-    = link_to course_path(course) do
-      .btn.btn-primary Enroll in Class
+    - if current_user.is_enrolled_in?(course)
+      .btn.btn-primary.v_margin
+        = link_to "Go to class", course_path(course)
+    - else
+      .btn.btn-success.v_margin
+        = link_to "Enroll In Class", enroll_course_path(course), method: "post"
 

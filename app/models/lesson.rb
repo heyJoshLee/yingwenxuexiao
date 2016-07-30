@@ -1,5 +1,8 @@
 class Lesson < ActiveRecord::Base
   belongs_to :course
+  
+  has_many :grades
+  has_many :lessons, through: :grades
 
   before_create :generate_random_slug
 

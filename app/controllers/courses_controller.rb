@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   add_breadcrumb "Courses"
 
 
-  before_action :set_course
+  before_action :set_course, only: [:enroll, :show]
 
   def index
     @courses = Course.all
@@ -23,6 +23,11 @@ class CoursesController < ApplicationController
       flash.now[:danger] = "There was a problem and the course was not saved"
       render :new
     end
+  end
+
+  def enroll
+    current_user.enroll_in(@course)
+    redirect_to course_path(@course)
   end
 
   def edit

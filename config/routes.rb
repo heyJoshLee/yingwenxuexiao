@@ -20,7 +20,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   
   resources :email_signups, only: [:create]
-  resources :courses, only: [:index, :show]
+
+  resources :courses, only: [:index, :show] do
+    member do 
+      post "enroll"
+    end
+  end
 
 
   namespace :admin do

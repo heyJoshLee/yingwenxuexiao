@@ -42,7 +42,20 @@ describe User do
     end
   end # is_admin?
 
+  describe "#is_enrolled_in?" do
+    let(:user) { Fabricate(:user) }
+    let(:course) { Fabricate(:course) }
 
+    it "should return false if user is not enrolled in the course" do
+      expect(user.is_enrolled_in?(course)).to be_truthy
+    end
+
+    it "should return true id user is enrolled in the course" do
+      user.enroll_in(course)
+      expect(user.is_enrolled_in?(course)).to be_falsey
+    end
+
+  end
 
 
 end
