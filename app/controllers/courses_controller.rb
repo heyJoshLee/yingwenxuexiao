@@ -1,10 +1,11 @@
 class CoursesController < ApplicationController
+  before_action :require_user, only: [:index, :show]
+  before_action :set_course, only: [:enroll, :show]
 
   add_breadcrumb "Home", :root_path
   add_breadcrumb "Courses"
 
 
-  before_action :set_course, only: [:enroll, :show]
 
   def index
     @courses = Course.all

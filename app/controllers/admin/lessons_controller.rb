@@ -1,7 +1,7 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new]
-  before_action :set_lesson, only: [:show, :edit]
+  before_action :set_course, only: [:create, :new, :edit, :update]
+  before_action :set_lesson, only: [:show, :edit, :update]
   
   def new
     @lesson = Lesson.new
@@ -15,6 +15,16 @@ class Admin::LessonsController < AdminController
     else
       flash.now[:danger] = "There was a problem and the lesson was not saved"
       render :new
+    end
+  end
+
+ def update
+    if @lesson.update(lesson_params)
+      flash[:success] = "Lesson saved"
+      redirect_to course_lesson_path(@course, @lesson)
+    else
+      flash[:danger] = "There was an error and your Lesson was not saved"
+      render :edit
     end
   end
 

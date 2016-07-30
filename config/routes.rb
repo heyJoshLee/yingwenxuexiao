@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'pages#index'
 
-  get "signin", to: "sessions#new"
+  get "signin", to: "sessions#new", as: "sign_in"
   post "signin", to: "sessions#create"
-  get "signout", to: "sessions#destroy"
+  get "signout", to: "sessions#destroy", as: "sign_out"
 
-  get "signup", to: "users#new"
+  get "signup", to: "users#new", as: "sign_up"
 
   get "blog", to: "articles#index"
 
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :email_signups, only: [:create]
 
   resources :courses, only: [:index, :show] do
+    resources :lessons
     member do 
       post "enroll"
     end

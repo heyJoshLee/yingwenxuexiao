@@ -28,13 +28,13 @@
             = link_to "Premium Membership", blog_path
           %li
             - if logged_in?
-              = link_to "Sign Out", signout_path
+              = link_to "Sign Out", sign_out_path
             - else
-              = link_to "Sign In", signin_path
+              = link_to "Sign In", sign_in_path
           %li
             - if logged_in?
               = link_to "Profile", root_path
             - else
-              = link_to "Sign Up", signup_path
+              = link_to "Sign Up", sign_up_path
       / /.navbar-collapse
     / /.container-fluid

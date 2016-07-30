@@ -1,0 +1,6 @@
+.lesson_panel
+  %h4 Lessons
+  %ul
+    - @course.lessons.each_with_index do |lesson, i|
+      = link_to course_lesson_path(@course, lesson) do
+        %li= "Lesson - #{i+1} "

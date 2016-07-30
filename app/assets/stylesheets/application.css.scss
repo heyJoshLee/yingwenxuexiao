@@ -311,6 +311,56 @@ COURSE
   text-align: center;
 }
 
+/*********
+LESSON_PANEL
+**********/
+
+.lesson_panel {
+  color: white
+}
+
+.lesson_panel h4 {
+  text-align: center;
+}
+
+.lesson_panel ul {
+  padding: 0;
+}
+
+.lesson_panel li {
+  text-align: center;
+  font-weight: bold;
+  height: 30px;
+  color: white;
+  padding-top: 5px;
+  background-color: rgba(0,182,245, 1);
+}
+
+.lesson_panel li:hover {
+  cursor: pointer;
+  background-color: rgba(0,182,200, 0.5);
+}
+
+.lesson_panel li + li {
+  border-top: 1px solid white;
+}
+
+
+/*********
+LESSON
+**********/
+
+.lesson_notes_container {
+  text-align: center;
+}
+.lesson_notes_container .fa {
+  font-size: 24px;
+}
+.lesson_notes_container:hover {
+  cursor: pointer;
+}
+
+
 @media screen and (max-width: 400px) {
 .icon_wrapper img {
   margin-top: 0;
