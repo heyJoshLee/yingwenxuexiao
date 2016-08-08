@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729223509) do
+ActiveRecord::Schema.define(version: 20160808032611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 20160729223509) do
     t.string   "slug"
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.integer  "question_id"
+    t.boolean  "correct"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -67,18 +75,22 @@ ActiveRecord::Schema.define(version: 20160729223509) do
   end
 
   create_table "course_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-    t.boolean "completed"
-    t.boolean "enrolled"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.boolean  "completed"
+    t.boolean  "enrolled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string  "name"
-    t.text    "description"
-    t.string  "main_image_url"
-    t.boolean "premium_course", default: true
-    t.string  "slug"
+    t.string   "name"
+    t.text     "description"
+    t.string   "main_image_url"
+    t.boolean  "premium_course", default: true
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "email_signups", force: :cascade do |t|
@@ -97,6 +109,14 @@ ActiveRecord::Schema.define(version: 20160729223509) do
     t.boolean "completed", default: true
   end
 
+  create_table "lesson_users", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.boolean  "completed",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.string   "name"
     t.text     "script_english"
@@ -108,6 +128,38 @@ ActiveRecord::Schema.define(version: 20160729223509) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "lesson_number"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.integer  "value"
+    t.text     "body"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_questions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "choice_id"
+  end
+
+  create_table "user_quizzes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

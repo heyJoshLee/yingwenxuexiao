@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   resources :email_signups, only: [:create]
 
   resources :courses, only: [:index, :show] do
-    resources :lessons
+    resources :lessons, only: [:show] do
+      post "complete", as: "complete_lesson"
+      resources :quizzes do
+        post "attempt", as: "attempt_quiz"
+      end
+    end
     member do 
       post "enroll"
     end
@@ -31,7 +36,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :courses do
-      resources :lessons
+      resources :lessons do
+        resources :quizzes do
+          resources :questions do
+            resources :choices
+          end
+        end
+      end
     end
     resources :email_signups, only: [:index]
     resources :users

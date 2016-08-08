@@ -4,7 +4,17 @@ class Lesson < ActiveRecord::Base
   has_many :grades
   has_many :lessons, through: :grades
 
+  has_many :lesson_users
+  has_many :users, through: :lesson_users
+
   before_create :generate_random_slug
+
+  has_one :quiz
+
+
+  def has_quiz?
+    quiz
+  end
 
   def generate_random_slug
     self.slug = SecureRandom.urlsafe_base64

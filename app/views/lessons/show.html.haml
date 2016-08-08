@@ -23,3 +23,8 @@
       .lesson_notes_container
         %i.fa.fa-file
         %h5 Download Notes
+
+= render "quizzes/quiz_section"
+- if !@lesson.has_quiz? || current_user.taken_quiz?(@lesson.quiz)
+  = link_to course_lesson_complete_lesson_path(@course, @lesson), method: "POST" do 
+    .btn.btn-success.pull-right Next Lesson

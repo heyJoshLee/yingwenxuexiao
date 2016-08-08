@@ -1,0 +1,4 @@
+%h1 Courses
+%ul
+- @courses.each do |course|
+  = link_to course.name, admin_course_path(course)

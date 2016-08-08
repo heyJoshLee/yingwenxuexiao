@@ -1,5 +1,7 @@
-%nav
+%nav.admin_nav
   .container
     .row
-      .col-sm-4
+      .col-sm-1
+        = link_to "Courses", admin_courses_path
+      .col-sm-1
         = link_to "Create Course", new_admin_course_path

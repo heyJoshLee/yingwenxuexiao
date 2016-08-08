@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
-  has_many :lessons
+  has_many :lessons, -> {order("lesson_number ASC")}
+
   mount_uploader :main_image_url, CourseMainImageUploader
 
   include Sluggable
@@ -11,5 +12,6 @@ class Course < ActiveRecord::Base
 
   has_many :course_user
   has_many :users, through: :course_users
+
 end
 

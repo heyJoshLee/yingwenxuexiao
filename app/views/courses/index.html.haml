@@ -1,4 +1,3 @@
-= render_breadcrumbs
 %h1 Courses
 %ul.row
 - @courses.each do |course|
@@ -12,4 +11,3 @@
     - else
       .btn.btn-success.v_margin
         = link_to "Enroll In Class", enroll_course_path(course), method: "post"
-

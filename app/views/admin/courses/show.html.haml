@@ -1,6 +1,11 @@
 .container
   .row
-    .col-sm-8.col-sm-offset-2
+    .col-sm-2
+      %h2 Lessons
+      - @course.lessons.each do |lesson|
+        %li
+        = link_to "#{lesson.name} - #{lesson.lesson_number}", admin_course_lesson_path(@course, lesson)
+    .col-sm-8
       %h1= @course.name
       = image_tag(@course.main_image_url)
       %h2= @course.description
@@ -10,7 +15,3 @@
         = link_to new_admin_course_lesson_path(@course) do
           %i.fa.fa-plus
   .row
-    %h2 Lessons
-  .row
-    - @course.lessons.each do |lesson|
-      = lesson.name

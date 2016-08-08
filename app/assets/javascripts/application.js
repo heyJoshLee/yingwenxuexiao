@@ -17,3 +17,11 @@
 //= require bootsy
 //= require_tree .
 
+
+$(document).on("click", ".choice_radio_button", function(e) {
+  $(e.target).parent().parent().parent().find(".choice_body").removeClass("selected_choice");
+  $(e.target).parent().parent().find(".choice_body").toggleClass("selected_choice")
+
+});
+
+

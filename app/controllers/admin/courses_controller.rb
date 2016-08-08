@@ -1,8 +1,18 @@
 class Admin::CoursesController < AdminController
   before_action :set_course, only: [:show]
+
+  add_breadcrumb "Courses", :admin_courses_path
   
   def new
     @course = Course.new
+  end
+
+  def index
+    @courses = Course.all
+  end
+
+  def show
+    add_breadcrumb @course.name, admin_course_path(@course)
   end
 
   def create
