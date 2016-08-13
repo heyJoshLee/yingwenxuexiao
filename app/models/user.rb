@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password validations: false
 
-
   validates :email, presence: true
   validates_uniqueness_of :email, case_sensitive: false
 
@@ -113,7 +112,29 @@ class User < ActiveRecord::Base
     lessons.find_by(id: lesson.id)
   end
 
+  def next_lesson_in_course(course)
+    if course.lessons.all? { |lesson| completed_lesson?(lesson)}
+      return course.lessons.last
+    end
+
+    course.lessons.each do |lesson|
+      return lesson unless completed_lesson?(lesson)
+    end
+    course.lessons.first
+  end
+
+  def add_points(points_to_add)
+    new_points = points + points_to_add
+    update_column(:points, new_points)
+    advance_level_if_enough_points
+  end
+
   private
+
+  def advance_level_if_enough_points
+    next_level =  Level.find_by(number: level + 1)
+    update_column(:level, next_level.number) if points >= next_level.points
+  end
 
   def change_answer(question, choice)
     user_question = user_questions.find_by(question_id: question.id)

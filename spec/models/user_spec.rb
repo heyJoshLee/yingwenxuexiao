@@ -342,4 +342,78 @@ describe User do
     end
   end
 
+  describe "#next_lesson_in_course(course)" do
+    let(:user) { Fabricate(:user) }
+    let(:course) { Fabricate(:course, name: "Business English", id: 1) }
+
+    
+      let!(:lesson_1) { Fabricate(:lesson, course_id: 1, lesson_number: 1) }
+      let!(:lesson_2) { Fabricate(:lesson, course_id: 1, lesson_number: 2) }
+      let!(:lesson_3) { Fabricate(:lesson, course_id: 1, lesson_number: 3) }
+      let!(:lesson_4) { Fabricate(:lesson, course_id: 1, lesson_number: 4) }
+
+
+    it "should return the first lesson if the user is not enrolled in course" do
+      expect(user.next_lesson_in_course(course)).to eq(course.lessons.first)
+    end
+
+    it "should return return the second lesson in the course if user has only completed the first lesson" do
+      user.enroll_in(course)
+      user.complete_lesson(course.lessons.first)
+      expect(user.next_lesson_in_course(course)).to eq(course.lessons[1])
+    end
+
+    it "should return the first lesson if the user has completed the second lesson" do
+      user.enroll_in(course)
+      user.complete_lesson(course.lessons[1])
+      expect(user.next_lesson_in_course(course)).to eq(course.lessons.first)
+    end
+
+    it "should return the last lesson if the user has completed all the lessons" do
+      user.enroll_in(course)
+      user.complete_lesson(course.lessons[0])
+      user.complete_lesson(course.lessons[1])
+      user.complete_lesson(course.lessons[2])
+      user.complete_lesson(course.lessons[3])
+
+      expect(user.next_lesson_in_course(course)).to eq(course.lessons.last)
+    end
+
+  end
+
+  describe "#add_points(points)" do
+    let!(:user) { Fabricate(:user) }
+    let!(:level_1) { Fabricate(:level, number: 1, points: 100) }
+    let!(:level_2) { Fabricate(:level, number: 2, points: 200) }
+
+    it "adds 100 to user" do
+      user.add_points(100)
+      expect(user.points).to eq(100)
+    end
+
+    it "adds 55 and then 100 points to user" do
+      user.add_points(55)
+      user.add_points(100)
+      expect(user.points).to eq(155)
+    end
+  end
+
+  describe "#advance_level_if_enough_points" do
+    let(:user) { Fabricate(:user) }
+
+      let!(:level_1){  Fabricate(:level, points: 0, number: 1) }
+      let!(:level_2){  Fabricate(:level, points: 100, number: 2) }
+      let!(:level_3){  Fabricate(:level, points: 200, number: 3) }
+
+    it "doesn't advance the level if the user doesn't get enough points" do
+      user.add_points(40)
+      expect(user.level).to eq(1)
+    end
+
+    it "advances the level by one if the user earns enough points to advance" do
+      user.add_points(150)
+      expect(user.level).to eq(2)
+    end
+  end
+
 end

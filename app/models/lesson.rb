@@ -11,6 +11,10 @@ class Lesson < ActiveRecord::Base
 
   has_one :quiz
 
+  validates_presence_of :lesson_number
+  validates_numericality_of :lesson_number, {only_integer: true}
+
+
 
   def has_quiz?
     quiz

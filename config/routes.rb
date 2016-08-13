@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "signup", to: "users#new", as: "sign_up"
 
   get "blog", to: "articles#index"
+  get "account", to: "users#show"
 
   get "email_confirm", to: "email_signups#confirm"
 
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    namespace :dashboard do
+      resources :vocabulary_words
+      resources :levels
+    end
     resources :courses do
       resources :lessons do
         resources :quizzes do

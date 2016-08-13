@@ -1,0 +1,26 @@
+%h1 Levels
+
+%table.levels_table
+  %thead
+    %th Number
+    %th Points
+    %th Message
+  %tbody
+    - @levels.each do |level|
+      %tr
+        %td= level.number
+        %td= level.points
+        %td= level.message
+
+
+
+.row
+  .col-sm-8
+    = bootstrap_form_for([:admin, :dashboard, Level.new]) do |f|
+      .row
+        .col-sm-2
+          = f.text_field :number, value: Level.next_level
+        .col-sm-2
+          = f.text_field :points
+      = f.text_area :message
+      = f.submit "Create Level", class: "btn btn-primary"

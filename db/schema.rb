@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808032611) do
+ActiveRecord::Schema.define(version: 20160810162923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,15 @@ ActiveRecord::Schema.define(version: 20160808032611) do
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "lesson_number"
+    t.text     "instructions"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.integer  "points"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "number"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -166,10 +175,23 @@ ActiveRecord::Schema.define(version: 20160808032611) do
     t.string   "email"
     t.string   "name"
     t.string   "role",             default: "reader"
-    t.string   "membership_level", default: "none"
+    t.string   "membership_level", default: "free"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.integer  "points",           default: 0
+    t.integer  "level",            default: 1
+  end
+
+  create_table "vocabulary_words", force: :cascade do |t|
+    t.string   "main"
+    t.string   "chinese"
+    t.string   "part_of_speech"
+    t.string   "ipa"
+    t.string   "slug"
+    t.text     "example_sentences", default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

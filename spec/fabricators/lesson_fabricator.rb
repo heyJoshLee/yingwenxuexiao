@@ -7,4 +7,5 @@ Fabricator(:lesson) do
   description { Faker::Lorem.paragraph }
   course_id { 1 }
   slug { Faker::Lorem.word}
+  lesson_number { (1..100).to_a.sample }
 end

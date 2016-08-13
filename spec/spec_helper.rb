@@ -16,11 +16,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration\\ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 # require "capybara/email/rspec"
 # require "sidekiq/testing/inline"
-
 Capybara.server_port = 52662
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}

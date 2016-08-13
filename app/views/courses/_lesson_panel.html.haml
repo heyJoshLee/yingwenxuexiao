@@ -2,5 +2,11 @@
   %h4 Lessons
   %ul
     - @course.lessons.each do |lesson|
-      = link_to course_lesson_path(@course, lesson) do
-        %li= "Lesson - #{lesson.lesson_number} "
+      %li
+        .row
+          .col-sm-10
+            =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
+          .col-sm-2
+            - if current_user.completed_lesson?(lesson)
+              %i.fa.fa-check
+

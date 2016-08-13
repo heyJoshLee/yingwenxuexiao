@@ -5,6 +5,10 @@
     .col-sm-3
       = link_to root_path do 
         = image_tag("english_school_logo", class: "header_logo_image")
+    .col-sm-3
+      - if logged_in?
+        = current_user.name
+        .level_circle= current_user.level
     .container-fluid
       / Brand and toggle get grouped for better mobile display
       .navbar-header
@@ -33,7 +37,7 @@
               = link_to "Sign In", sign_in_path
           %li
             - if logged_in?
-              = link_to "Profile", root_path
+              = link_to "Account", account_path
             - else
               = link_to "Sign Up", sign_up_path
       / /.navbar-collapse

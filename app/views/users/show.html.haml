@@ -1,0 +1,20 @@
+%h1 Profile
+
+%h3= "Username: #{@user.name}"
+%h3= "Email: #{@user.email}"
+%h3= "Membership level: #{@user.membership_level}"
+
+%h3= "Level: #{@user.level}"
+%h3= "Points: #{@user.points}"
+
+
+%h2 My courses
+
+- if @user.courses.count < 1
+  .well
+    %p You aren't enrolled in any courses
+    = link_to courses_path do
+      %h4 Find a course
+- else
+  - @user.courses.each do |course|
+    = render "courses/course_preview", course: course

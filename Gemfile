@@ -24,8 +24,6 @@ gem "mini_magick"
 gem "breadcrumbs_on_rails"
 
 
-
-
 gem 'unicorn'
 
 group :production do
@@ -38,6 +36,7 @@ group :development, :test do
   gem "pry"
   gem 'rspec-rails', '~> 3.4'
   gem 'database_cleaner', '1.4.1'
+  gem "letter_opener"
   gem 'capybara'
   gem 'capybara-email'
   gem 'shoulda-matchers', '2.7.0'
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'vcr', '2.9.3'
   gem 'webmock', '1.11.0'
   gem 'selenium-webdriver'
+
 end
 
 group :development do
