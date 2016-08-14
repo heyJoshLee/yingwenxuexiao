@@ -22,7 +22,7 @@ class UserVocabularyWord < ActiveRecord::Base
       choices << new_choice unless choices.include?(new_choice)
       choices << choices.sample if counter >= 10
     end
-    choices
+    choices.shuffle
   end
 
   def generate_spellings(choices)
@@ -30,11 +30,11 @@ class UserVocabularyWord < ActiveRecord::Base
     counter = 0
     while choices.length < 4
       counter += 1
-      new_choice = incorrect_choices.sample
+      new_choice = incorrect_choices.sample.join("")
       choices << new_choice unless choices.include?(new_choice)
       choices << choices.sample if counter >= 10
     end
-    choices
+    choices.shuffle
   end
 
 

@@ -40,23 +40,18 @@
 
         .col-xs-7.col-xs-offset-1#question_and_answers
           .row
-            #question.col-xs-10
-              Vocabulary Word
+            #question.col-xs-10= @word.vocabulary_word.main
             .row
               #answers
                 .row
                   .col-xs-6
-                    .answer
-                      Option 1
+                    .answer= @choices[0]
                   .col-xs-6
-                    .answer
-                      Option 1
+                    .answer= @choices[1]
 
                 .row
                   .col-xs-6
-                    .answer
-                      Option 1
+                    .answer= @choices[2]
                   .col-xs-6 
-                    .answer 
-                      Option 4
+                    .answer= @choices[3]
 
