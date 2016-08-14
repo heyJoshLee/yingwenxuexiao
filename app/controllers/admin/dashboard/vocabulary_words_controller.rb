@@ -9,8 +9,8 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
   def create
     @word = VocabularyWord.new(word_params)
     if @word.save
-      flash[:success] = "word was saved"
-      redirect_to word_path(@word)
+      flash[:success] = "Word was saved"
+      redirect_to new_admin_dashboard_vocabulary_word_path
     else
       flash.now[:danger] = "There was a problem and the word was not saved"
       render :new
@@ -27,7 +27,7 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
   end
 
   def word_params
-    params.require(:word).permit!
+    params.require(:vocabulary_word).permit!
   end
 
 end

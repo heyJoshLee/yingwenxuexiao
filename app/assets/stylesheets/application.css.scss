@@ -384,6 +384,56 @@ LESSON
   cursor: pointer;
 }
 
+
+/*********
+  Practice
+**********/
+
+#practice_container {
+  border: 1px solid rgba(0, 0, 0, .3);
+  display: relative;
+}
+
+#practice_information {
+  background: rgba(0,182,245, 1);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+#practice_container #practice_options {
+  border-right: 1px solid rgba(0,182,245, 0.3);
+  height: 400px;
+  display: relative;
+  padding: 10px 4px;
+}
+
+#practice_container #question {
+  background: rgba(0,182,245, 1);
+  color: white;
+  margin: 30px auto;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+
+}
+
+#practice_container #question_and_answers {
+  text-align: center;
+}
+
+#practice_container .answer {
+  background: rgba(0,182,245, 1);
+  color: white;
+  margin: 30px auto;
+  padding: 3px;
+  font-size: 18px;
+  border-radius: 8px;
+
+}
+
+
+
 /*********
 QUIZ
 **********/
@@ -424,6 +474,7 @@ QUIZ
 .incorrect_answer {
     background-color: red;
 }
+
 
 
 @media screen and (max-width: 400px) {

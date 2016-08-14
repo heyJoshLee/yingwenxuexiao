@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810162923) do
+ActiveRecord::Schema.define(version: 20160814044201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,22 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.datetime "updated_at"
   end
 
+  create_table "user_vocabulary_words", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vocabulary_word_id"
+    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "english_to_chinese_attempted"
+    t.integer  "english_to_chinese_correct"
+    t.integer  "chinese_to_english_attempted"
+    t.integer  "chinese_to_english_correct"
+    t.integer  "definition_attempted"
+    t.integer  "definition_correct"
+    t.integer  "spoken_attempted"
+    t.integer  "spoken_correct"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
@@ -189,9 +205,10 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.string   "part_of_speech"
     t.string   "ipa"
     t.string   "slug"
-    t.text     "example_sentences", default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "sentence"
+    t.text     "definition"
   end
 
 end

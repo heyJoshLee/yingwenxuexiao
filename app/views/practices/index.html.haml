@@ -1,0 +1,62 @@
+%h1 Practice
+
+.row
+  .container
+    #practice_container
+      .col-xs-12
+        .row#practice_information
+          .col-xs-3
+            Study time:
+          .col-xs-6
+            Streak:
+
+      .row
+        / options
+        .col-xs-3
+          #practice_options
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[english_to_chinese]", "English -> Chinese"
+                  = check_box :study_type,  "english_to_chinese"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[chinese_to_english]", "Chinese -> English"
+                  = check_box :study_type,  "chinese_to_english"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[definition]", "Definition"
+                  = check_box :study_type,  "definition"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[spoken]", "Spoken"
+                  = check_box :study_type,  "spoken"
+
+        .col-xs-7.col-xs-offset-1#question_and_answers
+          .row
+            #question.col-xs-10
+              Vocabulary Word
+            .row
+              #answers
+                .row
+                  .col-xs-6
+                    .answer
+                      Option 1
+                  .col-xs-6
+                    .answer
+                      Option 1
+
+                .row
+                  .col-xs-6
+                    .answer
+                      Option 1
+                  .col-xs-6 
+                    .answer 
+                      Option 4
+

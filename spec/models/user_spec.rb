@@ -416,4 +416,52 @@ describe User do
     end
   end
 
-end
+  describe "#add_vocabulary_word(word)" do
+    let(:user) { Fabricate(:user) }
+    let(:vocabulary_word_1) { Fabricate(:vocabulary_word) }
+    let(:vocabulary_word_2) { Fabricate(:vocabulary_word) }
+
+    it "adds vocabulary word to users words" do
+      user.add_vocabulary_word(vocabulary_word_1)
+      expect(user.vocabulary_words.first).to eq(vocabulary_word_1)
+    end
+
+    it "adds another vocabulary word to a users words " do
+      user.add_vocabulary_word(vocabulary_word_1)
+      user.add_vocabulary_word(vocabulary_word_2)
+      expect(user.vocabulary_words.count).to eq(2)
+    end
+
+    it "doesn't add the word if the user already has the word in his list" do
+      user.add_vocabulary_word(vocabulary_word_1)
+      user.add_vocabulary_word(vocabulary_word_1)
+      expect(user.vocabulary_words.count).to eq(1)
+    end
+
+  end
+
+  describe "#practice_english_to_chinese(word, answer)" do
+    let(:user) { Fabricate(:user) }
+    let(:vocabulary_word) { Fabricate(:vocabulary_word, chinese: "好") }
+
+    before do
+      user.add_vocabulary_word(vocabulary_word)
+    end
+
+    it "adds 1 to attempted" do
+      user.practice_english_to_chinese(vocabulary_word, "好")
+      expect(user.user_vocabulary_words.last.english_to_chinese_attempted).to eq(1)
+    end
+
+    it "doesn't add 1 to correct if the answer is not correct" do
+      user.practice_english_to_chinese(vocabulary_word, "不好")
+      expect(user.user_vocabulary_words.last.english_to_chinese_correct).to eq(0)
+    end
+
+    it "adds 1 to correct if the answer is correct" do
+      user.practice_english_to_chinese(vocabulary_word, "好")
+      expect(user.user_vocabulary_words.last.english_to_chinese_correct).to eq(1)
+    end
+  end
+
+  end

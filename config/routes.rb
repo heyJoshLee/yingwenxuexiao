@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "blog", to: "articles#index"
   get "account", to: "users#show"
 
+  get "practice", to: "practices#index"
+
   get "email_confirm", to: "email_signups#confirm"
 
   resources :users, only: [:create]
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     namespace :dashboard do
+      get "/", to: "dashboard#index"
       resources :vocabulary_words
       resources :levels
     end

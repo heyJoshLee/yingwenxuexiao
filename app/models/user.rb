@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :lesson_users
   has_many :lessons, through: :lesson_users
 
+  has_many :user_vocabulary_words
+  has_many :vocabulary_words, through: :user_vocabulary_words
+
 
   def is_editor?
     role == "editor"
@@ -129,7 +132,32 @@ class User < ActiveRecord::Base
     advance_level_if_enough_points
   end
 
+  def add_vocabulary_word(word)
+    UserVocabularyWord.create(vocabulary_word_id: word.id, user_id: id, review_time: Date.today)
+  end
+
+  # practice
+
+  def practice_english_to_chinese(word, answer)
+    user_word = user_vocabulary_words.where(vocabulary_word_id: word.id).first
+    increase_english_to_chinese_attempted(user_word)
+    if answer == word.chinese
+      old_correct = 0 unless user_word.english_to_chinese_correct
+      user_word.update_column(:english_to_chinese_correct, old_correct  + 1)
+    else
+      # if user hasn't practiced the word then set correct to 0
+      if user_word.english_to_chinese_correct.nil?
+          user_word.update_column(:english_to_chinese_correct, 0)
+      end
+    end
+  end
+
   private
+
+  def increase_english_to_chinese_attempted(user_word)
+    old_count = 0 unless user_word.english_to_chinese_attempted 
+    user_word.update_column(:english_to_chinese_attempted, old_count + 1)
+  end
 
   def advance_level_if_enough_points
     next_level =  Level.find_by(number: level + 1)

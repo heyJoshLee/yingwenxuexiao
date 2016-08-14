@@ -1,5 +1,9 @@
 class VocabularyWord < ActiveRecord::Base
 
+  has_many :user_vocabulary_words
+  has_many :users, through: :user_vocabulary_words
+
+
   before_create :generate_random_slug
 
   def generate_random_slug
