@@ -136,27 +136,57 @@ class User < ActiveRecord::Base
     UserVocabularyWord.create(vocabulary_word_id: word.id, user_id: id, review_time: Date.today)
   end
 
-  # practice
 
-  def practice_english_to_chinese(word, answer)
-    user_word = user_vocabulary_words.where(vocabulary_word_id: word.id).first
-    increase_english_to_chinese_attempted(user_word)
-    if answer == word.chinese
-      old_correct = 0 unless user_word.english_to_chinese_correct
-      user_word.update_column(:english_to_chinese_correct, old_correct  + 1)
-    else
-      # if user hasn't practiced the word then set correct to 0
-      if user_word.english_to_chinese_correct.nil?
-          user_word.update_column(:english_to_chinese_correct, 0)
-      end
+  def practice(type, word, answer)
+    question_type = type.to_s.split("_").last.to_sym
+    question_type = :main if question_type == :english || question_type == :spoken || question_type == :spelling
+    user_word = set_vocabulary_word(word)
+    increase_attempted(type.to_s + "_attempted", user_word)
+    if add_to_correct_if_correct(word, question_type, answer, user_word, type.to_s + "_correct")
+      add_points(10)
     end
   end
 
   private
 
-  def increase_english_to_chinese_attempted(user_word)
-    old_count = 0 unless user_word.english_to_chinese_attempted 
-    user_word.update_column(:english_to_chinese_attempted, old_count + 1)
+  def add_to_correct_if_correct(word, question, answer, user_word, correct_column)
+    correct = (answer == word[question])
+    if correct
+      old_correct = 0
+      if user_word[correct_column]
+        old_correct = user_word[correct_column]
+      end
+      user_word.update_column(correct_column, old_correct  + 1)
+    else
+      set_correct_column_to_0_on_first_try(correct_column, user_word)
+    end
+    correct
+  end
+
+  def add_to_correct_column(correct_column, user_word)
+    old_correct = 0
+    if user_word.chinese_to_english_correct
+      old_correct = user_word.chinese_to_english_correct
+    end
+    user_word.update_column(:chinese_to_english_correct, old_correct + 1)
+  end
+
+  def set_correct_column_to_0_on_first_try(correct_column, user_word)
+    if user_word[correct_column].nil?
+        user_word.update_column(correct_column, 0)
+    end
+  end
+
+  def set_vocabulary_word(word)
+    user_vocabulary_words.where(vocabulary_word_id: word.id).first
+  end
+
+  def increase_attempted(attempted_column, user_word)
+    old_count = 0
+    if user_word[attempted_column]
+      old_count  = user_word[attempted_column]
+    end
+    user_word.update_column(attempted_column, old_count + 1)
   end
 
   def advance_level_if_enough_points
