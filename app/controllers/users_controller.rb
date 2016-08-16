@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  before_filter :set_user, only: [:show, :edit, :update]
+
+  before_filter :require_user
+
   def new
     @user = User.new
   end
@@ -7,6 +11,11 @@ class UsersController < ApplicationController
   def show
     add_breadcrumb "Account"
     @user = current_user
+  end
+
+  def edit
+    add_breadcrumb "Account", account_path
+    add_breadcrumb "Edit"
   end
 
   def create
@@ -24,10 +33,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      flash[:success] = "Profile saved successfully"
+      redirect_to edit_user_path(@user)
+    else
+      flash.now[:danger] = "There was an error and nothing was saved"
+      render :edit
+    end
+
+  end
+
   private
 
+  def set_user
+    @user = current_user
+  end
+
   def user_params
-    params.require(:user).permit(:email, :name, :password)
+    params.require(:user).permit(:email, :name, :password, :picture_url)
   end
 
 end

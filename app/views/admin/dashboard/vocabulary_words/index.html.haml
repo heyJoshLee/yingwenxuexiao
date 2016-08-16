@@ -1,0 +1,14 @@
+%h1 Vocabulary Words
+%h5.v_margin=link_to "New Word", new_admin_dashboard_vocabulary_word_path
+%table.table.table-bordered
+  %thead
+    %td word
+    %td part of speech
+  %tbody
+    - @vocabulary_words.each do |word|
+      %tr
+        %td
+          =link_to admin_dashboard_vocabulary_word_path(word) do
+            %h5= word.main
+        %td
+          %small= word.part_of_speech

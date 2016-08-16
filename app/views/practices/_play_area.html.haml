@@ -1,0 +1,51 @@
+- @choices = choices
+- @word = word
+- @study = study
+.row
+  .container
+    #practice_container
+      .col-xs-12
+        .row#practice_information
+          .col-xs-6
+            Study time:
+      .row
+        / options
+        .col-xs-3
+          #practice_options
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[english_to_chinese]", "英文 -> 中文"
+                  = check_box :study_type,  "english_to_chinese"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[chinese_to_english]", "Chinese -> English"
+                  = check_box :study_type,  "chinese_to_english"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[definition]", "Definition"
+                  = check_box :study_type,  "definition"
+
+            %li
+              .row
+                .col-sm-12
+                  = label_tag "study_type[spoken]", "Spoken"
+                  = check_box :study_type,  "spoken"
+
+        .col-xs-7.col-xs-offset-1#question_and_answers
+          .row
+            #question.col-xs-10= @word.vocabulary_word.main
+            .row
+              #answers
+                - @choices.each_with_index do |choice, index|
+                  - if index == 0 || index == 2
+                    .row
+                  .col-xs-6
+                    = link_to attempt_practice_path({vocabulary_word_id: @word.id, answer: choice, study: @study}), method: "post", remote: true do
+                      .answer= choice
+                %br/
+            

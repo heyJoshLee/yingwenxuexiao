@@ -1,0 +1,7 @@
+%h1 New Article Topic
+
+.row
+  .col-xs-6
+    = bootstrap_form_for([:admin, @article_topic]) do |f|
+      = f.text_field :name
+      = f.submit "Create Article Topic", class: "btn btn-primary"

@@ -7,5 +7,5 @@
       = f.bootsy_area :body, class: "form-control", rows: 20
       = f.submit "Create", class: "btn btn-primary pull-right v_margin"
     .col-sm-2.article_category_checkbox_container
-      = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
+      = f.collection_check_boxes :article_topic_ids, ArticleTopic.all, :id, :name do |cb|
         - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}

@@ -1,17 +1,12 @@
-.container
-  .row
-    .col-sm-2
-      %h2 Lessons
-      - @course.lessons.each do |lesson|
-        %li
-        = link_to "#{lesson.name} - #{lesson.lesson_number}", admin_course_lesson_path(@course, lesson)
-    .col-sm-8
-      %h1= @course.name
-      = image_tag(@course.main_image_url)
-      %h2= @course.description
-    .col-sm-2.text-center
-      %h5 Add lesson to this course
-      .add_lesson_button
-        = link_to new_admin_course_lesson_path(@course) do
-          %i.fa.fa-plus
-  .row
+.row
+  .col-xs-2.text-center.col-xs-offset-5
+    .row
+      .col-xs-5
+        %h5 Add lesson to this course
+      .col-xs-5
+        .add_lesson_button
+          = link_to new_admin_course_lesson_path(@course) do
+            %i.fa.fa-plus
+
+
+= render "courses/course"

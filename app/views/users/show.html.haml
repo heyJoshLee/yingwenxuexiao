@@ -1,20 +1,22 @@
 %h1 Profile
+%p= link_to "Edit profile", edit_user_path(@user)
+.row
+  .col-xs-4
+    %h3= "Username: #{@user.name}"
+    %h3= "Email: #{@user.email}"
+    %h3= "Membership level: #{@user.membership_level}"
 
-%h3= "Username: #{@user.name}"
-%h3= "Email: #{@user.email}"
-%h3= "Membership level: #{@user.membership_level}"
-
-%h3= "Level: #{@user.level}"
-%h3= "Points: #{@user.points}"
-
+    %h3= "Level: #{@user.level}"
+    %h3= "Points: #{@user.points}"
+  .col-xs-4=image_tag(@user.picture_url)
 
 %h2 My courses
 
 - if @user.courses.count < 1
-  .well
-    %p You aren't enrolled in any courses
+  .well.center
+    %h4 You aren't enrolled in any courses
     = link_to courses_path do
-      %h4 Find a course
+      .btn.btn-primary.btn-lg Find a course
 - else
   - @user.courses.each do |course|
     = render "courses/course_preview", course: course

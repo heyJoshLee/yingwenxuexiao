@@ -11,16 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814201036) do
+ActiveRecord::Schema.define(version: 20160815164649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_article_topics", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "article_topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "article_categories", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "article_topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -69,9 +83,10 @@ ActiveRecord::Schema.define(version: 20160814201036) do
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
   end
 
   create_table "course_users", force: :cascade do |t|
@@ -156,6 +171,14 @@ ActiveRecord::Schema.define(version: 20160814201036) do
     t.datetime "updated_at"
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.text     "body"
+  end
+
   create_table "user_questions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -199,6 +222,8 @@ ActiveRecord::Schema.define(version: 20160814201036) do
     t.string   "password_digest"
     t.integer  "points",           default: 0
     t.integer  "level",            default: 1
+    t.string   "picture_url"
+    t.string   "slug"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|

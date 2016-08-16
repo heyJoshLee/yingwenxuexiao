@@ -28,9 +28,18 @@ class User < ActiveRecord::Base
   has_many :user_vocabulary_words
   has_many :vocabulary_words, through: :user_vocabulary_words
 
+  before_create :generate_random_slug
+
+  mount_uploader :picture_url, UserImageUploader
+
+
 
   def is_editor?
     role == "editor"
+  end
+
+  def to_param
+    self.slug
   end
 
   def is_admin?
@@ -130,6 +139,7 @@ class User < ActiveRecord::Base
     new_points = points + points_to_add
     update_column(:points, new_points)
     advance_level_if_enough_points
+    true
   end
 
   def add_vocabulary_word(word)
@@ -198,6 +208,11 @@ class User < ActiveRecord::Base
     user_question = user_questions.find_by(question_id: question.id)
     user_question.update_column(:choice_id, choice.id)
   end
+
+  def generate_random_slug
+    self.slug = SecureRandom.urlsafe_base64
+  end
+
 
 end
 

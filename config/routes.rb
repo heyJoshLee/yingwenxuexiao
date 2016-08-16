@@ -8,16 +8,24 @@ Rails.application.routes.draw do
 
   get "signup", to: "users#new", as: "sign_up"
 
-  get "blog", to: "articles#index"
-  get "account", to: "users#show"
+  get "blog", to: "articles#index", as: "blog"
+  get "account", to: "users#show", as: "account"
+  get "contact", to: "pages#contact", as: "contact"
+  get "careers", to: "pages#careers", as: "careers"
 
   get "practice", to: "practices#index"
+  get "practice/start", to: "practices#start", as: "start_practice"
+
+
+  post "practice/attempt", to: "practices#attempt", as: "attempt_practice"
 
   get "email_confirm", to: "email_signups#confirm"
 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :edit, :update]
   resources :articles, only: [:show] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
+      resources :replies
+    end
   end
 
   resources :categories, only: [:show]
@@ -27,6 +35,9 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show] do
     resources :lessons, only: [:show] do
       post "complete", as: "complete_lesson"
+      resources :comments do
+        resources :replies
+      end
       resources :quizzes do
         post "attempt", as: "attempt_quiz"
       end
@@ -38,6 +49,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    resources :article_topics
     namespace :dashboard do
       get "/", to: "dashboard#index"
       resources :vocabulary_words
@@ -55,7 +67,7 @@ Rails.application.routes.draw do
     resources :email_signups, only: [:index]
     resources :users
     resources :categories
-    resources :articles, only: [:new, :create, :edit, :destroy]
+    resources :articles, only: [:new, :create, :edit, :destroy, :update]
   end
 
 

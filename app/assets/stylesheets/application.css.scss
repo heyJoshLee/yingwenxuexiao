@@ -25,7 +25,9 @@ body, html {
 }
 
 main {
+  display: relative;
   padding: 20px 30px;
+  min-height: 700px;
 }
 
 img {
@@ -48,6 +50,21 @@ li {
 
 header li {
   display: inline-block;
+}
+
+.center {
+  text-align: center;
+}
+
+.h_padding {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.nav-links {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+
 }
 
 
@@ -162,6 +179,45 @@ ADMIN_NAV
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 0;
+  text-align: center;
+}
+
+/*********
+#current_user_info
+**********/
+
+#current_user_info {
+  display: relative;
+}
+
+#current_user_info #current_user_level {
+  display: absolute !important;
+  float: right;
+  margin-right: 50px;
+}
+
+#current_user_info #current_user_points {
+  font-weight: bold;
+}
+
+// clearfix
+#current_user_info #current_user_level:after {
+  display: none;
+  clear: both;
+  content: "";
+}
+
+#current_user_info img {
+  border-radius: 100%;
+  height: 65px;
+  width: 65px;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+#current_user_info #picture_and_level_container {
+  height: 100px;
+  display: relative;
 }
 
 /*********
@@ -180,6 +236,7 @@ LEVELS
   font-size: 20px;
   font-weight: bold;
   border-radius: 100%;
+  margin: 0 auto;
 }
 
 .articles_container {
@@ -226,9 +283,47 @@ LEVELS
   margin-bottom: 10px;
 }
 
+/*********
+Comment
+**********/
+
+.comment {
+  margin: 20px 0
+}
+.comment_author_image {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+}
+
+.comment_reply_launcher {
+  display: inline-block;
+  margin-top: 10px;
+  color: rgba(0,140,245, 1) !important;
+}
+
+.comment_reply_launcher:hover {
+  cursor: pointer;
+}
+
+.comment_reply_form {
+  display: none;
+}
+
 .article_comments_section {
   padding: 10px;
-  background: rgba(175,190,213, 0.4)
+}
+
+.comment_reply {
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+}
+
+.reply_author_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }
 
 .sign_up_features {
@@ -313,6 +408,26 @@ LEVELS
   font-size: 38px;
   background: green;
   border-radius: 100%;
+}
+
+/*********
+FOOTER
+**********/
+#main_footer {
+  margin-top: 60px;
+  background-color: rgba(20, 20, 20, 0.1);
+  padding: 30px;
+  position: relative;
+}
+
+.footer_social {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#main_footer .col-xs-4 {
+  position: relative;
+  height: 140px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /*********
@@ -429,9 +544,33 @@ LESSON
   padding: 3px;
   font-size: 18px;
   border-radius: 8px;
-
 }
 
+#correct_and_incorrect_marks {
+  height: 80px;
+  font-size: 24px;
+  display: none;
+}
+
+#correct_and_incorrect_marks .fa {
+  margin-top: -5px;
+}
+
+
+#correct_and_incorrect_marks #correct,
+#correct_and_incorrect_marks #incorrect {
+  position: relative;
+  top: -15px;
+  display: none;
+}
+
+#correct_and_incorrect_marks #correct {
+  color: green;
+}
+
+#correct_and_incorrect_marks #incorrect {
+  color: red;
+}
 
 
 /*********
@@ -475,6 +614,12 @@ QUIZ
     background-color: red;
 }
 
+
+
+// iphone 6 plus
+@media screen and (max-width: 415px) {
+
+}
 
 
 @media screen and (max-width: 400px) {

@@ -27,38 +27,39 @@
   .container
     .row
       .col-sm-1
-        .icon_wrapper
+        .icon_wrapper.center
           = image_tag("icons/presentation")
       .col-sm-5
-        %h4  Video Lessons
+        %h4.center  Video Lessons
         %p Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member.
 
       .col-sm-1
-        .icon_wrapper
+        .icon_wrapper.center
           = image_tag("icons/test")
       .col-sm-5
-        %h4 Quizzes
+        %h4.center Quizzes
         %p Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material.
 
     .row
       .col-sm-1
-        .icon_wrapper
+        .icon_wrapper.center
           = image_tag("icons/notepad")
       .col-sm-5
-        %h4 Lesson Notes
+        %h4.center Lesson Notes
         %p Each lesson contains notes that you can download and print off so you can study later.
       .col-sm-1
-        .icon_wrapper
+        .icon_wrapper.center
           = image_tag("icons/smartphone")
       .col-sm-5.col
-        %h4 Smart Phone App
+        %h4.center Smart Phone App
         %p With our smart phone app you can practice English when you are away from your computer.
 
 %section.row.meet_your_teacher
   .container
-    .row
+    .row.h_padding
       .col-sm-6.col-sm-offset-4
         %h1 Meet Your Teacher - Josh Lee
+        = image_tag("josh_main_placeholder", class: "img-circle")
         %ul
           %li
             %h4 Experienced

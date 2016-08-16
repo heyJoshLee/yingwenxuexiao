@@ -1,23 +1,21 @@
-= render "shared/breadcrumbs"
-.col-sm-8
-  = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
-  %small
-    = link_to "Edit", edit_admin_article_path(@article)
-  .article_show= @article.body.html_safe
-    
-  .article_comments_section
-    %h2 Comments
+.row
+  .col-sm-8
+    = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
+    - @article.article_article_topics.each do |topic|
+      %small= topic.name
+    %small
+      = link_to "Edit", edit_admin_article_path(@article) if current_user.is_admin?
+    .article_show= @article.body.html_safe
+      
+    .article_comments_section
+      %h2 Comments
 
-    = bootstrap_form_for [@article, @comment] do |f|
-      = f.text_area :body
-      = f.submit "Create Comment", class: "btn btn-primary"
+      = bootstrap_form_for [@article, @comment] do |f|
+        = f.text_area :body
+        = f.submit "Create Comment", class: "btn btn-primary"
 
-    - @article.comments.each do  |comment|
-      .comment
-        %h5
-          %strong #{comment.author.name} <small> says </small>
-        .comment_body
-          %p= comment.body
+      = render "comments_section"
 
-.col-sm-3
-  = render "shared/sidebar"
+
+  .col-sm-3
+    = render "shared/sidebar"

@@ -2,8 +2,15 @@
   .container
     .row
       .col-sm-1
+        = link_to admin_dashboard_path do
+          %i.fa.fa-home
+      .col-sm-1
         = link_to "Courses", admin_courses_path
       .col-sm-1
         = link_to "Create Course", new_admin_course_path
       .col-sm-1
         = link_to "Levels", admin_dashboard_levels_path
+      .col-sm-1
+        = link_to "Add Article", new_admin_article_path
+      .col-sm-1
+        = link_to "Add Article Category", new_admin_article_topic_path
