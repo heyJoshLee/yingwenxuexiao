@@ -22,6 +22,6 @@
     %a.comment_reply_launcher Reply to this comment
     .row
       .comment_reply_form.col-xs-11.col-xs-offset-1
-        = bootstrap_form_for([@article, comment, Reply.new]) do |f|
+        = bootstrap_form_for([@lesson.course, @lesson, comment, Reply.new]) do |f|
           = f.text_area :body
           = f.submit "Reply", class: "btn btn-primary"

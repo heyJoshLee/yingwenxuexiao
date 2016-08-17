@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
       @comment.author = current_user
 
       if @comment.save
+        
         flash[:success] = "Your comment was saved"
         redirect_to course_lesson_path(@course, @lesson)
       else

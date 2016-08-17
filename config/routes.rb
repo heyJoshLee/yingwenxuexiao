@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get "practice", to: "practices#index"
   get "practice/start", to: "practices#start", as: "start_practice"
+  post "practice/change_options", to: "practices#change_options", as: "change_practice_options"
 
 
   post "practice/attempt", to: "practices#attempt", as: "attempt_practice"

@@ -17,6 +17,6 @@ $marks.fadeIn(1000, function() {
   $marks.fadeOut(1000);
 });
 
-$("#play_area_container").html("<%= j (render partial: 'play_area', locals: { word: @word, choices: @choices, study: @study }) %>")
+$("#play_area_container").html("<%= j (render partial: 'play_area', locals: { word: @word, choices: @choices, study: @study, question: @question }) %>")
 $("#current_user_points").html("<%= @user.points %> points");
 $("#current_user_level").html("<%= @user.level %>");

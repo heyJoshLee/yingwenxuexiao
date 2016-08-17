@@ -55,6 +55,14 @@ $(document).on("click", ".comment_reply_launcher", function(e) {
   $form.toggle();
 });
 
+// practice
+
+  // change options - study type
+  $(document).on("click", ".practice_option_checkbox", function(e) {
+    console.log($(e.target));
+    $("#practice_options_form").submit();
+  });
+
 
 // $(document).on("click", "#find_vocabulary_word_api_search_button", function() {
 //   var api_key = $("#api_key").val();

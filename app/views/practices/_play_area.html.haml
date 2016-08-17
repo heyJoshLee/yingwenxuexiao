@@ -1,5 +1,6 @@
 - @choices = choices
 - @word = word
+- @question = question
 - @study = study
 .row
   .container
@@ -9,43 +10,41 @@
           .col-xs-6
             Study time:
       .row
-        / options
-        .col-xs-3
-          #practice_options
-            %li
-              .row
-                .col-sm-12
-                  = label_tag "study_type[english_to_chinese]", "英文 -> 中文"
-                  = check_box :study_type,  "english_to_chinese"
-
-            %li
-              .row
-                .col-sm-12
-                  = label_tag "study_type[chinese_to_english]", "Chinese -> English"
-                  = check_box :study_type,  "chinese_to_english"
-
-            %li
-              .row
-                .col-sm-12
-                  = label_tag "study_type[definition]", "Definition"
-                  = check_box :study_type,  "definition"
-
-            %li
-              .row
-                .col-sm-12
-                  = label_tag "study_type[spoken]", "Spoken"
-                  = check_box :study_type,  "spoken"
-
-        .col-xs-7.col-xs-offset-1#question_and_answers
+        .col-xs-12
           .row
-            #question.col-xs-10= @word.vocabulary_word.main
-            .row
-              #answers
-                - @choices.each_with_index do |choice, index|
-                  - if index == 0 || index == 2
+            .container
+              #study_type_container= @study
+              #question.well.col-xs-12.center= @question
+              .row
+                #answers
+                  - @choices.each_with_index do |choice, index|
                     .row
-                  .col-xs-6
-                    = link_to attempt_practice_path({vocabulary_word_id: @word.id, answer: choice, study: @study}), method: "post", remote: true do
-                      .answer= choice
-                %br/
-            
+                      .container
+                        .col-xs-10.col-xs-offset-1
+                          = link_to attempt_practice_path({vocabulary_word_id: @word.id, answer: choice, study: @study_type_attempted}), method: "post", remote: true do
+                            .answer.well.center= choice
+      .row
+        .col-xs-12
+          #practice_options
+            = form_tag change_practice_options_path, remote: true, id: "practice_options_form" do
+              Options
+              %li
+                .row
+                  .col-sm-12
+                    = label_tag "study_type[english_to_chinese]", "英文 -> 中文"
+                    = check_box_tag :study_type, "english_to_chinese", class: "practice_option_checkbox"
+              %li
+                .row
+                  .col-sm-12
+                    = label_tag "study_type[chinese_to_english]", "Chinese -> English"
+                    = check_box :study_type, "chinese_to_english", class: "practice_option_checkbox"
+              %li
+                .row
+                  .col-sm-12
+                    = label_tag "study_type[definition]", "Definition"
+                    = check_box :study_type, "definition", class: "practice_option_checkbox"
+              %li
+                .row
+                  .col-sm-12
+                    = label_tag "study_type[spoken]", "Spoken"
+                    = check_box :study_type, "spoken",  class: "practice_option_checkbox"
