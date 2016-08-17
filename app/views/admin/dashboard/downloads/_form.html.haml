@@ -1,0 +1,8 @@
+= bootstrap_form_for([:admin, :dashboard, @download]) do |f|
+  = f.text_field :name
+  = f.text_field :title
+  = f.file_field :main_image_url, class: "btn btn-file"
+  = f.text_area :description
+  = f.select :active, options_for_select([["Active", true], ["Inactive", false]])
+
+  = f.submit @download.new_record? ? "Create Download" : "Save Edits", class: "btn btn-primary"

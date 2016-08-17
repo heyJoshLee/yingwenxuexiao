@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   get "email_confirm", to: "email_signups#confirm"
 
+  # downloads goes to download links, only the admin access downloads directly
+  get "downloads/:id", to: "download_links#show"
+  post "downloads/:id/start_download", to: "download_links#start_download", as: "start_download"
+
   resources :users, only: [:create, :edit, :update]
   resources :articles, only: [:show] do
     resources :comments, only: [:create] do
@@ -29,7 +33,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [:show]
   
   resources :email_signups, only: [:create]
 
@@ -48,13 +51,13 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :admin do
     resources :article_topics
     namespace :dashboard do
       get "/", to: "dashboard#index"
       resources :vocabulary_words
       resources :levels
+      resources :downloads
     end
     resources :courses do
       resources :lessons do

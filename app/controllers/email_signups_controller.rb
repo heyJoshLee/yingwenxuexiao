@@ -14,6 +14,7 @@ class EmailSignupsController < ApplicationController
       @email_signup.page = params[:page]
       @email_signup.campaign = params[:campaign]
       @email_signup.save
+      DownloadLink.create(email: @email_signup.email, download_id: params[:download_id]) if params[:download_id]
       flash[:success] = "email_signup was saved"
       render :confirm
     else

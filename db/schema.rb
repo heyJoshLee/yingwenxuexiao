@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815164649) do
+ActiveRecord::Schema.define(version: 20160817030706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,30 @@ ActiveRecord::Schema.define(version: 20160815164649) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "download_links", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.datetime "first_access"
+    t.datetime "most_recent_access"
+    t.datetime "downloaded_time"
+    t.boolean  "downloaded",         default: false
+    t.integer  "download_id"
+    t.string   "slug"
+  end
+
+  create_table "downloads", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "main_image_url"
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "active",            default: true
+    t.string   "file_download_url"
+    t.string   "slug"
+    t.string   "name"
   end
 
   create_table "email_signups", force: :cascade do |t|

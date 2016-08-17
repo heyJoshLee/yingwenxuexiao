@@ -1,6 +1,7 @@
-class CategoryImageUploader < CarrierWave::Uploader::Base
+class DownloadMainImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_fill: [350, 350]
+
+  process resize_to_fill: [500, 500]
 
   def extension_white_list
     %w(jpg jpeg png)
@@ -9,7 +10,5 @@ class CategoryImageUploader < CarrierWave::Uploader::Base
     def default_url(*args)
       ActionController::Base.helpers.asset_path("image_not_found_fallbacks/" + [version_name, "default.png"].compact.join('_'))
     end
+
 end
-
-
-
