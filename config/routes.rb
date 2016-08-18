@@ -2,40 +2,53 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'pages#index'
 
+  # sessions
   get "signin", to: "sessions#new", as: "sign_in"
   post "signin", to: "sessions#create"
   get "signout", to: "sessions#destroy", as: "sign_out"
 
-  get "signup", to: "users#new", as: "sign_up"
+  get "signup/", to: "users#new", as: "sign_up"
 
   get "blog", to: "articles#index", as: "blog"
   get "account", to: "users#show", as: "account"
   get "contact", to: "pages#contact", as: "contact"
   get "careers", to: "pages#careers", as: "careers"
 
+  # practice
   get "practice", to: "practices#index"
   get "practice/start", to: "practices#start", as: "start_practice"
   post "practice/change_options", to: "practices#change_options", as: "change_practice_options"
-
-
   post "practice/attempt", to: "practices#attempt", as: "attempt_practice"
 
   get "email_confirm", to: "email_signups#confirm"
 
   # downloads goes to download links, only the admin access downloads directly
-  get "downloads/:id", to: "download_links#show"
+  get "downloads/:id", to: "download_links#show", as: "download"
   post "downloads/:id/start_download", to: "download_links#start_download", as: "start_download"
 
+  #password resets
+  get "forgot_password", to: "forgot_passwords#new"
+  get "password_confirmation", to: "forgot_passwords#confirm"
+  resources :forgot_passwords, only: [:create]
+  resources :password_resets, only: [:show, :create]
+  
   resources :users, only: [:create, :edit, :update]
+  resources :article_topics, only: [:show]
   resources :articles, only: [:show] do
     resources :comments, only: [:create] do
       resources :replies
     end
   end
-
   
   resources :email_signups, only: [:create]
 
+  # regular user
+  namespace :help do
+    resources :support_tickets
+  end
+  
+  resources :affiliates, only: [:index, :show]
+  resources :course_levels, only: [:show]
   resources :courses, only: [:index, :show] do
     resources :lessons, only: [:show] do
       post "complete", as: "complete_lesson"
@@ -51,13 +64,18 @@ Rails.application.routes.draw do
     end
   end
 
+  # admin
   namespace :admin do
     resources :article_topics
     namespace :dashboard do
-      get "/", to: "dashboard#index"
+      resources :affiliates do
+        resources :affiliate_links
+      end
+      resources :course_levels
       resources :vocabulary_words
       resources :levels
       resources :downloads
+      get "/", to: "dashboard#index"
     end
     resources :courses do
       resources :lessons do

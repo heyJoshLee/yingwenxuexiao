@@ -16,3 +16,6 @@
         %td
           =link_to admin_dashboard_download_path(download) do
             %h5= download.name
+        %td= download.download_links.count
+        %td= download.download_links.where.not(first_access: nil).count
+        %td= download.download_links.where(downloaded: true).count

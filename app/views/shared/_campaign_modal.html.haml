@@ -1,4 +1,4 @@
-- @download_id = Download.last.id
+- @download_id = Download.count > 0 ? Download.last.id : ""
 #campaign_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content

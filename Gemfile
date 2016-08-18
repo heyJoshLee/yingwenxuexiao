@@ -19,6 +19,7 @@ gem 'bootsy'
 gem "carrierwave"
 gem 'carrierwave-aws'
 gem "figaro"
+gem "sidekiq"
 gem "sluggable_jl"
 gem "mini_magick"
 gem "breadcrumbs_on_rails"

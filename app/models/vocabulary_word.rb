@@ -2,6 +2,7 @@ class VocabularyWord < ActiveRecord::Base
 
   has_many :user_vocabulary_words
   has_many :users, through: :user_vocabulary_words
+  belongs_to :vocabulary_wordable, polymorphic: true
 
 
   before_create :generate_random_slug

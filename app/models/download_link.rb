@@ -4,6 +4,11 @@ class DownloadLink < ActiveRecord::Base
 
   before_create :generate_random_slug
 
+
+  def send_email
+    AppMailer.send_download_link(self).deliver
+  end
+
   def generate_random_slug
     self.slug = SecureRandom.urlsafe_base64
   end

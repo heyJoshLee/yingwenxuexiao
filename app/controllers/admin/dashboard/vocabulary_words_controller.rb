@@ -22,16 +22,22 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
 
   def create
     @word = VocabularyWord.new(word_params)
+    @word.vocabulary_wordable_type = params[:vocabulary_wordable_type]
+    @word.vocabulary_wordable_id = params[:vocabulary_wordable_id]
+    parent_object = @word.vocabulary_wordable
     if @word.save
       flash[:success] = "Word was saved"
-      redirect_to new_admin_dashboard_vocabulary_word_path
+      if parent_object.class.to_s == "Article"
+        redirect_to edit_admin_article_path(parent_object)
+      elsif parent_object.class.to_s == "Lesson"
+        redirect_to edit_admin_course_lesson_path(parent_object.course, parent_object)
+      else
+        redirect_to admin_dashboard_path
+      end
     else
       flash.now[:danger] = "There was a problem and the word was not saved"
       render :new
     end
-  end
-
-  def edit
   end
 
   private

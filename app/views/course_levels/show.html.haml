@@ -1,0 +1,4 @@
+%h1 #{@course_level.name} Courses
+
+- @course_level.courses.each do |course|
+  = render "courses/course_preview", course: course

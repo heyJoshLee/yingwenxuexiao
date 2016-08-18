@@ -1,28 +1,65 @@
-== README
+# TODO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== easy ===
 
-Things you may want to cover:
+# Email
+  * Localhost email links
+  * New Course
 
-* Ruby version
+# Password reset feature
 
-* System dependencies
+=== medium ===
 
-* Configuration
+# Format times for articles  , comments, replies
 
-* Database creation
+# Add daily streaks
+# Points for lessons and quizzes
 
-* Database initialization
+# Feature tests
+  * Comment on article / lesson
+  * Reply to comment
+  * Take Quiz
+  * Complete Lesson
+  * Password Reset
+  * Download from email
 
-* How to run the test suite
+=== hard= ===
 
-* Services (job queues, cache servers, search engines, etc.)
+# Show Message on level up
+# Add SRS features to practice
 
-* Deployment instructions
+# Affiliate links
 
-* ...
+# Check practice study types- definition, eng to cn, etc...
+# Publish date for lessons, quizzes and articles
+
+# Vocabulary words
+  * Admin adding - fix api info
+  * Quick add to lessons and articles
+
+# Dictionary Feature ?
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== need to wait ===
+
+# Block off routes
+
+
+=== need internet ===
+
+# Set up Circle CI
+# Add speech to practice
+
+# Payments
+  * China
+  * Taiwan
+
+
+# Translate
+
+
+
+
+# Styling
+  * User info in navbar
+  * Quiz Styling

@@ -1,0 +1,8 @@
+.col-sm-8
+  %hr/
+  .articles_container
+    %h1= @article_topic.name + " articles"
+    = render @article_topic.articles
+.col-sm-4
+  = render "shared/sidebar"
+    

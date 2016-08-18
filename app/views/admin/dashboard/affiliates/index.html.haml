@@ -1,0 +1,12 @@
+%h1 Affiliates
+= link_to new_admin_dashboard_affiliate_path do
+  .btn.btn-primary Add new Affiliate
+
+%table.table.table-bordered
+  %thead
+    %td Name
+  %tbody
+    - @affiliates.each do |affiliate|
+      %tr
+        %td
+          = link_to affiliate.name, admin_dashboard_affiliate_path(affiliate)

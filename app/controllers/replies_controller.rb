@@ -11,24 +11,16 @@ class RepliesController < ApplicationController
       @course = Course.find_by(slug: params[:course_id])
       @reply = @comment.replies.build(reply_params)
       @reply.user_id = current_user.id
-
-      if @reply.save
-        flash[:success] = "Reply was saved"
-        redirect_to course_lesson_path(@course, @lesson)
-      else
-        flash.now[:danger] = "There was a problem and the reply was not saved"
-        render "lessons/show"
-      end
-
     elsif
       @reply = @comment.replies.build(reply_params)
       @reply.user_id = current_user.id
-      if @reply.save
-        flash[:success] = "Reply was saved"
-        redirect_to article_path(@article)
-      else
-        flash.now[:danger] = "There was a problem and the reply was not saved"
-        render "articles/show"
+    end
+
+    if @reply.save
+      respond_to { |format| format.js }
+    else
+      respond_to do |format| 
+        format.js { render "error" }
       end
     end
   end

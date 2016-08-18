@@ -1,0 +1,9 @@
+.row
+  .container
+    .col-xs-5
+      %h1 Course Levels
+
+      = bootstrap_form_for([:admin, :dashboard, @course_level]) do |f|
+        = f.text_field :name
+        = f.text_field :color
+        = f.submit  @course_level.new_record?  ? "Create Course Level" : "Save Edits", class: "btn btn-primary"

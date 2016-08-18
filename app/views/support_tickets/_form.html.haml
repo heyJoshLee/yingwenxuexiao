@@ -1,0 +1,8 @@
+.row
+  .col-xs-6
+    = bootstrap_form_for [:help, @support_ticket] do |f|
+      = f.text_field :name
+      = f.select :subject, options_for_select([["General Help"], ["Affiliate"]])
+      = f.email_field :email
+      = f.text_area :body
+      = f.submit "Create Support Ticket", class: "btn btn-primary"

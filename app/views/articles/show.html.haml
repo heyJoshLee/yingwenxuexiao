@@ -1,21 +1,31 @@
 .row
   .col-sm-8
+    %h1= @article.title
     = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
-    - @article.article_article_topics.each do |topic|
-      %small= topic.name
+    - @article.article_topics.each do |topic|
+      = link_to article_topic_path(topic) do 
+        .badge= topic.name
+    %br/
     %small
-      = link_to "Edit", edit_admin_article_path(@article) if current_user.is_admin?
+      = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
+    %h5.center Vocabulary Words
+    .article_vocabulary_words.well
+      - @article.vocabulary_words.each do |vocabulary_word|
+        = vocabulary_word.main
     .article_show= @article.body.html_safe
       
     .article_comments_section
       %h2 Comments
+      - if logged_in?
+        = bootstrap_form_for [@article, @comment], remote: true do |f|
+          = f.text_area :body
+          = f.submit "Create Comment", class: "btn btn-primary"
+      - else
+        .well.center 
+          %p You need to be signed in to write a comment
+          %h4= link_to "Sign In", sign_in_path
 
-      = bootstrap_form_for [@article, @comment] do |f|
-        = f.text_area :body
-        = f.submit "Create Comment", class: "btn btn-primary"
-
-      = render "comments_section"
-
+      = render "comments/comments_section", object: @article
 
   .col-sm-3
     = render "shared/sidebar"

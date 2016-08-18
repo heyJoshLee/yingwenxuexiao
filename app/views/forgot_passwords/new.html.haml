@@ -1,0 +1,16 @@
+%section.forgot_password.container
+  .row
+    .col-sm-7.well
+      = form_tag forgot_passwords_path do
+        %header
+          %h1 Forgot Password?
+          %p We will send you an email with a link that you can use to reset your password.
+        .filedset
+          .row
+            .col-xs-12.col-sm-6
+              = label_tag :email, "Email Address"
+              = text_field_tag :email, "" , class: "form-control"
+          .row
+            .container
+              %br/
+              = submit_tag "Send Password Reset Email", class: "btn btn-primary"

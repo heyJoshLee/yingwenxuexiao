@@ -1,6 +1,19 @@
 require "spec_helper"
 
 describe User do
+
+  describe "#is_paid_member?" do
+    it "returns false if user is a free member" do
+      user = Fabricate(:user, membership_level: "free")
+      expect(user.is_paid_member?).to be_falsey
+    end
+
+    it "returns true if user is a paid member" do
+      user = Fabricate(:user, membership_level: "paid")
+      expect(user.is_paid_member?).to be_truthy
+    end
+  end
+
   describe "#is_editor?" do
 
     it "should return true when user is an editor" do

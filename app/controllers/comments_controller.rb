@@ -9,12 +9,17 @@ class CommentsController < ApplicationController
       @comment.author = current_user
 
       if @comment.save
+        respond_to { |format| format.js }
         
-        flash[:success] = "Your comment was saved"
-        redirect_to course_lesson_path(@course, @lesson)
+        # flash[:success] = "Your comment was saved"
+        # redirect_to course_lesson_path(@course, @lesson)
       else
-        flash.now[:danger] = "Your comment was not saved"
-        render "lessons/show"
+        respond_to do |format| 
+          format.js { render "error" }
+        end
+
+        # flash.now[:danger] = "Your comment was not saved"
+        # render "lessons/show"
       end
 
     elsif params[:article_id]
@@ -23,11 +28,15 @@ class CommentsController < ApplicationController
       @comment.author = current_user
 
       if @comment.save
-        flash[:success] = "Your comment was saved"
-        redirect_to article_path(@article)
+        respond_to { |format| format.js }
+        # flash[:success] = "Your comment was saved"
+        # redirect_to article_path(@article)
       else
-        flash.now[:danger] = "There was a problem and the comment was not saved"
-        render "articles/show"
+        # flash.now[:danger] = "There was a problem and the comment was not saved"
+        # render "articles/show"
+        respond_to do |format| 
+          format.js { render "error" }
+        end
       end
     end
   end

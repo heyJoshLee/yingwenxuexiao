@@ -6,4 +6,6 @@
   = f.radio_button :premium_course, true, class: "radio-inline"
   = label :premium_course, 'Free Course'
   = f.radio_button :premium_course, false, class: "radio-inline"
-  = f.submit "Create Course", class: "btn btn-primary"
+  = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
+    - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
+  = f.submit @course.new_record? ? "Create Course" : "Save course", class: "btn btn-primary"

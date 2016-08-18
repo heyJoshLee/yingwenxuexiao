@@ -32,10 +32,16 @@ class User < ActiveRecord::Base
 
   mount_uploader :picture_url, UserImageUploader
 
-
+  def generate_password_reset_token
+    update_column(:password_reset_token, SecureRandom.urlsafe_base64)
+  end
 
   def is_editor?
     role == "editor"
+  end
+
+  def is_paid_member?
+    membership_level == "paid"
   end
 
   def to_param

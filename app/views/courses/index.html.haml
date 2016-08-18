@@ -1,4 +1,8 @@
 %h1 Courses
 %ul.row
+- if logged_in? && !current_user.is_paid_member?
+  .well.center
+    You must upgrade your account to a paid account to enroll in classes.
+    %h5= link_to "Upgrade Account", root_path
 - @courses.each do |course|
   = render "course_preview", course: course

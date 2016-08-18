@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817030706) do
+ActiveRecord::Schema.define(version: 20160818204153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affiliate_links", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "affiliate_id"
+    t.integer  "signups",      default: 0
+    t.string   "url"
+    t.string   "slug"
+    t.string   "name"
+  end
+
+  create_table "affiliates", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "contact_email"
+    t.string   "contact_name"
+    t.string   "domain"
+    t.text     "notes"
+    t.string   "slug"
+  end
 
   create_table "article_article_topics", force: :cascade do |t|
     t.integer  "article_id"
@@ -87,6 +108,22 @@ ActiveRecord::Schema.define(version: 20160817030706) do
     t.datetime "updated_at"
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.string   "slug"
+  end
+
+  create_table "course_course_levels", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.integer  "course_level_id"
+  end
+
+  create_table "course_levels", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "color"
+    t.string   "slug"
   end
 
   create_table "course_users", force: :cascade do |t|
@@ -203,6 +240,16 @@ ActiveRecord::Schema.define(version: 20160817030706) do
     t.text     "body"
   end
 
+  create_table "support_tickets", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "subject"
+    t.string   "name"
+    t.text     "body"
+    t.string   "slug"
+  end
+
   create_table "user_questions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -239,15 +286,17 @@ ActiveRecord::Schema.define(version: 20160817030706) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
-    t.string   "role",             default: "reader"
-    t.string   "membership_level", default: "free"
+    t.string   "role",                 default: "reader"
+    t.string   "membership_level",     default: "free"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
-    t.integer  "points",           default: 0
-    t.integer  "level",            default: 1
+    t.integer  "points",               default: 0
+    t.integer  "level",                default: 1
     t.string   "picture_url"
     t.string   "slug"
+    t.string   "password_reset_token"
+    t.string   "affiliate_link_id"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|
@@ -260,6 +309,8 @@ ActiveRecord::Schema.define(version: 20160817030706) do
     t.datetime "updated_at"
     t.text     "sentence"
     t.text     "definition"
+    t.string   "vocabulary_wordable_type"
+    t.integer  "vocabulary_wordable_id"
   end
 
 end

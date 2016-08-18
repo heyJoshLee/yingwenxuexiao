@@ -1,0 +1,10 @@
+.row
+  .container
+    %h1= @affiliate.new_record? ?  "New Affiliate" : "Save Affiliate"
+    = bootstrap_form_for [:admin, :dashboard, @affiliate] do |f|
+      = f.text_field :name
+      = f.text_field :domain
+      = f.email_field :contact_email
+      = f.text_field :contact_name
+      = f.text_area :notes
+      = f.submit @affiliate.new_record? ? "Create Affiliate" : "Save Edits", class: "btn btn-primary"

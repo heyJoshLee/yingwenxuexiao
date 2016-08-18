@@ -8,11 +8,12 @@ class Admin::ArticlesController < AdminController
 
   def create
     @article = Article.new(article_params)
+    @article.author_id = current_user.id
     if @article.save
       flash[:success] = "Article was saved"
       redirect_to article_path(@article)
     else
-      flash.new[:danger] = "There was a problem and the article was not saved"
+      flash.now[:danger] = "There was a problem and the article was not saved"
       render :new
     end
   end
@@ -35,7 +36,7 @@ class Admin::ArticlesController < AdminController
   end
 
   def article_params
-    params.require(:article).permit(:title, :main_image_url, :body, :article_topic_ids, :bootsy_image_gallery_id)
+    params.require(:article).permit!
   end
 
 end

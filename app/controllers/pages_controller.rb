@@ -4,6 +4,7 @@ class PagesController < ApplicationController
     render layout: "no_nav"
   end
 
+
   def careers
     add_breadcrumb "Careers"
   end

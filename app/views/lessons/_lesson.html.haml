@@ -32,13 +32,10 @@
       = link_to course_lesson_complete_lesson_path(@course, @lesson), method: "POST" do 
         .btn.btn-success.pull-right Next Lesson
 
-
-      .row
-        .lesson_comments_section
-          %h2 Comments
-
-          = bootstrap_form_for [@lesson.course, @lesson, Comment.new] do |f|
-            = f.text_area :body
-            = f.submit "Create Comment", class: "btn btn-primary"
-
-          = render "lessons/comments_section"
+  
+    .article_comments_section
+      %h2 Comments
+      = bootstrap_form_for [@course, @lesson, @comment], remote: true do |f|
+        = f.text_area :body
+        = f.submit "Create Comment", class: "btn btn-primary"
+    = render "comments/comments_section", object: @lesson
