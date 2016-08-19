@@ -46,9 +46,12 @@ Rails.application.routes.draw do
   namespace :help do
     resources :support_tickets
   end
+
+  resources :user_vocabulary_words, only: [:create]
   
   resources :affiliates, only: [:index, :show]
   resources :course_levels, only: [:show]
+  
   resources :courses, only: [:index, :show] do
     resources :lessons, only: [:show] do
       post "complete", as: "complete_lesson"

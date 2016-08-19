@@ -3,7 +3,8 @@ class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :update, :edit]
   before_action :set_comment, only: [:create]
   before_action :set_article, only: [:create]
-  
+
+  before_action :require_user
 
   def create
     if params[:lesson_id]

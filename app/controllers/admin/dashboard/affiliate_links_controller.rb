@@ -1,4 +1,4 @@
-class Admin::Dashboard::AffiliateLinksController < ApplicationController
+class Admin::Dashboard::AffiliateLinksController < AdminController
 
   before_action :set_affilate_link, only: [:show, :update, :edit]
   before_action :set_affiliate, only: [:create]

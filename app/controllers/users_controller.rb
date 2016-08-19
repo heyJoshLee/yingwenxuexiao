@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_filter :set_user, only: [:show, :edit, :update]
-
   before_filter :require_user, only: [:show, :update]
 
   def new

@@ -8,6 +8,10 @@
 
 # Password reset feature
 
+# Fix topic checkboxes for articles
+
+# Decorator for lesson scripts instruction, etc...
+
 === medium ===
 
 # Format times for articles  , comments, replies
@@ -22,13 +26,12 @@
   * Complete Lesson
   * Password Reset
   * Download from email
+  * Admin Adds course / lesson / quiz
 
 === hard= ===
 
 # Show Message on level up
 # Add SRS features to practice
-
-# Affiliate links
 
 # Check practice study types- definition, eng to cn, etc...
 # Publish date for lessons, quizzes and articles
@@ -39,11 +42,9 @@
 
 # Dictionary Feature ?
 
-
 === need to wait ===
 
 # Block off routes
-
 
 === need internet ===
 
@@ -54,11 +55,7 @@
   * China
   * Taiwan
 
-
 # Translate
-
-
-
 
 # Styling
   * User info in navbar

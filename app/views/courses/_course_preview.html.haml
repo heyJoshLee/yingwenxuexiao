@@ -7,7 +7,7 @@
   %br/
   %br/
   %p= course.description
-  - if current_user.is_paid_member?
+  - if logged_in? && current_user.is_paid_member?
     - if current_user.is_enrolled_in?(course)
       .btn.btn-primary.v_margin
         = link_to "Go to class", course_path(course)

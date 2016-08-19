@@ -1,10 +1,10 @@
-.lesson_panel
+#lesson_panel
   %h4 Lessons
   %ul
     - @course.lessons.each do |lesson|
       %li
         .row
-          .col-xs-4.col-xs-offset-4
+          .col-xs-6.col-xs-offset-3
             =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
           .col-xs-2
             - if current_user.completed_lesson?(lesson)

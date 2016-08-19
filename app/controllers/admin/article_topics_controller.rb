@@ -1,4 +1,4 @@
-class Admin::ArticleTopicsController < ApplicationController
+class Admin::ArticleTopicsController < AdminController
 
   before_action :set_article_topic, only: [:show, :update, :edit]
   

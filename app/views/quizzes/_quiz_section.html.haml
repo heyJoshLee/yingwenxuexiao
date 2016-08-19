@@ -1,6 +1,6 @@
 - if @lesson.has_quiz?
   .row
-    .col-sm-12
+    .col-sm-12#quiz_section
       %h5 Quiz
       = form_tag course_lesson_quiz_attempt_quiz_path(@course, @lesson, @lesson.quiz) do
         - @lesson.quiz.questions.each_with_index do |question, index|

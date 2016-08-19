@@ -48,6 +48,17 @@ li {
   list-style: none;
 }
 
+/*********
+Nav
+**********/
+#nav_sandwhich {
+  background-color: rgba(0,182,245, 1);
+}
+
+#nav_sandwhich .icon-bar {
+  background-color: white ;
+}
+
 header li {
   display: inline-block;
 }
@@ -221,6 +232,14 @@ ADMIN_NAV
 }
 
 /*********
+.vocabulary_words
+**********/
+
+#vocabulary_words .fa-plus {
+  color: green;
+}
+
+/*********
 LEVELS
 **********/
 .levels_table td {
@@ -293,6 +312,10 @@ Comment
   margin: 20px 0
 }
 
+.comment_body {
+  word-wrap: break-word;
+}
+
 .comment_author_image {
   width: 75px;
   height: 75px;
@@ -322,6 +345,8 @@ Comment
   margin: 10px 0;
   background: rgba(255, 255, 255, 1);
   border-radius: 8px;
+  word-wrap: break-word;
+  
 }
 
 .reply_author_image {
@@ -458,19 +483,19 @@ COURSE
 LESSON_PANEL
 **********/
 
-.lesson_panel {
+#lesson_panel {
   color: white
 }
 
-.lesson_panel h4 {
+#lesson_panel h4 {
   text-align: center;
 }
 
-.lesson_panel ul {
+#lesson_panel ul {
   padding: 0;
 }
 
-.lesson_panel li {
+#lesson_panel li {
   text-align: center;
   font-weight: bold;
   height: 30px;
@@ -479,12 +504,12 @@ LESSON_PANEL
   background-color: rgba(0,182,245, 1);
 }
 
-.lesson_panel li:hover {
+#lesson_panel li:hover {
   cursor: pointer;
   background-color: rgba(0,182,200, 0.5);
 }
 
-.lesson_panel li + li {
+#lesson_panel li + li {
   border-top: 1px solid white;
 }
 

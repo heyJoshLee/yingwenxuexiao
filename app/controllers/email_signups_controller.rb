@@ -5,7 +5,6 @@ class EmailSignupsController < ApplicationController
   end
 
   def confirm
-    
   end
 
   def create

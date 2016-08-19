@@ -1,5 +1,7 @@
 class QuizzesController < ApplicationController
 
+  before_action :require_paid_membership
+
   def attempt
     @course = Course.find_by(slug: params[:course_id])
     @lesson = Lesson.find_by(slug: params[:lesson_id])

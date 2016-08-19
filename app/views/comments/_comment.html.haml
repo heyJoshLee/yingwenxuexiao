@@ -1,9 +1,9 @@
 .row
   .comment.well{id: "comment-#{comment.slug}"}
     .row
-      .col-xs-2
+      .col-xs-3
         = image_tag(comment.author.picture_url, class: "comment_author_image")
-      .col-xs-8
+      .col-xs-9
         %h5
           %strong #{comment.author.name} <small> says </small>
         .comment_body

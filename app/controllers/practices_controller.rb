@@ -1,6 +1,8 @@
 class PracticesController < ApplicationController
   add_breadcrumb "Home", :root_path
 
+  before_action :require_paid_membership, except: [:index]
+  
   def index
     add_breadcrumb "Practice", practice_path
     @word = current_user.user_vocabulary_words.sample

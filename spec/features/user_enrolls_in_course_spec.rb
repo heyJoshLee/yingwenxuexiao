@@ -16,8 +16,9 @@ feature "User enrolls in course" do
   end
 
   scenario "not logged in" do
+    course = Fabricate(:course)
     visit courses_path
-    expect(page).to have_content("Forgot Password?")
+    expect(page).not_to have_content("Enroll In Class")
   end
 
   scenario "not paid member" do
