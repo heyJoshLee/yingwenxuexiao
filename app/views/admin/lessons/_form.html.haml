@@ -1,6 +1,6 @@
 .container
   .row
-    .col-sm-8.col-sm-offset-1
+    .col-xs-6
       = bootstrap_form_for([:admin, @course, @lesson]) do |f|
         = f.text_field :name
         = f.text_area :script_english
@@ -8,8 +8,26 @@
         = f.text_field :video_url
         = f.text_field :notes_url
         = f.text_area :description
+        = f.text_area :instructions
         = hidden_field_tag :course_id, @course.id
-        = f.submit "Add Lesson to Course", class: "btn btn-primary pull-right"
+        = f.submit @lesson.new_record? ? "Add Lesson to Course" : "Save Edits", class: "btn btn-primary pull-right"
+    .col-sm-4
+      %h3 Vocabulary Words
+      %button.btn.btn-primary.v_margin{"data-target" => "#add_vocabulary_word_modal", "data-toggle" => "modal", :type => "button"} Add Vocabulary Word
+      %br/
+      %br/
+      %table.table.table-bordered
+        %thead
+          %td Word
+          %td Part of Speech
+        %tbody
+          - @lesson.vocabulary_words.each do |word|
+            %tr
+              %td
+                %h5= word.main
+              %td
+                %small= word.part_of_speech
+
 .br
 .container
   - unless @lesson.new_record?
@@ -19,3 +37,16 @@
     - else
       = link_to admin_course_lesson_quizzes_path(@course, @lesson), method: "post" do
         .btn.btn-success Add Quiz
+
+
+
+
+#add_vocabulary_word_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
+      .modal-body
+        = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @lesson.class.to_s, vocabulary_wordable_id: @lesson.id

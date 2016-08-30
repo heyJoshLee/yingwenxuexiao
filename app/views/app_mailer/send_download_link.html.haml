@@ -1,0 +1,9 @@
+!!! 5
+%html(lang="en-US")
+  %body
+    .email_body
+      %h1= "Your download, #{@download.title}, is ready!"
+      %br/
+      %h4 Click below to get your download link
+      = link_to download_url(@download_link) do
+        .btn.btn-primary Download now!

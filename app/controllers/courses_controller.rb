@@ -1,10 +1,10 @@
 class CoursesController < ApplicationController
-  before_action :require_user, only: [:index, :show]
+
+  before_action :require_paid_membership, except: [:index]
   before_action :set_course, only: [:enroll, :show]
 
   add_breadcrumb "Home", :root_path
   add_breadcrumb "Courses"
-
 
 
   def index
@@ -15,23 +15,20 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
-  def create
-    @course = Course.new(course_params)
-    if @course.save
-      flash[:success] = "course was saved"
-      redirect_to course_path(@course)
-    else
-      flash.now[:danger] = "There was a problem and the course was not saved"
-      render :new
-    end
-  end
+  # def create
+  #   @course = Course.new(course_params)
+  #   if @course.save
+  #     flash[:success] = "course was saved"
+  #     redirect_to course_path(@course)
+  #   else
+  #     flash.now[:danger] = "There was a problem and the course was not saved"
+  #     render :new
+  #   end
+  # end
 
   def enroll
     current_user.enroll_in(@course)
     redirect_to course_path(@course)
-  end
-
-  def edit
   end
 
   private

@@ -25,9 +25,27 @@ class User < ActiveRecord::Base
   has_many :lesson_users
   has_many :lessons, through: :lesson_users
 
+  has_many :user_vocabulary_words
+  has_many :vocabulary_words, through: :user_vocabulary_words
+
+  before_create :generate_random_slug
+
+  mount_uploader :picture_url, UserImageUploader
+
+  def generate_password_reset_token
+    update_column(:password_reset_token, SecureRandom.urlsafe_base64)
+  end
 
   def is_editor?
     role == "editor"
+  end
+
+  def is_paid_member?
+    membership_level == "paid"
+  end
+
+  def to_param
+    self.slug
   end
 
   def is_admin?
@@ -127,9 +145,70 @@ class User < ActiveRecord::Base
     new_points = points + points_to_add
     update_column(:points, new_points)
     advance_level_if_enough_points
+    true
+  end
+
+  def leveled_up?(points_just_added)
+    # user's points - points_just_added < user.level.points
+    # 100 - 100 < 100
+  end
+
+  def add_vocabulary_word(word)
+    UserVocabularyWord.create(vocabulary_word_id: word.id, user_id: id, review_time: Date.today)
+  end
+
+
+  def practice(type, word, answer)
+    question_type = type.to_s.split("_").last.to_sym
+    question_type = :main if question_type == :english || question_type == :spoken || question_type == :spelling
+    user_word = set_vocabulary_word(word)
+    increase_attempted(type.to_s + "_attempted", user_word)
+    if add_to_correct_if_correct(word, question_type, answer, user_word, type.to_s + "_correct")
+      add_points(10)
+    end
   end
 
   private
+
+  def add_to_correct_if_correct(word, question, answer, user_word, correct_column)
+    correct = (answer == word[question])
+    if correct
+      old_correct = 0
+      if user_word[correct_column]
+        old_correct = user_word[correct_column]
+      end
+      user_word.update_column(correct_column, old_correct  + 1)
+    else
+      set_correct_column_to_0_on_first_try(correct_column, user_word)
+    end
+    correct
+  end
+
+  def add_to_correct_column(correct_column, user_word)
+    old_correct = 0
+    if user_word.chinese_to_english_correct
+      old_correct = user_word.chinese_to_english_correct
+    end
+    user_word.update_column(:chinese_to_english_correct, old_correct + 1)
+  end
+
+  def set_correct_column_to_0_on_first_try(correct_column, user_word)
+    if user_word[correct_column].nil?
+        user_word.update_column(correct_column, 0)
+    end
+  end
+
+  def set_vocabulary_word(word)
+    user_vocabulary_words.where(vocabulary_word_id: word.id).first
+  end
+
+  def increase_attempted(attempted_column, user_word)
+    old_count = 0
+    if user_word[attempted_column]
+      old_count  = user_word[attempted_column]
+    end
+    user_word.update_column(attempted_column, old_count + 1)
+  end
 
   def advance_level_if_enough_points
     next_level =  Level.find_by(number: level + 1)
@@ -140,6 +219,11 @@ class User < ActiveRecord::Base
     user_question = user_questions.find_by(question_id: question.id)
     user_question.update_column(:choice_id, choice.id)
   end
+
+  def generate_random_slug
+    self.slug = SecureRandom.urlsafe_base64
+  end
+
 
 end
 

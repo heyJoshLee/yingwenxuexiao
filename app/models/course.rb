@@ -13,5 +13,12 @@ class Course < ActiveRecord::Base
   has_many :course_user
   has_many :users, through: :course_users
 
+  has_many :course_course_levels
+  has_many :course_levels, through: :course_course_levels
+
+  def to_param
+    self.slug
+  end
+
 end
 

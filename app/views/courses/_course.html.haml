@@ -1,0 +1,11 @@
+.row
+  .col-sm-4
+    = render "courses/lesson_panel"
+  .col-sm-8
+    %h1= @course.name
+    - @course.course_levels.each do |course_level|
+      .badge{style: "background-color: #{course_level.color}" }= course_level.name
+    %br/
+    - if current_user.is_admin?
+      = link_to "Edit course", edit_admin_course_path(@course)
+    = image_tag(@course.main_image_url)

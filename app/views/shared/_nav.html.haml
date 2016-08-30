@@ -2,14 +2,19 @@
   .row
     .col-sm-2.nav_item
       .nav_text
-        = link_to "Home", root_path
-    .col-sm-2.nav_item
-      .nav_text Free Stuff
+        = link_to "Free Stuff", free_path
     .col-sm-2.nav_item
       .nav_text
         = link_to "Courses", courses_path
+    .col-sm-2.nav_item
+      .nav_text
+        = link_to "Practice", practice_path
     .col-sm-4.nav_item
-      .nav_text Premium Membership
+      .nav_text
+        - if logged_in? && current_user.is_paid_member?
+          = link_to "My Words", my_words_path
+        - else
+          = link_to "Premium Membership", upgrade_path
     .col-sm-2.nav_item
       .nav_text 
         = link_to "Blog", blog_path

@@ -1,0 +1,31 @@
+.row
+  %footer.footer#main_footer
+    .row
+      .col-xs-4
+        %h5 English School
+        %ul
+          %li=link_to "Careers ", careers_path
+          %li=link_to "Blog", blog_path
+          %li=link_to "Affiliates", affiliates_path
+      .col-xs-4
+        %h5 Terms and help
+        %ul
+          %li=link_to "Privacy Terms", "/privacy_policy"
+          %li=link_to "Help", "/help"
+          %li=link_to "Contact", contact_path
+      .col-xs-4
+        %h5 Account
+        %ul
+          %li= link_to "My Account", account_path
+          %li= link_to "Upgrade", root_path
+    .row.footer_social
+      .col-xs-12
+        %h5.center Social
+      .col-xs-12
+        .col-xs-3
+          Facebok
+        .col-xs-3
+          Wechat
+    .row
+      .center.v_margin
+        © 2016 Yingwenxuexiao All Rights Reserved.

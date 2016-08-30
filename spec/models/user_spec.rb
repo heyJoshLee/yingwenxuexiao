@@ -1,6 +1,19 @@
 require "spec_helper"
 
 describe User do
+
+  describe "#is_paid_member?" do
+    it "returns false if user is a free member" do
+      user = Fabricate(:user, membership_level: "free")
+      expect(user.is_paid_member?).to be_falsey
+    end
+
+    it "returns true if user is a paid member" do
+      user = Fabricate(:user, membership_level: "paid")
+      expect(user.is_paid_member?).to be_truthy
+    end
+  end
+
   describe "#is_editor?" do
 
     it "should return true when user is an editor" do
@@ -378,7 +391,6 @@ describe User do
 
       expect(user.next_lesson_in_course(course)).to eq(course.lessons.last)
     end
-
   end
 
   describe "#add_points(points)" do
@@ -415,5 +427,376 @@ describe User do
       expect(user.level).to eq(2)
     end
   end
+
+  describe "#add_vocabulary_word(word)" do
+    let(:user) { Fabricate(:user) }
+    let(:vocabulary_word_1) { Fabricate(:vocabulary_word) }
+    let(:vocabulary_word_2) { Fabricate(:vocabulary_word) }
+
+    it "adds vocabulary word to users words" do
+      user.add_vocabulary_word(vocabulary_word_1)
+      expect(user.vocabulary_words.first).to eq(vocabulary_word_1)
+    end
+
+    it "adds another vocabulary word to a users words " do
+      user.add_vocabulary_word(vocabulary_word_1)
+      user.add_vocabulary_word(vocabulary_word_2)
+      expect(user.vocabulary_words.count).to eq(2)
+    end
+
+    it "doesn't add the word if the user already has the word in his list" do
+      user.add_vocabulary_word(vocabulary_word_1)
+      user.add_vocabulary_word(vocabulary_word_1)
+      expect(user.vocabulary_words.count).to eq(1)
+    end
+  end
+
+  describe "#practice(type, word, answer)" do
+    let(:user) { Fabricate(:user) }
+    let(:vocabulary_word) { Fabricate(:vocabulary_word, main: "hello", chinese: "好", definition: "a phrase used when greeting someone.") }
+    let!(:level_1) { Fabricate(:level, number: 1, points: 0) }
+    let!(:level_2) { Fabricate(:level, number: 2, points: 100) }
+
+    before do
+      user.add_vocabulary_word(vocabulary_word)
+    end
+
+    it "adds points to the user if the user gets the correct answer" do
+      correct_answer =  vocabulary_word.main
+      user.practice(:chinese_to_english, vocabulary_word, correct_answer)
+      expect(user.points).to eq(10)
+    end
+
+    it "doesn't add points to the user if the  user get the incorrect answer" do
+      incorrect_answer =  vocabulary_word.main + "123"
+      user.practice(:chinese_to_english, vocabulary_word, incorrect_answer)
+      expect(user.points).to eq(0)
+    end
+
+    context "practicing English to Chinese" do
+
+      let(:correct_answer_1) { vocabulary_word.chinese }
+      let(:incorrect_answer_1) { vocabulary_word.chinese + "123" }
+      let(:incorrect_answer_2) { vocabulary_word.chinese + "abc" }
+
+      it "adds one to english_to_chinese_attempted" do
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_attempted).to eq(1)
+      end
+
+      it "doesn't add 1 to correct if the answer is not correct" do
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(0)
+      end
+
+      it "adds 1 to correct if the answer is correct" do 
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(1)
+      end
+
+      it  "works if user answers correctly twice in a row" do
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.english_to_chinese_attempted).to eq(2)
+      end
+
+      it "works with a mix of correct and incorrect answers" do
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.english_to_chinese_attempted).to eq(4)
+      end
+
+      it "works with a mix of more correct and incorrect answers" do
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_2)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_2)
+        user.practice(:english_to_chinese, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(3)
+        expect(user.user_vocabulary_words.first.english_to_chinese_attempted).to eq(7)
+      end
+
+      it "works with many incorrect answers" do
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_2)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_2)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_2)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        user.practice(:english_to_chinese, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.english_to_chinese_correct).to eq(0)
+        expect(user.user_vocabulary_words.first.english_to_chinese_attempted).to eq(6)
+      end
+    end # practicing English to Chinese
+
+    context "practicing Chinese to English" do
+
+      let(:correct_answer_1) { vocabulary_word.main }
+      let(:incorrect_answer_1) { vocabulary_word.main + "123" }
+      let(:incorrect_answer_2) { vocabulary_word.main + "abc" }
+
+      it "adds one to chinese_to_english_attempted" do
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_attempted).to eq(1)
+      end
+
+      it "doesn't add 1 to correct if the answer is not correct" do
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(0)
+      end
+
+      it "adds 1 to correct if the answer is correct" do 
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(1)
+      end
+
+      it  "works if user answers correctly twice in a row" do
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.chinese_to_english_attempted).to eq(2)
+      end
+
+      it "works with a mix of correct and incorrect answers" do
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.chinese_to_english_attempted).to eq(4)
+      end
+
+      it "works with a mix of more correct and incorrect answers" do
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_2)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_2)
+        user.practice(:chinese_to_english, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(3)
+        expect(user.user_vocabulary_words.first.chinese_to_english_attempted).to eq(7)
+      end
+
+      it "works with many incorrect answers" do
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_2)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_2)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_2)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        user.practice(:chinese_to_english, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.chinese_to_english_correct).to eq(0)
+        expect(user.user_vocabulary_words.first.chinese_to_english_attempted).to eq(6)
+      end
+    end # practicing Chinese to English
+
+    context "practicing definition" do
+
+      let(:correct_answer_1) { vocabulary_word.definition }
+      let(:incorrect_answer_1) { vocabulary_word.definition + "123" }
+      let(:incorrect_answer_2) { vocabulary_word.definition + "abc" }
+
+      it "adds one to chinese_to_english_attempted" do
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.definition_attempted).to eq(1)
+      end
+
+      it "doesn't add 1 to correct if the answer is not correct" do
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(0)
+      end
+
+      it "adds 1 to correct if the answer is correct" do 
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(1)
+      end
+
+      it  "works if user answers correctly twice in a row" do
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.definition_attempted).to eq(2)
+      end
+
+      it "works with a mix of correct and incorrect answers" do
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.definition_attempted).to eq(4)
+      end
+
+      it "works with a mix of more correct and incorrect answers" do
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_2)
+        user.practice(:definition, vocabulary_word, incorrect_answer_2)
+        user.practice(:definition, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(3)
+        expect(user.user_vocabulary_words.first.definition_attempted).to eq(7)
+      end
+
+      it "works with many incorrect answers" do
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_2)
+        user.practice(:definition, vocabulary_word, incorrect_answer_2)
+        user.practice(:definition, vocabulary_word, incorrect_answer_2)
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        user.practice(:definition, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.definition_correct).to eq(0)
+        expect(user.user_vocabulary_words.first.definition_attempted).to eq(6)
+      end
+    end # practicing definition
+
+    context "practicing spoken" do
+
+      let(:correct_answer_1) { vocabulary_word.main }
+      let(:incorrect_answer_1) { vocabulary_word.main + "123" }
+      let(:incorrect_answer_2) { vocabulary_word.main + "abc" }
+
+      it "adds one to chinese_to_english_attempted" do
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_attempted).to eq(1)
+      end
+
+      it "doesn't add 1 to correct if the answer is not correct" do
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(0)
+      end
+
+      it "adds 1 to correct if the answer is correct" do 
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(1)
+      end
+
+      it  "works if user answers correctly twice in a row" do
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.spoken_attempted).to eq(2)
+      end
+
+      it "works with a mix of correct and incorrect answers" do
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.spoken_attempted).to eq(4)
+      end
+
+      it "works with a mix of more correct and incorrect answers" do
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_2)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_2)
+        user.practice(:spoken, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(3)
+        expect(user.user_vocabulary_words.first.spoken_attempted).to eq(7)
+      end
+
+      it "works with many incorrect answers" do
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_2)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_2)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_2)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        user.practice(:spoken, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spoken_correct).to eq(0)
+        expect(user.user_vocabulary_words.first.spoken_attempted).to eq(6)
+      end
+    end # practicing spoken
+
+    context "practicing spelling" do
+
+      let(:correct_answer_1) { vocabulary_word.main }
+      let(:incorrect_answer_1) { vocabulary_word.main + "123" }
+      let(:incorrect_answer_2) { vocabulary_word.main + "abc" }
+
+      it "adds one to spelling_attempted" do
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_attempted).to eq(1)
+      end
+
+      it "doesn't add 1 to correct if the answer is not correct" do
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(0)
+      end
+
+      it "adds 1 to correct if the answer is correct" do 
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(1)
+      end
+
+      it  "works if user answers correctly twice in a row" do
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.spelling_attempted).to eq(2)
+      end
+
+      it "works with a mix of correct and incorrect answers" do
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(2)
+        expect(user.user_vocabulary_words.first.spelling_attempted).to eq(4)
+      end
+
+      it "works with a mix of more correct and incorrect answers" do
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_2)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_2)
+        user.practice(:spelling, vocabulary_word, correct_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(3)
+        expect(user.user_vocabulary_words.first.spelling_attempted).to eq(7)
+      end
+
+      it "works with many incorrect answers" do
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_2)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_2)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_2)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        user.practice(:spelling, vocabulary_word, incorrect_answer_1)
+        expect(user.user_vocabulary_words.first.spelling_correct).to eq(0)
+        expect(user.user_vocabulary_words.first.spelling_attempted).to eq(6)
+      end
+    end # practicing spelling
+  end
+
+  describe "#leveled_up?(points_just_added)" do
+    let(:level_1) { Fabricate(:level, number: 1, points: 0) }
+    let(:level_2) { Fabricate(:level, number: 2, points: 100) }
+    let(:user) { Fabricate(:user, level: 1) }
+
+    it "returns false if user did not just level up" do
+      skip
+      user.add_points(50)
+      expect(user.leveled_up?(50)).to be_falsey
+    end
+
+    it "returns true if the user just leveled up" do
+      skip
+      user.add_points(100)
+      expect(user.leveled_up?(100)).to be_truthy
+    end
+  end
+
+
 
 end

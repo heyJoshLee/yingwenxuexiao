@@ -1,0 +1,39 @@
+%h1= @affiliate.name
+%h5 Affiliate Info
+.row
+  .container
+    %table.table.table-bordered
+      %thead
+        %td Domain
+        %td Contact Email
+        %td Contact Name
+        %td Notes
+      %tbody
+        %tr
+          %td= @affiliate.domain
+          %td= @affiliate.contact_email
+          %td= @affiliate.contact_name
+          %td= @affiliate.notes
+
+    %h3 Links
+    %h5 New Link
+    = bootstrap_form_for [:admin, :dashboard, @affiliate, AffiliateLink.new] do |f|
+      = f.text_field :name
+      = f.submit "Create Link", class: "btn btn-primary"
+    %br/
+    %br/
+    %table.table.table-bordered
+      %thead
+        %td Link Name
+        %td Url
+        %td Signups
+        %td Created at
+      %tbody
+        - @affiliate.affiliate_links.each do |affiliate_link|
+          %tr
+            %td= affiliate_link.name
+            %td= affiliate_link.url
+            %td= affiliate_link.users.count
+            %td= affiliate_link.created_at
+
+

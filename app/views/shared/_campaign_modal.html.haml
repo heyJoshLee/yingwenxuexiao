@@ -1,3 +1,4 @@
+- @download_id = Download.count > 0 ? Download.last.id : ""
 #campaign_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
@@ -14,6 +15,7 @@
           = t.email_field :email
           = hidden_field_tag :page, request.original_url
           = hidden_field_tag :campaign, campaign
+          = hidden_field_tag :download_id, @download_id
           = t.submit "Get the book", class: "btn btn-primary"
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

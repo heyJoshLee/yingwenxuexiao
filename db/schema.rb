@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810162923) do
+ActiveRecord::Schema.define(version: 20160822233249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affiliate_links", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "affiliate_id"
+    t.integer  "signups",      default: 0
+    t.string   "url"
+    t.string   "slug"
+    t.string   "name"
+  end
+
+  create_table "affiliates", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "contact_email"
+    t.string   "contact_name"
+    t.string   "domain"
+    t.text     "notes"
+    t.string   "slug"
+  end
+
+  create_table "article_article_topics", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "article_topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "article_categories", force: :cascade do |t|
     t.integer  "article_id"
@@ -23,16 +51,22 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.datetime "updated_at"
   end
 
+  create_table "article_topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "main_image_url"
-    t.integer  "author_id"
+    t.integer  "user_id"
     t.integer  "category_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
-    t.integer  "user_id"
   end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
@@ -69,9 +103,26 @@ ActiveRecord::Schema.define(version: 20160810162923) do
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.string   "slug"
+  end
+
+  create_table "course_course_levels", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.integer  "course_level_id"
+  end
+
+  create_table "course_levels", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "color"
+    t.string   "slug"
   end
 
   create_table "course_users", force: :cascade do |t|
@@ -91,6 +142,30 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "download_links", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.datetime "first_access"
+    t.datetime "most_recent_access"
+    t.datetime "downloaded_time"
+    t.boolean  "downloaded",         default: false
+    t.integer  "download_id"
+    t.string   "slug"
+  end
+
+  create_table "downloads", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "main_image_url"
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "active",            default: true
+    t.string   "file_download_url"
+    t.string   "slug"
+    t.string   "name"
   end
 
   create_table "email_signups", force: :cascade do |t|
@@ -156,6 +231,24 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.datetime "updated_at"
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.text     "body"
+  end
+
+  create_table "support_tickets", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "subject"
+    t.string   "name"
+    t.text     "body"
+    t.string   "slug"
+  end
+
   create_table "user_questions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -171,16 +264,39 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.datetime "updated_at"
   end
 
+  create_table "user_vocabulary_words", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vocabulary_word_id"
+    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "english_to_chinese_attempted"
+    t.integer  "english_to_chinese_correct"
+    t.integer  "chinese_to_english_attempted"
+    t.integer  "chinese_to_english_correct"
+    t.integer  "definition_attempted"
+    t.integer  "definition_correct"
+    t.integer  "spoken_attempted"
+    t.integer  "spoken_correct"
+    t.integer  "spelling_attempted"
+    t.integer  "spelling_correct"
+    t.string   "slug"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
-    t.string   "role",             default: "reader"
-    t.string   "membership_level", default: "free"
+    t.string   "role",                 default: "reader"
+    t.string   "membership_level",     default: "free"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
-    t.integer  "points",           default: 0
-    t.integer  "level",            default: 1
+    t.integer  "points",               default: 0
+    t.integer  "level",                default: 1
+    t.string   "picture_url"
+    t.string   "slug"
+    t.string   "password_reset_token"
+    t.string   "affiliate_link_id"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|
@@ -189,9 +305,12 @@ ActiveRecord::Schema.define(version: 20160810162923) do
     t.string   "part_of_speech"
     t.string   "ipa"
     t.string   "slug"
-    t.text     "example_sentences", default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "sentence"
+    t.text     "definition"
+    t.string   "vocabulary_wordable_type"
+    t.integer  "vocabulary_wordable_id"
   end
 
 end

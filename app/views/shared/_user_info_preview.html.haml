@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    - if logged_in?
+      .row#current_user_info
+        %h4= current_user.name
+        #current_user_image_and_level_container
+          = image_tag(current_user.picture_url, id: "current_user_image")
+          .level_circle#current_user_level= current_user.level
+
+      %h4#current_user_points= "#{current_user.points} points"

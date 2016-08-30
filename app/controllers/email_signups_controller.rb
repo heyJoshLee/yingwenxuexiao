@@ -5,7 +5,6 @@ class EmailSignupsController < ApplicationController
   end
 
   def confirm
-    
   end
 
   def create
@@ -14,8 +13,13 @@ class EmailSignupsController < ApplicationController
       @email_signup.page = params[:page]
       @email_signup.campaign = params[:campaign]
       @email_signup.save
-      flash[:success] = "email_signup was saved"
-      render :confirm
+      if params[:download_id]
+        @download_link = DownloadLink.create(email: @email_signup.email, download_id: params[:download_id]) if params[:download_id]
+        @download_link.send_email
+        render :download_confirm
+      else
+        render :confirm
+      end
     else
       session[:return_to] ||= request.referer
       flash[:danger] = "There was a problem and your were not signed up. Please try again."

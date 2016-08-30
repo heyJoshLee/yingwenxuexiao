@@ -25,7 +25,10 @@ body, html {
 }
 
 main {
+  display: relative;
   padding: 20px 30px;
+  overflow: auto;
+
 }
 
 img {
@@ -46,10 +49,59 @@ li {
   list-style: none;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
+.green-bkg {
+  background-color: green;
+}
+
+.green-font {
+  color: green;  
+}
+
+.red-bkg {
+  background-color: red;
+}
+
+.black-bkg {
+  background-color: rgba(10, 10, 10, 0.8);
+  color: white;
+}
+
+.strikethrough {
+  text-decoration: strikethrough;
+}
+
+/*********
+Nav
+**********/
+#nav_sandwhich {
+  background-color: rgba(0,182,245, 1);
+}
+
+#nav_sandwhich .icon-bar {
+  background-color: white ;
+}
+
 header li {
   display: inline-block;
 }
 
+.center {
+  text-align: center;
+}
+
+.h_padding {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.nav-links {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
 
 #main_splash {
   text-align: center;
@@ -82,6 +134,10 @@ header li {
   font-size: 32px;
 }
 
+/*********
+sign up
+**********/
+
 .sign_up_nav_button a {
   color: white !important;
 }
@@ -90,12 +146,76 @@ header li {
   height: 50%;
 }
 
+.red_x {
+  font-size: 24px;
+  color: red;
+}
+
+.red_x::after {
+}
+
+.membership_level_choice_div {
+  border: 1px solid black;
+  padding-bottom: 20px;
+}
+
+.membership_level_choice_div .membership_name {
+  background-color: rgba(10, 10, 10, 0.8);
+  color: white;
+  text-align: center;
+}
+
+.membership_level_choice_button {
+  margin: 0 auto;
+}
+.membership_features {
+  padding: 0 !important;
+  text-align: center;
+}
+
+.membership_feature_list li {
+  background-color: rgba(100, 100, 100, 0.1);
+  border-top: 1px solid black;
+  padding: 10px 0;
+}
+
+.membership_feature_list {
+  padding: 0 !important;
+}
+
+.membership_level_choice_div.active {
+  border: 10px solid rgba(0,182,245, 1);
+}
+
+.membership_level_choice_div.active .membership_name {
+  // background-color: rgba(0,182,245, 1);
+}
+
+.membership_level_choice_div.active .membership_level_choice_button,
+.membership_level_choice_div .membership_level_chosen_button,
+.membership_level_chosen_button {
+  display: none;
+}
+
+
+.membership_level_choice_div.active .membership_level_chosen_button {
+  display: inline-block;
+}
+
+.btn-group {
+  width: 100%;
+}
+
 .spash_highlights {
   background-color: #56CDD4;
   color: white;
   text-align: center;
   padding: 12px;
   font-weight: bold;
+}
+
+.membership_level_button {
+  background-color: red;
 }
 
 .large_splash_highlights {
@@ -152,6 +272,7 @@ HEADER
 #main_nav {
   width: 100%;
   height: 50px;
+  z-index: 2;
 }
 
 /*********
@@ -162,6 +283,90 @@ ADMIN_NAV
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 0;
+  text-align: center;
+}
+
+/*********
+#current_user_info_container
+**********/
+
+
+#current_user_info_container #current_user_level::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#current_user_info_container #current_user_points {
+  font-weight: bold;
+}
+
+// clearfix
+#current_user_info_container #current_user_level:after {
+  display: none;
+  clear: both;
+  content: "";
+}
+
+#current_user_info_container img {
+  border-radius: 100%;
+  height: 65px;
+  width: 65px;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+
+
+#current_user_info {
+  display: relative;
+  text-align: center;
+}
+
+
+#current_user_info_container {
+  display: relative;
+}
+
+#current_user_image_and_level_container {
+  margin: 0 auto;
+  width: 100px;
+  text-align: center;
+  position: relative;
+}
+
+#current_user_level {
+  position: absolute;
+  top: 0;
+  left: 75px;
+}
+
+#current_user_image {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: -50px;
+}
+
+/*********
+.vocabulary_words
+**********/
+
+#vocabulary_words_container .fa-plus {
+  color: green;
+}
+
+/*********
+#notification
+**********/
+
+#notification {
+  position: fixed;
+  bottom: 50px;
+  height: 50px;
+  width: 100%;
+  z-index: 10;
+  display: none;
 }
 
 /*********
@@ -180,6 +385,7 @@ LEVELS
   font-size: 20px;
   font-weight: bold;
   border-radius: 100%;
+  margin: 0 auto;
 }
 
 .articles_container {
@@ -220,15 +426,63 @@ LEVELS
 .article_show {
   margin-bottom: 50px;
   border-bottom: 1px solid rgba(0,182,245, 0.4);
+  word-wrap: break-word;
+  padding-bottom: 10px;
 }
 
 .feature-image {
   margin-bottom: 10px;
 }
 
+/*********
+Comment
+**********/
+
+.comment {
+  margin: 20px 0
+}
+
+.comment_body {
+  word-wrap: break-word;
+}
+
+.comment_author_image {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+}
+
+.comment_reply_launcher {
+  display: inline-block;
+  margin-top: 10px;
+  color: rgba(0,140,245, 1) !important;
+}
+
+.comment_reply_launcher:hover {
+  cursor: pointer;
+}
+
+.comment_reply_form {
+  display: none;
+}
+
 .article_comments_section {
   padding: 10px;
-  background: rgba(175,190,213, 0.4)
+}
+
+.comment_reply {
+  padding: 10px 0;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  word-wrap: break-word;
+  
+}
+
+.reply_author_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }
 
 .sign_up_features {
@@ -316,6 +570,25 @@ LEVELS
 }
 
 /*********
+FOOTER
+**********/
+#main_footer {
+  margin-top: 60px;
+  background-color: rgba(20, 20, 20, 0.1);
+  padding: 30px;
+}
+
+.footer_social {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#main_footer .col-xs-4 {
+  position: relative;
+  height: 140px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/*********
 COURSE
 **********/
 
@@ -339,19 +612,19 @@ COURSE
 LESSON_PANEL
 **********/
 
-.lesson_panel {
+#lesson_panel {
   color: white
 }
 
-.lesson_panel h4 {
+#lesson_panel h4 {
   text-align: center;
 }
 
-.lesson_panel ul {
+#lesson_panel ul {
   padding: 0;
 }
 
-.lesson_panel li {
+#lesson_panel li {
   text-align: center;
   font-weight: bold;
   height: 30px;
@@ -360,12 +633,12 @@ LESSON_PANEL
   background-color: rgba(0,182,245, 1);
 }
 
-.lesson_panel li:hover {
+#lesson_panel li:hover {
   cursor: pointer;
   background-color: rgba(0,182,200, 0.5);
 }
 
-.lesson_panel li + li {
+#lesson_panel li + li {
   border-top: 1px solid white;
 }
 
@@ -384,6 +657,84 @@ LESSON
   cursor: pointer;
 }
 
+
+/*********
+  Practice
+**********/
+
+#practice_container {
+  border: 1px solid rgba(0, 0, 0, .3);
+  display: relative;
+}
+
+#practice_information {
+  background: rgba(0,182,245, 1);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+#practice_container #practice_options {
+  border-right: 1px solid rgba(0,182,245, 0.3);
+  height: 400px;
+  display: relative;
+  padding: 10px 4px;
+}
+
+#practice_container #question {
+  margin: 30px auto;
+}
+
+#practice_container #question_and_answers {
+  text-align: center;
+}
+
+#practice_container .answer {
+  margin: 6px auto;
+}
+
+#correct_and_incorrect_marks {
+  height: 80px;
+  font-size: 24px;
+  display: none;
+}
+
+#correct_and_incorrect_marks .fa {
+  margin-top: -5px;
+}
+
+
+#correct_and_incorrect_marks #correct,
+#correct_and_incorrect_marks #incorrect {
+  position: relative;
+  top: -15px;
+  display: none;
+}
+
+#correct_and_incorrect_marks #correct {
+  color: green;
+}
+
+#correct_and_incorrect_marks #incorrect {
+  color: red;
+}
+
+/*********
+#level_up_container
+**********/
+
+#level_up_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  background-color: rgba(0,182,245, 1);
+  border: 20px solid white;
+  color: white;
+  z-index: 10;
+  display: none;
+}
 /*********
 QUIZ
 **********/
@@ -423,6 +774,31 @@ QUIZ
 
 .incorrect_answer {
     background-color: red;
+}
+
+/*********
+dashboard
+**********/
+
+.course_levels_table_color_preview {
+  color: white;
+}
+
+/*********
+.download
+**********/
+
+.download_image {
+  margin: 20px 0;
+}
+
+
+// iphone 6 plus
+@media screen and (max-width: 415px) {
+  .comment_author_image {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 

@@ -1,11 +1,43 @@
-%h1 Create Article
+- if @article.new_record?
+  %h1 Create Article
+- else
+  %h1 Edit Article
+
 .row
   = bootstrap_form_for [:admin, @article] do |f|
+    = render "shared/errors", object: @article
     .col-sm-6
       = f.text_field :title
       = f.file_field :main_image_url, class: "btn btn-file"
       = f.bootsy_area :body, class: "form-control", rows: 20
-      = f.submit "Create", class: "btn btn-primary pull-right v_margin"
+      = f.submit @article.new_record? ? "Create" : "Save Edits", class: "btn btn-primary pull-right v_margin"
     .col-sm-2.article_category_checkbox_container
-      = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
+      = f.collection_check_boxes :article_topic_ids, ArticleTopic.all, :id, :name do |cb|
         - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
+    .col-sm-4
+      %h3 Vocabulary Words
+      %button.btn.btn-primary.v_margin{"data-target" => "#add_vocabulary_word_modal", "data-toggle" => "modal", :type => "button"} Add Vocabulary Word
+      %br/
+      %br/
+      %table.table.table-bordered
+        %thead
+          %td Word
+          %td Part of Speech
+        %tbody
+          - @article.vocabulary_words.each do |word|
+            %tr
+              %td
+                %h5= word.main
+              %td
+                %small= word.part_of_speech
+
+
+#add_vocabulary_word_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
+      .modal-body
+        = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @article.class.to_s, vocabulary_wordable_id: @article.id

@@ -1,4 +1,4 @@
-class Admin::QuizzesController < ApplicationController
+class Admin::QuizzesController < AdminController
 
   before_action :set_quiz, only: [:show, :update, :edit]
   before_action :set_lesson, only: [:show, :update, :edit, :new, :create]

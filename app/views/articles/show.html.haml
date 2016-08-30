@@ -1,23 +1,34 @@
-= render "shared/breadcrumbs"
-.col-sm-8
-  = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
-  %small
-    = link_to "Edit", edit_admin_article_path(@article)
-  .article_show= @article.body.html_safe
-    
-  .article_comments_section
-    %h2 Comments
+.row
+  .col-sm-8
+    %h1= @article.title
+    %small
+      = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
 
-    = bootstrap_form_for [@article, @comment] do |f|
-      = f.text_area :body
-      = f.submit "Create Comment", class: "btn btn-primary"
+    = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
+    - @article.article_topics.each do |topic|
+      = link_to article_topic_path(topic) do 
+        .badge= topic.name
+    %br/
+    %h5.center Key Words
+    #vocabulary_words_container.well.row
+      = render "vocabulary_words/vocabulary_words_container", object: @article
 
-    - @article.comments.each do  |comment|
-      .comment
-        %h5
-          %strong #{comment.author.name} <small> says </small>
-        .comment_body
-          %p= comment.body
 
-.col-sm-3
-  = render "shared/sidebar"
+    .article_show= @article.body.html_safe
+      
+    .article_comments_section
+      %h2 Comments
+      - if logged_in?
+        = bootstrap_form_for [@article, @comment], remote: true do |f|
+          = f.text_area :body
+          = f.submit "Create Comment", class: "btn btn-primary"
+      - else
+        .well.center 
+          %p You need to be signed in to write a comment
+          = link_to sign_in_path do
+            .btn.btn-primary Sign In
+
+      = render "comments/comments_section", object: @article
+
+  .col-sm-3
+    = render "shared/sidebar"

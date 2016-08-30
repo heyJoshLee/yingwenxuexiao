@@ -23,33 +23,92 @@ $(document).on("click", ".choice_radio_button", function(e) {
   $(e.target).parent().parent().find(".choice_body").toggleClass("selected_choice")
 });
 
-$(document).on("click", "#find_vocabulary_word_api_search_button", function() {
-  var api_key = $("#api_key").val();
-  var search_term = $("#vocabulary_word_main").val()
-  url = "http://api.pearson.com/v2/dictionaries/entries?headword=+" + search_term + "&apikey=" + api_key
-  console.log(url)
-  $.ajax({
-    url: url,
-  })
-  .done(function(data ) {
-    console.log(data.results);
-    var output = "<ol>";
-    for(var i = 0; i < data.results.length; i++) {
-      var result = data.results[i]; 
-      var html = 
-      "<br><li>" +
-      "word: " + result.headword + "<br>" +
-      "part of speech: " + result.part_of_speech + "<br>" +
-      "definition: " + result["senses"][0]["definition"] + "</li>";
-      output = output + html
-    }
-    output = output + "</ol>"
-    $("#word_search_api_results").html(output)
-  })
-  .fail(function() {
-    console.log("error");
-  });
+$(document).on("click", "#start_talking", function() {
+  var recognition = new webkitSpeechRecognition();
+
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.lang = "en-US";
   
+  recognition.start();
+
+  recognition.onstart = function() {
+    console.log("starting")
+  }
+
+  recognition.onresult = function(e) {
+    console.log(e.results[0][0].transcript)
+
+    console.log("result")
+
+    recognition.stop();
+  }
+
+  recognition.onerror = function(e) {
+    recognition.stop();
+  }
 });
+
+$(document).on("click", ".comment_reply_launcher", function(e) {
+  var $form = $(e.target).next(".row").find(".comment_reply_form");
+  $form.toggle();
+});
+
+$(document).on("click", ".membership_level_choice_div", function(e) {
+  console.log("click")
+  var $target = $(e.target);
+  console.log($target.next("input"))
+  $target.next("input").click();
+});
+
+$(document).on("click", "#close_level_up_container", function(e) {
+  var $level_up_container = $("#level_up_container");
+  $level_up_container.fadeOut("slow", function() {
+    $level_up_container.remove();
+  });
+});
+
+$('.timestring').each(function() {
+  this.textContent = moment(this.textContent).format('lll');
+});
+
+// practice
+
+  // change options - study type
+  $(document).on("click", ".practice_option_checkbox", function(e) {
+    console.log($(e.target));
+    $("#practice_options_form").submit();
+  });
+
+
+// $(document).on("click", "#find_vocabulary_word_api_search_button", function() {
+//   var api_key = $("#api_key").val();
+//   var search_term = $("#vocabulary_word_main").val()
+//   url = "http://api.pearson.com/v2/dictionaries/entries?headword=+" + search_term + "&apikey=" + api_key
+//   console.log(url)
+//   $.ajax({
+//     url: url,
+//   })
+//   .done(function(data ) {
+//     console.log(data.results);
+//     var output = "<ol>";
+//     for(var i = 0; i < data.results.length; i++) {
+//       var result = data.results[i]; 
+//       var html = 
+//       "<br><li>" +
+//       "word: " + result.headword + "<br>" +
+//       "part of speech: " + result.part_of_speech + "<br>" +
+//       "definition: " + result["senses"][0]["definition"] + "</li>";
+//       output = output + html
+//     }
+//     output = output + "</ol>"
+//     $("#word_search_api_results").html(output)
+//   })
+//   .fail(function() {
+//     console.log("error");
+//   })
+// });
+
 
 

@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
   add_breadcrumb "Home", :root_path
   add_breadcrumb "Blog", :blog_path
 
-
   def show
     @comment = Comment.new
     add_breadcrumb @article.title, @article
@@ -12,7 +11,6 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-
   end
 
   private

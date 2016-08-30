@@ -3,13 +3,14 @@
     .topline Get 50 Free Lessons Right Now
     .widget_body
       %p Get Josh's new book "50+ English Idioms" for free!
-
       %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the book
-
-
   .widget
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ratione eligendi, facilis accusamus minima vero ipsum ex quo provident amet aliquam nemo, voluptas sapiente cupiditate suscipit deleniti totam illum illo!        
-  .widget
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ratione eligendi, facilis accusamus minima vero ipsum ex quo provident amet aliquam nemo, voluptas sapiente cupiditate suscipit deleniti totam illum illo!
-
+    = bootstrap_form_for EmailSignup.new do |f|
+      %h4 Sign up to our mailing list
+      %p Never miss a lesson or article
+      %small We won't spam you
+      = hidden_field_tag :page, request.original_url
+      = hidden_field_tag :campaign, "Newsletter"
+      = f.text_field :email
+      = f.submit "Send", class: "btn btn-primary"
 

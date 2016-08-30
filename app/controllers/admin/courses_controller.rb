@@ -1,5 +1,5 @@
 class Admin::CoursesController < AdminController
-  before_action :set_course, only: [:show]
+  before_action :set_course, only: [:show, :update, :edit]
 
   add_breadcrumb "Courses", :admin_courses_path
   
@@ -26,8 +26,14 @@ class Admin::CoursesController < AdminController
     end
   end
 
-  def edit
-    @course = Course.find_by(slug: params[:id])
+  def update
+    if @course.update(course_params)
+      flash[:success] = "Course was saved"
+      redirect_to admin_course_path(@course)
+    else
+      flash[:success] = "There was an error and the changes were not saved"
+      render :edit
+    end
   end
 
   private

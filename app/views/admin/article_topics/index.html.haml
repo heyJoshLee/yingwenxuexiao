@@ -1,0 +1,14 @@
+%h1 Article Topics
+%h5.v_margin=link_to "New Article Topic", new_admin_article_topic_path
+
+%table.table.table-bordered
+  %thead
+    %td Name
+    %td Number of Articles
+  %tbody
+    - @article_topics.each do |topic|
+      %tr
+        %td
+          =link_to admin_article_topic_path(topic) do
+            %h5= topic.name
+        %td= topic.articles.count

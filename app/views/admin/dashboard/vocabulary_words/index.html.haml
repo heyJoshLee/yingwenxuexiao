@@ -1,0 +1,27 @@
+%h1 Vocabulary Words
+%h5.v_margin=link_to "New Word", new_admin_dashboard_vocabulary_word_path
+%table.table.table-bordered
+  %thead
+    %td Word
+    %td Part of speech
+    %td Type
+    %td Title
+  %tbody
+    - @vocabulary_words.each do |word|
+      %tr
+        %td
+          =link_to edit_admin_dashboard_vocabulary_word_path(word) do
+            %h5= word.main
+        %td
+          %h5= word.part_of_speech
+        %td
+          %h5= word.vocabulary_wordable_type
+        %td
+          - if word.vocabulary_wordable_type == "Lesson"
+            - lesson = word.vocabulary_wordable
+            =link_to lesson.name, course_lesson_path(lesson.course, lesson)
+          - elsif word.vocabulary_wordable_type == "Article"
+            - article = word.vocabulary_wordable
+            =link_to article.title, article_path(article)
+
+

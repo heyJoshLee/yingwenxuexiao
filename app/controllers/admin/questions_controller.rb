@@ -1,4 +1,4 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < AdminController
 
   before_action :set_course, only: [:create, :destroy, :edit]
   before_action :set_lesson, only: [:create, :destroy, :edit]

@@ -1,18 +1,23 @@
 = render "shared/campaign_modal", { title: "50 English Idioms", image: "ebook.png", campaign: "launch_idioms"}
 
+#mobile_header_logo_image.hidden-sm.hidden-md.hidden-lg
+  = image_tag("english_school_logo")
+
 %header.navbar.navbar-default#main_header
   .row
-    .col-sm-3
-      = link_to root_path do 
-        = image_tag("english_school_logo", class: "header_logo_image")
-    .col-sm-3
-      - if logged_in?
-        = current_user.name
-        .level_circle= current_user.level
+    .col-xs-3
+      .hidden-xs
+        = link_to root_path do 
+          = image_tag("english_school_logo", id: "main_header_logo_image")
+
+    // user picture, points and level
+    .col-xs-6.center#current_user_info_container.col-sm-2.col-lg-offset-2
+      = render "shared/user_info_preview"
+
     .container-fluid
       / Brand and toggle get grouped for better mobile display
       .navbar-header
-        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %button.navbar-toggle.collapsed#nav_sandwhich{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
           %span.icon-bar
@@ -27,9 +32,12 @@
           %li.hidden-sm.hidden-md.hidden-lg
             = link_to "Free Stuff", blog_path
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "Courses", blog_path
+            = link_to "Courses", courses_path
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "Premium Membership", blog_path
+            - if logged_in? && current_user.is_paid_member?
+              = link_to "My Words", my_words_path
+            - else
+              = link_to "Premium Membership", upgrade_path
           %li
             - if logged_in?
               = link_to "Sign Out", sign_out_path

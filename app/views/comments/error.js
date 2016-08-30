@@ -1,0 +1,1 @@
+alert("Comment cannot be blank!")

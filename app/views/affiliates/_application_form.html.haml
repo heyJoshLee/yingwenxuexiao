@@ -1,0 +1,8 @@
+.row
+  .col-xs-6
+    = bootstrap_form_for [:help, @support_ticket] do |f|
+      = f.text_field :name
+      = f.select :subject, options_for_select([["Affiliate"]])
+      = f.email_field :email
+      = f.text_area :body, placeholder: "Please tell us about your blog or website."
+      = f.submit "Apply", class: "btn btn-primary"

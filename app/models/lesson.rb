@@ -14,6 +14,9 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :lesson_number
   validates_numericality_of :lesson_number, {only_integer: true}
 
+  has_many :comments, -> {order("created_at DESC")}, as: :commentable
+  has_many :vocabulary_words, -> {order("created_at DESC")}, as: :vocabulary_wordable
+
 
 
   def has_quiz?

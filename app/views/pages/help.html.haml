@@ -1,0 +1,17 @@
+%h1#help_top Help
+
+- @questions.each do |question|
+  %ul
+    %a{:href => "##{question[:question]}"}
+      %li
+        %strong= question[:question]
+
+%hr/
+
+- @questions.each do |question|
+  %ul
+    %li{id: "#{question[:question]}"}
+      %strong= question[:question]
+      %p= question[:answer]
+      %a{:href => "#help_top"}
+        %small Back to top

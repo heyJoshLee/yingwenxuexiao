@@ -1,0 +1,28 @@
+.row
+  .comment.well{id: "comment-#{comment.slug}"}
+    .row
+      .col-xs-3
+        = image_tag(comment.author.picture_url, class: "comment_author_image")
+      .col-xs-9
+        %h5
+          %strong #{comment.author.name} <small> says </small>
+        .comment_body
+          %p= comment.body
+    .row
+      .col-xs-4
+        %small= comment.created_at
+    .row
+      .replies
+        = render comment.replies
+    %a.comment_reply_launcher Reply to this comment
+    .row
+      .comment_reply_form.col-xs-11.col-xs-offset-1{id: "reply_form_#{comment.slug}"}
+        - if comment.commentable_type == "Article"
+          = bootstrap_form_for [@article, comment, Reply.new], remote: true do |f|
+            = f.text_area :body, id: "reply-#{comment.slug}"
+            = f.submit "Reply", class: "btn btn-primary"
+
+        - elsif comment.commentable_type == "Lesson"
+          = bootstrap_form_for [@course, @lesson, comment, Reply.new], remote: true do |f|
+            = f.text_area :body, id: "reply-#{comment.slug}"
+            = f.submit "Reply", class: "btn btn-primary"

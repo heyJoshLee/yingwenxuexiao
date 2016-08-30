@@ -1,4 +1,4 @@
-class Admin::ChoicesController < ApplicationController
+class Admin::ChoicesController < AdminController
 
   def create
 

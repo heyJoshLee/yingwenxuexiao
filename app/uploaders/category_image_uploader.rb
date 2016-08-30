@@ -1,5 +1,6 @@
 class CategoryImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process resize_to_fill: [350, 350]
 
   def extension_white_list
     %w(jpg jpeg png)
