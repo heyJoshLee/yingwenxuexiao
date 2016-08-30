@@ -1,0 +1,9 @@
+- if logged_in?
+  #level_up_container
+    .row
+      .col-xs-12.center
+        %h1 Leveled up!
+        %h5= "Congratulations!"
+        = render "shared/user_info_preview"
+        %p= Level.find_by(number: current_user.level).message
+        .btn.btn-danger#close_level_up_container Close

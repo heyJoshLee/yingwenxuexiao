@@ -148,6 +148,11 @@ class User < ActiveRecord::Base
     true
   end
 
+  def leveled_up?(points_just_added)
+    # user's points - points_just_added < user.level.points
+    # 100 - 100 < 100
+  end
+
   def add_vocabulary_word(word)
     UserVocabularyWord.create(vocabulary_word_id: word.id, user_id: id, review_time: Date.today)
   end

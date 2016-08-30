@@ -23,6 +23,8 @@ module Yingwenxuexiao
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.time_zone = 'Eastern Time (US & Canada)'
+      config.action_mailer.default_url_options = {:host => "127.0.0.1", port: 3000}
+
 
   end
 end

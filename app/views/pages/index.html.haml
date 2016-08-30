@@ -2,8 +2,20 @@
   .container
     .col-sm-5.col-sm-offset-4
       %h1 Improve Your English Right Now
-      %h4 Learn English with Video Lessons, Fun Quizzes and more
-      .btn.btn-primary Sign Up Now
+      %h4 Learn English with Video Lessons, Fun Quizzes and more!
+      / .btn.btn-primary Sign Up Now
+
+%section.v_margin
+  .row
+    .col-xs-10.col-xs-offset-1
+      .widget
+        = bootstrap_form_for EmailSignup.new do |f|
+          %h4 Get notified when we launch our courses
+          %p We are working hard on our courses and other premium courses. Give us your email to be notified when we release our courses.
+          = hidden_field_tag :page, request.original_url
+          = hidden_field_tag :campaign, "Prerelease"
+          = f.text_field :email
+          = f.submit "Sign up", class: "btn btn-primary"
 
 %section.row.spash_highlights
   .container

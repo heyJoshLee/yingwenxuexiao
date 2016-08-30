@@ -7,10 +7,60 @@
       %li <i class="fa fa-check"></i> Never miss an article
       %li <i class="fa fa-check"></i> Communicate with English teachers
   .row
-    .col-sm-6
+    .col-xs-12
       = bootstrap_form_for @user do |f|
+        .row
+          .col-xs-12
+            .btn-group{"data-toggle" => "buttons"}
+              .membership_level_choice_div.col-xs-12.active
+                .row
+                  .col-xs-12.membership_name
+                    %h2 Free
+                .row
+                  .col-xs-12.membership_features
+                    %ul.membership_feature_list
+                      = render partial: "shared/membership_feature", locals: { feature: "Read Articles", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Comment on Articles", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Enroll in Courses"}
+                      = render partial: "shared/membership_feature", locals: { feature: "View Lessons"}
+                      = render partial: "shared/membership_feature", locals: { feature: "Take Quizzes"}
+                      = render partial: "shared/membership_feature", locals: { feature: "Use Study Tools"}
+                      = render partial: "shared/membership_feature", locals: { feature: "Ask the teacher questions"}
+                .row
+                  .col-xs-4.col-xs-offset-3
+                    .btn.black-bkg.membership_level_choice_button Choose Plan
+                    .btn.btn-primary.membership_level_chosen_button.active Selected Plan
+              = f.radio_button :membership_level, "free", checked: false, class: "membership_radio_button"
+
+              = f.label :membership_level, class: "membership_level_choice_div col-xs-12" do
+                .row
+                  .col-xs-12.membership_name
+                    %h2 Premium
+                    %del{style: "color: red"}
+                      %h5{style: "color: white"} $30.00 / month
+                    %h5 $25.00 / month
+                .row
+                  .col-xs-12.membership_features
+                    %ul.membership_feature_list
+                      = render partial: "shared/membership_feature", locals: { feature: "Read Articles", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Comment on Articles", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Enroll in Courses", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "View Lessons", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Take Quizzes", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Use Study Tools", able: true}
+                      = render partial: "shared/membership_feature", locals: { feature: "Ask the teacher questions", able: true}
+                .row
+                  .col-xs-4.col-xs-offset-3
+                    .btn.black-bkg.membership_level_choice_button Choose Plan
+                    .btn.btn-primary.membership_level_chosen_button Selected Plan
+              = f.radio_button :membership_level, "paid"
+
         = f.email_field :email
         = f.text_field :name
         = f.password_field :password
         = f.submit "Sign Up", class: "btn btn-primary pull-right"
+
+
+
+
 

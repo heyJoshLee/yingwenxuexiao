@@ -5,23 +5,15 @@
     - if current_user.is_admin?
       = link_to edit_admin_course_lesson_path(@course, @lesson) do
         %small Edit Lesson
-    %h1= @lesson.name
-    .well= @lesson.instructions
-
+    %h1#lesson_name= @lesson.name
+    = render "instructions"
     %iframe{:allowfullscreen => "true", :frameborder => "0", :height => "315", :src => @lesson.video_url, :width => "560"}
+    #vocabulary_words_container.well.row
+      = render "vocabulary_words/vocabulary_words_container", object: @lesson
 
-    .row
-      .scripts_container
-        .col-sm-6
-          .english_script.well
-            %h5 English Video Script
-            %p= @lesson.script_english
-        .col-sm-6
-          .chinese_script.well
-            %h5 Chinese Video Script
-            %p= @lesson.script_chinese
-    .description_container.well
-      %p= @lesson.description
+
+    = render "scripts"  
+    = render "description"
     = link_to @lesson.notes_url do
       .lesson_notes_container
         %i.fa.fa-file

@@ -1,12 +1,13 @@
 class Admin::Dashboard::VocabularyWordsController < AdminController
 
-  before_action :set_vocabulary_word, only: [:show, :update, :edit]
+  before_action :set_vocabulary_word, only: [:show, :update, :edit, :update]
 
   
   def index
     add_breadcrumb "Vocabulary Words", admin_dashboard_vocabulary_words_path
     @vocabulary_words = VocabularyWord.all.order("created_at DESC")
   end
+
 
   def new
     add_breadcrumb "Vocabulary Words", admin_dashboard_vocabulary_words_path
@@ -37,6 +38,16 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
     else
       flash.now[:danger] = "There was a problem and the word was not saved"
       render :new
+    end
+  end
+
+  def update
+    if @vocabulary_word.update(word_params)
+      flash[:success] = "Word has been saved."
+      redirect_to edit_admin_dashboard_vocabulary_word_path(@vocabulary_word)
+    else
+      flash.now[:danger] = "There was an error and the word was not saved."
+      render "edit"
     end
   end
 

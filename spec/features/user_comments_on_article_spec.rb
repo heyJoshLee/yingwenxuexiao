@@ -2,19 +2,20 @@ require "spec_helper"
 
 feature "User comments on article" do
 
+  let(:user) { Fabricate(:user, name: "John Smith") }
+  let(:article) { Fabricate(:article) }
+
   scenario "successful comment", {js: true} do
-    user = Fabricate(:user, name: "John Smith")
-    article = Fabricate(:article)
     sign_in(user)
     comment_on_article(article)
-    expect(page).to have_content("This is a great article")
-    expect(page).to have_content("John Smith says")
+    wait_for_ajax
+    reload_page
+    page_should_have("This is a great article")
+    page_should_have("John Smith says")
   end
 
   scenario "unsuccessful comment" do
-    user = Fabricate(:user, name: "John Smith")
     sign_in(user)
-    article = Fabricate(:article)
     visit article_path(article)
     click_button "Create Comment"
     expect(page).to not_have_content("This is a great article")
@@ -22,9 +23,14 @@ feature "User comments on article" do
   end
 
   scenario "user not logged in" do
-    article = Fabricate(:article)
     visit article_path(article)
-    expect(page).to have_content("You need to be signed in to write a comment")
+    page_should_have("You need to be signed in to write a comment")
   end
-
 end
+
+def comment_on_article(article)
+  visit article_path(article)
+  fill_in "comment_body", with: "This is a great article"
+  click_button "Create Comment"
+end
+

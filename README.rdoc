@@ -1,17 +1,5 @@
 # TODO
 
-=== easy ===
-
-# Email
-  * Localhost email links
-  * New Course
-
-# Password reset feature
-
-# Fix topic checkboxes for articles
-
-# Decorator for lesson scripts instruction, etc...
-
 === medium ===
 
 # Format times for articles  , comments, replies
@@ -24,12 +12,13 @@
   * Reply to comment
   * Take Quiz
   * Complete Lesson
-  * Password Reset
   * Download from email
   * Admin Adds course / lesson / quiz
 
 === hard= ===
 
+
+# Fix practice
 # Show Message on level up
 # Add SRS features to practice
 
@@ -38,13 +27,8 @@
 
 # Vocabulary words
   * Admin adding - fix api info
-  * Quick add to lessons and articles
 
 # Dictionary Feature ?
-
-=== need to wait ===
-
-# Block off routes
 
 === need internet ===
 
@@ -58,5 +42,61 @@
 # Translate
 
 # Styling
-  * User info in navbar
   * Quiz Styling
+
+
+
+# Pre launch Marketing 
+
+## Month one
+* 1 article every week
+* 1 course every week
+* 3-5 social media posts each week
+### Goals
+* 100 emails
+* 100 followers, facebook, wechat, weibo
+
+## Month Two
+* 1 article every week
+* 1 course every week
+* 3-5 social media posts each week
+### Goals
+* 500 emails
+* 500 followers, facebook, wechat, weibo
+
+## Month Three
+* 1 article every week
+* 1 course every week
+* 3-5 social media posts each week
+### Goals
+* 1000 emails
+* 1000 followers, facebook, wechat, weibo
+
+# Launch marketing
+* Featured on 10 most popular English Learning Blogs
+* Ten affiliates
+* Personal reach out to friends
+* Give aways
+* What's up show
+* Facebook Ads
+* Wechat Ads?
+
+# Launch Courses
+* Book Club - Of Mice and Men
+* English Fundamentals - taught in Chinese
+* Beginner I
+* Beginner II
+* Intermediate I
+* Intermediate II
+* Advanced I
+* Advanced II
+* Idioms
+* IELTS
+
+* Other courses
+  * Listening, writing courses for each level
+  * More Book Clubs - Holes (high school reading lists)
+  * Movie Club
+  * British vs American English
+  * Business English
+  * Other English Test Prep

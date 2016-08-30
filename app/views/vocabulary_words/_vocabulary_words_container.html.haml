@@ -1,0 +1,27 @@
+.row
+  - object.vocabulary_words.each do |vocabulary_word|
+    .vocabulary_word_container.col-xs-3
+      - if logged_in? && current_user.is_paid_member?
+        - if current_user.vocabulary_words.include?(vocabulary_word)
+          .col-xs-1
+            %i.fa.fa-check.v_margin
+          .col-xs-3
+            %h4= vocabulary_word.main
+        - else
+          = link_to user_vocabulary_words_path(vocabulary_word_id: vocabulary_word.slug), method: "post", remote: "true" do
+            .col-xs-1
+              %i.fa.fa-plus.v_margin
+            .col-xs4
+              %h4= vocabulary_word.main
+      - else
+        %h4= vocabulary_word.main
+  - unless logged_in? && current_user.is_paid_member?
+    %hr/
+    .center
+      %h4 Log in with a premium membership to add words to your study list.
+      - if logged_in? && !current_user.is_paid_member?
+        = link_to sign_up_path do
+          .btn.btn-primary Upgrade Account
+      -else
+        = link_to sign_up_path do
+          .btn.btn-primary Sign Up

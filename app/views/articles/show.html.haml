@@ -1,41 +1,17 @@
 .row
   .col-sm-8
     %h1= @article.title
+    %small
+      = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
+
     = render "shared/feature_image", {image: @article.main_image_url, text: @article.title}
     - @article.article_topics.each do |topic|
       = link_to article_topic_path(topic) do 
         .badge= topic.name
     %br/
-    %small
-      = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
     %h5.center Key Words
-    #vocabulary_words.well.row
-      - @article.vocabulary_words.each do |vocabulary_word|
-        .vocabulary_word_container.col.xs-3
-          - if logged_in? && current_user.is_paid_member?
-            - if current_user.vocabulary_words.include?(vocabulary_word)
-              .col-xs-1
-                %i.fa.fa-check
-              .col-xs-3
-                %h4= vocabulary_word.main
-            - else
-              = link_to user_vocabulary_words_path(vocabulary_word_id: vocabulary_word.slug), method: "post", remote: "true" do
-                .col-xs-1
-                  %i.fa.fa-plus
-                .col-xs4
-                  %h4= vocabulary_word.main
-          - else
-            %h4= vocabulary_word.main
-      - unless logged_in? && current_user.is_paid_member?
-        %hr/
-        .center
-          %h4 Log in with a premium membership to add words to your study list.
-          - if logged_in? && !current_user.is_paid_member?
-            = link_to sign_up_path do
-              .btn.btn-primary Upgrade Account
-          -else
-            = link_to sign_up_path do
-              .btn.btn-primary Sign Up
+    #vocabulary_words_container.well.row
+      = render "vocabulary_words/vocabulary_words_container", object: @article
 
 
     .article_show= @article.body.html_safe
@@ -49,7 +25,8 @@
       - else
         .well.center 
           %p You need to be signed in to write a comment
-          %h4= link_to "Sign In", sign_in_path
+          = link_to sign_in_path do
+            .btn.btn-primary Sign In
 
       = render "comments/comments_section", object: @article
 

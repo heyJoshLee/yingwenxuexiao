@@ -24,8 +24,8 @@ gem "sluggable_jl"
 gem "mini_magick"
 gem "breadcrumbs_on_rails"
 gem "draper"
-
-
+gem 'momentjs-rails'
+gem "whenever"
 gem 'unicorn'
 
 group :production do

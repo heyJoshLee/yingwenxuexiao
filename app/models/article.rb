@@ -17,7 +17,7 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :title
   # validates_presence_of :main_image_url
-  validates_presence_of :author_id
+  validates_presence_of :user_id
   # validates_presence_of :category_id
   validates_presence_of :body
 

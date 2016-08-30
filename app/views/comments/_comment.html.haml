@@ -9,6 +9,9 @@
         .comment_body
           %p= comment.body
     .row
+      .col-xs-4
+        %small= comment.created_at
+    .row
       .replies
         = render comment.replies
     %a.comment_reply_launcher Reply to this comment

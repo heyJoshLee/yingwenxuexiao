@@ -1,10 +1,20 @@
 
 def sign_in(a_user=nil) 
+  create_starting_levels 
   user = a_user || Fabricate(:user)
   visit sign_in_path
   fill_in "email", with: user.email
   fill_in "Password", with: user.password
   click_button "Sign in"
+end
+
+def create_starting_levels
+  Fabricate(:level, number: 1, points: 100)
+  Fabricate(:level, number: 2, points: 1000)
+end
+
+def page_should_have(content)
+  expect(page).to have_content(content)
 end
 
 def sign_in_unsuccessfuly
@@ -15,8 +25,21 @@ def sign_in_unsuccessfuly
   click_button "Sign in"
 end
 
-def comment_on_article(article)
-  visit article_path(article)
-  fill_in "comment_body", with: "This is a great article"
-  click_button "Create Comment"
+
+
+# https://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara
+module WaitForAjax
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
+  end
+end
+
+RSpec.configure do |config|
+  config.include WaitForAjax, type: :feature
 end

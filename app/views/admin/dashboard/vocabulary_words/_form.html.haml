@@ -1,6 +1,6 @@
 .row
   .col-sm-8
-    = bootstrap_form_for [:admin, :dashboard, @word ||= VocabularyWord.new] do |f|
+    = bootstrap_form_for [:admin, :dashboard, @vocabulary_word ||= VocabularyWord.new] do |f|
       .row
         .col-sm-3
           = f.text_field :main

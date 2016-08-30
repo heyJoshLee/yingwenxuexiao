@@ -1,9 +1,9 @@
 class DownloadLinksController < ApplicationController
 
   before_action :set_download_link, only: [:show, :update, :edit, :start_download]
-  before_action :set_download, only: [:show, :update, :edit]
+  before_action :set_download, only: [:update, :edit]
 
-  def show    
+  def show
     if @download_link.first_access.nil?
       @download_link.first_access = DateTime.now
     end

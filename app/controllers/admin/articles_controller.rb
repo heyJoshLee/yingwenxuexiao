@@ -8,7 +8,7 @@ class Admin::ArticlesController < AdminController
 
   def create
     @article = Article.new(article_params)
-    @article.author_id = current_user.id
+    @article.user_id = current_user.id
     if @article.save
       flash[:success] = "Article was saved"
       redirect_to article_path(@article)

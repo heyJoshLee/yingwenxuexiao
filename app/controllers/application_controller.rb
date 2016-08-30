@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user, :practice_option_check, :require_paid_membership
 
   def logged_in?
-    current_user
+    !!current_user
   end
 
   def current_user

@@ -5,8 +5,11 @@ class PracticesController < ApplicationController
   
   def index
     add_breadcrumb "Practice", practice_path
-    @word = current_user.user_vocabulary_words.sample
-    @choices = @word.choices(:definition)
+    if logged_in? && current_user.is_paid_member?
+
+      @word = current_user.user_vocabulary_words.sample
+      @choices = @word.choices(:definition)
+    end
   end
 
   def start
@@ -27,7 +30,10 @@ class PracticesController < ApplicationController
   end
 
   def attempt
+    @leveled_up = false
     session[:study_types] ||= study_types_array
+
+    old_level = current_user.level
 
     @study_type_attempted = session[:study_types].sample.to_sym
 
@@ -53,6 +59,9 @@ class PracticesController < ApplicationController
     @choices = @word.choices(@study_type_attempted)
 
     @user = current_user
+    new_level = @user.reload.level
+    @leveled_up == new_level > old_level
+
 
     respond_to do |format|
         format.js

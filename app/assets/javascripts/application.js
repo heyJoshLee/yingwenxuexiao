@@ -55,6 +55,24 @@ $(document).on("click", ".comment_reply_launcher", function(e) {
   $form.toggle();
 });
 
+$(document).on("click", ".membership_level_choice_div", function(e) {
+  console.log("click")
+  var $target = $(e.target);
+  console.log($target.next("input"))
+  $target.next("input").click();
+});
+
+$(document).on("click", "#close_level_up_container", function(e) {
+  var $level_up_container = $("#level_up_container");
+  $level_up_container.fadeOut("slow", function() {
+    $level_up_container.remove();
+  });
+});
+
+$('.timestring').each(function() {
+  this.textContent = moment(this.textContent).format('lll');
+});
+
 // practice
 
   // change options - study type

@@ -35,6 +35,9 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find_by(slug: params[:id])
   end
 
+      # @video = VideoDecorator.decorate(Video.find(params[:id]))
+
+
   def set_course
     @course = Course.find_by(slug: params[:course_id])
   end

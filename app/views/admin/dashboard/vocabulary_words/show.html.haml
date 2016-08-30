@@ -1,5 +1,28 @@
-%h1= @vocabulary_word.main
-%h5= @vocabulary_word.part_of_speech
-%h5= @vocabulary_word.ipa
-%h5= @vocabulary_word.sentence
-%h5= @vocabulary_word.definition
+.row
+  .col-sm-8
+    = bootstrap_form_for [:admin, :dashboard, @word ||= VocabularyWord.new] do |f|
+      .row
+        .col-sm-3
+          = f.text_field :main
+        .col-sm-3
+          = f.text_field :chinese
+        .col-sm-3
+          = f.text_field :part_of_speech
+      .row
+        .col-sm-3
+          = f.text_field :ipa
+      .row
+        .col-sm-6
+          = f.text_area :sentence
+        .col-sm-6
+          = f.text_area :definition
+        .col-sm-2
+          .btn.btn-primary.btn-small#find_vocabulary_word_api_search_button Find word
+      %br/
+      %br/
+      .row
+        = hidden_field_tag :api_key, ENV["pearson_api_key"]
+        = f.submit "Add Word", class: "btn btn-primary"
+  .col-sm-4
+    %h5 Results
+    #word_search_api_results

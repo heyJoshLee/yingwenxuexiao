@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get "account", to: "users#show", as: "account"
   get "contact", to: "pages#contact", as: "contact"
   get "careers", to: "pages#careers", as: "careers"
+  get "upgrade", to: "pages#upgrade", as: "upgrade"
+  get "help", to: "pages#help", as: "help"
+  get "free", to: "pages#free", as: "free"
 
   # practice
   get "practice", to: "practices#index"
@@ -26,10 +29,15 @@ Rails.application.routes.draw do
   get "downloads/:id", to: "download_links#show", as: "download"
   post "downloads/:id/start_download", to: "download_links#start_download", as: "start_download"
 
-  #password resets
-  get "forgot_password", to: "forgot_passwords#new"
-  get "password_confirmation", to: "forgot_passwords#confirm"
-  resources :forgot_passwords, only: [:create]
+  resources :password_resets, only: [:new, :create, :show]
+  get "expired_password_token", to: "forgot_passwords#expired"
+
+  resources :forgot_passwords, only: [:create, :new]
+
+  get "forgot_password_confirmation", to: "forgot_passwords#confirm"
+
+  get "my_words", to: "user_vocabulary_words#show"
+
   resources :password_resets, only: [:show, :create]
   
   resources :users, only: [:create, :edit, :update]

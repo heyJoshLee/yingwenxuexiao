@@ -1,0 +1,26 @@
+%h1 My Words
+%table.table.table-bordered
+  %thead
+    %td Word
+    %td Chinese
+    %td Part of speech
+    %td Ipa
+    %td Definition
+    %td Sample Sentence
+  %tbody
+    - @user.vocabulary_words.each do |word|
+      %tr
+        %td
+          %h5= word.main
+        %td
+          %h5= word.chinese
+        %td
+          %h5= word.part_of_speech
+        %td
+          %h5= word.ipa
+        %td
+          %h5= word.definition
+        %td
+          %h5= word.sentence
+
+

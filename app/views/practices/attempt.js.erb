@@ -1,9 +1,10 @@
 var $marks = $("#correct_and_incorrect_marks");
 var $correct = $("#correct");
 var $incorrect = $("#incorrect");
+var leveled_up = "<%= @leveled_up %>"
 
-$correct.hide();
-$incorrect.hide();
+$correct.hide()
+$incorrect.hide()
 
 if ("<%= @correct %>") {
   console.log("Correct!")
@@ -20,3 +21,20 @@ $marks.fadeIn(1000, function() {
 $("#play_area_container").html("<%= j (render partial: 'play_area', locals: { word: @word, choices: @choices, study: @study, question: @question }) %>")
 $("#current_user_points").html("<%= @user.points %> points");
 $("#current_user_level").html("<%= @user.level %>");
+
+console.log("word")
+$("main").html("<%= @user.points %> points")
+
+console.log("choices")
+console.log("<%= @choices =>")
+
+console.log("study")
+console.log("<%= @study =>")
+
+console.log("question")
+console.log("<%= @question =>")
+
+console.log("leveled_up")
+
+console.log("correct")
+console.log("<%= @correct =>")

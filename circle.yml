@@ -1,0 +1,19 @@
+machine:
+  ruby:
+    version: 2.1.2
+deployment:
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app yingwenxuexiao
+      - heroku pg:backups capture --app yingwenxuexiao
+      - git push git@heroku.com:yingwenxuexiao.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app yingwenxuexiao
+      - heroku maintenance:off --app yingwenxuexiao
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app yingwenxuexiao
+      - git push git@heroku.com:yingwenxuexiao.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app yingwenxuexiao
+      - heroku maintenance:off --app yingwenxuexiao

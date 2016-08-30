@@ -3,20 +3,25 @@ class UserVocabularyWordsController < ApplicationController
   before_action :set_user_vocabulary_word, only: [:show, :update, :edit]
   before_action :set_vocabulary_word, only: [:create]
 
-  before_action :require_paid_membership, only: [:create]
+  before_action :require_paid_membership, only: [:create, :create]
   
   def new
     @user_vocabulary_word = UserVocabularyWord.new
   end
 
+  def show
+    @user = current_user
+  end
+
   def create
 
     if current_user.add_vocabulary_word(@vocabulary_word)
-        respond_to { |format| format.js }
+      @object = @vocabulary_word.vocabulary_wordable
+      respond_to { |format| format.js }
     else
-        respond_to do |format| 
-          format.js { render "error" }
-        end
+      respond_to do |format| 
+        format.js { render "error" }
+      end
     end
   end
 

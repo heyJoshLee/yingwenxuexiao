@@ -9,20 +9,10 @@
       .hidden-xs
         = link_to root_path do 
           = image_tag("english_school_logo", id: "main_header_logo_image")
+
     // user picture, points and level
-    .col-xs-6.center.col-sm-2#current_user_info
-      .row
-        .col-xs-12
-          - if logged_in?
-            .row
-              .col-xs-12
-                %h4= current_user.name
-            .row#picture_and_level_container
-              .level_circle#current_user_level= current_user.level
-              = image_tag(current_user.picture_url)
-            .row
-              .col-xs-12
-                %h4#current_user_points= "#{current_user.points} points"
+    .col-xs-6.center#current_user_info_container.col-sm-2.col-lg-offset-2
+      = render "shared/user_info_preview"
 
     .container-fluid
       / Brand and toggle get grouped for better mobile display
@@ -44,7 +34,10 @@
           %li.hidden-sm.hidden-md.hidden-lg
             = link_to "Courses", courses_path
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "Premium Membership", blog_path
+            - if logged_in? && current_user.is_paid_member?
+              = link_to "My Words", my_words_path
+            - else
+              = link_to "Premium Membership", upgrade_path
           %li
             - if logged_in?
               = link_to "Sign Out", sign_out_path

@@ -1,25 +1,40 @@
 %h1 Practice
-#play_area_container
-  = link_to start_practice_path(), method: "get", remote: "true" do
-    .btn.btn-primary
-      Start 
-.row
-  #start_talking.btn.btn-primary 
-    Spoken
-  #spoken_input
-    Spoken_input
+- if logged_in? && current_user.is_paid_member?
+  #play_area_container
+    = link_to start_practice_path(), method: "get", remote: "true" do
+      .btn.btn-primary
+        Start 
+  .row
+    #start_talking.btn.btn-primary 
+      Spoken
+    #spoken_input
+      Spoken_input
 
-.row.navbar-fixed-bottom#correct_and_incorrect_marks
-  .well
-    .col-xs-3.col-xs-offset-4
-      #correct
-        .col-xs-1
-          %i.fa.fa-check 
-        .col-xs-4
-          %h5 Great!
-      #incorrect
-        .col-xs-1
-          %i.fa.fa-exclamation-circle 
-        .col-xs-4
-          %h5 Wrong!
+  .row.navbar-fixed-bottom#correct_and_incorrect_marks
+    .well
+      .col-xs-3.col-xs-offset-4
+        #correct
+          .col-xs-1
+            %i.fa.fa-check 
+          .col-xs-4
+            %h5 Great!
+        #incorrect
+          .col-xs-1
+            / %i.fa.fa-exclamation-circle 
+            .red_x &times; 
+          .col-xs-4
+            %h5 Wrong!
+- elsif logged_in? && !current_user.is_paid_member?
+  .well.center
+    %h5 You must have a premium account to use this tool.
+    = link_to upgrade_path do
+      .btn.btn-primary Upgrade Account
+
+    %h5= link_to "Upgrade Account", upgrade_path
+- else
+  .well.center
+    %h5 You must have a premium account to use this tool.
+    = link_to sign_up_path do
+      .btn.btn-primary Sign Up
+
 

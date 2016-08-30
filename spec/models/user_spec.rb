@@ -779,6 +779,24 @@ describe User do
     end # practicing spelling
   end
 
+  describe "#leveled_up?(points_just_added)" do
+    let(:level_1) { Fabricate(:level, number: 1, points: 0) }
+    let(:level_2) { Fabricate(:level, number: 2, points: 100) }
+    let(:user) { Fabricate(:user, level: 1) }
+
+    it "returns false if user did not just level up" do
+      skip
+      user.add_points(50)
+      expect(user.leveled_up?(50)).to be_falsey
+    end
+
+    it "returns true if the user just leveled up" do
+      skip
+      user.add_points(100)
+      expect(user.leveled_up?(100)).to be_truthy
+    end
+  end
+
 
 
 end
