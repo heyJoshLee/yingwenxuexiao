@@ -5,15 +5,15 @@ deployment:
   production:
     branch: master
     commands:
-      - heroku maintenance:on --app yingwenxuexiao
-      - heroku pg:backups capture --app yingwenxuexiao
-      - git push heroku master 
-      - heroku run rake db:migrate --app yingwenxuexiao
-      - heroku maintenance:off --app yingwenxuexiao
+      - heroku maintenance:on --app my_app_name
+      - heroku pg:backups capture --app my_app_name
+      - git push git@heroku.com:my_app_name.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app my_app_name
+      - heroku maintenance:off --app my_app_name
   staging:
     branch: staging
     commands:
-      - heroku maintenance:on --app yingwenxuexiao
-      - git push git@heroku.com:yingwenxuexiao.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run rake db:migrate --app yingwenxuexiao
-      - heroku maintenance:off --app yingwenxuexiao
+      - heroku maintenance:on --app my_app_name
+      - git push git@heroku.com:my_app_name.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app my_app_name
+      - heroku maintenance:off --app my_app_name
