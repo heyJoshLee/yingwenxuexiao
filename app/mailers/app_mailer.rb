@@ -2,7 +2,7 @@ class AppMailer < ActionMailer::Base
 
   def send_welcome_email(user)
     @user = user
-    mail to: user.email, from: "hello@yingwenxuexiao.com", subject: "Welcome to Myflix"
+    mail to: user.email, from: "hello@yingwenxuexiao.com", subject: "Welcome to Yingwenxuexiao.com"
   end
 
   def send_download_link(download_link)
