@@ -8,11 +8,14 @@ class CoursesController < ApplicationController
 
 
   def index
-    @courses = Course.all
+    @courses = Course.published_courses
   end
   
   def new
     @course = Course.new
+  end
+
+  def show
   end
 
   # def create

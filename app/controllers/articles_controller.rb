@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.where(published: true)
   end
 
   private

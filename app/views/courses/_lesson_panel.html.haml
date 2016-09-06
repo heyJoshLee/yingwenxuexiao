@@ -1,7 +1,7 @@
 #lesson_panel
   %h4 Lessons
   %ul
-    - @course.lessons.each do |lesson|
+    - @course.published_lessons.each do |lesson|
       %li
         .row
           .col-xs-6.col-xs-offset-3

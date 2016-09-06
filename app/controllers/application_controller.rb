@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_paid_membership
-    redirect_to sign_in_path unless logged_in? && current_user.is_paid_member?
+    if !logged_in?
+      redirect_to sign_in_path
+    elsif !current_user.is_paid_member?
+      redirect_to upgrade_path
+    end
   end
 
 

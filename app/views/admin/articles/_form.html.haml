@@ -10,6 +10,11 @@
       = f.text_field :title
       = f.file_field :main_image_url, class: "btn btn-file"
       = f.bootsy_area :body, class: "form-control", rows: 20
+      = label :published, 'Publish'
+      = f.radio_button :published, true, class: "radio-inline"
+      = label :published, "Don't publish"
+      = f.radio_button :published, false, class: "radio-inline"
+
       = f.submit @article.new_record? ? "Create" : "Save Edits", class: "btn btn-primary pull-right v_margin"
     .col-sm-2.article_category_checkbox_container
       = f.collection_check_boxes :article_topic_ids, ArticleTopic.all, :id, :name do |cb|

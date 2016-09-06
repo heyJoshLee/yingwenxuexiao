@@ -20,5 +20,13 @@ class Course < ActiveRecord::Base
     self.slug
   end
 
+  def published_lessons
+    lessons.where(published: true)
+  end
+
+  def self.published_courses
+    where(published: true)
+  end
+
 end
 

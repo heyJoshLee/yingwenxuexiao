@@ -77,6 +77,7 @@ Rails.application.routes.draw do
 
   # admin
   namespace :admin do
+    resources :articles, only: [:index]
     resources :article_topics
     namespace :dashboard do
       resources :affiliates do

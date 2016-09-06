@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822233249) do
+ActiveRecord::Schema.define(version: 20160906012257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160822233249) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.boolean  "published",      default: false
   end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160822233249) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",      default: false
   end
 
   create_table "download_links", force: :cascade do |t|
@@ -205,6 +207,7 @@ ActiveRecord::Schema.define(version: 20160822233249) do
     t.string   "slug"
     t.integer  "lesson_number"
     t.text     "instructions"
+    t.boolean  "published",      default: false
   end
 
   create_table "levels", force: :cascade do |t|

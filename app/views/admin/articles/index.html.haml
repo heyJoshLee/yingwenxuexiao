@@ -1,0 +1,15 @@
+%h1 Articles
+%table.table.table-bordered
+  %thead
+    %td Title
+    %td Edit
+    %td Published?
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td
+          =link_to article.title, article_path(article)
+        %td
+          =link_to "Edit", edit_admin_article_path(article)
+        %td
+          = article.published? ? "Yes" : "No"
