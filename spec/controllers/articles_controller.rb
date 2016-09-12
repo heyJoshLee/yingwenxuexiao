@@ -21,6 +21,11 @@ describe ArticlesController do
       get :show, id: published_article.slug
       expect(assigns(:article)).to eq(published_article)
     end
+
+    it "redirects to the error path if the article is unpublished" do
+      get :show, id: unpublished_article.slug
+      expect(response).to redirect_to error_path
+    end
   end
 
 end

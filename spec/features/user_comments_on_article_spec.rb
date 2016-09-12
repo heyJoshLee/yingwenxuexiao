@@ -3,7 +3,7 @@ require "spec_helper"
 feature "User comments on article" do
 
   let(:user) { Fabricate(:user, name: "John Smith") }
-  let(:article) { Fabricate(:article) }
+  let(:article) { Fabricate(:article, published: true) }
 
   scenario "successful comment" do
     skip
