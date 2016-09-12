@@ -15,6 +15,20 @@
 
 
     .article_show= @article.body.html_safe
+
+    %section.v_margin
+      .row
+        .col-xs-10.col-xs-offset-1
+          .widget
+            = bootstrap_form_for EmailSignup.new do |f|
+              %h4 得到我們的新課程提醒
+              / %h4 Get notified when we launch our courses
+              %p 我們持續努力精進我們的一般和高級課程。歡迎提供您的email以獲得我們新課程的上線通知。
+              / %p We are working hard on our courses and other premium courses. Give us your email to be notified when we release our courses.
+              = hidden_field_tag :page, request.original_url
+              = hidden_field_tag :campaign, "Prerelease"
+              = f.text_field :email
+              = f.submit "註冊", class: "btn btn-primary" # Sign up
       
     .article_comments_section
       %h2 Comments

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "You are signed in."
+      flash[:success] = "您已登入" # You are signed in.
       redirect_to blog_path
     else
       flash.now[:danger] = "There was something wrong with your email or password."
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:info] = "You are now logged out"
+    flash[:info] = "您已登出" # You are now logged out
     redirect_to blog_path
   end
 

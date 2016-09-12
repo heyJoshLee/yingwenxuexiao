@@ -14,7 +14,8 @@
     .row
       .replies
         = render comment.replies
-    %a.comment_reply_launcher Reply to this comment
+    %a.comment_reply_launcher 回覆
+    / %a.comment_reply_launcher Reply to this comment
     .row
       .comment_reply_form.col-xs-11.col-xs-offset-1{id: "reply_form_#{comment.slug}"}
         - if comment.commentable_type == "Article"

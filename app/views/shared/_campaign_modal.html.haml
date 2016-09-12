@@ -8,8 +8,10 @@
         %h4#myModalLabel.modal-title= "Get #{title}" 
       .modal-body
         = image_tag "ebook_test.png"
-        %p Enter your email to get the book for free!
-        %small When you enter your email I will send you an email to get the book. I will also send you a few emails about the upcoming course I am working on. I won't send you spam. <i class="fa fa-smile-o" aria-hidden="true"></i>
+        %p 輸入您的email可獲得免費書籍！
+        / %p Enter your email to get the book for free!
+        %small 輸入您的email之後，我會回mail附上書籍。另外我也會email您，告訴您未來的新課程。別擔心，我不會寄送任何垃圾信件。 <i class="fa fa-smile-o" aria-hidden="true"></i>
+        / %small When you enter your email I will send you an email to get the book. I will also send you a few emails about the upcoming course I am working on. I won't send you spam. <i class="fa fa-smile-o" aria-hidden="true"></i>
         
         = bootstrap_form_for EmailSignup.new do |t|
           = t.email_field :email
