@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find_by slug: params[:id]
+    redirect_to not_found_path unless @article
   end
 
 end

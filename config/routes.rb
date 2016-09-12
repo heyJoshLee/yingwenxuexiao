@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get "help", to: "pages#help", as: "help"
   get "free", to: "pages#free", as: "free"
 
+  get "error", to: "pages#error", as: "error"
+
+  %w(404 422 500 503).each do |code|
+    get code, to: "pages#error", code: code
+  end
+
   # practice
   get "practice", to: "practices#index"
   get "practice/start", to: "practices#start", as: "start_practice"

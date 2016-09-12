@@ -13,4 +13,14 @@ describe ArticlesController do
     end
   end
 
+  describe "get show" do
+    let(:published_article)  {Fabricate(:article, published: true) }
+    let(:unpublished_article)  {Fabricate(:article) }
+
+    it "allows the user to view view a published article" do
+      get :show, id: published_article.slug
+      expect(assigns(:article)).to eq(published_article)
+    end
+  end
+
 end
