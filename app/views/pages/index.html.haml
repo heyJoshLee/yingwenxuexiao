@@ -1,8 +1,10 @@
 %section#main_splash.row
   .container
     .col-sm-5.col-sm-offset-4
-      %h1 Improve Your English Right Now
-      %h4 Learn English with Video Lessons, Fun Quizzes and more!
+      %h1 即刻增進您的英文能力
+      / %h1 Improve Your English Right Now
+      %h4 透過影片和有趣的測驗等來學習英文！
+      / %h4 Learn English with Video Lessons, Fun Quizzes and more!
       / .btn.btn-primary Sign Up Now
 
 %section.v_margin
@@ -10,30 +12,36 @@
     .col-xs-10.col-xs-offset-1
       .widget
         = bootstrap_form_for EmailSignup.new do |f|
-          %h4 Get notified when we launch our courses
-          %p We are working hard on our courses and other premium courses. Give us your email to be notified when we release our courses.
+          %h4 得到我們的新課程提醒
+          / %h4 Get notified when we launch our courses
+          %p 我們持續努力精進我們的一般和高級課程。歡迎提供您的email以獲得我們新課程的上線通知。
+          / %p We are working hard on our courses and other premium courses. Give us your email to be notified when we release our courses.
           = hidden_field_tag :page, request.original_url
           = hidden_field_tag :campaign, "Prerelease"
           = f.text_field :email
-          = f.submit "Sign up", class: "btn btn-primary"
+          = f.submit "註冊", class: "btn btn-primary" # Sign up
 
 %section.row.spash_highlights
   .container
     .col-sm-1
       %i.fa.fa-video-camera
-    .col-sm-2 Over 10 hours of video lessons
+    .col-sm-2 超過10小時的影片課程
+    / .col-sm-2 Over 10 hours of video lessons
 
     .col-sm-1
       %i.fa.fa-check-circle
-    .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
+    .col-sm-2 幾百個測驗問題幫助你加強學習過的內容
+    / .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
 
     .col-sm-1
       %i.fa.fa-mobile-phone
-    .col-sm-2 Smartphone APPS to practice your English
+    .col-sm-2 用手機app練習英文
+    / .col-sm-2 Smartphone APPS to practice your English
 
     .col-sm-1
       %i.fa.fa-question
-    .col-sm-2 Ask the teacher if you have questions
+    .col-sm-2 有問題時可隨時問老師
+    / .col-sm-2 Ask the teacher if you have questions
 
 %section.large_splash_highlights
   .container
@@ -42,74 +50,113 @@
         .icon_wrapper.center
           = image_tag("icons/presentation")
       .col-sm-5
-        %h4.center  Video Lessons
-        %p Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member.
+        %h4.center  影片課程
+        / %h4.center  Video Lessons
+        %p 觀賞影片課程，聽自然的英語發音。我們也會不斷補上新的課程，包含更多新的主題，如：CET、雅思、俚語和商用英語。成為會員後，您可以自由選擇您想要的課程。
+        / %p Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member.
 
       .col-sm-1
         .icon_wrapper.center
           = image_tag("icons/test")
       .col-sm-5
-        %h4.center Quizzes
-        %p Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material.
+        %h4.center 測驗
+        / %h4.center Quizzes
+        %p 測驗問題可以幫助你練習學習過的內容。每堂課程都有相關的測驗問題。
+        / %p Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material.
 
     .row
       .col-sm-1
         .icon_wrapper.center
           = image_tag("icons/notepad")
       .col-sm-5
-        %h4.center Lesson Notes
-        %p Each lesson contains notes that you can download and print off so you can study later.
+        %h4.center 課程筆記
+        / %h4.center Lesson Notes
+        %p 每堂課程都有筆記提供下載，方便您列印出來稍後學習。
+        / %p Each lesson contains notes that you can download and print off so you can study later.
       .col-sm-1
         .icon_wrapper.center
           = image_tag("icons/smartphone")
       .col-sm-5.col
-        %h4.center Smart Phone App
-        %p With our smart phone app you can practice English when you are away from your computer.
+        %h4.center 手機App
+        / %h4.center Smart Phone App
+        %p 不在電腦前時，可以使用我們的手機app練習英文。
+        / %p With our smart phone app you can practice English when you are away from your computer.
 
 %section.row.meet_your_teacher
   .container
     .row.h_padding
       .col-sm-6.col-sm-offset-4
-        %h1 Meet Your Teacher - Josh Lee
+        %h1 教師團隊 - Josh Lee 李老師
+        / %h1 Meet Your Teacher - Josh Lee
         = image_tag("josh_main_placeholder", class: "img-circle")
         %ul
           %li
-            %h4 Experienced
-            %p Taught over 2,000 Chinese students at Universities, Training Centers and Online. Josh has even lead training sessions for other TEFL teachers.
+            %h4 經驗豐富
+            / %h4 Experienced
+            %p Josh在大學、語言中心和線上平台教學超過2000名中文學生，甚至替其他TEFL的老師做教學訓練。
+            / %p Taught over 2,000 Chinese students at Universities, Training Centers and Online. Josh has even lead training sessions for other TEFL teachers.
           %li
-            %h4 Knowledgeable
-            %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations.
+            %h4 學識淵博
+            / %h4 Knowledgeable
+            %p 擁有學士學位、MBA和劍橋大學或其他組織的英語教學證書。
+            / %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations.
 
 %section.row.course_splash_preview
   .container
-    %h1 Premium Courses
+    %h1 高級課程
+    / %h1 Premium Courses
     .row
 
       .col-sm-3
         .ielts_test_prep.course_preview
           = image_tag("sales_page/white_board")
-          %h4 IELTS test preparation
-          %p Pass the IELTS and get a high score.
-          %small Coming soon
+          %h4 雅思考試準備
+          / %h4 IELTS test preparation
+          %p 高分通過雅思測驗
+          / %p Pass the IELTS and get a high score.
+          %small 即將推出
+          / %small Coming soon
 
       .col-sm-3
         .business_english.course_preview
           = image_tag("sales_page/meeting")
-          %h4 Business English
-          %p Learn how to do business, negotiate be speak the language of business.
-          %small Coming soon
+          %h4 商用英語
+          / %h4 Business English
+          %p 學習如何用英語談判、做生意
+          / %p Learn how to do business, negotiate be speak the language of business.
+          %small 即將推出
+          / %small Coming soon
 
       .col-sm-3
         .beginner_english.course_preview
           = image_tag("sales_page/letter_cubes")
-          %h4 Beginner English
-          %p For complete beginners.
-          %small Coming soon
+          %h4 初級英語
+          / %h4 Beginner English
+          %p 初學者適用
+          / %p For complete beginners.
+          %small 即將推出
+          / %small Coming soon
 
       .col-sm-3
         .english_idioms.course_preview
           = image_tag("sales_page/notebook")
-          %h4 English Idioms
-          %p Learn how to talk like a native speaker with this class.
-          %small Coming soon
+          %h4 英文俚語
+          / %h4 English Idioms
+          %p 跟著我們的課程一起學習如何很自然地說英語
+          / %p Learn how to talk like a native speaker with this class.
+          %small 即將推出
+          / %small Coming soon
+
+
+
+
+
+
+
+
+
+
+
+
+
 

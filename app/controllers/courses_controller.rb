@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :require_paid_membership, except: [:index]
+  before_action :require_paid_membership, except: [:index, :enroll]
   before_action :set_course, only: [:enroll, :show]
 
   add_breadcrumb "Home", :root_path

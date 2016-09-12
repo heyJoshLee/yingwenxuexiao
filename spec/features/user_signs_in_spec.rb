@@ -4,7 +4,8 @@ feature "User signs in" do
 
   scenario "successful sign in" do
     sign_in
-    expect(page).to have_content("You are signed in.")
+    expect(page).to have_content("您已登入")
+    # expect(page).to have_content("You are signed in.")
   end
 
   scenario "unsuccessful sign in" do
