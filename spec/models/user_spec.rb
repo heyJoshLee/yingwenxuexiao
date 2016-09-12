@@ -780,20 +780,35 @@ describe User do
   end
 
   describe "#leveled_up?(points_just_added)" do
-    let(:level_1) { Fabricate(:level, number: 1, points: 0) }
-    let(:level_2) { Fabricate(:level, number: 2, points: 100) }
-    let(:user) { Fabricate(:user, level: 1) }
+    let!(:level_1) { Fabricate(:level, number: 1, points: 0) }
+    let!(:level_2) { Fabricate(:level, number: 2, points: 100) }
+    let!(:level_3) { Fabricate(:level, number: 3, points: 200) }
+    let!(:user) { Fabricate(:user, level: 1, points: 0) }
+    let!(:level_2_user) { Fabricate(:user, level: 2, points: level_2.points) }
 
     it "returns false if user did not just level up" do
-      skip
       user.add_points(50)
       expect(user.leveled_up?(50)).to be_falsey
     end
 
+    it "returns false if user did not just level up again" do
+      user.add_points(10)
+      expect(user.leveled_up?(10)).to be_falsey
+    end
+
     it "returns true if the user just leveled up" do
-      skip
       user.add_points(100)
       expect(user.leveled_up?(100)).to be_truthy
+    end
+
+    it "returns true if the user just leveled up again" do
+      user.add_points(150)
+      expect(user.leveled_up?(150)).to be_truthy
+    end
+
+    it "returns true if the user just leveled and isn't level 1" do
+      level_2_user.add_points(100)
+      expect(level_2_user.leveled_up?(100)).to be_truthy
     end
   end
 

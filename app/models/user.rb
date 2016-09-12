@@ -151,6 +151,7 @@ class User < ActiveRecord::Base
   def leveled_up?(points_just_added)
     # user's points - points_just_added < user.level.points
     # 100 - 100 < 100
+    points - points_just_added <= Level.find_by(number: level).points unless level == 1
   end
 
   def add_vocabulary_word(word)
