@@ -2,13 +2,13 @@
 %ul.row
 - if logged_in? && !current_user.is_paid_member?
   .well.center
-    %h5 需要使用付費帳號才能參加課程
+    %h5 需要使用付费帐号才能参加课程
     / %h5 You must upgrade your account to a paid account to enroll in classes.
     = link_to upgrade_path do
       .btn.btn-primary Upgrade Account
 - elsif !logged_in?
   .well.center
-    %h5 需要使用付費帳號才能參加課程
+    %h5 需要使用付费帐号才能参加课程
     / %h5 You must have a paid account to enroll in classes.
     = link_to sign_up_path do
       .btn.btn-primary Sign Up

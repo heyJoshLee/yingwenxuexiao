@@ -1,6 +1,7 @@
 .row
   .col-sm-8
     %h1= @article.title
+    %small= format_datetime(@article.created_at)
     %small
       = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
 
@@ -31,7 +32,8 @@
               = f.submit "註冊", class: "btn btn-primary" # Sign up
       
     .article_comments_section
-      %h2 Comments
+      %h2 评论
+      / %h2 Comments
       - if logged_in?
         = bootstrap_form_for [@article, @comment], remote: true do |f|
           = f.text_area :body

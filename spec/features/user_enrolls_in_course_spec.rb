@@ -26,7 +26,7 @@ feature "User enrolls in course" do
     course = Fabricate(:course)
     sign_in(user)
     visit courses_path
-    expect(page).to have_content("需要使用付費帳號才能參加課程")
+    expect(page).to have_content("需要使用付费帐号才能参加课程")
     expect(page).not_to have_content("Enroll In Class")
   end
 

@@ -1,10 +1,13 @@
 # TODO
 
+== easy ==
+Trad to Simp
+
+# Sign up styling
 === medium ===
 
-# Format times for articles  , comments, replies
-
 # Add daily streaks
+
 # Points for lessons and quizzes
 
 # Feature tests
@@ -17,11 +20,9 @@
 
 === hard= ===
 
-
 # Fix practice
 # Show Message on level up
 # Add SRS features to practice
-
 # Check practice study types- definition, eng to cn, etc...
 # Publish date for lessons, quizzes and articles
 
@@ -32,7 +33,6 @@
 
 === need internet ===
 
-# Set up Circle CI
 # Add speech to practice
 
 # Payments

@@ -5,7 +5,7 @@ feature "User comments on article" do
   let(:user) { Fabricate(:user, name: "John Smith") }
   let(:article) { Fabricate(:article, published: true) }
 
-  scenario "successful comment" do
+  scenario "successful comment"do
     skip
     sign_in(user)
     comment_on_article(article)
