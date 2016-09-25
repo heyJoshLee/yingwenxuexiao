@@ -69,11 +69,11 @@ config.action_mailer.smtp_settings = {
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'yingwenxuexiao.com', #eg: 'yourappname.herokuapp.com'
+    :domain         => 'www.yingwenxuexiao.com', #eg: 'yourappname.herokuapp.com'
     :authentication => :plain,
   }
 
-  config.action_mailer.default_url_options = { host: "yingwenxuexiao.com"}
+  config.action_mailer.default_url_options = { host: "www.yingwenxuexiao.com"}
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
