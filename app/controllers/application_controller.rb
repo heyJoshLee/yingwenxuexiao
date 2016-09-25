@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "需先登入才能使用" # You need to be logged in to do that
       redirect_to sign_in_path
     elsif !current_user.is_paid_member?
-      flash[:danger] = "需為高級會員才能使用" # You need to have a premium account to do that.
+      flash[:danger] = "需为高级会员才能使用" # You need to have a premium account to do that.
       redirect_to upgrade_path
     end
   end

@@ -20,7 +20,7 @@ class Admin::Dashboard::DownloadsController < AdminController
     @download = Download.new(download_params)
     if @download.save
       flash[:success] = "download was saved"
-      redirect_to admin_dashboard_download_path(@download)
+      redirect_to admin_dashboard_downloads_path
     else
       flash.now[:danger] = "There was a problem and the download was not saved"
       render :new
