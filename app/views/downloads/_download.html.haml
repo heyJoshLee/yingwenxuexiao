@@ -7,10 +7,6 @@
       %h1.download_title= @download.title
       = image_tag(@download.main_image_url, class: "download_image")
       .well.download_description= @download.description
-      - if logged_in? && current_user.is_admin?
+      = link_to start_download_path(@download_link), method: "post" do
         .col-xs-offset-4.col-sm-offset-5.btn.btn-primary 下载
         / Dowload
-      - else
-        = link_to start_download_path(@download_link), method: "post", remote: true do
-          .col-xs-offset-4.col-sm-offset-5.btn.btn-primary 下载
-          / Dowload
