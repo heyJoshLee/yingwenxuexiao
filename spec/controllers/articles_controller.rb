@@ -13,7 +13,7 @@ describe ArticlesController do
     end
   end
 
-  describe "get show" do
+  describe "GET show" do
     let(:published_article)  {Fabricate(:article, published: true) }
     let(:unpublished_article)  {Fabricate(:article) }
 
@@ -27,5 +27,5 @@ describe ArticlesController do
       expect(response).to redirect_to error_path
     end
   end
-
+  
 end
