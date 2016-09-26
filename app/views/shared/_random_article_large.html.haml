@@ -1,0 +1,5 @@
+- @random_article = Article.randomArticle([@article.id])
+- if @random_article
+  .center
+    = link_to article_path(@random_article) do
+      %h5= "Read another article: " + @random_article.title

@@ -1,8 +1,7 @@
 # TODO
 
 == easy ==
-Trad to Simp
-
+Fix article body
 # Sign up styling
 === medium ===
 

@@ -83,7 +83,7 @@ Rails.application.routes.draw do
 
   # admin
   namespace :admin do
-    resources :articles, only: [:index]
+    resources :articles
     resources :article_topics
     namespace :dashboard do
       resources :affiliates do
@@ -107,7 +107,6 @@ Rails.application.routes.draw do
     resources :email_signups, only: [:index]
     resources :users
     resources :categories
-    resources :articles, only: [:new, :create, :edit, :destroy, :update]
   end
 
 

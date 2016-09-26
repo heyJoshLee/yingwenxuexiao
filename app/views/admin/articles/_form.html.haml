@@ -3,6 +3,10 @@
 - else
   %h1 Edit Article
 
+- if !@article.new_record?
+  = link_to admin_article_path(@article), method: "DELETE", data: {confirm: "Are you sure you want to delete this article?"} do
+    .btn.btn-danger Delete
+
 .row
   = bootstrap_form_for [:admin, @article] do |f|
     = render "shared/errors", object: @article

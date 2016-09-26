@@ -1,6 +1,6 @@
 class Admin::ArticlesController < AdminController
 
-  before_filter :set_article, only: [:edit, :update]
+  before_filter :set_article, only: [:edit, :update, :destroy]
   
   def new
     @article = Article.new
@@ -30,13 +30,22 @@ class Admin::ArticlesController < AdminController
       flash[:danger] = "Article was not saved"
       render :edit
     end
+  end
 
+  def destroy
+    if @article.destroy
+      flash[:success] = "Article deleted"
+      redirect_to blog_path
+    else
+      flash.now[:danger] = "Article not deleted"
+      render :edit
+    end
   end
 
   private
 
   def set_article
-    @article = Article.find_by(slug: params[:id])    
+    @article = Article.find_by(slug: params[:id])
   end
 
   def article_params
