@@ -17,6 +17,9 @@
 
     .article_show= @article.body.html_safe
 
+    %hr/
+    = render "shared/random_article_large"
+
     %section.v_margin
       .row
         .col-xs-10.col-xs-offset-1

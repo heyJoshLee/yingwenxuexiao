@@ -26,4 +26,14 @@ class Article < ActiveRecord::Base
     "some text"
   end
 
+  def self.randomArticle(ids_to_exclude=false)
+    article = false
+    if ids_to_exclude
+      article = where("published = ? AND id NOT IN (?)", true , ids_to_exclude ).order( "RANDOM()" ).first
+    else
+      article = where("published = ?", true ).order( "RANDOM()" ).first
+    end
+    article == [] ? false : article
+  end
+
 end
