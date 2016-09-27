@@ -7,4 +7,9 @@
       %h1
         = link_to article.title, article_path(article)
       %small= format_datetime(article.created_at)
-      %p= article.preview_text
+      - unless article.published
+        .row
+          .alert.alert-danger.center
+            %h5 NOT PUBLISHED
+      %p.article_preview_text= article.preview_text
+      .read_more=link_to "Read More", article_path(article)

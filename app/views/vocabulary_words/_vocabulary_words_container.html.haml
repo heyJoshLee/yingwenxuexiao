@@ -17,6 +17,7 @@
         %h4= vocabulary_word.main
   - unless logged_in? && current_user.is_paid_member?
     %hr/
+    %hr/
     .center
       %h4 Log in with a premium membership to add words to your study list.
       - if logged_in? && !current_user.is_paid_member?
