@@ -417,6 +417,14 @@ LEVELS
   padding: 15px 0;
 }
 
+.article_preview_text {
+  word-wrap: break-word;
+}
+
+.read_more {
+  color: rgba(0,182,245, 1);
+}
+
 .article_preview h1 {
   color: rgba(0,182,245, 1);
 }

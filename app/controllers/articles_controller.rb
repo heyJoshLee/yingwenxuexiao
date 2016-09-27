@@ -10,14 +10,18 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.where(published: true)
+    if logged_in? && current_user.is_admin?
+      @articles = Article.all
+    else
+      @articles = Article.where(published: true)
+    end
   end
 
   private
 
   def set_article
     @article = Article.find_by slug: params[:id]
-    redirect_to error_path unless @article.published?
+    redirect_to error_path unless @article.published? || logged_in? && current_user.is_admin?
   end
 
 end

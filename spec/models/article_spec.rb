@@ -63,12 +63,20 @@ describe Article do
 
       expect(Article.randomArticle([article_2.id, article_3.id, article_4.id])).to eq(article_5)
 
-
     end
-
-
-
   end
 
+  describe "#preiview_text" do
+    let(:article)  { Fabricate(:article, body: "Lorem </h1>Title</h1> <img src='neat_pic.png' /> ipsum dolor sit amet, consectetur adipisicing elit. Inventore accusantium, delectus! Autem molestias ullam consequuntur expedita unde? Odio, quaerat? Quibusdam, reiciendis, recusandae! Inventore, officia. Repellendus eius ipsam cupiditate quo natus?") }
+
+    it "only returns the first 200 characters plus ' ...' if the body length is long" do
+      expect(article.preview_text.length).to eq(204) 
+    end
+
+    it "returns the whole body if the body is shorter than 200 characters" do
+      short_body = Fabricate(:article, body: "this is the body")
+      expect(short_body.preview_text).to eq(short_body.body)
+    end
+  end
 
 end

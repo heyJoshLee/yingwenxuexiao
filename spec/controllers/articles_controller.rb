@@ -3,13 +3,18 @@ require "rails_helper"
 describe ArticlesController do
 
   describe "GET index" do
-    let!(:article_1) { Fabricate(:article, published: true) }
+    let!(:article_1) { Fabricate(:article, published: true, created_at: 1.day.ago) }
     let!(:article_2) { Fabricate(:article) }
 
     it "should only show published articles" do
       get :index
       expect(assigns(:articles)).not_to include(article_2)
       expect(assigns(:articles)).to match_array([article_1])
+    end
+
+    it "shows all articles if admin is logged in" do
+      set_current_user(Fabricate(:user, rold: "admin"))
+      expect(assigns(:articles)).to match_array([article_2, article_1])
     end
   end
 

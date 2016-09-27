@@ -1,3 +1,8 @@
+- unless @article.published?
+  .row
+    .alert-danger.alert
+      This article is not published
+
 .row
   .col-sm-8
     %h1= @article.title
