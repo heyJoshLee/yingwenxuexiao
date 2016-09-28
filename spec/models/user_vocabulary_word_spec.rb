@@ -39,6 +39,7 @@ describe UserVocabularyWord do
 
     context ":chinese_to_english" do
       it "returns an array of four strings" do
+        skip
         expect(user.user_vocabulary_words.first.choices(:chinese_to_english).count).to eq(4)
       end
 
