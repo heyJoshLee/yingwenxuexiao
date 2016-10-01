@@ -86,6 +86,14 @@ Rails.application.routes.draw do
     resources :articles
     resources :article_topics
     namespace :dashboard do
+      resources :comment_notifications do
+        collection do
+          get "check_all"
+        end
+        member do
+          get "toggle"
+        end
+      end
       resources :affiliates do
         resources :affiliate_links
       end
