@@ -53,7 +53,7 @@ li {
 }
 
 .green-bkg {
-  background-color: green;
+  background-color: green !important;
 }
 
 .green-font {
@@ -76,6 +76,15 @@ li {
 /*********
 Nav
 **********/
+
+.notifications_circle {
+  background: red;
+  border-radius: 100%;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
 #nav_sandwhich {
   background-color: rgba(0,182,245, 1);
 }
