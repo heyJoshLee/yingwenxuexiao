@@ -21,9 +21,17 @@
 
 
     .article_show= @article.body.html_safe
-
-    %hr/
     = render "shared/random_article_large"
+
+    .article_author
+      %h5 Article Author
+      .row
+        .col-xs-4.center
+          %h5= @article.author.name
+          = image_tag(@article.author.picture_url, class: "img-circle")
+        .col-xs-8
+          %p= @article.author.bio
+    %hr/
 
     %section.v_margin
       .row
