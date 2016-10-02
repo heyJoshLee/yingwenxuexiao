@@ -1,9 +1,8 @@
 %h1 Editing profile
+
 = bootstrap_form_for(@user) do |f|
   = f.email_field :email
   = f.password_field :password
   = f.text_field :name
-  = f.file_field :picture_url, class: "btn btn-file"
-    .small (jpg jpeg png)
-
+  = f.file_field :picture_url, label: "Profile Picture (jpg jpeg png)", class: "btn btn-file"
   = f.submit "Save", class: "btn btn-primary"
