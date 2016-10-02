@@ -4,6 +4,7 @@
     %td Title
     %td Edit
     %td Published?
+    %td View Count
   %tbody
     - @articles.each do |article|
       %tr
@@ -13,3 +14,4 @@
           =link_to "Edit", edit_admin_article_path(article)
         %td
           = article.published? ? "Yes" : "No"
+        %td= article.view_count

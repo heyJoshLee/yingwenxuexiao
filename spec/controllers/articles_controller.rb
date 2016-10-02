@@ -13,7 +13,7 @@ describe ArticlesController do
     end
 
     it "shows all articles if admin is logged in" do
-      set_current_user(Fabricate(:user, rold: "admin"))
+      set_current_user(Fabricate(:user, role: "admin"))
       expect(assigns(:articles)).to match_array([article_2, article_1])
     end
   end
@@ -31,6 +31,33 @@ describe ArticlesController do
       get :show, id: unpublished_article.slug
       expect(response).to redirect_to error_path
     end
+
+    it "doesn't add one to the view count if the user is not a reader" do
+      admin = Fabricate(:user, role: "admin")
+      set_current_user(admin)
+      get :show, id: published_article.slug
+      expect(published_article.view_count).to eq(0)
+    end
+
+    it "adds one to the view count if the user is a reader" do
+      reader = Fabricate(:user, role: "reader")
+      set_current_user(reader)
+      get :show, id: published_article.slug
+      expect(published_article.reload.view_count).to eq(1)
+    end
+
+    it "adds one to the view count if the user is a reader 2" do
+      reader = Fabricate(:user, role: "reader")
+      reader_2 = Fabricate(:user, role: "reader")
+      set_current_user(reader)
+      get :show, id: published_article.slug
+      set_current_user(reader_2)
+      get :show, id: published_article.slug
+      expect(published_article.reload.view_count).to eq(2)
+    end
+
+
   end
-  
+
+
 end

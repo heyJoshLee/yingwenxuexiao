@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
   add_breadcrumb "Blog", :blog_path
 
   def show
+    old_count = @article.view_count
+    @article.update_column(:view_count, old_count + 1) unless logged_in? && (current_user.is_admin? || current_user.is_editor? )
     @comment = Comment.new
     add_breadcrumb @article.title, @article
   end
