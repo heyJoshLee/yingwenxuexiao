@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001140320) do
+ActiveRecord::Schema.define(version: 20161002055931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -310,6 +310,7 @@ ActiveRecord::Schema.define(version: 20161001140320) do
     t.string   "slug"
     t.string   "password_reset_token"
     t.integer  "affiliate_link_id"
+    t.text     "bio",                  default: "This user has not filled out a bio yet."
   end
 
   create_table "vocabulary_words", force: :cascade do |t|
