@@ -1,0 +1,11 @@
+.row
+  .container
+    .col-xs-12.col-md-6
+      %h1 Create a new subscription
+      = bootstrap_form_for [:admin, :dashboard, @subscription] do |f|
+        = f.text_field :name
+        = f.select :currency, ["usd"]
+        = f.text_field :price
+        = f.select :interval, ["month"]
+        = f.submit "Send to Stripe", class: "btn.btn-primary"
+
