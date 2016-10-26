@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get "free", to: "pages#free", as: "free"
 
   get "error", to: "pages#error", as: "error"
+  
+  # post "stripe_webhook", to: "subscribers#stripe_charge"
+  
+  post 'stripe_webhook' => 'subscribers#stripe_charge'
+
 
   %w(404 422 500 503).each do |code|
     get code, to: "pages#error", code: code
@@ -116,6 +121,8 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
   end
+  
+  resources :subscribers
 
 
   # Example resource route (maps HTTP verbs to controller actions automatically):

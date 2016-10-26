@@ -1,4 +1,7 @@
 Rails.application.configure do
+  
+  config.web_console.whiny_requests = false
+
 config.cache_classes = false
 
   # Show full error reports and disable caching

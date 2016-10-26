@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002075859) do
+ActiveRecord::Schema.define(version: 20161025105714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,17 @@ ActiveRecord::Schema.define(version: 20161002075859) do
     t.text     "body"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "interval"
+    t.string   "name"
+    t.string   "slug"
+    t.string   "currency"
+    t.string   "stripe_id"
+    t.integer  "price"
+  end
+
   create_table "support_tickets", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -281,7 +292,7 @@ ActiveRecord::Schema.define(version: 20161002075859) do
   create_table "user_vocabulary_words", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "vocabulary_word_id"
-    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
+    t.datetime "review_time",                  default: '2016-10-24 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "english_to_chinese_attempted"
@@ -312,6 +323,8 @@ ActiveRecord::Schema.define(version: 20161002075859) do
     t.string   "password_reset_token"
     t.integer  "affiliate_link_id"
     t.text     "bio",                  default: "This user has not filled out a bio yet."
+    t.string   "stripeid"
+    t.string   "subscriptionid"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|

@@ -11,4 +11,4 @@
 # Successful payment should change user.membership_level = "paid"
 # Unsuccessful payment should change user.membership_level = "free"
 
-# Add tests 
+# Add tests

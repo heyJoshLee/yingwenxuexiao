@@ -27,6 +27,7 @@ gem "draper"
 gem 'momentjs-rails'
 gem "whenever"
 gem 'unicorn'
+gem 'stripe'
 
 
 
@@ -48,8 +49,8 @@ group :development, :test do
   gem "faker"
   gem "launchy"
   gem 'vcr', '2.9.3'
-  gem 'webmock', '1.11.0'
   gem 'selenium-webdriver'
+  gem 'stripe_event'
 
 end
 
