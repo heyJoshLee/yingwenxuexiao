@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby "2.1.2"
 
 gem 'rails', '4.2.6'
@@ -51,6 +51,7 @@ group :development, :test do
   gem 'vcr', '2.9.3'
   gem 'selenium-webdriver'
   gem 'stripe_event'
+  gem "webmock"
 
 end
 
