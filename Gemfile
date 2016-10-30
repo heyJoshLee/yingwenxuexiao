@@ -28,6 +28,7 @@ gem 'momentjs-rails'
 gem "whenever"
 gem 'unicorn'
 gem 'stripe'
+gem 'jw_player_helper'
 
 
 

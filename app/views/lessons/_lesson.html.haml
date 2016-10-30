@@ -6,14 +6,19 @@
       = link_to edit_admin_course_lesson_path(@course, @lesson) do
         %small Edit Lesson
     %h1#lesson_name= @lesson.name
-    = render "instructions"
-    %iframe{:allowfullscreen => "true", :frameborder => "0", :height => "315", :src => @lesson.video_url, :width => "560"}
+    = render "lessons/instructions"
+
+  
+    .video_container
+      = video_player({:file => @lesson.video_url}, {:width => "100%"})
+
+
     #vocabulary_words_container.well.row
       = render "vocabulary_words/vocabulary_words_container", object: @lesson
 
 
-    = render "scripts"  
-    = render "description"
+    = render "lessons/scripts"  
+    = render "lessons/description"
     = link_to @lesson.notes_url do
       .lesson_notes_container
         %i.fa.fa-file
@@ -27,7 +32,7 @@
   
     .article_comments_section
       %h2 Comments
-      = bootstrap_form_for [@lesson.course, @lesson, @comment], remote: true do |f|
+      = bootstrap_form_for [@lesson.course, @lesson, Comment.new], remote: true do |f|
         = f.text_area :body
         = f.submit "Create Comment", class: "btn btn-primary"
     = render "comments/comments_section", object: @lesson

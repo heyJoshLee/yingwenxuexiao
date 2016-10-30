@@ -1,12 +1,22 @@
 #lesson_panel
   %h4 Lessons
   %ul
-    - @course.published_lessons.each do |lesson|
-      %li
-        .row
-          .col-xs-6.col-xs-offset-3
-            =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
-          .col-xs-2
-            - if current_user.completed_lesson?(lesson)
-              %i.fa.fa-check
+    - if logged_in? && current_user.is_admin?
+      - @course.lessons.each do |lesson|
+        %li
+          .row
+            .col-xs-6.col-xs-offset-3
+              =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
+            .col-xs-2
+              - unless lesson.published
+                NP
+    - else
+      - @course.published_lessons.each do |lesson|
+        %li
+          .row
+            .col-xs-6.col-xs-offset-3
+              =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
+            .col-xs-2
+              - if current_user.completed_lesson?(lesson)
+                %i.fa.fa-check
 

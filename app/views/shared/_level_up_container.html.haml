@@ -1,4 +1,5 @@
-- if logged_in?
+- if logged_in? && session[:show_level_up?]
+  - session[:show_level_up?] = false
   #level_up_container
     .row
       .col-xs-12.center
