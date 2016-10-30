@@ -1,6 +1,14 @@
 %h3= "Editing quiz for #{@lesson.name} in #{@course.name} course"
 .row
   .container
+    .row
+      %h5 New Question
+      = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question]) do |f|
+        = f.text_area :body
+        .row
+          .col-sm-2
+            = f.text_field :value
+        = f.submit "Add Question", class: "btn btn-primary"
     .col-sm-7
       %h5 Questions for this lesson:
       - @quiz.questions.order("created_at DESC").each do |question|
@@ -36,14 +44,4 @@
             = f.submit "Add choice", class: "btn btn-primary"
             = link_to admin_course_lesson_quiz_question_path(@course, @lesson, @quiz, question), method: "DELETE" do
               .btn.btn-danger.pull-right Delete Question
-      %br/
-      %br/
 
-      %h5 New Question
-      = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question]) do |f|
-        = f.text_area :body
-        .row
-          .col-sm-2
-            = f.text_field :value
-        = f.submit "Add Question", class: "btn btn-primary"
-      
