@@ -3,7 +3,7 @@
   .container
     .col-sm-7
       %h5 Questions for this lesson:
-      - @quiz.questions.each do |question|
+      - @quiz.questions.order("created_at DESC").each do |question|
         .quiz_question 
           .row
             .col-sm-8
