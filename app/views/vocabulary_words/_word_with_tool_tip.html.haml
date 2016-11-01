@@ -1,0 +1,16 @@
+.col-xs-4.vocab_tool_tip_launcher
+  %h4
+  %a= word.main
+.vocab_word_tool_tip
+  %br/
+  %br/
+  %p
+    %strong= "#{word.main} / #{word.chinese}"
+  %p
+    %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.main}}
+    %i= word.ipa
+  %p
+    %strong= word.definition
+  %p
+    %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.sentence}}
+    %i= word.sentence
