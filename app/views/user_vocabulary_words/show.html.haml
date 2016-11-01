@@ -17,10 +17,18 @@
         %td
           %h5= word.part_of_speech
         %td
-          %h5= word.ipa
+          .row
+            .col-xs-2
+              %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.main}}
+            .col-xs-10
+              %h5= word.ipa
         %td
           %h5= word.definition
         %td
-          %h5= word.sentence
+          .row
+            .col-xs-2
+              %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.sentence}}
+            .col-xs-10
+              %h5= word.sentence
 
 

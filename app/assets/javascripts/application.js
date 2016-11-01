@@ -25,7 +25,18 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-39639798-7', 'auto');
 ga('send', 'pageview');
 
+$(document).on("click", ".vocab_tool_tip_launcher", function(e) {
+  e.preventDefault();
+  $(this).next().fadeToggle();
+});
 
+$(document).on("click", ".vocab_speach_button", function(e) {
+  console.log("clicked");
+  console.log($(this).attr("data-word"));
+  var word_to_say = $(this).attr("data-word");
+  var msg = new SpeechSynthesisUtterance(word_to_say);
+  window.speechSynthesis.speak(msg);
+});
 
 $(document).on("click", ".choice_radio_button", function(e) {
   $(e.target).parent().parent().parent().find(".choice_body").removeClass("selected_choice");
@@ -78,9 +89,8 @@ $(document).on("click", "#close_level_up_container", function(e) {
   });
 });
 
-$('.timestring').each(function() {
-  this.textContent = moment(this.textContent).format('lll');
-});
+
+
 
 // practice
 

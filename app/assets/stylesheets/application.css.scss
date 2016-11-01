@@ -365,6 +365,22 @@ ADMIN_NAV
   color: green;
 }
 
+.vocab_tool_tip_launcher:hover {
+  cursor: pointer;
+}
+
+.vocab_word_tool_tip {
+  background: white;
+  border-radius: 10px;
+  width: 100px;
+  position: relative;
+  top: 35px;
+  text-align: center !important;
+  border: 1px solid black;
+  display: none;
+}
+
+
 /*********
 #notification
 **********/
