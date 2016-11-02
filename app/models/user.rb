@@ -171,6 +171,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def random_vocabulary_words(n=10)
+    vocabulary_words.order("RANDOM()").limit(n)
+  end
+
+
   private
 
   def add_to_correct_if_correct(word, question, answer, user_word, correct_column)

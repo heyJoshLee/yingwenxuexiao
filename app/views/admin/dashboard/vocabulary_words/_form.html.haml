@@ -21,9 +21,8 @@
       %br/
       %br/
       .row
-        = hidden_field_tag :vocabulary_wordable_type, vocabulary_wordable_type
-        = hidden_field_tag :vocabulary_wordable_id, vocabulary_wordable_id
-        = hidden_field_tag :api_key, ENV["pearson_api_key"]
+        = hidden_field_tag :vocabulary_wordable_type, "Lesson"
+        = hidden_field_tag :vocabulary_wordable_id, @lesson.id
         = f.submit "Add Word", class: "btn btn-primary"
   .col-sm-4
     %h5 Results

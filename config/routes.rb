@@ -28,6 +28,16 @@ Rails.application.routes.draw do
     get code, to: "pages#error", code: code
   end
 
+  # games
+  get "games", to: "games#index"
+
+  namespace :games do
+    scope "word_search", as: "word_search" do
+      get "", to: "word_search#index"
+      post "found_word", to: "word_search#found_word"
+    end
+  end
+
   # practice
   get "practice", to: "practices#index"
   get "practice/start", to: "practices#start", as: "start_practice"

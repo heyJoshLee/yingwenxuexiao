@@ -8,7 +8,8 @@
         = link_to "課程", courses_path # Courses
     .col-sm-2.nav_item
       .nav_text
-        = link_to "練習", practice_path # Practice
+        / = link_to "練習", practice_path # Practice
+        = link_to "Games", games_path # Games
     .col-sm-4.nav_item
       .nav_text
         - if logged_in? && current_user.is_paid_member?
