@@ -9,3 +9,15 @@
   = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
     - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
   = f.submit @course.new_record? ? "Create Course" : "Save course", class: "btn btn-primary"
+
+
+%br/
+
+%h2 Mass upload Vocabulary Words for course
+
+%p Words must contain all attributes plus vocabulary_wordable_type as "Lesson" and vocabulary_wordable_id. Words in the spreedsheet must be grouped by lesson. Words with a vocabulary_wordable_id that matches the previous word will be put into the same lesson. If you want to create a new lesson, then just make the id something large like "1000".
+= form_tag import_vocabulary_words_admin_course_path, multipart: true do
+  = file_field_tag :file
+  = hidden_field_tag :course_id, @course.slug
+  %br/
+  = submit_tag "Import", class: "btn btn-primary"

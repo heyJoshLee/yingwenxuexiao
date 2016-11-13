@@ -120,6 +120,10 @@ Rails.application.routes.draw do
       get "/", to: "dashboard#index"
     end
     resources :courses do
+      member do
+        post "/import_vocabulary_words", to: "lessons#import_vocabulary_words"
+      end
+
       resources :lessons do
         resources :quizzes do
           resources :questions do

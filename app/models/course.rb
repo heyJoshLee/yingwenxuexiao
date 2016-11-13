@@ -28,5 +28,6 @@ class Course < ActiveRecord::Base
     where(published: true)
   end
 
+
 end
 
