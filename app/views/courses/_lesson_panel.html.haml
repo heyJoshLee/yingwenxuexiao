@@ -1,6 +1,12 @@
 #lesson_panel
   %h4 Lessons
   %ul
+    %li
+      .row
+        .col-xs-6.col-xs-offset-3
+          = link_to course_path(@course) do
+            Course Intro
+
     - if logged_in? && current_user.is_admin?
       - @course.lessons.each do |lesson|
         %li

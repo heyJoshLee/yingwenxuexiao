@@ -48,6 +48,10 @@ li {
   list-style: none;
 }
 
+.show_list_style {
+  list-style: inherit !important;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -703,6 +707,11 @@ LESSON
   cursor: pointer;
 }
 
+
+.ajax_saving {
+  display: none;
+  color: blue;
+}
 
 /*********
 Flash Cards

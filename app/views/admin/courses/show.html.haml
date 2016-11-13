@@ -1,8 +1,11 @@
 .row
-  .col-xs-2.text-center.col-xs-offset-5
+  .col-xs-4.col-xs-offset-2
+    = link_to rearrange_admin_course_path(@course) do
+      .btn.btn-primary Rearrange Courses
+  .col-xs-4.text-center.col-xs-offset-5
     .row
-      .col-xs-5
-        %h5 Add lesson to this course
+      .col-xs-4
+        %h5 Add lesson
       .col-xs-5
         .add_lesson_button
           = link_to new_admin_course_lesson_path(@course) do

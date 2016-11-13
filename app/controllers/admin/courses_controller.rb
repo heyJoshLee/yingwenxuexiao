@@ -1,5 +1,5 @@
 class Admin::CoursesController < AdminController
-  before_action :set_course, only: [:show, :update, :edit]
+  before_action :set_course, only: [:show, :update, :edit, :rearrange]
 
   add_breadcrumb "Courses", :admin_courses_path
   
@@ -13,6 +13,16 @@ class Admin::CoursesController < AdminController
 
   def show
     add_breadcrumb @course.name, admin_course_path(@course)
+  end
+
+  def post_rearrange
+    params[:lesson].each_with_index do |id, index|
+      Lesson.find(id.to_i).update_attributes!(lesson_number: index + 1)
+    end
+    respond_to do |format|
+      format.js { render :nothing => true }
+    end
+
   end
 
   def create
