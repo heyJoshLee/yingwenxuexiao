@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
@@ -77,7 +78,7 @@ $(document).on("click", ".comment_reply_launcher", function(e) {
 });
 
 $(document).on("click", ".membership_level_choice_div", function(e) {
-  console.log("click")
+  console.log("click");
   var $target = $(e.target);
   console.log($target.next("input"))
   $target.next("input").click();
@@ -87,6 +88,18 @@ $(document).on("click", "#close_level_up_container", function(e) {
   var $level_up_container = $("#level_up_container");
   $level_up_container.fadeOut("slow", function() {
     $level_up_container.remove();
+  });
+});
+
+$(function() {
+  $("#sortable_lessons").sortable({
+    axis: "y",
+    update: function() {
+      $("#saving").fadeIn();
+      $.post($(this).data("update-url"), $(this).sortable("serialize")).done(function() {
+        $("#saving").fadeOut();
+      })
+    }
   });
 });
 

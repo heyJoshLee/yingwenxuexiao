@@ -1,0 +1,3 @@
+- if @lesson.video_url != ""
+  .video_container
+    = video_player({:file => @lesson.video_url}, {:width => "100%"})

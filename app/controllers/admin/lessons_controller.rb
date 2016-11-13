@@ -1,7 +1,7 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words]
-  before_action :set_lesson, only: [:show, :edit, :update]
+  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :set_quiz, only: [:show]
 
   before_action :course_breadcrumb, except: [:import_vocabulary_words]
@@ -24,7 +24,22 @@ class Admin::LessonsController < AdminController
     end
   end
 
- def update
+  def destroy
+    if @lesson.has_quiz?
+      @lesson.quiz.questions.each do |question|
+        question.choices.destroy_all
+        question.destroy
+      end
+      @lessons.quiz.destroy
+    end
+    @lesson.comments.destroy_all
+    @lesson.destroy
+
+    flash[:success] = "Lesson destroyed."
+    redirect_to admin_course_path(@course)
+  end
+
+  def update
     if @lesson.update(lesson_params)
       flash[:success] = "Lesson saved"
       redirect_to course_lesson_path(@course, @lesson)
@@ -64,7 +79,7 @@ class Admin::LessonsController < AdminController
   end
 
   def lesson_params
-    params.require(:lesson).permit!
+    params.require(:lesson).permit(:bootsy_image_gallery_id, :name, :script_english, :script_chinese, :video_url, :notes_url, :description, :course_id, :lesson_number, :published, :instructions)
   end
 
 end

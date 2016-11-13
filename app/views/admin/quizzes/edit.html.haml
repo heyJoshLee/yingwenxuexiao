@@ -1,4 +1,6 @@
 %h3= "Editing quiz for #{@lesson.name} in #{@course.name} course"
+= link_to edit_admin_course_lesson_path(@course, @lesson) do
+  .small Back to edit lesson
 .row
   .container
     .row
