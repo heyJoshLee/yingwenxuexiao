@@ -1,10 +1,10 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new, :edit, :update, :show]
+  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words]
   before_action :set_lesson, only: [:show, :edit, :update]
   before_action :set_quiz, only: [:show]
 
-  before_action :course_breadcrumb
+  before_action :course_breadcrumb, except: [:import_vocabulary_words]
 
   
   def new
@@ -36,6 +36,12 @@ class Admin::LessonsController < AdminController
 
   def show
     add_breadcrumb @lesson.name, admin_course_lesson_path(@course, @lesson)
+  end
+
+  def import_vocabulary_words
+    VocabularyWord.mass_import(params[:file], @course)
+    flash[:success] = "Words imported."
+    redirect_to edit_admin_course_path(@course)
   end
 
   private
