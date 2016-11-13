@@ -707,7 +707,9 @@ LESSON
   cursor: pointer;
 }
 
-
+.default_formatting li {
+  list-style: inherit;
+}
 .ajax_saving {
   display: none;
   color: blue;

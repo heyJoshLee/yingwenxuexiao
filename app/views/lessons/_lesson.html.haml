@@ -13,20 +13,14 @@
 
     %h1= @lesson.name
 
-    .video_container
-      = video_player({:file => @lesson.video_url}, {:width => "100%"})
-
-
-    #vocabulary_words_container.well.row
-      = render "vocabulary_words/vocabulary_words_container", object: @lesson
-
+    = render "lessons/video"
+    = render "lessons/vocabulary_words"
 
     = render "lessons/scripts"  
     = render "lessons/description"
-    = link_to @lesson.notes_url do
-      .lesson_notes_container
-        %i.fa.fa-file
-        %h5 Download Notes
+    = render "lessons/notes"
+
+    .well.default_formatting= @lesson.instructions.html_safe
 
     = render "quizzes/quiz_section"
     - if !@lesson.has_quiz? || current_user.taken_quiz?(@lesson.quiz)

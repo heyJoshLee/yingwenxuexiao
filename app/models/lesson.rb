@@ -1,4 +1,5 @@
 class Lesson < ActiveRecord::Base
+  include Bootsy::Container
   belongs_to :course
   
   has_many :grades
