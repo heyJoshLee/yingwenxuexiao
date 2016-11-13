@@ -43,6 +43,7 @@ $(document).on("click", ".choice_radio_button", function(e) {
   $(e.target).parent().parent().find(".choice_body").toggleClass("selected_choice")
 });
 
+
 $(document).on("click", "#start_talking", function() {
   var recognition = new webkitSpeechRecognition();
 

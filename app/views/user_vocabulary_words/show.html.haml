@@ -7,6 +7,8 @@
     %td Ipa
     %td Definition
     %td Sample Sentence
+    - if current_user.is_admin?
+      %td Review Time
   %tbody
     - @user.vocabulary_words.each do |word|
       %tr
@@ -30,5 +32,7 @@
               %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.sentence}}
             .col-xs-10
               %h5= word.sentence
+        - if current_user.is_admin?
+          %td= current_user.user_vocabulary_words.find_by(vocabulary_word_id: word.id).review_time
 
 

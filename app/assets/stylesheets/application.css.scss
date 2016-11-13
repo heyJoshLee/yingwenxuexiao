@@ -705,38 +705,35 @@ LESSON
 
 
 /*********
-  Practice
+Flash Cards
 **********/
 
-#practice_container {
-  border: 1px solid rgba(0, 0, 0, .3);
-  display: relative;
-}
-
-#practice_information {
-  background: rgba(0,182,245, 1);
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-}
-
-#practice_container #practice_options {
-  border-right: 1px solid rgba(0,182,245, 0.3);
-  height: 400px;
-  display: relative;
-  padding: 10px 4px;
-}
-
-#practice_container #question {
-  margin: 30px auto;
-}
-
-#practice_container #question_and_answers {
+.flash_card_container {
   text-align: center;
 }
 
-#practice_container .answer {
-  margin: 6px auto;
+.answer_card:hover {
+  cursor: pointer;
+}
+
+.flash_card_message {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 20%;
+  padding: 3px 0px;
+  text-align: center;
+  z-index: 100px;
+  display: none;
+}
+
+.flash_card_option_checkbox {
+  background-color: red;
+}
+
+.flash_card_option_checkbox.flash_card_checked {
+  background-color: green !important;
 }
 
 #correct_and_incorrect_marks {

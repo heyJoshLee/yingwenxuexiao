@@ -32,17 +32,18 @@ Rails.application.routes.draw do
   get "games", to: "games#index"
 
   namespace :games do
+    
     scope "word_search", as: "word_search" do
       get "", to: "word_search#index"
       post "found_word", to: "word_search#found_word"
     end
-  end
 
-  # practice
-  get "practice", to: "practices#index"
-  get "practice/start", to: "practices#start", as: "start_practice"
-  post "practice/change_options", to: "practices#change_options", as: "change_practice_options"
-  post "practice/attempt", to: "practices#attempt", as: "attempt_practice"
+    scope "flash_cards", as: "flash_cards" do
+      get "", to: "flash_cards#index"
+      post "attempt", to: "flash_cards#attempt", as: "attempt_flash_card"
+      post "toggle_options", to: "flash_cards#toggle_options"
+    end
+  end
 
   get "email_confirm", to: "email_signups#confirm"
 

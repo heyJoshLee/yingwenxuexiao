@@ -1,14 +1,5 @@
 # TODO
 
-# Add billing
-
-# app/views/pages/upgrade.html.haml link leads to the page to add billing info
-
-# Billing page should be in app/views/pages/upgrade_signup.html.haml # this is a new page
-
-# Successful payment should redirect to app/views/pages/upgrade_confirmation.html.haml
-
-# Successful payment should change user.membership_level = "paid"
-# Unsuccessful payment should change user.membership_level = "free"
-
-# Add tests
+# update flash cards to effect user stats
+# show cards based on recall time
+# different recall types

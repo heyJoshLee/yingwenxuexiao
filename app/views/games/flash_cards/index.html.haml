@@ -1,0 +1,12 @@
+%h1 Flash cards
+
+
+.flash_card_container
+  = render "flash_card_play_area"
+
+
+/ Messages to display if user is correct or not correct. JS fades these divs
+#correct_flash_card.flash_card_message.flash.alert.alert-success
+  %h5 Correct!
+#incorrect_flash_card.flash_card_message.alert.alert-danger
+  %h5 Incorrect : (

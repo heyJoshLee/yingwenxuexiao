@@ -1,0 +1,12 @@
+.flash_card_play_area
+  .well
+    %h3= @word.vocabulary_word.main
+  .row
+    .container
+      - @choices.each_with_index do |choice|
+        =link_to games_flash_cards_attempt_flash_card_path(question_id: @word.id, choice: choice), method: "post", remote: true do
+          %li.answer_card.well.col-xs-12= choice
+  .row
+    .container
+      #flash_cards_options_container
+        = render "flash_card_options"

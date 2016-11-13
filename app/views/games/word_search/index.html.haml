@@ -1,51 +1,40 @@
-%h1 Word search Game
-%small#howToPlayLauncher{"data-target" => "#howToPlay", "data-toggle" => "modal", :type => "button"} 
-  %p How to play <i class="glyphicon glyphicon-info-sign" style="margin-left: 10px"></i>
-  
-.row
-  .container
-    .col-xs-10
-      #puzzle
-    .col-xs-2
-      #words
-.row
-  .container
-    %br/
-    %button#solve.btn.btn-warning Show Answers
-    #refresh_page.btn.btn-primary Play Again
+%h1 Practice
+- if logged_in? && current_user.is_paid_member?
+  #play_area_container
+    = link_to start_practice_path(), method: "get", remote: "true" do
+      .btn.btn-primary
+        Start 
+  .row
+    #start_talking.btn.btn-primary 
+      Spoken
+    #spoken_input
+      Spoken_input
 
-    -word_bank = current_user.random_vocabulary_words(20).map(&:main).join(",")
-:javascript
-  $("#refresh_page").on("click", function(e) {
-    var play_again = confirm("Do you want to reset and play again?");
-    if (play_again) { 
-    window.location.reload();
-    }
-   });
+  .row.navbar-fixed-bottom#correct_and_incorrect_marks
+    .well
+      .col-xs-3.col-xs-offset-4
+        #correct
+          .col-xs-1
+            %i.fa.fa-check 
+          .col-xs-4
+            %h5 Great!
+        #incorrect
+          .col-xs-1
+            / %i.fa.fa-exclamation-circle 
+            .red_x &times; 
+          .col-xs-4
+            %h5 Wrong!
+- elsif logged_in? && !current_user.is_paid_member?
+  .well.center
+    %h5 You must have a premium account to use this tool.
+    = link_to upgrade_path do
+      .btn.btn-primary Upgrade Account
 
-  var array_as_string = "#{word_bank}";
-  console.log("array_as_strign")
-  console.log(array_as_string)
-  var words = array_as_string.split(",");
-  console.log(words)
-  
-  var gamePuzzle = wordfindgame.create(words, '#puzzle', '#words');
+    %h5= link_to "Upgrade Account", upgrade_path
+- else
+  .well.center
+    %h5 You must have a premium account to use this tool.
+    = link_to sign_up_path do
+      .btn.btn-primary Sign Up
 
-  $('#solve').click( function() {
-    wordfindgame.solve(gamePuzzle, words);
-  });
-
-
-
-#howToPlay.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title
-      .modal-body
-        %p This will be a video explaining how to play
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
 

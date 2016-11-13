@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025105714) do
+ActiveRecord::Schema.define(version: 20161109160041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -292,19 +292,19 @@ ActiveRecord::Schema.define(version: 20161025105714) do
   create_table "user_vocabulary_words", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "vocabulary_word_id"
-    t.datetime "review_time",                  default: '2016-10-24 00:00:00'
+    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "english_to_chinese_attempted"
-    t.integer  "english_to_chinese_correct"
-    t.integer  "chinese_to_english_attempted"
-    t.integer  "chinese_to_english_correct"
-    t.integer  "definition_attempted"
-    t.integer  "definition_correct"
-    t.integer  "spoken_attempted"
-    t.integer  "spoken_correct"
-    t.integer  "spelling_attempted"
-    t.integer  "spelling_correct"
+    t.integer  "english_to_chinese_attempted", default: 0
+    t.integer  "english_to_chinese_correct",   default: 0
+    t.integer  "chinese_to_english_attempted", default: 0
+    t.integer  "chinese_to_english_correct",   default: 0
+    t.integer  "definition_attempted",         default: 0
+    t.integer  "definition_correct",           default: 0
+    t.integer  "spoken_attempted",             default: 0
+    t.integer  "spoken_correct",               default: 0
+    t.integer  "spelling_attempted",           default: 0
+    t.integer  "spelling_correct",             default: 0
     t.string   "slug"
   end
 

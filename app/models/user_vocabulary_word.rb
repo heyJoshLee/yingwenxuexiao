@@ -11,6 +11,35 @@ class UserVocabularyWord < ActiveRecord::Base
     type == :spelling ? generate_spellings(choices) :  generate_choices(type, choices)
   end
 
+
+  def set_review_time(answered_correctly, method)
+    add_time = 0
+    if answered_correctly
+      attempted = "#{method.to_s}_attempted".to_sym
+      correct = "#{method.to_s}_correct".to_sym
+      attempted_amount = self[attempted] || 0
+      correct_amount = self[correct] || 0
+
+        add_time  = if attempted_amount <= 1
+                    1.minute
+                  elsif attempted_amount <= 3
+                    10.minute
+                  elsif attempted_amount <= 5
+                    1.day
+                  elsif attempted_amount <= 7
+                    3.day
+                  elsif attempted_amount <= 12
+                    5.day
+                  elsif attempted_amount < 13
+                      10.days
+                  end
+      update_column(:review_time, DateTime.parse( (Time.now + add_time).to_s ))
+
+    end #answered correctly?
+      update_column(:review_time, DateTime.parse( (Time.now + 1.minute).to_s ))
+
+  end
+
   private
 
   def format_choice_input(input)
@@ -24,8 +53,9 @@ class UserVocabularyWord < ActiveRecord::Base
       return :main
     else 
       return :main
-    end
+    end 
   end
+
 
   def generate_choices(type, choices)
     counter = 0

@@ -3,7 +3,11 @@
 %table.table.table-bordered
   %thead
     %td Word
+    %td Chinese
     %td Part of speech
+    %td IPA
+    %td Definition
+    %td Sentence
     %td Type
     %td Title
   %tbody
@@ -13,7 +17,15 @@
           =link_to edit_admin_dashboard_vocabulary_word_path(word) do
             %h5= word.main
         %td
+          %h5= word.chinese
+        %td
           %h5= word.part_of_speech
+        %td
+          %h5= word.ipa
+        %td
+          %h5= word.definition
+        %td
+          %h5= word.sentence
         %td
           %h5= word.vocabulary_wordable_type
         %td

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UserVocabularyWord do
+describe UserVocabularyWord do 
 
   describe "#choices(type)" do
     let(:user) { Fabricate(:user) }
@@ -8,6 +8,8 @@ describe UserVocabularyWord do
     let(:vocabulary_word_2) { Fabricate(:vocabulary_word) }
     let(:vocabulary_word_3) { Fabricate(:vocabulary_word) }
     let(:vocabulary_word_4) { Fabricate(:vocabulary_word) }
+
+    # User adds 4 vocab words to his bank.
 
     before do
       user.add_vocabulary_word(vocabulary_word_1)
@@ -65,7 +67,6 @@ describe UserVocabularyWord do
       end
 
       it "returns an array of four different choices" do
-        skip
         expect(user.user_vocabulary_words.first.choices(:definition)).to include(vocabulary_word_1.definition)
         expect(user.user_vocabulary_words.first.choices(:definition)).to include(vocabulary_word_2.definition)
         expect(user.user_vocabulary_words.first.choices(:definition)).to include(vocabulary_word_3.definition)
