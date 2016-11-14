@@ -32,7 +32,7 @@ gem 'stripe'
 gem 'jw_player_helper'
 gem 'roo', '~> 2.5.0'
 gem 'roo-xls'
-
+gem 'prawn-rails'
 
 
 

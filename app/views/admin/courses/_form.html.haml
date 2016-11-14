@@ -1,6 +1,7 @@
 = bootstrap_form_for([:admin, @course]) do |f|
   = f.text_field :name
   = f.text_area :description
+  = f.text_area :preview_text
   = f.file_field :main_image_url, class: "btn btn-file"
   = label :premium_course, 'Premium Course'
   = f.radio_button :premium_course, true, class: "radio-inline"
@@ -13,11 +14,12 @@
 
 %br/
 
-%h2 Mass upload Vocabulary Words for course
+- unless @course.new_record?
+  %h2 Mass upload Vocabulary Words for course
 
-%p Words must contain all attributes plus vocabulary_wordable_type as "Lesson" and vocabulary_wordable_id. Words in the spreedsheet must be grouped by lesson. Words with a vocabulary_wordable_id that matches the previous word will be put into the same lesson. If you want to create a new lesson, then just make the id something large like "1000".
-= form_tag import_vocabulary_words_admin_course_path, multipart: true do
-  = file_field_tag :file
-  = hidden_field_tag :course_id, @course.slug
-  %br/
-  = submit_tag "Import", class: "btn btn-primary"
+  %p Words must contain all attributes plus vocabulary_wordable_type as "Lesson" and vocabulary_wordable_id. Words in the spreedsheet must be grouped by lesson. Words with a vocabulary_wordable_id that matches the previous word will be put into the same lesson. If you want to create a new lesson, then just make the id something large like "1000".
+  = form_tag import_vocabulary_words_admin_course_path, multipart: true do
+    = file_field_tag :file
+    = hidden_field_tag :course_id, @course.slug
+    %br/
+    = submit_tag "Import", class: "btn btn-primary"
