@@ -12,7 +12,6 @@
     %br/
 
     %h1= @lesson.name
-
     = render "lessons/video"
     = render "lessons/vocabulary_words"
 
@@ -20,7 +19,7 @@
     = render "lessons/description"
     = render "lessons/notes"
 
-    .well.default_formatting= @lesson.instructions.html_safe
+    = render "lessons/instructions"
 
     = render "quizzes/quiz_section"
     - if !@lesson.has_quiz? || current_user.taken_quiz?(@lesson.quiz)

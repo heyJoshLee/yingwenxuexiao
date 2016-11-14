@@ -20,15 +20,25 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    respond_to do |format|
+      format.html do
+        @comment = Comment.new
+      end
+      format.pdf do
+        pdf = LessonNotesPdf.new(@lesson)
+        send_data pdf.render, filename: "#{@course.name}: #{@lesson.lesson_number} - #{@lesson.name} Yingwenxuexiao.com",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
+
 
   private
 
   def set_breadcrumbs
     add_breadcrumb "Courses", courses_path
     add_breadcrumb @course.name, course_path(@course)
-      
   end
 
   def set_lesson

@@ -12,22 +12,23 @@
 
         = hidden_field_tag :course_id, @course.id
         = f.submit @lesson.new_record? ? "Add Lesson to Course" : "Save Edits", class: "btn btn-primary pull-right"
-    .col-sm-4
-      %h3 Vocabulary Words
-      %button.btn.btn-primary.v_margin{"data-target" => "#add_vocabulary_word_modal", "data-toggle" => "modal", :type => "button"} Add Vocabulary Word
-      %br/
-      %br/
-      %table.table.table-bordered
-        %thead
-          %td Word
-          %td Part of Speech
-        %tbody
-          - @lesson.vocabulary_words.each do |word|
-            %tr
-              %td
-                %h5= word.main
-              %td
-                %small= word.part_of_speech
+    - unless @lesson.new_record?
+      .col-sm-4
+        %h3 Vocabulary Words
+        %button.btn.btn-primary.v_margin{"data-target" => "#add_vocabulary_word_modal", "data-toggle" => "modal", :type => "button"} Add Vocabulary Word
+        %br/
+        %br/
+        %table.table.table-bordered
+          %thead
+            %td Word
+            %td Part of Speech
+          %tbody
+            - @lesson.vocabulary_words.each do |word|
+              %tr
+                %td
+                  %h5= word.main
+                %td
+                  %small= word.part_of_speech
 
 .br
 .container
@@ -47,12 +48,13 @@
       .btn.btn-danger Delete Quiz
 
 
-#add_vocabulary_word_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
-      .modal-body
-        = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @lesson.class.to_s, vocabulary_wordable_id: @lesson.id
+- unless @lesson.new_record?
+  #add_vocabulary_word_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
+        .modal-body
+          = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @lesson.class.to_s, vocabulary_wordable_id: @lesson.id 
