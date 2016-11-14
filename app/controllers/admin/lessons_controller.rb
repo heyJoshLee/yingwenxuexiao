@@ -1,12 +1,11 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy]
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy, :import_quiz]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :import_quiz]
   before_action :set_quiz, only: [:show]
 
-  before_action :course_breadcrumb, except: [:import_vocabulary_words]
+  before_action :course_breadcrumb, except: [:import_vocabulary_words, :import_quiz]
 
-  
   def new
     @lesson = Lesson.new
   end
@@ -30,7 +29,6 @@ class Admin::LessonsController < AdminController
         question.choices.destroy_all
         question.destroy
       end
-      @lessons.quiz.destroy
     end
     @lesson.comments.destroy_all
     @lesson.destroy
@@ -57,6 +55,12 @@ class Admin::LessonsController < AdminController
     VocabularyWord.mass_import(params[:file], @course)
     flash[:success] = "Words imported."
     redirect_to edit_admin_course_path(@course)
+  end
+
+  def import_quiz
+    Quiz.mass_import(params[:file], @lesson)
+    flash[:success] = "Quiz imported."
+    redirect_to edit_admin_course_lesson_path(@course, @lesson)
   end
 
   private

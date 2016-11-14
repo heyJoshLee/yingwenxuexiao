@@ -21,7 +21,7 @@ class Lesson < ActiveRecord::Base
 
 
   def has_quiz?
-    quiz
+    quiz.nil? ? false : true
   end
 
   def generate_random_slug

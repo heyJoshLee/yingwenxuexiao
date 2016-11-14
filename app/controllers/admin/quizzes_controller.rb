@@ -42,10 +42,6 @@ class Admin::QuizzesController < AdminController
     @question = Question.new
   end
 
-  def show
-    
-  end
-
   private
 
   def set_choice

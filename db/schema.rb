@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20161113172251) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
+    t.string   "s lug"
   end
 
   create_table "choices", force: :cascade do |t|

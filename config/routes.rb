@@ -125,8 +125,10 @@ Rails.application.routes.draw do
         post "/rearrange", to: "courses#post_rearrange"
         post "/import_vocabulary_words", to: "lessons#import_vocabulary_words"
       end
-
       resources :lessons do
+        member do
+          post "/import_quiz", to: "lessons#import_quiz"
+        end
         resources :quizzes do
           resources :questions do
             resources :choices
