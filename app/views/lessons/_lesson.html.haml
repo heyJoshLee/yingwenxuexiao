@@ -19,9 +19,6 @@
     = render "lessons/description"
     = render "lessons/notes"
 
-    = link_to course_lesson_path(@course, @lesson, format: "pdf") do
-      .btn.btn-primary Download Notes
-
     = render "lessons/instructions"
 
     = render "quizzes/quiz_section"

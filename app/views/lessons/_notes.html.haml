@@ -1,5 +1,2 @@
-- if @lesson.notes_url != ""
-  = link_to @lesson.notes_url do
-    .lesson_notes_container
-      %i.fa.fa-file
-      %h5 Download Notes
+= link_to course_lesson_path(@course, @lesson, format: "pdf") do
+  .btn.btn-primary Download Notes
