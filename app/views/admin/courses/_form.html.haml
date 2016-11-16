@@ -1,3 +1,7 @@
+- unless @course.new_record?
+  = link_to admin_course_path(@course), method: "DELETE", data: {confirm: "Are you sure you want to delete this Course?"} do
+    .btn.btn-danger Delete
+
 = bootstrap_form_for([:admin, @course]) do |f|
   = f.text_field :name
   = f.text_area :description
@@ -23,3 +27,11 @@
     = hidden_field_tag :course_id, @course.slug
     %br/
     = submit_tag "Import", class: "btn btn-primary"
+
+- unless @course.new_record?
+  %h2 Mass upload Quizzes for course
+  = form_tag import_quizzes_admin_course_path(@course), multipart: true do
+    = file_field_tag :file
+    %br/
+    = submit_tag "Import", class: "btn btn-primary"
+

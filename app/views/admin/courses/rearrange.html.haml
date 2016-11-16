@@ -6,4 +6,4 @@
 #saving.ajax_saving Saving
 %ol#sortable_lessons{"data-update-url" => rearrange_admin_course_path}
   - @course.lessons.each do |lesson|
-    %li.well.show_list_style{id: "lesson_#{lesson.id}"}= lesson.name
+    %li.well.show_list_style{id: "lesson_#{lesson.id}"}= "#{lesson.name} - id: #{lesson.id}"

@@ -663,7 +663,7 @@ LESSON_PANEL
 **********/
 
 #lesson_panel {
-  color: white
+  color: white;
 }
 
 #lesson_panel h4 {
@@ -681,6 +681,8 @@ LESSON_PANEL
   color: white;
   padding-top: 5px;
   background-color: rgba(0,182,245, 1);
+  border: 1px solid rgba(0,182,245, 1);
+  
 }
 
 #lesson_panel li:hover {
@@ -690,6 +692,11 @@ LESSON_PANEL
 
 #lesson_panel li + li {
   border-top: 1px solid white;
+}
+
+.current_lesson {
+  background-color: white !important;
+  color: rgba(0,182,245, 1) !important;
 }
 
 

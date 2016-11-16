@@ -124,6 +124,7 @@ Rails.application.routes.draw do
         get "/rearrange", to: "courses#rearrange"
         post "/rearrange", to: "courses#post_rearrange"
         post "/import_vocabulary_words", to: "lessons#import_vocabulary_words"
+        post "/import_quizzes", to: "courses#import_quizzes"
       end
       resources :lessons do
         member do
