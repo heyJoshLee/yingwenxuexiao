@@ -62,7 +62,7 @@ $(document).on("click", "#start_talking", function() {
   recognition.onresult = function(e) {
     console.log(e.results[0][0].transcript)
 
-    console.log("result")
+    console.log("result");
 
     recognition.stop();
   }
@@ -105,14 +105,15 @@ $(function() {
 
 
 
-
 // practice
 
-  // change options - study type
-  $(document).on("click", ".practice_option_checkbox", function(e) {
-    console.log($(e.target));
-    $("#practice_options_form").submit();
+
+
+$(document).on("click", ".flash_card_study_option_button", function(e) {
+    $(".flash_card_study_option_button").removeClass("checked");
+    $(e.target).addClass("checked");
   });
+
 
 
 // $(document).on("click", "#find_vocabulary_word_api_search_button", function() {

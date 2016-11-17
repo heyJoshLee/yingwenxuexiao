@@ -28,6 +28,21 @@ class Course < ActiveRecord::Base
     where(published: true)
   end
 
+  def destroy_and_destroy_all_children
+   lessons.each do |lesson|
+      if lesson.has_quiz?
+        lesson.quiz.questions.each do |question|
+          question.choices.destroy_all
+        end
+        lesson.quiz.questions.destroy_all
+        lesson.quiz.destroy
+      end
+      lesson.comments.destroy_all
+    end
+   lessons.destroy_all
+   self.destroy
+  end
+
 
 end
 

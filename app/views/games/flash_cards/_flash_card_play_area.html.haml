@@ -1,6 +1,13 @@
 .flash_card_play_area
   .well
-    %h3= @word.vocabulary_word.main
+    - @display = ""
+    - if session[:flash_card_study_type] == "definition"
+      - @display = :main
+    - elsif session[:flash_card_study_type] == "chinese_to_english"
+      - @display = :chinese
+    - elsif session[:flash_card_study_type] == "english_to_chinese"
+      - @display = :main
+    %h3= @word.vocabulary_word[@display]
   .row
     .container
       - @choices.each_with_index do |choice|
