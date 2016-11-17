@@ -16,18 +16,7 @@ class Admin::CoursesController < AdminController
   end
 
   def destroy
-    @course.lessons.each do |lesson|
-      if lesson.has_quiz?
-        lesson.quiz.questions.each do |question|
-          question.choices.destroy_all
-        end
-        lesson.quiz.questions.destroy_all
-        lesson.quiz.destroy
-      end
-      lesson.comments.destroy_all
-    end
-    @course.lessons.destroy_all
-    @course.destroy
+    @course.destroy_and_destroy_all_children
     flash["success"] = "Course deleted."
     redirect_to admin_courses_path
   end

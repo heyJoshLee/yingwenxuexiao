@@ -780,6 +780,30 @@ Flash Cards
   color: red;
 }
 
+
+
+.flash_card_study_option_button {
+  background-color: rgba(0,182,245, 1);
+  display:inline-block;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  color: white;
+  border: 2px solid rgba(0,182,245, 1);
+  text-align: center;
+  padding-top: 2px;
+}
+
+.flash_card_study_option_button:hover {
+  cursor: pointer;
+}
+
+.flash_card_study_option_button.checked {
+  background: white !important;
+  color: rgba(0,182,245, 1) !important;
+}
+
+
 /*********
 #level_up_container
 **********/
