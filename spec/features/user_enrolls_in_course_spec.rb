@@ -5,6 +5,7 @@ feature "User enrolls in course" do
   scenario "successful enrollment" do
     user = Fabricate(:user, membership_level: "paid")
     course = Fabricate(:course, published: true)
+    lesson = Fabricate(:lesson, course_id: course.id, published: true)
     sign_in(user)
     visit courses_path
     click_link "Enroll In Class"

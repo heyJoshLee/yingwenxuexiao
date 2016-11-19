@@ -359,12 +359,10 @@ describe User do
     let(:user) { Fabricate(:user) }
     let(:course) { Fabricate(:course, name: "Business English", id: 1) }
 
-    
       let!(:lesson_1) { Fabricate(:lesson, course_id: 1, lesson_number: 1) }
       let!(:lesson_2) { Fabricate(:lesson, course_id: 1, lesson_number: 2) }
       let!(:lesson_3) { Fabricate(:lesson, course_id: 1, lesson_number: 3) }
       let!(:lesson_4) { Fabricate(:lesson, course_id: 1, lesson_number: 4) }
-
 
     it "should return the first lesson if the user is not enrolled in course" do
       expect(user.next_lesson_in_course(course)).to eq(course.lessons.first)
