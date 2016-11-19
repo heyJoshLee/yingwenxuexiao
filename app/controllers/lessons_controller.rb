@@ -12,11 +12,8 @@ class LessonsController < ApplicationController
     current_user.complete_lesson(@lesson)
     @lesson = current_user.next_lesson_in_course(@lesson.course)
     @comment = Comment.new
-    respond_to do |format| 
-      format.js
-    end
 
-    # redirect_to course_lesson_path(@course, @next_lesson)
+    redirect_to course_lesson_path(@course, current_user.next_lesson_in_course(@course))
   end
 
   def show

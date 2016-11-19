@@ -29,6 +29,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       AppMailer.send_welcome_email(@user).deliver
       redirect_to blog_path
+      # redirect_to upgrade_path  #Uncomment with payment becomes available
+
     else
       flash.now[:error] = "Your account was not created."
       render :new

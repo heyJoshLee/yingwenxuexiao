@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_lesson?(lesson)
-    lessons.find_by(id: lesson.id)
+    lesson_users.where(lesson_id: lesson.id, completed: true).count > 0
   end
 
   def next_lesson_in_course(course)

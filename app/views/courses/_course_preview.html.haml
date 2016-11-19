@@ -13,7 +13,7 @@
   - elsif logged_in? && current_user.is_paid_member?
     - if current_user.is_enrolled_in?(course)
       .btn.btn-primary.v_margin
-        = link_to "Go to class", course_path(course)
+        = link_to "Go to class", course_lesson_path(course, current_user.next_lesson_in_course(course))
     - else
       .btn.btn-success.v_margin
         = link_to "Enroll In Class", enroll_course_path(course), method: "post"

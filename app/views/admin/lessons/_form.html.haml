@@ -3,6 +3,10 @@
     .col-xs-6
       = bootstrap_form_for([:admin, @course, @lesson]) do |f|
         = f.text_field :name
+        = f.radio_button(:published, true)
+        = f.label(:published, "Published")
+        = f.radio_button(:published, false)
+        = label(:published, "Not Published")
         = f.text_area :script_english
         = f.text_area :script_chinese
         = f.text_field :video_url
