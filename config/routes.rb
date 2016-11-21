@@ -63,6 +63,14 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:show, :create]
   
   resources :users, only: [:create, :edit, :update]
+  resources :notifications, only: [:index, :show] do
+    collection do
+      get "check_all"
+    end
+    member do
+      get "toggle"
+    end
+  end
   resources :article_topics, only: [:show]
   resources :articles, only: [:show] do
     resources :comments, only: [:create] do
@@ -102,6 +110,14 @@ Rails.application.routes.draw do
     resources :articles
     resources :article_topics
     namespace :dashboard do
+      resources :notifications do
+        collection do
+          get "check_all"
+        end
+        member do
+          get "toggle"
+        end
+      end
       resources :comment_notifications do
         collection do
           get "check_all"

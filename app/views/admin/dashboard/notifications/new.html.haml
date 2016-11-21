@@ -1,0 +1,10 @@
+%h1 New Notification
+
+.row
+  .container
+    .col-xs-12
+      = bootstrap_form_for([:admin, :dashboard, @notification]) do |f|
+        = f.text_field :subject
+        = f.bootsy_area :body, class: "form-control", rows: 10
+        = f.select :receiver_id, [["All", "all"]]
+        = f.submit "Send", class: "btn btn-primary"
