@@ -1,0 +1,9 @@
+%h1 Notifications
+
+#user_notificaitons
+  - current_user.notifications.each do |n|
+    .well
+      %h5= n.subject
+      = n.body.html_safe
+      %br/
+      %small= n.created_at

@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :articles
 
+  has_many :received_notifications, foreign_key: "receiver_id", class_name: "Notification"
+  has_many :sent_notifications, foreign_key: "sent_id", class_name: "Notification"
+
   has_many :course_users
   has_many :courses, through: :course_users
 
@@ -33,6 +36,8 @@ class User < ActiveRecord::Base
   before_create :generate_random_slug
 
   mount_uploader :picture_url, UserImageUploader
+
+  alias_method :notifications, :received_notifications
 
   def generate_password_reset_token
     update_column(:password_reset_token, SecureRandom.urlsafe_base64)
@@ -175,6 +180,21 @@ class User < ActiveRecord::Base
     vocabulary_words.order("RANDOM()").limit(n)
   end
 
+  def has_unread_notifications?
+    notifications.where(read: false).count > 0
+  end
+
+  def send_notification(notification_params, list)
+    ActiveRecord::Base.transaction do
+      list.each do |user|
+        Notification.create(sender_id: self.id,
+                            receiver_id: user.id,
+                            subject: notification_params[:subject],
+                            body: notification_params[:body]
+                            )
+      end
+    end #mass transaction
+  end
 
   private
 

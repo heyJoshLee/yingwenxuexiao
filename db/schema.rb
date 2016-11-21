@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113172251) do
+ActiveRecord::Schema.define(version: 20161121075249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20161113172251) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "s lug"
+    t.string   "slug"
   end
 
   create_table "choices", force: :cascade do |t|
@@ -228,6 +228,17 @@ ActiveRecord::Schema.define(version: 20161113172251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "number"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.boolean  "read",        default: false
+    t.string   "subject",     default: "Message from Admin"
+    t.string   "slug"
+    t.text     "body"
   end
 
   create_table "questions", force: :cascade do |t|

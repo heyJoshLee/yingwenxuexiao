@@ -91,6 +91,8 @@ $(document).on("click", "#close_level_up_container", function(e) {
   });
 });
 
+// jQuery UI
+
 $(function() {
   $("#sortable_lessons").sortable({
     axis: "y",
