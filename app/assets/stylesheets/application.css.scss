@@ -366,6 +366,23 @@ ADMIN_NAV
   left: -50px;
 }
 
+#current_user_message_notification {
+  position: relative;
+  font-size: 24px;
+  color: red;
+  top: -50px;
+  left: 50px;
+}
+
+
+.color_blink {
+  animation: color_blink 3s linear infinite;
+}
+
+@keyframes color_blink {
+  0% { color: red}
+  50% { color: green }
+}
 /*********
 .vocabulary_words
 **********/
