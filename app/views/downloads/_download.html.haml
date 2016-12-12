@@ -2,7 +2,7 @@
 .row
   .container
     .col-md-8.col-md-offset-2
-      - if current_user.is_admin?
+      - if logged_in? && current_user.is_admin?
         = link_to "Edit", edit_admin_dashboard_download_path(@download)
       %h1.download_title= @download.title
       = image_tag(@download.main_image_url, class: "download_image")
