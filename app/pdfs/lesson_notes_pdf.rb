@@ -21,15 +21,19 @@ class LessonNotesPdf < Prawn::Document
 
 
   
-  def initialize(lesson)
+  def initialize(lesson, is_admin)
     @lesson = lesson
     @course = @lesson.course
+    @is_admin = is_admin
     set_fallback_fonts
   fallback_fonts(["chinese", "ipa"])
 
+
     super()
-    repeat :all do |d|
-      draw_text "www.Yingwenxuexiao.com", at: [220, 0], color: "ababab"
+    unless @is_admin
+      repeat :all do |d|
+        draw_text "www.Yingwenxuexiao.com", at: [220, 0], color: "ababab"
+      end
     end
     show_header
     course_and_lesson
@@ -53,7 +57,7 @@ class LessonNotesPdf < Prawn::Document
       row(0).column(1).style size: 10
       row(0).column(2).style size: 10
       row(0).column(3).style size: 8
-      column(0).width = 100
+      column(0).width = 100 
       column(1).width = 50
       column(2).width = 80
       column(4).width = 100
@@ -64,14 +68,22 @@ class LessonNotesPdf < Prawn::Document
   end
 
   def vocabulary_words
-    [["English", "Chinese", "IPA", "Part of Speech", "Definition", "Sentence"]] +
-    @lesson.vocabulary_words.map do |vocablary_word|
-      [vocablary_word.main, vocablary_word.chinese, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
+    if @is_admin
+      [["English", "IPA", "Part of Speech", "Definition", "Sentence"]] +
+      @lesson.vocabulary_words.map do |vocablary_word|
+        [vocablary_word.main, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
+      end
+
+    else
+      [["English", "Chinese", "IPA", "Part of Speech", "Definition", "Sentence"]] +
+      @lesson.vocabulary_words.map do |vocablary_word|
+        [vocablary_word.main, vocablary_word.chinese, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
+      end
     end
   end
 
   def show_header
-    image "#{Rails.root}/app/assets/images/english_school_logo.jpg", width: 250, height: 100, at: [10, 740]
+    image "#{Rails.root}/app/assets/images/english_school_logo.jpg", width: 250, height: 100, at: [10, 740] unless @is_admin
     text @course.name, align: :right
     text @lesson.name, align: :right
     stroke_color "00baf5"

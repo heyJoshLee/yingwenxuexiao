@@ -22,7 +22,8 @@ class LessonsController < ApplicationController
         @comment = Comment.new
       end
       format.pdf do
-        pdf = LessonNotesPdf.new(@lesson)
+        is_admin = params["admin"] == "true" ? true : false
+        pdf = LessonNotesPdf.new(@lesson, is_admin)
         send_data pdf.render, filename: "#{@course.name}: #{@lesson.lesson_number} - #{@lesson.name} Yingwenxuexiao.com",
                               type: "application/pdf",
                               disposition: "inline"
