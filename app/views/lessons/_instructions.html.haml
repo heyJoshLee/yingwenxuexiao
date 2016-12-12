@@ -1,2 +1,2 @@
-- if @lesson.instructions != ""
-  .well= @lesson.instructions
+- unless @lesson.instructions == "" || @lesson.instructions.nil? 
+  .well.lesson_instructions= @lesson.instructions

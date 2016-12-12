@@ -143,6 +143,11 @@ header li {
   border-radius: 100%;
 }
 
+.enter_class_button {
+  position: absolute;
+  bottom: 10px; 
+}
+
 .spash_highlights div {
   vertical-align: top;
 }
@@ -742,6 +747,10 @@ LESSON
 .ajax_saving {
   display: none;
   color: blue;
+}
+
+.lesson_instructions {
+  margin-top: 20px;
 }
 
 /*********
