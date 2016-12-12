@@ -1,5 +1,5 @@
 class VocabularyWord < ActiveRecord::Base
-
+  require "Roo"
   has_many :user_vocabulary_words
   has_many :users, through: :user_vocabulary_words
   belongs_to :vocabulary_wordable, polymorphic: true
@@ -22,8 +22,11 @@ class VocabularyWord < ActiveRecord::Base
   end
 
   def self.mass_import(file, course)
+
     spreadsheet = open_spreadsheet(file)
+
     header = spreadsheet.row(1)
+
     previous_vocabulary_wordable_id_real = -1
     previous_vocabulary_wordable_id_expected = -1
     
@@ -51,6 +54,7 @@ class VocabularyWord < ActiveRecord::Base
       end
 
       previous_vocabulary_wordable_id = vocabulary_word.vocabulary_wordable_id
+      vocabulary_word.vocabulary_wordable_type = "Lesson"
       vocabulary_word.save
       previous_vocabulary_wordable_id_real = vocabulary_word.vocabulary_wordable_id
     end
@@ -59,7 +63,7 @@ class VocabularyWord < ActiveRecord::Base
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+    when ".csv" then Roo::CSV.new(file.path, csv_options: {encoding: "iso-8859-1:utf-8"})
     when ".xls" then Roo::Excel.new(file.path)
     when ".xlsx" then Roo::Excelx.new(file.path)
     else raise "Unknown file type: #{file.original_filename}"
