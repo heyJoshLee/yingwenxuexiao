@@ -1,7 +1,7 @@
 .row
   - object.vocabulary_words.each do |vocabulary_word|
     .vocabulary_word_container.col-xs-3
-      - if logged_in? && current_user.is_paid_member?
+      - if logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
         - if current_user.vocabulary_words.include?(vocabulary_word)
           .col-xs-1
             %i.fa.fa-check.v_margin
@@ -13,8 +13,9 @@
           = render "vocabulary_words/word_with_tool_tip", word: vocabulary_word
       - else
         = render "vocabulary_words/word_with_tool_tip", word: vocabulary_word
-  - unless logged_in? && current_user.is_paid_member?
+  - unless logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
     %hr/
+
     .center
       %h4 Log in with a premium membership to add words to your study list.
       - if logged_in? && !current_user.is_paid_member?
