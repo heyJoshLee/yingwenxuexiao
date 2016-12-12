@@ -143,6 +143,7 @@ Rails.application.routes.draw do
         post "/import_quizzes", to: "courses#import_quizzes"
       end
       resources :lessons do
+        resources :vocabulary_words, only: [:update, :destroy]
         member do
           post "/import_quiz", to: "lessons#import_quiz"
         end

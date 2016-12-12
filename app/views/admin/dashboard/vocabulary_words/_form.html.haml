@@ -16,14 +16,9 @@
           = f.text_area :sentence
         .col-sm-6
           = f.text_area :definition
-        .col-sm-2
-          .btn.btn-primary.btn-small#find_vocabulary_word_api_search_button Find word
       %br/
       %br/
       .row
         = hidden_field_tag :vocabulary_wordable_type, "Lesson"
         = hidden_field_tag :vocabulary_wordable_id, @lesson.id
         = f.submit "Add Word", class: "btn btn-primary"
-  .col-sm-4
-    %h5 Results
-    #word_search_api_results

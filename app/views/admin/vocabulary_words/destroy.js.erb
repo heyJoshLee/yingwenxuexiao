@@ -1,0 +1,9 @@
+console.log("hi mom")
+$("#<%=@slug%>").fadeOut();
+
+$("body").append("<%= j (render partial: 'shared/notification', locals: { message: 'Vocabulary Word Destroyed'  } ) %>")
+$("#notification").fadeIn("slow", function() {
+  $(this).fadeOut("slow");
+});
+console.log("end")
+
