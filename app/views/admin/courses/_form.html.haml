@@ -26,6 +26,7 @@
   %h2 Mass upload Vocabulary Words for course
 
   %p Words must contain all attributes plus vocabulary_wordable_type as "Lesson" and vocabulary_wordable_id. Words in the spreedsheet must be grouped by lesson. Words with a vocabulary_wordable_id that matches the previous word will be put into the same lesson. If you want to create a new lesson, then just make the id something large like "1000".
+  %strong USE an xlsx file!!!!!!
   = form_tag import_vocabulary_words_admin_course_path, multipart: true do
     = file_field_tag :file
     = hidden_field_tag :course_id, @course.slug

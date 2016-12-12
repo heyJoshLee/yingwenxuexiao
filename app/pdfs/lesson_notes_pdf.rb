@@ -1,8 +1,6 @@
 # coding: utf-8
 
-
 class LessonNotesPdf < Prawn::Document
-
 
   def set_fallback_fonts
     chinese_path = "app/fonts/chinese.ttf"
@@ -11,6 +9,12 @@ class LessonNotesPdf < Prawn::Document
                                     bold: chinese_path,
                                     italic: chinese_path,
                                     bold_italic: chinese_path})
+    arial_path = "app/fonts/arial.ttf"
+
+    font_families.update("arial" => {normal: arial_path,
+                                    bold: arial_path,
+                                    italic: arial_path,
+                                    bold_italic: arial_path})
     ipa_path = "app/fonts/ipa.ttf"
 
     font_families.update("ipa" => {normal: ipa_path,
@@ -26,22 +30,17 @@ class LessonNotesPdf < Prawn::Document
     @course = @lesson.course
     @is_admin = is_admin
     set_fallback_fonts
-  fallback_fonts(["chinese", "ipa"])
+  fallback_fonts(["chinese", "ipa", "arial"])
 
 
     super()
-    unless @is_admin
-      repeat :all do |d|
-        draw_text "www.Yingwenxuexiao.com", at: [220, 0], color: "ababab"
-      end
+    repeat :all do |d|
+      draw_text "www.Yingwenxuexiao.com", at: [220, 0], color: "ababab"
     end
     show_header
     course_and_lesson
     vocabulary_table
   end
-
-   
-
 
   def course_and_lesson
     text "#{@course.name}: #{@lesson.name}", size: 30, style: :bold, align: :center
@@ -73,7 +72,6 @@ class LessonNotesPdf < Prawn::Document
       @lesson.vocabulary_words.map do |vocablary_word|
         [vocablary_word.main, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
       end
-
     else
       [["English", "Chinese", "IPA", "Part of Speech", "Definition", "Sentence"]] +
       @lesson.vocabulary_words.map do |vocablary_word|
