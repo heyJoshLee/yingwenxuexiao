@@ -239,7 +239,10 @@ class User < ActiveRecord::Base
   end
 
   def advance_level_if_enough_points
-    next_level =  Level.find_by(number: level + 1)
+    next_level =  Level.where(number: level + 1).first
+    if next_level.nil?
+      next_level = {number: 1, points: 10000}
+    end
     update_column(:level, next_level.number) if points >= next_level.points
   end
 
