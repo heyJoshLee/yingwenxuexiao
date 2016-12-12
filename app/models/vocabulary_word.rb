@@ -1,5 +1,4 @@
 class VocabularyWord < ActiveRecord::Base
-  require "Roo"
   has_many :user_vocabulary_words
   has_many :users, through: :user_vocabulary_words
   belongs_to :vocabulary_wordable, polymorphic: true
