@@ -69,12 +69,12 @@ class LessonNotesPdf < Prawn::Document
   def vocabulary_words
     if @is_admin
       [["English", "IPA", "Part of Speech", "Definition", "Sentence"]] +
-      @lesson.vocabulary_words.map do |vocablary_word|
+      @lesson.vocabulary_words.reverse.map do |vocablary_word|
         [vocablary_word.main, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
       end
     else
       [["English", "Chinese", "IPA", "Part of Speech", "Definition", "Sentence"]] +
-      @lesson.vocabulary_words.map do |vocablary_word|
+      @lesson.vocabulary_words.reverse.map do |vocablary_word|
         [vocablary_word.main, vocablary_word.chinese, vocablary_word.ipa, vocablary_word.part_of_speech, vocablary_word.definition, vocablary_word.sentence]
       end
     end
