@@ -1,6 +1,7 @@
 class Lesson < ActiveRecord::Base
   include Bootsy::Container
   belongs_to :course
+  belongs_to :unit
   
   has_many :grades
   has_many :lessons, through: :grades
@@ -17,7 +18,6 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments, -> {order("created_at DESC")}, as: :commentable
   has_many :vocabulary_words, -> {order("created_at DESC")}, as: :vocabulary_wordable
-
 
 
   def has_quiz?

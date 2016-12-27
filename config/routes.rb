@@ -136,6 +136,7 @@ Rails.application.routes.draw do
       get "/", to: "dashboard#index"
     end
     resources :courses do
+      resources :units
       member do
         get "/rearrange", to: "courses#rearrange"
         post "/rearrange", to: "courses#post_rearrange"

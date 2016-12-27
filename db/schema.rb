@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121075249) do
+ActiveRecord::Schema.define(version: 20161227070000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20161121075249) do
     t.integer  "lesson_number"
     t.text     "instructions"
     t.boolean  "published",      default: false
+    t.integer  "unit_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -284,6 +285,15 @@ ActiveRecord::Schema.define(version: 20161121075249) do
     t.string   "name"
     t.text     "body"
     t.string   "slug"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "slug"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "user_questions", force: :cascade do |t|

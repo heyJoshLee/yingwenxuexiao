@@ -16,6 +16,9 @@ class Course < ActiveRecord::Base
   has_many :course_course_levels
   has_many :course_levels, through: :course_course_levels
 
+  has_many :units, -> {order("position ASC")}
+
+
   def to_param
     self.slug
   end
