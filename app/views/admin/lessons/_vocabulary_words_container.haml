@@ -39,3 +39,6 @@
           %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
         .modal-body
           = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @lesson.class.to_s, vocabulary_wordable_id: @lesson.id 
+
+- if @lesson.new_record?
+  %p When creating a new lesson, it will be added to the last unit in the course.

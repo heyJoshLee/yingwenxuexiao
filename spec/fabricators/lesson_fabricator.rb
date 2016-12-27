@@ -5,7 +5,7 @@ Fabricator(:lesson) do
   video_url { Faker::Internet.url }
   notes_url { Faker::Internet.url }
   description { Faker::Lorem.paragraph }
-  course_id { 1 }
+  course_id { Fabricate(:course).id }
   slug { Faker::Lorem.word}
   lesson_number { (1..100).to_a.sample }
 end

@@ -1,7 +1,7 @@
 class Admin::UnitsController < AdminController
 
-  before_action :set_unit, only: [:show, :update, :edit]
-  before_action :set_course, only: [:create]
+  before_action :set_unit, only: [:show, :update, :edit, :destroy]
+  before_action :set_course, only: [:create, :destroy]
   
   def new
     @unit = Unit.new
@@ -22,10 +22,17 @@ class Admin::UnitsController < AdminController
   end
 
 
+  def destroy
+    @unit.destroy
+    flash[:success] = "Unit was deleted."
+    redirect_to rearrange_admin_course_path(@course)
+  end
+
+
   def update
-    if @unit.update(@unit_params)
+    if @unit.update(unit_params)
       flash[:success] = "unit was saved"
-      redirect_to unit_path(@unit)
+      redirect_to rearrange_admin_course_path(@unit.course)
     else
       flash.now[:danger] = "There was a problem and the unit was not saved"
       render :edit

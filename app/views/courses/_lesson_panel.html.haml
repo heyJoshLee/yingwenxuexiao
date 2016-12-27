@@ -1,7 +1,7 @@
 #lesson_panel
   %h4 Lessons
   %ul
-    %li
+    %li.course_intro_in_lesson_panel
       .row
         .col-xs-6.col-xs-offset-3
           - if current_user.is_admin?
@@ -10,26 +10,37 @@
           - else
             = link_to course_path(@course) do
               Course Intro
-
     - if logged_in? && current_user.is_admin?
-      - @course.lessons.each do |lesson|
-        %li{class: ("current_lesson" if @lesson && @lesson.id == lesson.id)}
-          .row
-            .col-xs-6.col-xs-offset-1
-              =link_to "Lesson - #{lesson.lesson_number} - id: #{lesson.id} ", course_lesson_path(@course, lesson)
-            .col-xs-2
-              - unless lesson.published
-                NP
-            .col-xs-2
-              - if current_user.completed_lesson?(lesson)
-                %i.fa.fa-check
+      .accordion
+        - @course.units.each do |unit|
+          - next unless unit.has_lessons?
+          %h6.unit_header_in_lesson_panel{class: ("current_lesson" if @lesson && @lesson.unit_id == unit.id)}=unit.name
+          %div.lesson_link_in_lesson_panel
+            %ol
+              - unit.lessons.each do |lesson|
+                %li{class: ("current_lesson" if @lesson && @lesson.id == lesson.id)}
+                  .row
+                    .col-xs-6.col-xs-offset-1
+                      =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
+                    .col-xs-2
+                      - unless lesson.published
+                        NP
+                    .col-xs-2
+                      - if current_user.completed_lesson?(lesson)
+                        %i.fa.fa-check
     - else
-      - @course.published_lessons.each do |lesson|
-        %li{class: ("current_lesson" if @lesson && @lesson.id == lesson.id)}
-          .row
-            .col-xs-6.col-xs-offset-3
-              =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
-            .col-xs-2
-              - if current_user.completed_lesson?(lesson)
-                %i.fa.fa-check
+      .accordion
+        - @course.units.each do |unit|
+          -next unless unit.has_published_lessons?
+          %h6{style: "color: black"}=unit.name
+          %div.lesson_link_in_lesson_panel
+            %ol
+              - unit.published_lessons.each do |lesson|
+                %li{class: ("current_lesson" if @lesson && @lesson.id == lesson.id)}
+                  .row
+                    .col-xs-6.col-xs-offset-3
+                      =link_to "Lesson - #{lesson.lesson_number} ", course_lesson_path(@course, lesson)
+                    .col-xs-2
+                      - if current_user.completed_lesson?(lesson)
+                        %i.fa.fa-check
 

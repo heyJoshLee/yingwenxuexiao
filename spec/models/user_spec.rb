@@ -356,8 +356,8 @@ describe User do
   end
 
   describe "#next_lesson_in_course(course)" do
-    let(:user) { Fabricate(:user) }
-    let(:course) { Fabricate(:course, name: "Business English", id: 1) }
+    let!(:user) { Fabricate(:user) }
+    let!(:course) { Fabricate(:course, name: "Business English", id: 1) } 
 
       let!(:lesson_1) { Fabricate(:lesson, course_id: 1, lesson_number: 1) }
       let!(:lesson_2) { Fabricate(:lesson, course_id: 1, lesson_number: 2) }

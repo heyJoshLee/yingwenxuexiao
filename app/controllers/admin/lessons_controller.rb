@@ -16,13 +16,6 @@ class Admin::LessonsController < AdminController
 
     @lesson.lesson_number = next_lesson_number
 
-    if @course.units.empty?
-      unit_id = Unit.create(name: "Unit One", position: 1, course_id: @course.id).id 
-    else
-      unit_id = @course.units.last.id
-    end
-
-    @lesson.unit_id = unit_id 
 
     if @lesson.save
       flash[:success] = "lesson was saved"
@@ -53,8 +46,13 @@ class Admin::LessonsController < AdminController
       unit_position = params[:lesson][:unit_id].to_i
       unit = Unit.where(position: unit_position, course_id: @course.id).first
       @lesson.update_column(:unit_id, unit.id )
-      flash[:success] = "Lesson unit updated"
-      redirect_to rearrange_admin_course_path(@course)
+
+      if @lesson.update(lesson_params)
+        flash[:success] = "Lesson unit updated"
+        redirect_to rearrange_admin_course_path(@course)
+      else
+        flash[:danger] = "There was an error and your Lesson was not saved"
+      end
     
     else
       if @lesson.update(lesson_params)
