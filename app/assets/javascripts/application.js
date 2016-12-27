@@ -94,7 +94,9 @@ $(document).on("click", "#close_level_up_container", function(e) {
 // jQuery UI
 
 $(function() {
-  $("#sortable_lessons").sortable({
+    // $("#sortable_lessons").sortable({
+
+  $(".sortable_lessons").sortable({
     axis: "y",
     update: function() {
       $("#saving").fadeIn();
@@ -103,6 +105,12 @@ $(function() {
       })
     }
   });
+
+    $( ".accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false
+    });
 });
 
 

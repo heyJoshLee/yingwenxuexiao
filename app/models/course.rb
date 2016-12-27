@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
-  has_many :lessons, -> {order("lesson_number ASC")}
+  after_create :create_unit
+
 
   mount_uploader :main_image_url, CourseMainImageUploader
 
@@ -15,6 +16,12 @@ class Course < ActiveRecord::Base
 
   has_many :course_course_levels
   has_many :course_levels, through: :course_course_levels
+
+
+  has_many :units, -> {order("position ASC")}
+  has_many :lessons, -> {order("lesson_number ASC")}
+
+
 
   def to_param
     self.slug
@@ -41,6 +48,10 @@ class Course < ActiveRecord::Base
     end
    lessons.destroy_all
    self.destroy
+  end
+
+  def create_unit
+    Unit.create(name: "Generated First Unit", position: 1, course_id: self.id)
   end
 
 

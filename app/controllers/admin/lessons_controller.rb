@@ -13,7 +13,10 @@ class Admin::LessonsController < AdminController
   def create
     @lesson = @course.lessons.build(lesson_params)
     next_lesson_number = @course.lessons.count + 1
+
     @lesson.lesson_number = next_lesson_number
+
+
     if @lesson.save
       flash[:success] = "lesson was saved"
       redirect_to admin_course_lesson_path(@course, @lesson)
@@ -38,12 +41,28 @@ class Admin::LessonsController < AdminController
   end
 
   def update
-    if @lesson.update(lesson_params)
-      flash[:success] = "Lesson saved"
-      redirect_to course_lesson_path(@course, @lesson)
+
+    if !params[:lesson][:unit_id].nil?
+      unit_position = params[:lesson][:unit_id].to_i
+      unit = Unit.where(position: unit_position, course_id: @course.id).first
+      @lesson.update_column(:unit_id, unit.id )
+
+      if @lesson.update(lesson_params)
+        flash[:success] = "Lesson unit updated"
+        redirect_to rearrange_admin_course_path(@course)
+      else
+        flash[:danger] = "There was an error and your Lesson was not saved"
+      end
+    
     else
-      flash[:danger] = "There was an error and your Lesson was not saved"
-      render :edit
+      if @lesson.update(lesson_params)
+        flash[:success] = "Lesson saved"
+        redirect_to course_lesson_path(@course, @lesson)
+
+      else
+        flash[:danger] = "There was an error and your Lesson was not saved"
+        render :edit
+      end
     end
   end
 

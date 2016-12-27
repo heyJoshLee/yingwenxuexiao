@@ -21,10 +21,23 @@ class Admin::CoursesController < AdminController
     redirect_to admin_courses_path
   end
 
+
+
   def post_rearrange
+    lessons = []
+
     params[:lesson].each_with_index do |id, index|
-      Lesson.find(id.to_i).update_attributes!(lesson_number: index + 1)
+      lessons << Lesson.find(id.to_i)
+      # Lesson.find(id.to_i).update_attributes!(lesson_number: index + 1)
     end
+
+    starting_lesson_number = lessons.map(&:lesson_number).sort.first
+
+    params[:lesson].each_with_index do |id, index|
+      lessons << Lesson.find(id.to_i)
+      Lesson.find(id.to_i).update_attributes!(lesson_number: index + starting_lesson_number)
+    end
+
     respond_to do |format|
       format.js { render :nothing => true }
     end
@@ -51,11 +64,16 @@ class Admin::CoursesController < AdminController
     end
   end
 
+  def rearrange
+    @unit = Unit.new
+  end
+
   def import_quizzes
     Quiz.mass_import(params[:file], nil, @course)
     flash[:success] = "Quizzes imported."
     redirect_to edit_admin_course_path(@course)
   end
+
 
   private
 

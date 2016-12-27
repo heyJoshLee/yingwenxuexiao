@@ -702,6 +702,21 @@ LESSON_PANEL
 }
 
 #lesson_panel li {
+  border-top: 1px solid white;
+}
+
+.lesson_link_in_lesson_panel {
+  color: black;
+  overflow: auto;
+  background: rgba(20, 20, 20, 0.1)
+}
+
+.lesson_link_in_lesson_panel ol {
+  padding: 0;
+}
+
+.course_intro_in_lesson_panel,
+.unit_header_in_lesson_panel  {
   text-align: center;
   font-weight: bold;
   height: 30px;
@@ -709,7 +724,15 @@ LESSON_PANEL
   padding-top: 5px;
   background-color: rgba(0,182,245, 1);
   border: 1px solid rgba(0,182,245, 1);
-  
+}
+
+.unit_header_in_lesson_panel {
+  margin: 0;
+  border-top: 1px solid white;
+}
+
+.unit_header_in_lesson_panel:hover {
+  cursor: pointer;
 }
 
 #lesson_panel li:hover {

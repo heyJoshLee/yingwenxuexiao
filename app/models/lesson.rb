@@ -1,6 +1,7 @@
 class Lesson < ActiveRecord::Base
   include Bootsy::Container
   belongs_to :course
+  belongs_to :unit
   
   has_many :grades
   has_many :lessons, through: :grades
@@ -9,6 +10,7 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
 
   before_create :generate_random_slug
+  after_create :assign_unit
 
   has_one :quiz
 
@@ -19,18 +21,28 @@ class Lesson < ActiveRecord::Base
   has_many :vocabulary_words, -> {order("created_at DESC")}, as: :vocabulary_wordable
 
 
-
   def has_quiz?
     quiz.nil? ? false : true
-  end
-
-  def generate_random_slug
-    self.slug = SecureRandom.urlsafe_base64
   end
 
   def to_param
     self.slug
   end
+
+
+  private 
+
+  def generate_random_slug
+    self.slug = SecureRandom.urlsafe_base64
+  end
+
+  def assign_unit
+    # Assign to course's last unit, creates unit if no units
+    unit_id = course.units.empty? ? Unit.create(name: "Unit One", position: 1, course_id: course.id).id : course.units.last.id
+    update_column(:unit_id, unit_id )
+  end
+
+
 
 
 end
