@@ -1,3 +1,4 @@
+
 .row
   .col-sm-8
     = bootstrap_form_for [:admin, :dashboard, @vocabulary_word ||= VocabularyWord.new] do |f|
@@ -20,5 +21,5 @@
       %br/
       .row
         = hidden_field_tag :vocabulary_wordable_type, "Lesson"
-        = hidden_field_tag :vocabulary_wordable_id, @lesson.id
+        = hidden_field_tag :vocabulary_wordable_id, @lesson.id || @article.id
         = f.submit "Add Word", class: "btn btn-primary"

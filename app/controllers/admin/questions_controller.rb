@@ -8,13 +8,15 @@ class Admin::QuestionsController < AdminController
 
   def create
     @question = @quiz.questions.build(question_params)
-
     if @question.save
       flash[:success] = "question was saved"
-      redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+      # redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
     else
       flash.now[:danger] = "There was a problem and the question was not saved"
-      render :new
+      # render :new
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -22,8 +24,11 @@ class Admin::QuestionsController < AdminController
     @question.destroy
     UserQuestion.destroy_all(question_id: @question.id)
     Choice.destroy_all(question_id: @question.id)
-    flash[:success] = "Question was deleted."
-    redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+    # flash[:success] = "Question was deleted."
+    # redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+    respond_to do |format|
+      format.js 
+    end
   end
 
   private

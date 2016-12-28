@@ -885,6 +885,8 @@ QUIZ
 }
 
 .question_choices {
+  padding: 0;
+  margin: 0;
 }
 
 .question_choice input[type="radio"] {
@@ -893,6 +895,9 @@ QUIZ
 
 .question_choices ol li {
   list-style: decimal;
+}
+.question_choice .col-sm-6 {
+  margin-left: 10px;
 }
 
 .choice_body {
