@@ -3,7 +3,6 @@
 # update flash cards to effect user stats
 # show cards based on recall time
 # different recall types
-# Course previews shorten text
-# Generate notes pdf with prawn
-  # if notes = create then create dynamically
-  else use a link from AWS
+# write more tests
+# Units, create quiz / vocab import for unit, have unit option when creating lesson
+# Redo lesson numbers to reflect unit addition
