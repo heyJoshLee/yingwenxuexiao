@@ -5,47 +5,14 @@
   .container
     .row
       %h5 New Question
-      = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question]) do |f|
+      = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question], remote: true) do |f|
         = f.text_area :body
         .row
           .col-sm-2
-            = f.text_field :value
+            = f.text_field :value, value: 10
         = f.submit "Add Question", class: "btn btn-primary"
     .col-sm-7
       %h5 Questions for this lesson:
-      - @quiz.questions.order("created_at DESC").each do |question|
-        .quiz_question 
-          .row
-            .col-sm-8
-              = question.body
-            .col-sm-4
-              = "Value: #{question.value}"
-          .question_choices
-            %ol
-              - question.choices.each do |choice|
-                %li.question_choice
-                  .row
-                    .col-sm-8
-                      = choice.body
-                    .col-sm-2
-                      - if choice.correct?
-                        %i.fa.fa-check.green-bkg
-                      - else
-                        %strong.red_x X
-                    .col-sm-2
-                      = link_to "Delete", admin_course_lesson_quiz_question_choice_path(@course, @lesson, @quiz, question, choice), method: "DELETE", data: {confirm: "Are you sure you want to delete this choice?"}
-
-            .row
-          = bootstrap_form_for [:admin, @course, @lesson, @quiz, question, @choice] do |f|
-            = f.text_field :body
-            .row
-              .col-sm-6
-                = label :correct, 'Correct Answer'
-                = f.radio_button :correct, true, class: "radio-inline"
-              .col-sm-6
-                = label :correct, 'Not Correct Answer'
-                = f.radio_button :correct, false, class: "radio-inline"
-            = f.submit "Add choice", class: "btn btn-primary"
-            = link_to admin_course_lesson_quiz_question_path(@course, @lesson, @quiz, question), method: "DELETE" do
-              .btn.btn-danger.pull-right Delete Question
-
+      #editing_questions_container
+        - @quiz.questions.order("created_at DESC").each do |question|
+          = render "question", question: question

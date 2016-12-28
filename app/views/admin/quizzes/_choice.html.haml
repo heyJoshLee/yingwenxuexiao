@@ -1,0 +1,11 @@
+%li.question_choice{id: "choice-#{choice.id}"}
+  .row
+    .col-sm-6
+      = choice.body
+    .col-sm-2
+      - if choice.correct?
+        %i.fa.fa-check.green-bkg
+      - else
+        %strong.red_x X
+    .col-sm-2
+      = link_to "Delete", admin_course_lesson_quiz_question_choice_path(@course, @lesson, @quiz, question, choice), method: "DELETE", remote: true, data: {confirm: "Are you sure you want to delete this choice?"}
