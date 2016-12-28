@@ -1,7 +1,7 @@
 .quiz_question{id: "question-#{question.slug}"}
   .row
     .col-sm-8
-      = question.body
+      = question.body.html_safe
     .col-sm-4
       = "Value: #{question.value}"
     %ol.question_choices

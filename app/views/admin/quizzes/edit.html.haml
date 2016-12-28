@@ -6,7 +6,7 @@
     .row
       %h5 New Question
       = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question], remote: true) do |f|
-        = f.text_area :body
+        = f.bootsy_area :body, class: "form-control", rows: 5
         .row
           .col-sm-2
             = f.text_field :value, value: 10
