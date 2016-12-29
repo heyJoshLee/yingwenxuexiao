@@ -30,6 +30,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
+  config.assets.precompile += %w( *.js ^[^_]*.css *.css.erb )
 
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
@@ -69,9 +70,12 @@ config.action_mailer.smtp_settings = {
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'yingwenxuexiao.com', #eg: 'yourappname.herokuapp.com'
+    :domain         => 'www.yingwenxuexiao.com', #eg: 'yourappname.herokuapp.com'
     :authentication => :plain,
   }
+
+  config.action_mailer.default_url_options = { host: "www.yingwenxuexiao.com"}
+
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -85,4 +89,7 @@ config.action_mailer.smtp_settings = {
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Route exceptions to the application router vs. default
+  config.exceptions_app = self.routes
 end

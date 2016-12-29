@@ -7,6 +7,8 @@
     %td Ipa
     %td Definition
     %td Sample Sentence
+    - if current_user.is_admin?
+      %td Review Time
   %tbody
     - @user.vocabulary_words.each do |word|
       %tr
@@ -17,10 +19,20 @@
         %td
           %h5= word.part_of_speech
         %td
-          %h5= word.ipa
+          .row
+            .col-xs-2
+              %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.main}}
+            .col-xs-10
+              %h5= word.ipa
         %td
           %h5= word.definition
         %td
-          %h5= word.sentence
+          .row
+            .col-xs-2
+              %i.glyphicon.glyphicon-play-circle.vocab_speach_button{data: {word: word.sentence}}
+            .col-xs-10
+              %h5= word.sentence
+        - if current_user.is_admin?
+          %td= current_user.user_vocabulary_words.find_by(vocabulary_word_id: word.id).review_time
 
 

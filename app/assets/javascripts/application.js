@@ -11,17 +11,39 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
 //= require bootsy
 //= require_tree .
 
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-39639798-7', 'auto');
+ga('send', 'pageview');
+
+$(document).on("click", ".vocab_tool_tip_launcher", function(e) {
+  e.preventDefault();
+  $(this).next().fadeToggle();
+});
+
+$(document).on("click", ".vocab_speach_button", function(e) {
+  console.log("clicked");
+  console.log($(this).attr("data-word"));
+  var word_to_say = $(this).attr("data-word");
+  var msg = new SpeechSynthesisUtterance(word_to_say);
+  window.speechSynthesis.speak(msg);
+});
 
 $(document).on("click", ".choice_radio_button", function(e) {
   $(e.target).parent().parent().parent().find(".choice_body").removeClass("selected_choice");
   $(e.target).parent().parent().find(".choice_body").toggleClass("selected_choice")
 });
+
 
 $(document).on("click", "#start_talking", function() {
   var recognition = new webkitSpeechRecognition();
@@ -40,7 +62,7 @@ $(document).on("click", "#start_talking", function() {
   recognition.onresult = function(e) {
     console.log(e.results[0][0].transcript)
 
-    console.log("result")
+    console.log("result");
 
     recognition.stop();
   }
@@ -56,7 +78,7 @@ $(document).on("click", ".comment_reply_launcher", function(e) {
 });
 
 $(document).on("click", ".membership_level_choice_div", function(e) {
-  console.log("click")
+  console.log("click");
   var $target = $(e.target);
   console.log($target.next("input"))
   $target.next("input").click();
@@ -69,17 +91,39 @@ $(document).on("click", "#close_level_up_container", function(e) {
   });
 });
 
-$('.timestring').each(function() {
-  this.textContent = moment(this.textContent).format('lll');
+// jQuery UI
+
+$(function() {
+    // $("#sortable_lessons").sortable({
+
+  $(".sortable_lessons").sortable({
+    axis: "y",
+    update: function() {
+      $("#saving").fadeIn();
+      $.post($(this).data("update-url"), $(this).sortable("serialize")).done(function() {
+        $("#saving").fadeOut();
+      })
+    }
+  });
+
+    $( ".accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false
+    });
 });
+
+
 
 // practice
 
-  // change options - study type
-  $(document).on("click", ".practice_option_checkbox", function(e) {
-    console.log($(e.target));
-    $("#practice_options_form").submit();
+
+
+$(document).on("click", ".flash_card_study_option_button", function(e) {
+    $(".flash_card_study_option_button").removeClass("checked");
+    $(e.target).addClass("checked");
   });
+
 
 
 // $(document).on("click", "#find_vocabulary_word_api_search_button", function() {

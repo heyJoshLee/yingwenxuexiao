@@ -1,0 +1,4 @@
+$("body").append("<%= j (render partial: 'shared/notification', locals: { message: 'Edit Saved'  } ) %>")
+$("#notification").fadeIn("slow", function() {
+  $(this).fadeOut("slow");
+});

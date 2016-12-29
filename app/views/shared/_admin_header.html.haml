@@ -16,8 +16,14 @@
         .col-sm-1
           = link_to "Add Article", new_admin_article_path
         .col-sm-1
-          = link_to "Article Topicw", admin_article_topics_path
+          = link_to "Article Topic", admin_article_topics_path
         .col-sm-1
           = link_to "Downloads", admin_dashboard_downloads_path
         .col-sm-2
           = link_to "Affiliates", admin_dashboard_affiliates_path
+        .col-sm-1
+          = link_to admin_dashboard_comment_notifications_path do
+            - if unread_notifications_count > 0
+              .notifications_circle= unread_notifications_count
+            - else
+              .notifications_circle.green-bkg= unread_notifications_count

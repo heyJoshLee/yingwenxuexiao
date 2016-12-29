@@ -1,12 +1,11 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new, :edit, :update, :show]
-  before_action :set_lesson, only: [:show, :edit, :update]
+  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy, :import_quiz]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :import_quiz]
   before_action :set_quiz, only: [:show]
 
-  before_action :course_breadcrumb
+  before_action :course_breadcrumb, except: [:import_vocabulary_words, :import_quiz]
 
-  
   def new
     @lesson = Lesson.new
   end
@@ -14,7 +13,10 @@ class Admin::LessonsController < AdminController
   def create
     @lesson = @course.lessons.build(lesson_params)
     next_lesson_number = @course.lessons.count + 1
+
     @lesson.lesson_number = next_lesson_number
+
+
     if @lesson.save
       flash[:success] = "lesson was saved"
       redirect_to admin_course_lesson_path(@course, @lesson)
@@ -24,18 +26,60 @@ class Admin::LessonsController < AdminController
     end
   end
 
- def update
-    if @lesson.update(lesson_params)
-      flash[:success] = "Lesson saved"
-      redirect_to course_lesson_path(@course, @lesson)
+  def destroy
+    if @lesson.has_quiz?
+      @lesson.quiz.questions.each do |question|
+        question.choices.destroy_all
+        question.destroy
+      end
+    end
+    @lesson.comments.destroy_all
+    @lesson.destroy
+
+    flash[:success] = "Lesson destroyed."
+    redirect_to admin_course_path(@course)
+  end
+
+  def update
+
+    if !params[:lesson][:unit_id].nil?
+      unit_position = params[:lesson][:unit_id].to_i
+      unit = Unit.where(position: unit_position, course_id: @course.id).first
+      @lesson.update_column(:unit_id, unit.id )
+
+      if @lesson.update(lesson_params)
+        flash[:success] = "Lesson unit updated"
+        redirect_to rearrange_admin_course_path(@course)
+      else
+        flash[:danger] = "There was an error and your Lesson was not saved"
+      end
+    
     else
-      flash[:danger] = "There was an error and your Lesson was not saved"
-      render :edit
+      if @lesson.update(lesson_params)
+        flash[:success] = "Lesson saved"
+        redirect_to course_lesson_path(@course, @lesson)
+
+      else
+        flash[:danger] = "There was an error and your Lesson was not saved"
+        render :edit
+      end
     end
   end
 
   def show
     add_breadcrumb @lesson.name, admin_course_lesson_path(@course, @lesson)
+  end
+
+  def import_vocabulary_words
+    VocabularyWord.mass_import(params[:file], @course)
+    flash[:success] = "Words imported."
+    redirect_to edit_admin_course_path(@course)
+  end
+
+  def import_quiz
+    Quiz.mass_import(params[:file], @lesson)
+    flash[:success] = "Quiz imported."
+    redirect_to edit_admin_course_lesson_path(@course, @lesson)
   end
 
   private
@@ -58,7 +102,7 @@ class Admin::LessonsController < AdminController
   end
 
   def lesson_params
-    params.require(:lesson).permit!
+    params.require(:lesson).permit(:bootsy_image_gallery_id, :name, :script_english, :script_chinese, :video_url, :notes_url, :description, :course_id, :lesson_number, :published, :instructions)
   end
 
 end

@@ -16,6 +16,7 @@ class EmailSignupsController < ApplicationController
       if params[:download_id]
         @download_link = DownloadLink.create(email: @email_signup.email, download_id: params[:download_id]) if params[:download_id]
         @download_link.send_email
+
         render :download_confirm
       else
         render :confirm

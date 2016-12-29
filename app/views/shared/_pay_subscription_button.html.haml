@@ -1,0 +1,29 @@
+/ %section.v_margin.center
+/   - if !logged_in?
+/     %h1 Sign up for a Premium Membership today
+/     .btn.btn-primary Sign Up
+/   - elsif logged_in? && !current_user.is_paid_member? 
+/     %h1 Upgrade account
+/     .btn.btn-primary Upgrade Now
+/   - elsif logged_in? && current_user.is_paid_member?
+/     .well You already have a premium membership.
+
+.row
+  .container
+    .col-xs-12.col-sm-offset-3.col-lg-offset-4
+      - if logged_in? && current_user.is_paid_member?
+        %h5 You are already a premium member
+        = link_to courses_path do
+          .btn.btn-primary Go to class
+      - elsif logged_in? && !current_user.is_paid_member? 
+        = form_tag subscribers_path do
+          %article
+            - if flash[:error].present?
+              #error_explanation
+                %p= flash[:error]
+            %label.amount
+              %span Amount: $100.00
+          %script.stripe-button{"data-alipay" => "true", "data-amount" => "10000", "data-currency" => "usd", "data-description" => "A month's subscription", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "Upgrade Now", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
+      - else
+        = link_to sign_up_path do
+          .btn.btn-xlarge.btn-primary Sign up now

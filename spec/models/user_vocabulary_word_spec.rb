@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UserVocabularyWord do
+describe UserVocabularyWord do 
 
   describe "#choices(type)" do
     let(:user) { Fabricate(:user) }
@@ -8,6 +8,8 @@ describe UserVocabularyWord do
     let(:vocabulary_word_2) { Fabricate(:vocabulary_word) }
     let(:vocabulary_word_3) { Fabricate(:vocabulary_word) }
     let(:vocabulary_word_4) { Fabricate(:vocabulary_word) }
+
+    # User adds 4 vocab words to his bank.
 
     before do
       user.add_vocabulary_word(vocabulary_word_1)
@@ -39,6 +41,7 @@ describe UserVocabularyWord do
 
     context ":chinese_to_english" do
       it "returns an array of four strings" do
+        skip
         expect(user.user_vocabulary_words.first.choices(:chinese_to_english).count).to eq(4)
       end
 
@@ -73,12 +76,10 @@ describe UserVocabularyWord do
 
     context ":spelling" do
       it "returns an array of four strings" do
-        skip
         expect(user.user_vocabulary_words.first.choices(:spelling).count).to eq(4)
       end
 
       it "returns an array that contains the correct spelling" do
-        skip
         expect(user.user_vocabulary_words.first.choices(:spelling)).to include(vocabulary_word_1.main)
       end
 

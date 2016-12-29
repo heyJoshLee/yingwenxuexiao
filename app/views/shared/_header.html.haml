@@ -26,27 +26,30 @@
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right.nav-links
           %li
-            %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Free Gift
+            %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} 免费礼物
+            / Free Gift
           %li
             = link_to "Blog", blog_path
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "Free Stuff", blog_path
+            = link_to "免费", free_path # Free Stuff
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "Courses", courses_path
+            = link_to "游戏", games_path # Games Stuff
+          %li
+            = link_to "课程", courses_path # Courses
           %li.hidden-sm.hidden-md.hidden-lg
             - if logged_in? && current_user.is_paid_member?
-              = link_to "My Words", my_words_path
+              = link_to "My Words", my_words_path # My Words
             - else
-              = link_to "Premium Membership", upgrade_path
+              = link_to "高级会员", upgrade_path # Premium Membership
           %li
             - if logged_in?
-              = link_to "Sign Out", sign_out_path
+              = link_to "登出", sign_out_path # Sign Out
             - else
-              = link_to "Sign In", sign_in_path
+              = link_to "登入", sign_in_path # Sign In
           %li
             - if logged_in?
-              = link_to "Account", account_path
+              = link_to "我的帐号", account_path # My Account
             - else
-              = link_to "Sign Up", sign_up_path
+              = link_to "注册", sign_up_path # Sign Up
       / /.navbar-collapse
     / /.container-fluid

@@ -4,13 +4,14 @@
   - course.course_levels.each do |course_level|
     = link_to course_level_path(course_level) do
       .badge{style: "background-color: #{course_level.color}" }= course_level.name
-  %br/
-  %br/
-  %p= course.description
-  - if logged_in? && current_user.is_paid_member?
+  %p= course.preview_text[1..105] unless course.preview_text.nil?
+  - if logged_in? && current_user.is_admin?
+    = link_to admin_course_path(course) do
+      .btn.btn-primary.enter_class_button Edit Class
+  - elsif logged_in? && current_user.is_paid_member?
     - if current_user.is_enrolled_in?(course)
-      .btn.btn-primary.v_margin
-        = link_to "Go to class", course_path(course)
+      .btn.btn-primary.v_margin.enter_class_button
+        = link_to "Go to class", course_lesson_path(course, current_user.next_lesson_in_course(course))
     - else
-      .btn.btn-success.v_margin
+      .btn.btn-success.v_margin.enter_class_button
         = link_to "Enroll In Class", enroll_course_path(course), method: "post"

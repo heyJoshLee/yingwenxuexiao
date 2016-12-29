@@ -9,7 +9,6 @@ class PagesController < ApplicationController
     render layout: "upgrade"
   end
 
-
   def careers
     add_breadcrumb "Careers"
   end

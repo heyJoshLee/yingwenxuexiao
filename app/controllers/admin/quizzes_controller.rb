@@ -1,8 +1,8 @@
 class Admin::QuizzesController < AdminController
 
-  before_action :set_quiz, only: [:show, :update, :edit]
-  before_action :set_lesson, only: [:show, :update, :edit, :new, :create]
-  before_action :set_course, only: [:show, :update, :edit, :new, :create]
+  before_action :set_quiz, only: [:show, :update, :edit, :destroy]
+  before_action :set_lesson, only: [:show, :update, :edit, :new, :create, :destroy]
+  before_action :set_course, only: [:show, :update, :edit, :new, :create, :destroy]
   before_action :set_choice, only: [:edit]
 
   add_breadcrumb "Admin", :root_path
@@ -23,16 +23,23 @@ class Admin::QuizzesController < AdminController
     end
   end
 
+  def destroy
+    @quiz.questions.each do |question|
+      question.choices.destroy_all
+    end
+    @quiz.questions.destroy_all
+    @quiz.destroy
+    
+    flash[:success] = "Quiz was deleted."
+    redirect_to edit_admin_course_lesson_path(@course, @lesson)
+  end
+
   def edit
 
     add_breadcrumb @course.name, admin_course_path(@course)
     add_breadcrumb @lesson.name, admin_course_lesson_path(@course, @lesson)
 
     @question = Question.new
-  end
-
-  def show
-    
   end
 
   private

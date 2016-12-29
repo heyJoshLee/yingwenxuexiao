@@ -1,0 +1,31 @@
+%h1 Comment Notification
+
+= link_to check_all_admin_dashboard_comment_notifications_path, data: {confirm: "Are you sure you want to mark all as read?"} do
+  .btn.btn-warning.v_margin Mark all as read
+
+%table.table.table-bordered.v_margin
+  %thead
+    %td Author
+    %td Type
+    %td Title
+    %td Content
+    %td Read
+    %td Delete
+  %tbody
+    - @comment_notifications.each do |notification|
+      %tr
+        %td= notification.comment.author.name
+        %td= notification.comment.commentable.class
+        %td= link_to notification.comment.commentable.title, article_path(notification.comment.commentable, anchor: notification.comment.slug)
+        %td= notification.comment.body
+        %td.center
+          = link_to toggle_admin_dashboard_comment_notification_path(notification) do
+            - if notification.read?
+              .fa.fa-check.green-font
+            - else
+              .fa.fa-exclamation-circle.red_x
+        %td.center
+          = link_to admin_dashboard_comment_notification_path(notification), method: "DELETE" do
+            .fa.fa-trash
+
+

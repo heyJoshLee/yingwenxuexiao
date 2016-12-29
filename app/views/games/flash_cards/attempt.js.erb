@@ -1,0 +1,10 @@
+var answeredCorrectly = "<%=@answered_correctly%>";
+console.log(answeredCorrectly);
+
+if(answeredCorrectly === true || answeredCorrectly === "true") {
+  $("#correct_flash_card").fadeIn(1000).fadeOut(1000);
+} else {
+  $("#incorrect_flash_card").fadeIn(1000).fadeOut(1000);
+}
+
+$(".flash_card_container").html("<%= escape_javascript render(:partial => 'games/flash_cards/flash_card_play_area', :locals => { :word => @word, :choices => @choices }) %>");

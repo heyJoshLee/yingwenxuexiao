@@ -8,3 +8,6 @@
           .level_circle#current_user_level= current_user.level
 
       %h4#current_user_points= "#{current_user.points} points"
+      = link_to notifications_path do
+        #current_user_message_notification
+          .fa.fa-envelope{class: ("color_blink" if current_user.has_unread_notifications?) }

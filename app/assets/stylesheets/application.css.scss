@@ -13,9 +13,8 @@
  *= require_self
  *= require bootstrap
  *= require font-awesome
- *= require bootsy
  *= require_tree .
-
+ *= require bootsy
  */
 
 // Blue rgba(0,182,245, 1)
@@ -49,12 +48,16 @@ li {
   list-style: none;
 }
 
+.show_list_style {
+  list-style: inherit !important;
+}
+
 .inline-block {
   display: inline-block;
 }
 
 .green-bkg {
-  background-color: green;
+  background-color: green !important;
 }
 
 .green-font {
@@ -74,9 +77,23 @@ li {
   text-decoration: strikethrough;
 }
 
+
+.btn-xlarge {
+  padding: 50px !important;
+  font-size: 42px !important;
+}
 /*********
 Nav
 **********/
+
+.notifications_circle {
+  background: red;
+  border-radius: 100%;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
 #nav_sandwhich {
   background-color: rgba(0,182,245, 1);
 }
@@ -126,6 +143,11 @@ header li {
   border-radius: 100%;
 }
 
+.enter_class_button {
+  position: absolute;
+  bottom: 10px; 
+}
+
 .spash_highlights div {
   vertical-align: top;
 }
@@ -164,6 +186,7 @@ sign up
   color: white;
   text-align: center;
 }
+
 
 .membership_level_choice_button {
   margin: 0 auto;
@@ -348,6 +371,23 @@ ADMIN_NAV
   left: -50px;
 }
 
+#current_user_message_notification {
+  position: relative;
+  font-size: 24px;
+  color: black;
+  top: -80px;
+  left: 40px;
+}
+
+
+.color_blink {
+  animation: color_blink 3s linear infinite;
+}
+
+@keyframes color_blink {
+  0% { color: red}
+  50% { color: green }
+}
 /*********
 .vocabulary_words
 **********/
@@ -355,6 +395,22 @@ ADMIN_NAV
 #vocabulary_words_container .fa-plus {
   color: green;
 }
+
+.vocab_tool_tip_launcher:hover {
+  cursor: pointer;
+}
+
+.vocab_word_tool_tip {
+  background: white;
+  border-radius: 10px;
+  width: 100px;
+  position: relative;
+  top: 35px;
+  text-align: center !important;
+  border: 1px solid black;
+  display: none;
+}
+
 
 /*********
 #notification
@@ -392,6 +448,19 @@ LEVELS
   margin-top: 10px;
 }
 
+.article_author {
+  height: 200px;
+}
+
+.article_author img {
+  height: 100px;
+  width: 100px;
+}
+
+.article_author p {
+  padding-top: 30px;
+}
+
 .feature-image {
   background-repeat: no-repeat;
   background-size: 100% 250px;
@@ -414,6 +483,14 @@ LEVELS
 
 .article_preview {
   padding: 15px 0;
+}
+
+.article_preview_text {
+  word-wrap: break-word;
+}
+
+.read_more {
+  color: rgba(0,182,245, 1);
 }
 
 .article_preview h1 {
@@ -613,7 +690,7 @@ LESSON_PANEL
 **********/
 
 #lesson_panel {
-  color: white
+  color: white;
 }
 
 #lesson_panel h4 {
@@ -625,12 +702,37 @@ LESSON_PANEL
 }
 
 #lesson_panel li {
+  border-top: 1px solid white;
+}
+
+.lesson_link_in_lesson_panel {
+  color: black;
+  overflow: auto;
+  background: rgba(20, 20, 20, 0.1)
+}
+
+.lesson_link_in_lesson_panel ol {
+  padding: 0;
+}
+
+.course_intro_in_lesson_panel,
+.unit_header_in_lesson_panel  {
   text-align: center;
   font-weight: bold;
   height: 30px;
   color: white;
   padding-top: 5px;
   background-color: rgba(0,182,245, 1);
+  border: 1px solid rgba(0,182,245, 1);
+}
+
+.unit_header_in_lesson_panel {
+  margin: 0;
+  border-top: 1px solid white;
+}
+
+.unit_header_in_lesson_panel:hover {
+  cursor: pointer;
 }
 
 #lesson_panel li:hover {
@@ -640,6 +742,11 @@ LESSON_PANEL
 
 #lesson_panel li + li {
   border-top: 1px solid white;
+}
+
+.current_lesson {
+  background-color: white !important;
+  color: rgba(0,182,245, 1) !important;
 }
 
 
@@ -657,40 +764,48 @@ LESSON
   cursor: pointer;
 }
 
+.default_formatting li {
+  list-style: inherit;
+}
+.ajax_saving {
+  display: none;
+  color: blue;
+}
+
+.lesson_instructions {
+  margin-top: 20px;
+}
 
 /*********
-  Practice
+Flash Cards
 **********/
 
-#practice_container {
-  border: 1px solid rgba(0, 0, 0, .3);
-  display: relative;
-}
-
-#practice_information {
-  background: rgba(0,182,245, 1);
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-}
-
-#practice_container #practice_options {
-  border-right: 1px solid rgba(0,182,245, 0.3);
-  height: 400px;
-  display: relative;
-  padding: 10px 4px;
-}
-
-#practice_container #question {
-  margin: 30px auto;
-}
-
-#practice_container #question_and_answers {
+.flash_card_container {
   text-align: center;
 }
 
-#practice_container .answer {
-  margin: 6px auto;
+.answer_card:hover {
+  cursor: pointer;
+}
+
+.flash_card_message {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 20%;
+  padding: 3px 0px;
+  text-align: center;
+  z-index: 100px;
+  display: none;
+}
+
+.flash_card_option_checkbox {
+  background-color: red;
+}
+
+.flash_card_option_checkbox.flash_card_checked {
+  background-color: green !important;
 }
 
 #correct_and_incorrect_marks {
@@ -719,6 +834,30 @@ LESSON
   color: red;
 }
 
+
+
+.flash_card_study_option_button {
+  background-color: rgba(0,182,245, 1);
+  display:inline-block;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  color: white;
+  border: 2px solid rgba(0,182,245, 1);
+  text-align: center;
+  padding-top: 2px;
+}
+
+.flash_card_study_option_button:hover {
+  cursor: pointer;
+}
+
+.flash_card_study_option_button.checked {
+  background: white !important;
+  color: rgba(0,182,245, 1) !important;
+}
+
+
 /*********
 #level_up_container
 **********/
@@ -733,7 +872,6 @@ LESSON
   border: 20px solid white;
   color: white;
   z-index: 10;
-  display: none;
 }
 /*********
 QUIZ
@@ -747,6 +885,8 @@ QUIZ
 }
 
 .question_choices {
+  padding: 0;
+  margin: 0;
 }
 
 .question_choice input[type="radio"] {
@@ -755,6 +895,9 @@ QUIZ
 
 .question_choices ol li {
   list-style: decimal;
+}
+.question_choice .col-sm-6 {
+  margin-left: 10px;
 }
 
 .choice_body {
@@ -782,6 +925,101 @@ dashboard
 
 .course_levels_table_color_preview {
   color: white;
+}
+
+/*********
+GAMES
+**********/
+
+
+
+/*********
+Word Search
+**********/
+
+#howToPlayLauncher {
+  color: rgba(0,182,245, 1);
+  text-decoration: underline;
+}
+#howToPlayLauncher:hover {
+  cursor: pointer;
+}
+
+#puzzle .puzzleSquare {
+  height: 30px;
+  width: 30px;
+  text-transform: uppercase;
+  background-color: white;
+  border: 0;
+  font: 1em sans-serif;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+/* indicates when a square has been selected */
+#puzzle .selected {
+  background-color: orange;
+}
+
+/* indicates that the square is part of a word that has been found */ 
+#puzzle .found {
+  background-color: blue;
+  color: white;
+}
+
+#puzzle .solved {
+  background-color: purple;
+  color: white;
+}
+
+/* indicates that all words have been found */
+#puzzle .complete {
+  background-color: green;
+}
+
+/**
+* Styles for the word list
+*/
+#words {
+  padding-top: 20px;
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 20px;
+  width: 300px;
+}
+
+#words ul {
+  list-style-type: none;
+}
+
+#words li {
+  padding: 3px 0;
+  font: 1em sans-serif;
+}
+
+/* indicates that the word has been found */
+#words .wordFound {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/**
+* Styles for the button
+*/
+#solve {
+  margin: 0 30px;
+
+}
+
+
+.puzzleSquare {
+  width: 30px;
+  height: 30px;
 }
 
 /*********

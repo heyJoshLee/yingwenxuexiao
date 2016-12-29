@@ -18,7 +18,7 @@ feature "User resets password" do
     fill_in "Password", with: "new_password"
     click_button "Sign in"
 
-    page_should_have("You are signed in.")
+    page_should_have("您已登入")
     clear_email
   end
 

@@ -1,0 +1,44 @@
+- unless @lesson.new_record?
+  .col-sm-7
+    %h3 Vocabulary Words
+    %button.btn.btn-primary.v_margin{"data-target" => "#add_vocabulary_word_modal", "data-toggle" => "modal", :type => "button"} Add Vocabulary Word
+    %br/
+    %br/
+    %table.table.table-bordered
+      %thead
+        %td Word
+        %td Chinese
+        %td Part of Speech
+        %td Sentence
+        %td Definition
+        %td Options
+      %tbody
+        - @lesson.vocabulary_words.each do |word|
+          %tr{id: word.slug }
+            = bootstrap_form_for([:admin, @course, @lesson, word], remote: true) do |f|
+              %td= f.text_field :main
+              %td= f.text_field :chinese
+              %td= f.text_area :sentence
+              %td= f.text_field :part_of_speech
+              %td= f.text_field :definition
+              %td
+                = f.submit "S", class: "btn btn-primary"
+                = link_to admin_course_lesson_vocabulary_word_path(@course, @lesson, word), method: "DELETE", remote: true, data: {confirm: "Are you sure you want to delete this word?"} do
+                  .btn.btn-danger X
+
+
+
+// Modal to add new vocab word
+- unless @lesson.new_record?
+  #add_vocabulary_word_modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#myModalLabel.modal-title= "Add Vocabulary Word" 
+        .modal-body
+          = render "admin/dashboard/vocabulary_words/form", vocabulary_wordable_type: @lesson.class.to_s, vocabulary_wordable_id: @lesson.id 
+
+- if @lesson.new_record?
+  %p When creating a new lesson, it will be added to the last unit in the course.

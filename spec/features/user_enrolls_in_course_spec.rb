@@ -5,6 +5,7 @@ feature "User enrolls in course" do
   scenario "successful enrollment" do
     user = Fabricate(:user, membership_level: "paid")
     course = Fabricate(:course, published: true)
+    lesson = Fabricate(:lesson, course_id: course.id, published: true)
     sign_in(user)
     visit courses_path
     click_link "Enroll In Class"
@@ -26,7 +27,7 @@ feature "User enrolls in course" do
     course = Fabricate(:course)
     sign_in(user)
     visit courses_path
-    expect(page).to have_content("You must upgrade your account to a paid account to enroll in classes.")
+    expect(page).to have_content("需要使用付费帐号才能参加课程")
     expect(page).not_to have_content("Enroll In Class")
   end
 

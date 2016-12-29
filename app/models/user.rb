@@ -5,10 +5,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, case_sensitive: false
 
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
-  validates :password, presence: true, length: {minimum: 5, maximum: 20}
+  validates :password, presence: true, length: {minimum: 5, maximum: 20}, on: :create
 
   has_many :comments
   has_many :articles
+
+  has_many :received_notifications, foreign_key: "receiver_id", class_name: "Notification"
+  has_many :sent_notifications, foreign_key: "sent_id", class_name: "Notification"
 
   has_many :course_users
   has_many :courses, through: :course_users
@@ -27,10 +30,14 @@ class User < ActiveRecord::Base
 
   has_many :user_vocabulary_words
   has_many :vocabulary_words, through: :user_vocabulary_words
+  
+  has_many :comment_notifications
 
   before_create :generate_random_slug
 
   mount_uploader :picture_url, UserImageUploader
+
+  alias_method :notifications, :received_notifications
 
   def generate_password_reset_token
     update_column(:password_reset_token, SecureRandom.urlsafe_base64)
@@ -127,7 +134,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_lesson?(lesson)
-    lessons.find_by(id: lesson.id)
+    lesson_users.where(lesson_id: lesson.id, completed: true).count > 0
   end
 
   def next_lesson_in_course(course)
@@ -151,6 +158,7 @@ class User < ActiveRecord::Base
   def leveled_up?(points_just_added)
     # user's points - points_just_added < user.level.points
     # 100 - 100 < 100
+    points - points_just_added <= Level.find_by(number: level).points unless level == 1
   end
 
   def add_vocabulary_word(word)
@@ -166,6 +174,26 @@ class User < ActiveRecord::Base
     if add_to_correct_if_correct(word, question_type, answer, user_word, type.to_s + "_correct")
       add_points(10)
     end
+  end
+
+  def random_vocabulary_words(n=10)
+    vocabulary_words.order("RANDOM()").limit(n)
+  end
+
+  def has_unread_notifications?
+    notifications.where(read: false).count > 0
+  end
+
+  def send_notification(notification_params, list)
+    ActiveRecord::Base.transaction do
+      list.each do |user|
+        Notification.create(sender_id: self.id,
+                            receiver_id: user.id,
+                            subject: notification_params[:subject],
+                            body: notification_params[:body]
+                            )
+      end
+    end #mass transaction
   end
 
   private
@@ -211,7 +239,10 @@ class User < ActiveRecord::Base
   end
 
   def advance_level_if_enough_points
-    next_level =  Level.find_by(number: level + 1)
+    next_level =  Level.where(number: level + 1).first
+    if next_level.nil?
+      next_level = {number: 1, points: 10000}
+    end
     update_column(:level, next_level.number) if points >= next_level.points
   end
 

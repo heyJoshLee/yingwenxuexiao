@@ -17,11 +17,33 @@ Rails.application.routes.draw do
   get "help", to: "pages#help", as: "help"
   get "free", to: "pages#free", as: "free"
 
-  # practice
-  get "practice", to: "practices#index"
-  get "practice/start", to: "practices#start", as: "start_practice"
-  post "practice/change_options", to: "practices#change_options", as: "change_practice_options"
-  post "practice/attempt", to: "practices#attempt", as: "attempt_practice"
+  get "error", to: "pages#error", as: "error"
+  
+  # post "stripe_webhook", to: "subscribers#stripe_charge"
+  
+  post 'stripe_webhook' => 'subscribers#stripe_charge'
+
+
+  %w(404 422 500 503).each do |code|
+    get code, to: "pages#error", code: code
+  end
+
+  # games
+  get "games", to: "games#index"
+
+  namespace :games do
+    
+    scope "word_search", as: "word_search" do
+      get "", to: "word_search#index"
+      post "found_word", to: "word_search#found_word"
+    end
+
+    scope "flash_cards", as: "flash_cards" do
+      get "", to: "flash_cards#index"
+      post "attempt", to: "flash_cards#attempt", as: "attempt_flash_card"
+      post "toggle_options", to: "flash_cards#toggle_options"
+    end
+  end
 
   get "email_confirm", to: "email_signups#confirm"
 
@@ -41,6 +63,14 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:show, :create]
   
   resources :users, only: [:create, :edit, :update]
+  resources :notifications, only: [:index, :show] do
+    collection do
+      get "check_all"
+    end
+    member do
+      get "toggle"
+    end
+  end
   resources :article_topics, only: [:show]
   resources :articles, only: [:show] do
     resources :comments, only: [:create] do
@@ -77,9 +107,25 @@ Rails.application.routes.draw do
 
   # admin
   namespace :admin do
-    resources :articles, only: [:index]
+    resources :articles
     resources :article_topics
     namespace :dashboard do
+      resources :notifications do
+        collection do
+          get "check_all"
+        end
+        member do
+          get "toggle"
+        end
+      end
+      resources :comment_notifications do
+        collection do
+          get "check_all"
+        end
+        member do
+          get "toggle"
+        end
+      end
       resources :affiliates do
         resources :affiliate_links
       end
@@ -90,7 +136,18 @@ Rails.application.routes.draw do
       get "/", to: "dashboard#index"
     end
     resources :courses do
+      resources :units
+      member do
+        get "/rearrange", to: "courses#rearrange"
+        post "/rearrange", to: "courses#post_rearrange"
+        post "/import_vocabulary_words", to: "lessons#import_vocabulary_words"
+        post "/import_quizzes", to: "courses#import_quizzes"
+      end
       resources :lessons do
+        resources :vocabulary_words, only: [:update, :destroy]
+        member do
+          post "/import_quiz", to: "lessons#import_quiz"
+        end
         resources :quizzes do
           resources :questions do
             resources :choices
@@ -101,8 +158,9 @@ Rails.application.routes.draw do
     resources :email_signups, only: [:index]
     resources :users
     resources :categories
-    resources :articles, only: [:new, :create, :edit, :destroy, :update]
   end
+  
+  resources :subscribers
 
 
   # Example resource route (maps HTTP verbs to controller actions automatically):

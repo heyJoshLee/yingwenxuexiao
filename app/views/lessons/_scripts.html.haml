@@ -1,11 +1,11 @@
 .row
   .scripts_container
-    - if @lesson.script_english
+    - if @lesson.script_english != "" && !@lesson.script_english.nil?
       .col-sm-6
         .english_script.well
           %h5 English Video Script
           %p= @lesson.script_english
-    - if @lesson.script_chinese
+    - if @lesson.script_chinese != "" && !@lesson.script_chinese.nil?
       .col-sm-6
         .chinese_script.well
           %h5 Chinese Video Script

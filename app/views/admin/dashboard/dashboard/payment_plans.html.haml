@@ -1,0 +1,16 @@
+.row
+  .container
+    .col-xs-12.col-md-6
+      %h1 Create a new subscription
+      = form_tag('/subscription',{method: :post}) do
+        .form-group
+          %label Plan name
+          %input.form-control{:type => 'text', :name => 'name'}
+        .form-group
+          %label Plan interval
+          = select_tag 'interval', options_for_select(['month', 'year']), multiple: false, :include_blank => true,  class: "form-control"
+        .form-group
+          %label Plan Value
+          %input.form-control{:type => 'text', :name => 'amount'}
+
+        %button.btn.btn-primary{:type => "submit"} Submit to Stripe

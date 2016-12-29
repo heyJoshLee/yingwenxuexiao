@@ -1,0 +1,6 @@
+%h5 Study type
+.flash_card_study_types
+  - @options = ["definition", "english_to_chinese", "chinese_to_english"]
+  - @options.each do |option|
+    = link_to games_flash_cards_toggle_options_path(study_type: option), remote: true, method: "post" do
+      %span.flash_card_study_option_button{id: ("flash_card_study_option#{option}"), class: ("checked" if session[:flash_card_study_type] == option)}= option.titleize

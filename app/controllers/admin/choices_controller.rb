@@ -13,7 +13,10 @@ class Admin::ChoicesController < AdminController
 
     if @choice.save
       flash[:success] = "Choice was saved"
-      redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+      # redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+      respond_to do |format|
+        format.js
+      end
     else
       flash.now[:danger] = "There was a problem and the choice was not saved"
       render "quizes/show"
@@ -26,8 +29,11 @@ class Admin::ChoicesController < AdminController
     @quiz = Quiz.find_by(slug: params[:quiz_id])
     @choice = Choice.find(params[:id])
     @choice.destroy
-    flash[:success] = "Choice was deleted"
-    redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
+    respond_to do |format|
+      format.js
+    end
+    # flash[:success] = "Choice was deleted"
+    # redirect_to edit_admin_course_lesson_quiz_path(@course, @lesson, @quiz)
   end
 
   private

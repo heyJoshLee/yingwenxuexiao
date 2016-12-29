@@ -16,6 +16,7 @@ class DownloadLinksController < ApplicationController
     @download_link.downloaded = true
     @download_link.downloaded_time = DateTime.now
     @download_link.save
+    redirect_to @download_link.download.file_download_url
   end
 
   private

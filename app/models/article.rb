@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
 
   include Sluggable
 
+  default_scope { order('created_at DESC') }
+
   sluggable_column :title
   mount_uploader :main_image_url, ArticleMainImageUploader
 
@@ -23,7 +25,20 @@ class Article < ActiveRecord::Base
 
 
   def preview_text
-    "some text"
+    stripped_text = ActionView::Base.full_sanitizer.sanitize(body).gsub(/\s+/, ' ')
+    output = stripped_text[0...200]
+    output += " ..." unless output == stripped_text
+    output
+  end
+
+  def self.randomArticle(ids_to_exclude=false)
+    article = false
+    if ids_to_exclude
+      article = where("published = ? AND id NOT IN (?)", true , ids_to_exclude ).order( "RANDOM()" ).first
+    else
+      article = where("published = ?", true ).order( "RANDOM()" ).first
+    end
+    article == [] ? false : article
   end
 
 end

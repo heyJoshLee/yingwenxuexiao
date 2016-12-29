@@ -12,23 +12,31 @@ class LessonsController < ApplicationController
     current_user.complete_lesson(@lesson)
     @lesson = current_user.next_lesson_in_course(@lesson.course)
     @comment = Comment.new
-    respond_to do |format| 
-      format.js
-    end
 
-    # redirect_to course_lesson_path(@course, @next_lesson)
+    redirect_to course_lesson_path(@course, current_user.next_lesson_in_course(@course))
   end
 
   def show
-    @comment = Comment.new
+    respond_to do |format|
+      format.html do
+        @comment = Comment.new
+      end
+      format.pdf do
+        is_admin = params["admin"] == "true" ? true : false
+        pdf = LessonNotesPdf.new(@lesson, is_admin)
+        send_data pdf.render, filename: "#{@course.name}: #{@lesson.lesson_number} - #{@lesson.name} Yingwenxuexiao.com",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
+
 
   private
 
   def set_breadcrumbs
     add_breadcrumb "Courses", courses_path
     add_breadcrumb @course.name, course_path(@course)
-      
   end
 
   def set_lesson

@@ -1,14 +1,21 @@
 .blog_sidebar
   .widget.ebook_sign_up
-    .topline Get 50 Free Lessons Right Now
+    .topline 即刻获得300个免费课程
+    / .topline Get 300 Free Lessons Right Now
     .widget_body
-      %p Get Josh's new book "50+ English Idioms" for free!
-      %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the book
+      %p 免費獲得Josh的新书 “English Idioms - Book One”！
+      / %p Get Josh's new book "50+ English Idioms" for free!
+      %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} 领取书籍
+      / Get the Book
+
   .widget
     = bootstrap_form_for EmailSignup.new do |f|
-      %h4 Sign up to our mailing list
-      %p Never miss a lesson or article
-      %small We won't spam you
+      %h4 加入我们的﻿mail邮寄清单
+      / %h4 Sign up to our mailing list
+      %p 不错过任何课程或文章
+      / %p Never miss a lesson or article
+      %small 我们不会给您垃圾信件
+      / %small We won't spam you
       = hidden_field_tag :page, request.original_url
       = hidden_field_tag :campaign, "Newsletter"
       = f.text_field :email

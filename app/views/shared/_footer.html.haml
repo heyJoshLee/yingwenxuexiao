@@ -2,22 +2,24 @@
   %footer.footer#main_footer
     .row
       .col-xs-4
-        %h5 English School
+        %h5 英文學校
+        / %h5 English School
         %ul
-          %li=link_to "Careers ", careers_path
+          %li=link_to "工作机会", careers_path # Careers
           %li=link_to "Blog", blog_path
-          %li=link_to "Affiliates", affiliates_path
+          %li=link_to "相关公司", affiliates_path # Affiliates
       .col-xs-4
-        %h5 Terms and help
+        %h5 條款和協助
+        / %h5 Terms and help
         %ul
-          %li=link_to "Privacy Terms", "/privacy_policy"
-          %li=link_to "Help", "/help"
-          %li=link_to "Contact", contact_path
+          %li=link_to "隐私权政策", "/privacy_policy" # Privacy Terms
+          %li=link_to "条款和协助", "/help" # Help
+          %li=link_to "联络", contact_path # Contact
       .col-xs-4
         %h5 Account
         %ul
-          %li= link_to "My Account", account_path
-          %li= link_to "Upgrade", root_path
+          %li= link_to "我的帐号", account_path # My Account
+          %li= link_to "升级", root_path # Upgrade
     .row.footer_social
       .col-xs-12
         %h5.center Social

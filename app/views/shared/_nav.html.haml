@@ -2,19 +2,20 @@
   .row
     .col-sm-2.nav_item
       .nav_text
-        = link_to "Free Stuff", free_path
+        = link_to "免費", free_path # Free Stuff
     .col-sm-2.nav_item
       .nav_text
-        = link_to "Courses", courses_path
+        = link_to "課程", courses_path # Courses
     .col-sm-2.nav_item
       .nav_text
-        = link_to "Practice", practice_path
+        / = link_to "練習", practice_path # Practice
+        = link_to "游戏", games_path # Games
     .col-sm-4.nav_item
       .nav_text
         - if logged_in? && current_user.is_paid_member?
-          = link_to "My Words", my_words_path
+          = link_to "My Words", my_words_path # My Words
         - else
-          = link_to "Premium Membership", upgrade_path
+          = link_to "高級會員", upgrade_path # Premium Membership
     .col-sm-2.nav_item
       .nav_text 
         = link_to "Blog", blog_path

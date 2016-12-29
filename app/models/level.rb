@@ -8,7 +8,7 @@ class Level < ActiveRecord::Base
   validates_numericality_of :points, {only_integer: true}
 
   def self.next_level
-    Level.last.number + 1
+    count == 0 ? 1 : Level.last.number + 1
   end
 
 

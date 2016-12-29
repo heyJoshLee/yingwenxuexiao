@@ -1,6 +1,12 @@
+- unless @article.published?
+  .row
+    .alert-danger.alert
+      This article is not published
+
 .row
   .col-sm-8
     %h1= @article.title
+    %small= format_datetime(@article.created_at)
     %small
       = link_to "Edit", edit_admin_article_path(@article) if logged_in? && current_user.is_admin?
 
@@ -15,9 +21,35 @@
 
 
     .article_show= @article.body.html_safe
+    = render "shared/random_article_large"
+
+    .article_author
+      %h5 Article Author
+      .row
+        .col-xs-4.center
+          %h5= @article.author.name
+          = image_tag(@article.author.picture_url, class: "img-circle")
+        .col-xs-8
+          %p= @article.author.bio
+    %hr/
+
+    %section.v_margin
+      .row
+        .col-xs-10.col-xs-offset-1
+          .widget
+            = bootstrap_form_for EmailSignup.new do |f|
+              %h4 得到我們的新課程提醒
+              / %h4 Get notified when we launch our courses
+              %p 我們持續努力精進我們的一般和高級課程。歡迎提供您的email以獲得我們新課程的上線通知。
+              / %p We are working hard on our courses and other premium courses. Give us your email to be notified when we release our courses.
+              = hidden_field_tag :page, request.original_url
+              = hidden_field_tag :campaign, "Prerelease"
+              = f.text_field :email
+              = f.submit "註冊", class: "btn btn-primary" # Sign up
       
     .article_comments_section
-      %h2 Comments
+      %h2 评论
+      / %h2 Comments
       - if logged_in?
         = bootstrap_form_for [@article, @comment], remote: true do |f|
           = f.text_area :body

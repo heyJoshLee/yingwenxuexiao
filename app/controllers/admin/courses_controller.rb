@@ -1,5 +1,5 @@
 class Admin::CoursesController < AdminController
-  before_action :set_course, only: [:show, :update, :edit]
+  before_action :set_course, only: [:show, :update, :edit, :rearrange, :import_quizzes, :destroy]
 
   add_breadcrumb "Courses", :admin_courses_path
   
@@ -13,6 +13,34 @@ class Admin::CoursesController < AdminController
 
   def show
     add_breadcrumb @course.name, admin_course_path(@course)
+  end
+
+  def destroy
+    @course.destroy_and_destroy_all_children
+    flash["success"] = "Course deleted."
+    redirect_to admin_courses_path
+  end
+
+
+
+  def post_rearrange
+    lessons = []
+
+    params[:lesson].each_with_index do |id, index|
+      lessons << Lesson.find(id.to_i)
+      # Lesson.find(id.to_i).update_attributes!(lesson_number: index + 1)
+    end
+
+    starting_lesson_number = lessons.map(&:lesson_number).sort.first
+
+    params[:lesson].each_with_index do |id, index|
+      lessons << Lesson.find(id.to_i)
+      Lesson.find(id.to_i).update_attributes!(lesson_number: index + starting_lesson_number)
+    end
+
+    respond_to do |format|
+      format.js { render :nothing => true }
+    end
   end
 
   def create
@@ -35,6 +63,17 @@ class Admin::CoursesController < AdminController
       render :edit
     end
   end
+
+  def rearrange
+    @unit = Unit.new
+  end
+
+  def import_quizzes
+    Quiz.mass_import(params[:file], nil, @course)
+    flash[:success] = "Quizzes imported."
+    redirect_to edit_admin_course_path(@course)
+  end
+
 
   private
 
