@@ -5,6 +5,7 @@ deployment:
   production:
     branch: master
     commands:
+      - git fetch --unshallow
       - heroku maintenance:on --app yingwenxuexiao
       - heroku pg:backups capture --app yingwenxuexiao
       - git push git@heroku.com:yingwenxuexiao.git $CIRCLE_SHA1:refs/heads/master
@@ -13,7 +14,8 @@ deployment:
   staging:
     branch: staging
     commands:
+      - git fetch --unshallow
       - heroku maintenance:on --app yingwenxuexiao-staging11081989
-      - git push git@heroku.com:yingwenxuexiao-staging11081989.git $CIRCLE_SHA1:master
+      - git push git@heroku.com:yingwenxuexiao-staging11081989.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app yingwenxuexiao-staging11081989
       - heroku maintenance:off --app yingwenxuexiao-staging11081989
