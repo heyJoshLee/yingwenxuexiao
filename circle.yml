@@ -14,6 +14,6 @@ deployment:
     branch: staging
     commands:
       - heroku maintenance:on --app yingwenxuexiao-staging11081989
-      - git push git@heroku.com:yingwenxuexiao-staging11081989.git $CIRCLE_SHA1:refs/heads/master
+      - git push git@heroku.com:yingwenxuexiao-staging11081989.git $CIRCLE_SHA1:master
       - heroku run rake db:migrate --app yingwenxuexiao-staging11081989
       - heroku maintenance:off --app yingwenxuexiao-staging11081989
