@@ -1,7 +1,9 @@
 class VocabularyWord < ActiveRecord::Base
   has_many :user_vocabulary_words
   has_many :users, through: :user_vocabulary_words
-  belongs_to :vocabulary_wordable, polymorphic: true
+  
+  has_many :lesson_vocabulary_words
+  has_many :lessons, through: :lesson_vocabulary_words
 
   validates_presence_of(:main)
   validates_presence_of(:chinese)
