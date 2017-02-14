@@ -130,7 +130,11 @@ Rails.application.routes.draw do
         resources :affiliate_links
       end
       resources :course_levels
-      resources :vocabulary_words
+      resources :vocabulary_words do
+        collection do
+          post "get_related_words"
+        end
+      end
       resources :levels
       resources :downloads
       get "/", to: "dashboard#index"

@@ -1,6 +1,6 @@
 class Admin::VocabularyWordsController < AdminController
 
-  before_action :set_vocabulary_word
+  before_action :set_vocabulary_word, except: [:get_related_words]
 
   def update
     respond_to do |format|
@@ -19,6 +19,7 @@ class Admin::VocabularyWordsController < AdminController
         end
       end
   end
+
 
   def vocabulary_word_params
     params.require(:vocabulary_word).permit!
