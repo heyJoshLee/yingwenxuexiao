@@ -18,6 +18,12 @@ class Lesson < ActiveRecord::Base
   validates_numericality_of :lesson_number, {only_integer: true}
 
   has_many :comments, -> {order("created_at DESC")}, as: :commentable
+
+
+  has_many :lesson_vocabulary_words
+  has_many :vocabulary_words, through: :lesson_vocabulary_words
+
+
   has_many :vocabulary_words, -> {order("created_at DESC")}, as: :vocabulary_wordable
 
 
@@ -29,6 +35,14 @@ class Lesson < ActiveRecord::Base
     self.slug
   end
 
+
+  def add_vocabulary_word(word)
+    vocabulary_words << word
+  end
+
+  def remove_vocabulary_word(word)
+    vocabulary_words.delete(word)
+  end
 
   private 
 

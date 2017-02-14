@@ -9,6 +9,7 @@ describe VocabularyWord do
   it { should validate_presence_of(:sentence) }
 
 
+
   describe ".find_related_words(string)" do
     let!(:cat) { Fabricate(:vocabulary_word, main: "cat") }
     let!(:at) { Fabricate(:vocabulary_word, main: "at") }
