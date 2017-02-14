@@ -22,6 +22,11 @@ class VocabularyWord < ActiveRecord::Base
     self.slug
   end
 
+  def self.find_related_words(search_string=false)
+   return [] if search_string == false || search_string == ""
+   where("main LIKE ?", "%" + search_string + "%").all
+  end
+
   def self.mass_import(file, course)
 
     spreadsheet = open_spreadsheet(file)
