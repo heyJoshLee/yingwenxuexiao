@@ -54,11 +54,12 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
 
   def get_related_words
     respond_to do |format|
-      binding.pry
-      puts "searching for '#{params[:search_query]}'..."
+      search_query = params[:search_query]
+      puts "searching for '#{search_query}'..."
       format.js do
-        return_data = {name: "josh"} 
+        return_data = VocabularyWord.find_related_words(search_query)
         puts return_data
+        @vocabulary_results = return_data
       end
     end
   end

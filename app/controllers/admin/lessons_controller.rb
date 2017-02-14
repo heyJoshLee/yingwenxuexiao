@@ -82,6 +82,10 @@ class Admin::LessonsController < AdminController
     redirect_to edit_admin_course_lesson_path(@course, @lesson)
   end
 
+  def add_existing_vocabulary_word
+    puts "You want to add a word?"
+  end
+
   private
 
   def course_breadcrumb

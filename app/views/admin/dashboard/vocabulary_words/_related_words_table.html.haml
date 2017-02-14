@@ -1,0 +1,31 @@
+= binding.pry
+%h5 Results
+%table.table.table-bordered#related_words_table
+  %thead
+    %td Word
+    %td Chinese
+    %td Part of speech
+    %td IPA
+    %td Definition
+    %td Sentence
+    %td Type
+    %td Title
+  %tbody
+    - @vocabulary_results.each do |word|
+      = form_tag add_existing_vocabulary_word_admin_course_lesson_path(@course, @lesson), method: :post do |f|
+        %tr
+          %td
+            =link_to edit_admin_dashboard_vocabulary_word_path(word) do
+              %h5= word.main
+          %td
+            %h5= word.chinese
+          %td
+            %h5= word.part_of_speech
+          %td
+            %h5= word.ipa
+          %td
+            %h5= word.definition
+          %td
+            %h5= word.sentence
+          %td
+            %h5= word.vocabulary_wordable_type

@@ -392,6 +392,10 @@ ADMIN_NAV
 .vocabulary_words
 **********/
 
+#new_vocabulary_word {
+  font-size: 10px;
+}
+
 #vocabulary_words_container .fa-plus {
   color: green;
 }
@@ -409,6 +413,19 @@ ADMIN_NAV
   text-align: center !important;
   border: 1px solid black;
   display: none;
+}
+
+#add_vocabulary_form {
+  width: 100%;
+}
+
+#related_words_table {
+  font-size: 10px;
+}
+
+#related_words_results tr:hover {
+  background-color: rgba(0, 182, 244, 0.6);
+  cursor: pointer;
 }
 
 

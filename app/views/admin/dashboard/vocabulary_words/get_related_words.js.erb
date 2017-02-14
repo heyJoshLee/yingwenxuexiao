@@ -1,1 +1,6 @@
-$("#related_words_results").html("some text here");
+// var results = <%= raw @vocabulary_results.to_json %>
+// var html_array = "<table>";
+// console.log("results are");
+// console.log(results);
+
+$("#related_words_results").html("<%= escape_javascript render(:partial => 'admin/dashboard/vocabulary_words/related_words_table', :locals => { :words => @vocabulary_results, :lesson => @lesson }) %>");

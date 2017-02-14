@@ -1,6 +1,5 @@
-
 .row
-  .col-sm-8
+  .col-sm-5
     = bootstrap_form_for [:admin, :dashboard, @vocabulary_word ||= VocabularyWord.new] do |f|
       .row
         .col-sm-3
@@ -23,6 +22,6 @@
         = hidden_field_tag :vocabulary_wordable_type, "Lesson"
         = hidden_field_tag :vocabulary_wordable_id, @lesson.id || @article.id
         = f.submit "Add Word", class: "btn btn-primary"
-  #related_words_container.col-sm-4
+  #related_words_container.col-sm-7
     %h5 Related words
     #related_words_results
