@@ -23,3 +23,6 @@
         = hidden_field_tag :vocabulary_wordable_type, "Lesson"
         = hidden_field_tag :vocabulary_wordable_id, @lesson.id || @article.id
         = f.submit "Add Word", class: "btn btn-primary"
+  #related_words_container.col-sm-4
+    %h5 Related words
+    #related_words_results
