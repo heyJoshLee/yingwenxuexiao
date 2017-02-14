@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227070000) do
+ActiveRecord::Schema.define(version: 20170205133324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,13 @@ ActiveRecord::Schema.define(version: 20161227070000) do
     t.datetime "updated_at"
   end
 
+  create_table "lesson_vocabulary_words", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lesson_id"
+    t.integer  "vocabulary_word_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.string   "name"
     t.text     "script_english"
@@ -347,6 +354,13 @@ ActiveRecord::Schema.define(version: 20161227070000) do
     t.text     "bio",                  default: "This user has not filled out a bio yet."
     t.string   "stripeid"
     t.string   "subscriptionid"
+  end
+
+  create_table "vocabulary_wordable_vocabulary_words", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "vocabulary_word_id"
+    t.integer  "vocabulary_wordable_id"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|
