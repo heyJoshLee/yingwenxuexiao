@@ -1,0 +1,27 @@
+.row
+  .col-sm-5
+    = bootstrap_form_for [:admin, :dashboard, @vocabulary_word ||= VocabularyWord.new] do |f|
+      .row
+        .col-sm-3
+          = f.text_field :main, id: "add_vocabulary_word_main"
+        .col-sm-3
+          = f.text_field :chinese
+        .col-sm-3
+          = f.text_field :part_of_speech
+      .row
+        .col-sm-3
+          = f.text_field :ipa
+      .row
+        .col-sm-6
+          = f.text_area :sentence
+        .col-sm-6
+          = f.text_area :definition
+      %br/
+      %br/
+      .row
+        = hidden_field_tag :vocabulary_wordable_type, "Lesson"
+        = hidden_field_tag :vocabulary_wordable_id, @lesson.id || @article.id
+        = f.submit "Add Word", class: "btn btn-primary"
+  #related_words_container.col-sm-7
+    %h5 Related words
+    #related_words_results
