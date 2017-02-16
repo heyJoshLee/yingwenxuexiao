@@ -92,11 +92,13 @@ $(document).on("click", "#close_level_up_container", function(e) {
 });
 
 $(document).on("keyup", "#new_vocabulary_word", "#vocabulary_word_main", function(e) {
-  console.log("CHANGE!");
   $.ajax({
     url: "/admin/dashboard/vocabulary_words/get_related_words",
     method: "POST",
-    data: {search_query: $("#vocabulary_word_main").val()}
+    data: {
+      search_query: $("#add_vocabulary_word_main").val(),
+      lesson_id: $("#vocabulary_wordable_id").val()
+    }
   });
 });
 
