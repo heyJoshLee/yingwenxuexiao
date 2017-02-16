@@ -1,11 +1,12 @@
 class Admin::CoursesController < AdminController
   before_action :set_course, only: [:show, :update, :edit, :rearrange, :import_quizzes, :destroy]
-
   add_breadcrumb "Courses", :admin_courses_path
   
   def new
     @course = Course.new
   end
+
+
 
   def index
     @courses = Course.all

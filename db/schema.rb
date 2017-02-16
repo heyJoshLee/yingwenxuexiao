@@ -356,13 +356,6 @@ ActiveRecord::Schema.define(version: 20170205133324) do
     t.string   "subscriptionid"
   end
 
-  create_table "vocabulary_wordable_vocabulary_words", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "vocabulary_word_id"
-    t.integer  "vocabulary_wordable_id"
-  end
-
   create_table "vocabulary_words", force: :cascade do |t|
     t.string   "main"
     t.string   "chinese"

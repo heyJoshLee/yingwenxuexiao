@@ -31,6 +31,7 @@ describe Lesson do
   describe "#add_vocabulary_word(vocabulary_word.id)" do
 
     let!(:lesson) { Fabricate(:lesson) }
+    let!(:lesson_2) { Fabricate(:lesson) }
     let!(:vocabulary_word) { Fabricate(:vocabulary_word) }
     let!(:vocabulary_word_2) { Fabricate(:vocabulary_word) }
 
@@ -59,6 +60,19 @@ describe Lesson do
       expect(lesson.vocabulary_words).to include(vocabulary_word)
       expect(lesson.vocabulary_words.count).to eq(1)
     end
+
+    it "doesn't remove the word from the previous lesson" do
+      lesson.add_vocabulary_word(vocabulary_word)
+      lesson_2.add_vocabulary_word(vocabulary_word)
+
+      expect(lesson.vocabulary_words.length).to eq(1)
+      expect(lesson_2.vocabulary_words.length).to eq(1)
+    end
+
+    it "creates a LessonVocabularyWord object" do
+      lesson.add_vocabulary_word(vocabulary_word)
+      expect(LessonVocabularyWord.count).to eq(1)      
+    end
   end
 
 
@@ -86,6 +100,11 @@ describe Lesson do
       lesson.add_vocabulary_word(vocabulary_word_2)
       lesson.remove_vocabulary_word(vocabulary_word)
       expect(lesson.vocabulary_words).to eq([vocabulary_word_2])
+    end
+
+    it "deletes the join model" do
+      lesson.remove_vocabulary_word(vocabulary_word)
+      expect(LessonVocabularyWord.count).to eq(0)      
     end
 
   end

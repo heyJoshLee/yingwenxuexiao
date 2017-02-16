@@ -55,6 +55,7 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
   def get_related_words
     respond_to do |format|
       search_query = params[:search_query]
+      @lesson = Lesson.find(params[:lesson_id])
       puts "searching for '#{search_query}'..."
       format.js do
         return_data = VocabularyWord.find_related_words(search_query)

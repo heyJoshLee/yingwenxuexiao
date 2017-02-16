@@ -1,7 +1,7 @@
 class Admin::LessonsController < AdminController
 
-  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy, :import_quiz]
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :import_quiz]
+  before_action :set_course, only: [:create, :new, :edit, :update, :show, :import_vocabulary_words, :destroy, :import_quiz, :add_existing_vocabulary_word]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :import_quiz, :add_existing_vocabulary_word]
   before_action :set_quiz, only: [:show]
 
   before_action :course_breadcrumb, except: [:import_vocabulary_words, :import_quiz]
@@ -83,7 +83,9 @@ class Admin::LessonsController < AdminController
   end
 
   def add_existing_vocabulary_word
-    puts "You want to add a word?"
+    vocabulary_word = VocabularyWord.find_by(slug: params[:vocabulary_word_slug])
+    @lesson.add_vocabulary_word(vocabulary_word)
+    redirect_to :back
   end
 
   private
