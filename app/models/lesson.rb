@@ -24,8 +24,6 @@ class Lesson < ActiveRecord::Base
   has_many :vocabulary_words, through: :lesson_vocabulary_words
 
 
-  has_many :vocabulary_words, -> {order("created_at DESC")}, as: :vocabulary_wordable
-
 
   def has_quiz?
     quiz.nil? ? false : true
@@ -37,11 +35,11 @@ class Lesson < ActiveRecord::Base
 
 
   def add_vocabulary_word(word)
-    vocabulary_words << word
+    lesson_vocabulary_words.build(vocabulary_word_id: word.id).save unless LessonVocabularyWord.where(lesson_id: id, vocabulary_word_id: word.id).count > 0
   end
 
   def remove_vocabulary_word(word)
-    vocabulary_words.delete(word)
+    LessonVocabularyWord.where(vocabulary_word_id: word.id, lesson_id: id).first.destroy
   end
 
   private 
