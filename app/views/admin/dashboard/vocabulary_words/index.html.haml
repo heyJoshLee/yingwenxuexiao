@@ -8,8 +8,7 @@
     %td IPA
     %td Definition
     %td Sentence
-    %td Type
-    %td Title
+
   %tbody
     - @vocabulary_words.each do |word|
       %tr
@@ -26,14 +25,4 @@
           %h5= word.definition
         %td
           %h5= word.sentence
-        %td
-          %h5= word.vocabulary_wordable_type
-        %td
-          - if word.vocabulary_wordable_type == "Lesson"
-            - lesson = word.vocabulary_wordable
-            =link_to lesson.name, course_lesson_path(lesson.course, lesson)
-          - elsif word.vocabulary_wordable_type == "Article"
-            - article = word.vocabulary_wordable
-            =link_to article.title, article_path(article)
-
 
