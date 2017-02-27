@@ -37,7 +37,7 @@
           %li
             = link_to "课程", courses_path # Courses
           %li.hidden-sm.hidden-md.hidden-lg
-            - if logged_in? && current_user.is_paid_member?
+            - if logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
               = link_to "My Words", my_words_path # My Words
             - else
               = link_to "高级会员", upgrade_path # Premium Membership
