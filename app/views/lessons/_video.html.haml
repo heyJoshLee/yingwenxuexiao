@@ -1,17 +1,3 @@
 #video_container
-  / = video_player({:file => @lesson.video_url, :tracks => [ file: "https://s3-us-west-2.amazonaws.com/yingwenxuexiao1108/courses/beginner_english/unit_1/quiz/en-us.vtt", kind: "captions", default: "true", label: "English"]}, {:width => "100%"} )
-:javascript
-  var playerInstance = jwplayer("video_container");
-  playerInstance.setup({
-      file: "http://content.jwplatform.com/videos/a7OY0aJO-ler3Z0AF.mp4",
-      tracks: [{ 
-            file: "https://content.jwplatform.com/tracks/4Rgr50sU.vtt", 
-            label: "English",
-            kind: "captions",
-            "default": true 
-        },{ 
-            file: "/assets/captions-fr.vtt", 
-            kind: "captions",
-            label: "French"
-        }]
-  });
+  %iframe#vzvd-9361978.vzaar-video-player{:allowfullscreen => "", :allowtransparency => "true", :frameborder => "0", :height => "324", :mozallowfullscreen => "", :name => @lesson.name, :src => @lesson.video_url, :title => @lesson.name, :type => "text/html", :webkitallowfullscreen => "", :width => "576"}
+

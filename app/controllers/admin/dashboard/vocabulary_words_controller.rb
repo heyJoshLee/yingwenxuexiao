@@ -22,13 +22,14 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
   end
 
   def create
+    lesson = Lesson.find(params[:vocabulary_wordable_id])
     @word = VocabularyWord.new(word_params)
     @word.vocabulary_wordable_type = params[:vocabulary_wordable_type]
     @word.vocabulary_wordable_id = params[:vocabulary_wordable_id]
     # parent_object = @word.vocabulary_wordable
     if @word.save
       flash[:success] = "Word was saved"
-      lesson = Lesson.find(@word.vocabulary_wordable_id)
+      lesson.add_vocabulary_word(@word)
       redirect_to edit_admin_course_lesson_path(lesson.course, lesson)
     #   if parent_object.class.to_s == "Article"
     #     redirect_to edit_admin_article_path(parent_object)
