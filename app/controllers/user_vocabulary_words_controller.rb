@@ -14,9 +14,8 @@ class UserVocabularyWordsController < ApplicationController
   end
 
   def create
-
     if current_user.add_vocabulary_word(@vocabulary_word)
-      @object = @vocabulary_word.vocabulary_wordable
+      @object = Lesson.find_by(slug: params[:lesson_slug])
       respond_to { |format| format.js }
     else
       respond_to do |format| 
