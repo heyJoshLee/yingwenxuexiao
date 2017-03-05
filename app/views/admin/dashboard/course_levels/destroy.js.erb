@@ -1,0 +1,3 @@
+$("#course_levels_table_container").html("<%= escape_javascript (render partial: 'course_levels_table', locals: {course_levels: @course_levels }) %>")
+$("body").append("<%= escape_javascript (render partial: 'shared/notification', locals: {message: 'Course level deleted.'}) %>");
+$("#notification").fadeIn("slow").fadeOut("slow");

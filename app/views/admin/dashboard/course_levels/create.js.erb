@@ -1,0 +1,10 @@
+$("#course_levels_table_container").html("<%= escape_javascript (render partial: 'course_levels_table', locals: {course_levels: @course_levels }) %>")
+$("body").append("<%= escape_javascript (render partial: 'shared/notification', locals: {message: 'Course level create'}) %>");
+$("#notification").fadeIn("slow").fadeOut("slow");
+$("#course_levels_table_container").html("<%= escape_javascript (render partial: 'course_levels_table', locals: {course_levels: @course_levels }) %>")
+$("body").append("<%= escape_javascript (render partial: 'shared/notification', locals: {message: 'Course level created.'}) %>");
+$("#course_level_name").val("")
+$("#course_level_color").val("")
+$("#course_level_color_preview").html("SAMPLE TEXT");
+$("#course_level_name").focus();
+$("#notification").fadeIn("slow").fadeOut("slow");

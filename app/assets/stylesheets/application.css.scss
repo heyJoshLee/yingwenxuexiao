@@ -13,6 +13,7 @@
  *= require_self
  *= require bootstrap
  *= require font-awesome
+ *= require jquery.minicolors
  *= require_tree .
  *= require bootsy
  */
@@ -942,6 +943,11 @@ dashboard
 
 .course_levels_table_color_preview {
   color: white;
+}
+
+
+#course_level_color_preview {
+  margin-top: 30px;
 }
 
 /*********

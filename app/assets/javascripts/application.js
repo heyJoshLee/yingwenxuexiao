@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootsy
+//= require jquery.minicolors
 //= require_tree .
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -123,12 +124,25 @@ $(function() {
       heightStyle: "content",
       active: false
     });
+
+  $("#course_level_color").minicolors({theme: "bootstrap"});
+
+});
+
+
+
+// course level form
+$(document).on("keyup", "#course_level_name", function(e) {
+  $("#course_level_color_preview").html($(e.target).val());
+});
+
+$(document).on("change", "#course_level_color", function(e) {
+  $("#course_level_color_preview").css("backgroundColor", $(e.target).val());
 });
 
 
 
 // practice
-
 
 
 $(document).on("click", ".flash_card_study_option_button", function(e) {
