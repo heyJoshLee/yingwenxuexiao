@@ -1,5 +1,5 @@
 Rails.application.configure do
-  
+
   config.web_console.whiny_requests = false
 
 config.cache_classes = false
@@ -15,6 +15,7 @@ config.cache_classes = false
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
+  config.log_level = :debug
 
   # Do not compress assets
   config.assets.compress = false
