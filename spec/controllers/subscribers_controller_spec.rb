@@ -100,7 +100,7 @@ describe SubscribersController do
       expect(user.membership_level).to eq("paid");
     end
 
-    it "gets successful payment and marks user as paid" do
+    it "gets unsuccessful payment and marks user as free" do
       user = User.where(email:'testuser@testing.com').first
       user.update_attribute(:stripeid, 'cus_AVUti38AGlyyVv')
       user.update_attribute(:membership_level, 'paid')
