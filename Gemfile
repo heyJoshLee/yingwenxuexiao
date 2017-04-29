@@ -29,6 +29,7 @@ gem 'momentjs-rails'
 gem "whenever"
 gem 'unicorn'
 gem 'stripe'
+gem 'stripe-ruby-mock', '~> 2.4.0', :require => 'stripe_mock'
 gem 'jw_player_helper'
 gem 'roo', '~> 2.5.0'
 gem 'roo-xls'
@@ -48,15 +49,13 @@ group :development, :test do
   gem 'database_cleaner', '1.4.1'
   gem "letter_opener"
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper", "1.0.0"
   gem 'capybara-email'
   gem 'shoulda-matchers', '2.7.0'
   gem 'fabrication'
   gem "faker"
   gem "launchy"
-  gem 'vcr', '2.9.3'
-  gem 'selenium-webdriver'
-  gem 'stripe_event'
-  gem "webmock"
   gem 'spring'
 
 
@@ -68,4 +67,3 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 end
-

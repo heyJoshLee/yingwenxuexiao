@@ -20,20 +20,18 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require "capybara/email/rspec"
+require 'capybara/rspec'
+require 'capybara/rails'
 require "sidekiq/testing/inline"
 Capybara.server_port = 52662
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-VCR.configure do |c|
-  c.cassette_library_dir = "spec/cassettes"
-  c.hook_into :webmock
-  c.configure_rspec_metadata!
-  c.ignore_localhost = true
-end
-
-
 RSpec.configure do |config|
+  config.include Capybara::DSL
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end  
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

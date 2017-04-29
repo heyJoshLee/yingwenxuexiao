@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205133324) do
+ActiveRecord::Schema.define(version: 20170425090134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,17 +273,6 @@ ActiveRecord::Schema.define(version: 20170205133324) do
     t.text     "body"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "interval"
-    t.string   "name"
-    t.string   "slug"
-    t.string   "currency"
-    t.string   "stripe_id"
-    t.integer  "price"
-  end
-
   create_table "support_tickets", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -321,7 +310,7 @@ ActiveRecord::Schema.define(version: 20170205133324) do
   create_table "user_vocabulary_words", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "vocabulary_word_id"
-    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
+    t.datetime "review_time",                  default: '2017-04-16 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "english_to_chinese_attempted", default: 0

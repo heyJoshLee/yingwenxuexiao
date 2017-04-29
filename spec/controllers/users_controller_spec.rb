@@ -11,12 +11,12 @@ describe UsersController do
   describe "POST create" do
     it "creates a user without an affiliate link" do
       post :create, user: {name: "John Doe", password: "Coolpass123", email: "John@google.com"}
-      expect(User.count).to eq(1);
+      expect(User.count).to eq(2);
     end
 
     it "doesn't create user if params aren't passed" do
       post :create, user: {name: "joe"}
-      expect(User.count).to eq(0);
+      expect(User.count).to eq(1);
     end
 
     it "creates a user with an affiliate link" do

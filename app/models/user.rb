@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   has_many :user_vocabulary_words
   has_many :vocabulary_words, through: :user_vocabulary_words
-  
+
   has_many :comment_notifications
 
   before_create :generate_random_slug
@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
       lesson_users.find_by(lesson_id: lesson_to_test.id).update_column(:completed, true)
     else
       LessonUser.create(lesson_id: lesson_to_test.id, user_id: id)
-    end 
+    end
   end
 
   def completed_lesson?(lesson)
@@ -257,4 +257,3 @@ class User < ActiveRecord::Base
 
 
 end
-
