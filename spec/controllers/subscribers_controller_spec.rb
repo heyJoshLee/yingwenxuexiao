@@ -188,7 +188,6 @@ describe SubscribersController do
         "request"=> nil,
         "type"=> "invoice.payment_failed"
       }.to_json
-      user.reload
       expect(user.reload.membership_level).to eq("free")
     end
   end
