@@ -4,7 +4,7 @@ describe SubscribersController do
   describe "Stripe webhooks hit system" do
     it "gets successful payment and marks user as paid" do
       user = Fabricate(:user)
-      expect(user.membership_level).to eq("free");
+      expect(user.membership_level).to eq("free")
       expect(user.stripeid).to eq("cus_AVUti38AGlyyVv")
       post :stripe_charge, {
         "id"=> "evt_1ABl6nI8HOATFuBIXmheKLAR",
@@ -99,7 +99,7 @@ describe SubscribersController do
 
     it "gets unsuccessful payment and marks user as free" do
       user = Fabricate(:user, membership_level:"paid")
-      expect(user.membership_level).to eq("paid");
+      expect(user.membership_level).to eq("paid")
       post :stripe_charge, {
         "id"=> "evt_1ABl6nI8HOATFuBIXmheKLAR",
         "object"=> "event",
