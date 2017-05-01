@@ -3,11 +3,9 @@ require "rails_helper"
 describe SubscribersController do
   describe "Stripe webhooks hit system" do
     it "gets successful payment and marks user as paid" do
-      user = User.where(email:'testuser@testing.com').first
-      user.update_attribute(:stripeid, 'cus_AVUti38AGlyyVv')
-      user.update_attribute(:membership_level, 'free')
-      user.reload
+      user = Fabricate(:user)
       expect(user.membership_level).to eq("free");
+      expect(user.stripeid).to eq("cus_AVUti38AGlyyVv")
       post :stripe_charge, {
         "id"=> "evt_1ABl6nI8HOATFuBIXmheKLAR",
         "object"=> "event",
@@ -96,15 +94,11 @@ describe SubscribersController do
         "request"=> nil,
         "type"=> "invoice.payment_succeeded"
       }.to_json
-      user.reload
-      expect(user.membership_level).to eq("paid");
+      expect(user.reload.membership_level).to eq("paid");
     end
 
     it "gets unsuccessful payment and marks user as free" do
-      user = User.where(email:'testuser@testing.com').first
-      user.update_attribute(:stripeid, 'cus_AVUti38AGlyyVv')
-      user.update_attribute(:membership_level, 'paid')
-      user.reload
+      user = Fabricate(:user, membership_level:"paid")
       expect(user.membership_level).to eq("paid");
       post :stripe_charge, {
         "id"=> "evt_1ABl6nI8HOATFuBIXmheKLAR",
@@ -195,7 +189,7 @@ describe SubscribersController do
         "type"=> "invoice.payment_failed"
       }.to_json
       user.reload
-      expect(user.membership_level).to eq("free");
+      expect(user.reload.membership_level).to eq("free")
     end
   end
 end
