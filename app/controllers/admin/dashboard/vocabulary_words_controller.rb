@@ -22,13 +22,14 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
   end
 
   def create
+    lesson = Lesson.find(params[:vocabulary_wordable_id])
     @word = VocabularyWord.new(word_params)
     @word.vocabulary_wordable_type = params[:vocabulary_wordable_type]
     @word.vocabulary_wordable_id = params[:vocabulary_wordable_id]
     # parent_object = @word.vocabulary_wordable
     if @word.save
       flash[:success] = "Word was saved"
-      lesson = Lesson.find(@word.vocabulary_wordable_id)
+      lesson.add_vocabulary_word(@word)
       redirect_to edit_admin_course_lesson_path(lesson.course, lesson)
     #   if parent_object.class.to_s == "Article"
     #     redirect_to edit_admin_article_path(parent_object)
@@ -48,6 +49,20 @@ class Admin::Dashboard::VocabularyWordsController < AdminController
     else
       flash.now[:danger] = "There was an error and the word was not saved."
       render "edit"
+    end
+  end
+
+
+  def get_related_words
+    respond_to do |format|
+      search_query = params[:search_query]
+      @lesson = Lesson.find(params[:lesson_id])
+      puts "searching for '#{search_query}'..."
+      format.js do
+        return_data = VocabularyWord.find_related_words(search_query)
+        puts return_data
+        @vocabulary_results = return_data
+      end
     end
   end
 

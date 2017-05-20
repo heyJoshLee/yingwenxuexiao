@@ -1,3 +1,3 @@
-- unless @lesson.video_url != ""
-  .video_container
-    = video_player({:file => @lesson.video_url}, {:width => "100%"})
+#video_container
+  %iframe#vzvd-9361978.vzaar-video-player{:allowfullscreen => "", :allowtransparency => "true", :frameborder => "0", :height => "324", :mozallowfullscreen => "", :name => @lesson.name, :src => @lesson.video_url, :title => @lesson.name, :type => "text/html", :webkitallowfullscreen => "", :width => "576"}
+

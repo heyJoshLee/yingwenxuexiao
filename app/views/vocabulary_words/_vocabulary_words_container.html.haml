@@ -7,7 +7,7 @@
             %i.fa.fa-check.v_margin
           = render "vocabulary_words/word_with_tool_tip", word: vocabulary_word
         - else
-          = link_to user_vocabulary_words_path(vocabulary_word_id: vocabulary_word.slug), method: "post", remote: "true" do
+          = link_to user_vocabulary_words_path(vocabulary_word_id: vocabulary_word.slug, lesson_slug: object.slug), method: "post", remote: "true" do
             .col-xs-1
               %i.fa.fa-plus.v_margin
           = render "vocabulary_words/word_with_tool_tip", word: vocabulary_word

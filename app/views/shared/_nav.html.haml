@@ -12,7 +12,7 @@
         = link_to "游戏", games_path # Games
     .col-sm-4.nav_item
       .nav_text
-        - if logged_in? && current_user.is_paid_member?
+        - if logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
           = link_to "My Words", my_words_path # My Words
         - else
           = link_to "高級會員", upgrade_path # Premium Membership

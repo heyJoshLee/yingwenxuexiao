@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootsy
+//= require jquery.minicolors
 //= require_tree .
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -91,6 +92,18 @@ $(document).on("click", "#close_level_up_container", function(e) {
   });
 });
 
+$(document).on("keyup", "#add_vocabulary_word_main", function(e) {
+  $.ajax({
+    url: "/admin/dashboard/vocabulary_words/get_related_words",
+    method: "POST",
+    data: {
+      search_query: $("#add_vocabulary_word_main").val(),
+      lesson_id: $("#vocabulary_wordable_id").val()
+    }
+  });
+});
+
+
 // jQuery UI
 
 $(function() {
@@ -111,12 +124,25 @@ $(function() {
       heightStyle: "content",
       active: false
     });
+
+  $("#course_level_color").minicolors({theme: "bootstrap"});
+
+});
+
+
+
+// course level form
+$(document).on("keyup", "#course_level_name", function(e) {
+  $("#course_level_color_preview").html($(e.target).val());
+});
+
+$(document).on("change", "#course_level_color", function(e) {
+  $("#course_level_color_preview").css("backgroundColor", $(e.target).val());
 });
 
 
 
 // practice
-
 
 
 $(document).on("click", ".flash_card_study_option_button", function(e) {
