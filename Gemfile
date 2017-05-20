@@ -29,8 +29,6 @@ gem 'momentjs-rails'
 gem "whenever"
 gem 'unicorn'
 gem 'stripe'
-gem 'stripe-ruby-mock', '~> 2.4.0', :require => 'stripe_mock'
-gem 'jw_player_helper'
 gem 'roo', '~> 2.5.0'
 gem 'roo-xls'
 gem 'prawn-rails'
