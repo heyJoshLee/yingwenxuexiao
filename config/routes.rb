@@ -31,6 +31,12 @@ Rails.application.routes.draw do
   # games
   get "games", to: "games#index"
 
+  namespace :api do
+    namespace :v1 do
+      resources :courses
+    end
+  end
+
   namespace :games do
     
     scope "word_search", as: "word_search" do
