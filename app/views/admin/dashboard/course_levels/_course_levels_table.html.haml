@@ -1,0 +1,18 @@
+%table.table.table-bordered.course_levels_table
+  %thead
+    %td Name
+    %td Courses
+    %td Color
+    %td Delete
+  %tbody
+    - @course_levels.each do |course_level|
+      %tr
+        %td
+          %strong=link_to course_level.name, edit_admin_dashboard_course_level_path(course_level)
+        %td
+          = course_level.courses.count
+        %td.course_levels_table_color_preview{style: "background-color: #{course_level.color}"}
+          = course_level.color
+        %td
+          = link_to admin_dashboard_course_level_path(course_level), method: "DELETE", remote: true, data: {confirm: "Are you sure you want to delete this course_level?"} do
+            .red_x X
