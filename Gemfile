@@ -33,6 +33,7 @@ gem 'roo', '~> 2.5.0'
 gem 'roo-xls'
 gem 'prawn-rails'
 gem 'jquery-minicolors-rails'
+gem 'remotipart'
 
 
 group :production do
