@@ -14,7 +14,7 @@
                   .row.question_choice
                     .col-sm-1
                       = radio_button_tag "questions[#{question.id}]", choice.id, current_user.selected_choice?(choice), class: "choice_radio_button"
-                    .col-sm-8
+                    .col-sm-7
                       - if current_user.answered_question?(question)
                         - if current_user.answered_correctly?(question) && choice.correct?
                           .choice_body.correct_answer= choice.body
