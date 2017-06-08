@@ -6,7 +6,9 @@
     .row
       %h5 New Question
       = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question], remote: true) do |f|
-        = f.bootsy_area :body, class: "form-control", rows: 5
+        = f.file_field :image_url, label: "Image", class: "btn btn-file"
+        = f.text_area :body, class: "form-control"
+
         .row
           .col-sm-2
             = f.text_field :value, value: 10

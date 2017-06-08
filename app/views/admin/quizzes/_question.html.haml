@@ -4,6 +4,10 @@
       = question.body.html_safe
     .col-sm-4
       = "Value: #{question.value}"
+  - unless question.image_url.blank?
+    .row
+      .col-sm-12
+        =image_tag(question.image_url)
     %ol.question_choices
       - question.choices.each do |choice|
         %div{id: "choice-#{choice}"}

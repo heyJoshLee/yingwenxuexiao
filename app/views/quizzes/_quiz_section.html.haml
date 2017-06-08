@@ -6,6 +6,8 @@
         - @lesson.quiz.questions.each_with_index do |question, index|
           .quiz_question
             = question.body
+            - unless question.image_url.blank?
+              = image_tag(question.image_url)
             %ol
               .question_choices
                 - question.choices.each do |choice|
