@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "signout", to: "sessions#destroy", as: "sign_out"
 
   get "signup/", to: "users#new", as: "sign_up"
+  get "signup/:affiliate_signup_code", to: "users#new", as: "sign_up_with_affiliate_code"
 
   get "blog", to: "articles#index", as: "blog"
   get "account", to: "users#show", as: "account"
