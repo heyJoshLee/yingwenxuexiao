@@ -7,6 +7,22 @@ feature "User signs up" do
     expect(page).to have_content("You have successfully registered. You are now logged in.")
   end
 
+  scenario "user signs up with a free account with affiliate link and is associated with the link" do
+    affiliate = Fabricate(:affiliate)
+    affiliate_link = Fabricate(:affiliate_link, slug: "abc123", affiliate_id: affiliate.id)
+    visit "/signup/abc123"
+    fill_in "user_email", with: "Johnsmith@google.com"
+    fill_in "user_name", with: "Dr. John Smith"
+    fill_in "user_password", with: "neatpassword123"
+    click_button "Sign Up"
+    expect(User.last.affiliate_link_id).to eq(affiliate_link.id)
+  end
+
+  scenario "user tries to upgrade without having an account" do
+    visit upgrade_path
+    expect(page).to have_content("Sign up now")
+  end
+
   scenario "unsuccessful sign up" do
     sign_up_unsuccessfuly
     expect(page).to have_content("Your account was not created.")
