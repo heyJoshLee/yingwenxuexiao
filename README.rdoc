@@ -1,9 +1,11 @@
 # TODO
 
-# update flash cards to effect user stats
-# show cards based on recall time
-# different recall types
-# write more tests
-# Units, create quiz / vocab import for unit, have unit option when creating lesson
-# Redo lesson numbers to reflect unit addition
-# Start in cloud 9
+* Fix games
+* update flash cards to effect user stats
+* show cards based on recall time
+* different recall types
+* write more tests
+* Add feature tests for payment
+* Stying for upgrade path
+
+* Write API
