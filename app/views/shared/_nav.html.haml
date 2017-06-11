@@ -9,7 +9,7 @@
     .col-sm-2.nav_item
       .nav_text
         / = link_to "練習", practice_path # Practice
-        = link_to "游戏", games_path # Games
+        = link_to "遊戲", games_path # Games
     .col-sm-4.nav_item
       .nav_text
         - if logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
