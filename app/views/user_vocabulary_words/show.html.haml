@@ -1,12 +1,17 @@
 %h1 My Words
 %table.table.table-bordered
   %thead
-    %td Word
-    %td Chinese
-    %td Part of speech
+    %td 英語
+    -# %td Word
+    %td 中文
+    -# %td Chinese
+    %td 部分講話
+    -# %td Part of speech
     %td Ipa
-    %td Definition
-    %td Sample Sentence
+    %td 定義
+    -# %td Definition
+    %td 樣本句子
+    -# %td Sample Sentence
     - if current_user.is_admin?
       %td Review Time
   %tbody

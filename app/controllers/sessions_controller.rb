@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
       flash[:success] = "您已登入" # You are signed in.
       redirect_to blog_path
     else
-      flash.now[:danger] = "There was something wrong with your email or password."
+      flash.now[:danger] = "您的電子郵件或密碼有問題。"
+      # flash.now[:danger] = "There was something wrong with your email or password."
       render :new
     end
   end

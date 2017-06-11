@@ -17,9 +17,11 @@ class QuizzesController < ApplicationController
       
       current_user.attempt_quiz(@quiz, questions_and_answers_array)
 
-      flash[:success] = "Successfully attempted quiz."
+      flash[:success] = "成功嘗試測驗."
+      # flash[:success] = "Successfully attempted quiz."
     else
-      flash[:danger] = "You did not answer any questions"
+      flash[:danger] = "你沒有回答任何問題。"
+      # flash[:danger] = "You did not answer any questions."
     end
       redirect_to course_lesson_path(@course, @lesson)
   end

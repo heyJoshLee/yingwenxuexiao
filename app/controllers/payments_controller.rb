@@ -12,7 +12,8 @@ class PaymentsController < ApplicationController
     # Save this in your DB and associate with the user;s email
     stripe_subscription = customer.subscriptions.create(:plan => plan.id)
 
-    flash[:notice] = "Successfully created a charge"
+    flash[:notice] = "成功創建了一個費用。"
+    # flash[:notice] = "Successfully created a charge."
     redirect_to upgrade_confirmation_path
   end
 

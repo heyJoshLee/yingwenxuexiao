@@ -1,6 +1,7 @@
 - if @lesson.vocabulary_words.count != 0
   = link_to course_lesson_path(@course, @lesson, format: "pdf") do
-    .btn.btn-primary Download Notes
+    .btn.btn-primary 下載備註
+    -# .btn.btn-primary Download Notes
 
   -if current_user.is_admin?
     = link_to course_lesson_path(@course, @lesson, format: "pdf", admin: true) do
