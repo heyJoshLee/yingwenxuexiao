@@ -37,7 +37,8 @@ end
 
 def go_to_forgot_password_page_and_fill_out_form(email)
     visit sign_in_path
-    click_link "Forgot Password"
+    click_link "忘記密碼"
+    # click_link "Forgot Password"
     fill_in "Email Address", with: email
     click_button "Send Password Reset Email"
 end

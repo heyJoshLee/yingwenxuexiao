@@ -9,16 +9,19 @@ class PasswordResetsController < ApplicationController
 
   def create
     if params[:password].blank?
-      flash[:danger] = "Password was not updated"
+      flash[:danger] = "密碼未更新。"
+      # flash[:danger] = "Password was not updated."
       redirect_to password_reset_path(params[:password_reset_token])
     else
       @user.password = params[:password]
       @user.generate_password_reset_token
       if @user.save
-        flash[:success] = "Password has been updated"
+        flash[:success] = "密碼已更新。"
+        # flash[:success] = "Password has been updated."
         redirect_to sign_in_path
       else 
-        flash[:danger] = "Password was not updated"
+        flash[:danger] = "密碼未更新。"
+        # flash[:danger] = "Password was not updated."
         redirect_to password_reset_url(params[:password_reset_token])
       end
     end

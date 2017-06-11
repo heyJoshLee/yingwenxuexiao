@@ -4,7 +4,8 @@ feature "User signs up" do
   
   scenario "successful sign up" do
     sign_up
-    expect(page).to have_content("You have successfully registered. You are now logged in.")
+    expect(page).to have_content("您已成功註冊。您現在已經登錄。")
+    # expect(page).to have_content("You have successfully registered. You are now logged in.")
   end
 
   scenario "user signs up with a free account with affiliate link and is associated with the link" do
@@ -25,7 +26,8 @@ feature "User signs up" do
 
   scenario "unsuccessful sign up" do
     sign_up_unsuccessfuly
-    expect(page).to have_content("Your account was not created.")
+    expect(page).to have_content("您的帳戶未創建。")
+    # expect(page).to have_content("Your account was not created.")
   end
 end
 

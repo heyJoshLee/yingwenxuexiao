@@ -4,6 +4,8 @@
     .email_body
       %h1= "Your download, #{@download.title}, is ready!"
       %br/
-      %h4 Click below to get your download link
+      %h4 點擊下面獲取您的下載鏈接。
+      -# %h4 Click below to get your download link.
       = link_to download_url(@download_link) do
-        .btn.btn-primary Download now!
+        .btn.btn-primary 現在下載！
+        -# .btn.btn-primary Download now!

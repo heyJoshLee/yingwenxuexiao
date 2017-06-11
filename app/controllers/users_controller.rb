@@ -25,24 +25,28 @@ class UsersController < ApplicationController
       @user.affiliate_link_id = @affiliate_link.id
     end
     if @user.save
-      flash[:success] = "You have successfully registered. You are now logged in."
+      flash[:success] = "您已成功註冊。您現在已經登錄。"
+      # flash[:success] = "You have successfully registered. You are now logged in."
       session[:user_id] = @user.id
       AppMailer.send_welcome_email(@user).deliver
       redirect_to blog_path
       # redirect_to upgrade_path  #Uncomment with payment becomes available
 
     else
-      flash.now[:error] = "Your account was not created."
+      flash.now[:error] = "您的帳戶未創建。"
+      # flash.now[:error] = "Your account was not created."
       render :new
     end
   end
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Profile saved successfully"
+      flash[:success] = "個人資料保存成功。"
+      # flash[:success] = "Profile saved successfully."
       redirect_to edit_user_path(@user)
     else
-      flash.now[:danger] = "There was an error and nothing was saved"
+      flash.now[:danger] = "有一個錯誤，沒有任何保存。"
+      # flash.now[:danger] = "There was an error and nothing was saved."
       render :edit
     end
 
