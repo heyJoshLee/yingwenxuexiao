@@ -52,4 +52,5 @@ describe Api::V1::CoursesController do
 
   end
 
+
 end
