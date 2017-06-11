@@ -26,17 +26,16 @@
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right.nav-links
           %li
-            %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} 免費禮物
-
+            %button.btn.btn-primary.v_margin{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} 免费礼物
             / Free Gift
           %li
             = link_to "Blog", blog_path
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "免費", free_path # Free Stuff
+            = link_to "免费", free_path # Free Stuff
           %li.hidden-sm.hidden-md.hidden-lg
-            = link_to "遊戲", games_path # Games Stuff
+            = link_to "游戏", games_path # Games Stuff
           %li
-            = link_to "課程", courses_path # Courses
+            = link_to "课程", courses_path # Courses
           %li.hidden-sm.hidden-md.hidden-lg
             - if logged_in? && (current_user.is_paid_member? || current_user.is_admin?)
               = link_to "My Words", my_words_path # My Words
@@ -49,8 +48,8 @@
               = link_to "登入", sign_in_path # Sign In
           %li
             - if logged_in?
-              = link_to "我的帳號", account_path # My Account
+              = link_to "我的帐号", account_path # My Account
             - else
-              = link_to "註冊", sign_up_path # Sign Up
+              = link_to "注册", sign_up_path # Sign Up
       / /.navbar-collapse
     / /.container-fluid
