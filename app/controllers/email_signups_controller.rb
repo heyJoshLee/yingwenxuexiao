@@ -23,7 +23,8 @@ class EmailSignupsController < ApplicationController
       end
     else
       session[:return_to] ||= request.referer
-      flash[:danger] = "There was a problem and your were not signed up. Please try again."
+      flash[:danger] = "有一個問題，你沒有註冊。請再試一次。"
+      # flash[:danger] = "There was a problem and your were not signed up. Please try again."
       redirect_to session.delete(:return_to)
     end
   end
