@@ -196,6 +196,19 @@ class User < ActiveRecord::Base
     end #mass transaction
   end
 
+  def member_until
+    unless is_paid_member?
+      return "not a paid member"
+    else
+      Time.at(Stripe::Customer.retrieve(stripeid).subscriptions.first["current_period_end"])
+    end
+  end
+
+  def membership_will_end?
+    Stripe::Customer.retrieve(stripeid).
+      subscriptions.first["cancel_at_period_end"]
+  end
+
   private
 
   def add_to_correct_if_correct(word, question, answer, user_word, correct_column)

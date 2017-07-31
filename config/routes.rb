@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "contact", to: "pages#contact", as: "contact"
   get "careers", to: "pages#careers", as: "careers"
   get "upgrade", to: "pages#upgrade", as: "upgrade"
+  get "cancel_membership", to: "subscribers#destroy"
   get "help", to: "pages#help", as: "help"
   get "free", to: "pages#free", as: "free"
 
