@@ -9,15 +9,20 @@ def create
   token = params[:stripeToken]
 
   # Create a Customer
-  customer = Stripe::Customer.create(
-    :email => current_user.email,
-    :source  => token
-  )
+  stripe_id = nil
+  if user.stripeid 
+    stripe_id = user.stripeid
+  else
+    customer = Stripe::Customer.create(
+      :email => current_user.email,
+      :source  => token
+    )
+  end
 
   stripe_subscription = Stripe::Subscription.create(
-    :customer => customer.id, 
+    :customer => stripe_id || customer.id, 
     :items => [
-      {:plan => "2"}
+      {:plan => "1"}
       ]  
     )
   user.update_column(:membership_level, "paid")
@@ -73,6 +78,12 @@ def stripe_charge
   render :json => {:status => 200}
 
 end # Stripe_charge
+
+def destroy
+customer = Stripe::Customer.retrieve(current_user.stripeid)
+customer.subscriptions.first.delete(:at_period_end => true)
+
+end
 
 private
 

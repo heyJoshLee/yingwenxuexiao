@@ -1,22 +1,38 @@
 %h1 Profile
-%p= link_to "Edit profile", edit_user_path(@user)
+= link_to edit_user_path(@user) do
+  .btn.btn-primary 編輯個人資料
 .row
   .col-xs-4
-    %h3= "Username: #{@user.name}"
-    %h3= "Email: #{@user.email}"
-    %h3= "Membership level: #{@user.membership_level}"
+    %h3= "用戶名: #{@user.name}"
+    %h3= "電子郵件: #{@user.email}"
 
-    %h3= "Level: #{@user.level}"
-    %h3= "Points: #{@user.points}"
+    -if @user.is_paid_member?
+      %h3 優質會員
+    - else
+      = link_to upgrade_path do
+        %h3 升級
+
+    - if current_user.is_paid_member?
+      - if @user.membership_will_end?
+        %h3= "會員直到: #{@user.member_until}"
+      - else
+        %h3= "下一個付款日期: #{@user.member_until}"
+        
+        = link_to cancel_membership_path, data: { confirm: "你確定要停止你的會員資格嗎？您仍然可以看課程，直到您的會員資格用完為止。"} do
+          .btn.btn-danger 取消會員資格
+
+
+    %h3= "水平: #{@user.level}"
+    %h3= "分: #{@user.points}"
   .col-xs-4=image_tag(@user.picture_url)
 
-%h2 My courses
+%h2 我的課程
 
 - if @user.courses.count < 1
   .well.center
-    %h4 You aren't enrolled in any courses
+    %h4 你還沒有報名課程。
     = link_to courses_path do
-      .btn.btn-primary.btn-lg Find a course
+      .btn.btn-primary.btn-lg 找課程
 - else
   - @user.courses.each do |course|
     = render "courses/course_preview", course: course

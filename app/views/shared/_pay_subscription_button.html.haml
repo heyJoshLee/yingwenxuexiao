@@ -12,9 +12,9 @@
   .container
     .col-xs-12.col-sm-offset-3.col-lg-offset-4
       - if logged_in? && current_user.is_paid_member?
-        %h5 You are already a premium member
+        %h5 你已經是優質會員了。
         = link_to courses_path do
-          .btn.btn-primary Go to class
+          .btn.btn-primary 上課
       - elsif logged_in? && !current_user.is_paid_member? 
         = form_tag subscribers_path do
           %article
@@ -22,8 +22,10 @@
               #error_explanation
                 %p= flash[:error]
             %label.amount
-              %span Amount: $100.00
-          %script.stripe-button{"data-alipay" => "true", "data-amount" => "10000", "data-currency" => "usd", "data-description" => "A month's subscription", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "Upgrade Now", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
+              %span 課程費: $750 NTD / 月
+          %script.stripe-button{"data-alipay" => "true", "data-amount" => "75000", "data-currency" => "ntd", "data-description" => "課程費: $750 NTD / 月", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "升級", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
+          %p 當您是會員時，您可以看視頻，下載備註，考小考和問教師問題
+          %p 您每月將收取750台幣(NTD)，直到您取消
       - else
         = link_to sign_up_path do
-          .btn.btn-xlarge.btn-primary Sign up now
+          .btn.btn-xlarge.btn-primary 註冊
