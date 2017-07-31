@@ -15,7 +15,7 @@ def create
   )
   stripe_subscription = Stripe::Subscription.create(
     :customer => customer.id,
-    :plan => 1
+    :id => 1
   )
   user.update_column(:membership_level, "paid")
   user.update_column(:stripeid, customer.id)
