@@ -13,10 +13,13 @@ def create
     :email => current_user.email,
     :source  => token
   )
+
   stripe_subscription = Stripe::Subscription.create(
-    :customer => customer.id,
-    :id => 1
-  )
+    :customer => customer.id, 
+    :items => [
+      {:plan => "2"}
+      ]  
+    )
   user.update_column(:membership_level, "paid")
   user.update_column(:stripeid, customer.id)
 
