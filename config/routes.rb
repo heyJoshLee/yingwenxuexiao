@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   get "free", to: "pages#free", as: "free"
 
   get "error", to: "pages#error", as: "error"
-  
+
+  # help
+  get "help/tos", to: "help#tos", as: "tos"
+  get "help/privacy_policy", to: "help#privacy_policy", as: "privacy_policy"
   # post "stripe_webhook", to: "subscribers#stripe_charge"
   
   post 'stripe_webhook' => 'subscribers#stripe_charge'
