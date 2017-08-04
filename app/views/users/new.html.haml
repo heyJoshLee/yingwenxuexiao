@@ -1,4 +1,7 @@
 %main
+  - if @affiliate_link
+    .row
+      .well.affiliate_link_message= @affiliate_link.sign_up_message
   .row
     %h1 免费注册
     / %h1 Sign Up For Free

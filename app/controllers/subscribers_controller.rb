@@ -5,6 +5,8 @@ class SubscribersController < ApplicationController
 def create
 
   user = current_user
+ 
+
   # Get the credit card details submitted by the form
   token = params[:stripeToken]
 
@@ -28,9 +30,16 @@ def create
   user.update_column(:membership_level, "paid")
   user.update_column(:stripeid, customer.id)
 
+  if session[:affiliate_link_code]
+    affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
+    user.update_column(:affiliate_link_id, affiliate_link.id) if affiliate_link
+  end
+
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
+
 
 end # create
 
