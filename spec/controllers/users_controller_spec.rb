@@ -21,8 +21,8 @@ describe UsersController do
 
     it "creates a user with an affiliate link" do
       affiliate = Fabricate(:affiliate)
-      affiliate_link = Fabricate(:affiliate_link, slug: "abc123", affiliate_id: affiliate.id)
-      session[:affiliate_link_slug] = affiliate_link.slug
+      affiliate_link = Fabricate(:affiliate_link, code: "abc123", affiliate_id: affiliate.id)
+      session[:affiliate_link_code] = affiliate_link.code
       post :create, user: {name: "John Doe", password: "Coolpass123", email: "John@google.com"}
       expect(User.last.affiliate_link_id).to eq(affiliate_link.id)
     end

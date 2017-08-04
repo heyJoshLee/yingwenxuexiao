@@ -5,6 +5,11 @@
       / %h1 Improve Your English Right Now
       %h4 透過影片和有趣的測驗等來學習英文！
       / %h4 Learn English with Video Lessons, Fun Quizzes and more!
+
+
+- if @affiliate_link
+  .row
+    .well.affiliate_link_message=@affiliate_link.upgrade_message
 = render "shared/pay_subscription_button"
       
 
