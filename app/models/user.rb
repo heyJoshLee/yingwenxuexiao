@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :vocabulary_words, through: :user_vocabulary_words
 
   has_many :comment_notifications
+  has_many :charges
 
   before_create :generate_random_slug
 
