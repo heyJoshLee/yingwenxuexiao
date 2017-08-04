@@ -4,8 +4,16 @@ class StripeController < ApplicationController
   def index
     puts "Hit stripe webhook"
     type = params["type"]
-    delete_subscription if type == "customer.subscription.deleted"
-    payment_made if type == "charge.succeeded" 
+    if type == "customer.subscription.deleted"
+      delete_subscription 
+    elsif type == "charge.succeeded" 
+      payment_made
+    else 
+      render json: {
+        message: "No action completed",
+        status: 200
+      }, status: 200
+    end
   end
 
 
@@ -26,12 +34,14 @@ class StripeController < ApplicationController
 
         # send email to user
         # send email to admin
-        Charge.create(
+        Payment.create(
           stripe_id: stripe_id,
           currency: currency,
           user_id: user.id,
           amount: amount
         )
+      AppMailer.stripe_charge(user, amount, currency).deliver
+
       else
 
         message = "payment_made, but  "
@@ -39,6 +49,8 @@ class StripeController < ApplicationController
 
       end
     end
+
+
 
       render json: {
         message: message,
@@ -54,7 +66,8 @@ class StripeController < ApplicationController
     if user 
       user.update_column(:membership_level, "free")
       message = "Ended subscription for #{user.email}"
-      # send email
+      AppMailer.subscription_cancel(user).deliver
+      
     else
       message = "Tried to cancel subscription, but "
       message += "couldn't find user with stripeid: #{stripe_id}"

@@ -1,4 +1,4 @@
-class Charge < ActiveRecord::Base
+class Payment < ActiveRecord::Base
  before_create :generate_random_slug
  belongs_to :user
 
