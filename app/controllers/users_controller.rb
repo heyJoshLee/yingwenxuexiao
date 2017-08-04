@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_filter :require_user, only: [:show, :update]
 
   def new
-    session[:affiliate_link_slug] = params[:affiliate_signup_code] if params[:affiliate_signup_code]
+    session[:affiliate_link_code] = params[:affiliate_signup_code] if params[:affiliate_signup_code]
+    @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code]) if session[:affiliate_link_code]
     @user = User.new
   end
 
@@ -20,9 +21,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if session[:affiliate_link_slug]
-      @affiliate_link = AffiliateLink.find_by(slug: session[:affiliate_link_slug] )
-      @user.affiliate_link_id = @affiliate_link.id
+    if session[:affiliate_link_code]
+      @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
+      @user.affiliate_link_id = @affiliate_link.id if @affiliate_link
     end
     if @user.save
       flash[:success] = "您已成功註冊。您現在已經登錄。"

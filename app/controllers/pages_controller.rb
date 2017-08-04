@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def upgrade
+    @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code]) if session[:affiliate_link_code]
     render layout: "upgrade"
   end
 

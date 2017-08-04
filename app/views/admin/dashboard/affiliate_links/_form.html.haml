@@ -1,0 +1,9 @@
+= bootstrap_form_for([:admin, :dashboard, @affiliate, @affiliate_link]) do |f|
+  %h3 Link URL
+  .well.center
+    %strong= @affiliate_link.url
+  = f.text_field :name
+  = f.text_field :code
+  = f.text_area :sign_up_message
+  = f.text_area :upgrade_message
+  = f.submit @affiliate_link.new_record? ? "Create Affiliate Link" : "Save Edits", class: "btn btn-primary"

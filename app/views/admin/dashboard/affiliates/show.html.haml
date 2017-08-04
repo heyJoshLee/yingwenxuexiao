@@ -28,12 +28,17 @@
         %td Url
         %td Signups
         %td Created at
+        %td Sign up Message
+        %td Upgrade Message
       %tbody
         - @affiliate.affiliate_links.each do |affiliate_link|
           %tr
-            %td= affiliate_link.name
+            %td
+              =link_to affiliate_link.name, edit_admin_dashboard_affiliate_affiliate_link_path(@affiliate, affiliate_link)
             %td= affiliate_link.url
             %td= affiliate_link.users.count
             %td= affiliate_link.created_at
+            %td= affiliate_link.sign_up_message
+            %td= affiliate_link.upgrade_message
 
 

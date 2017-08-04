@@ -10,8 +10,8 @@ feature "User signs up" do
 
   scenario "user signs up with a free account with affiliate link and is associated with the link" do
     affiliate = Fabricate(:affiliate)
-    affiliate_link = Fabricate(:affiliate_link, slug: "abc123", affiliate_id: affiliate.id)
-    visit "/signup/abc123"
+    affiliate_link = Fabricate(:affiliate_link, affiliate_id: affiliate.id)
+    visit "/signup/" + affiliate_link.code
     fill_in "user_email", with: "Johnsmith@google.com"
     fill_in "user_name", with: "Dr. John Smith"
     fill_in "user_password", with: "neatpassword123"
