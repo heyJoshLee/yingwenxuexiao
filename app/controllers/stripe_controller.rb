@@ -29,7 +29,7 @@ class StripeController < ApplicationController
       if user = User.find_by(stripeid: stripe_id) 
         user.update_column(:membership_level, "paid")
         message = "Payment made for #{user.email}"
-        amount = params["data"]["object"]["amount"]
+        amount = params["data"]["object"]["amount"].to_f
         currency = params["data"]["object"]["currency"]
 
         # send email to user
@@ -41,6 +41,7 @@ class StripeController < ApplicationController
           amount: amount
         )
       AppMailer.stripe_charge(user, amount, currency).deliver
+      AppMailer.admin_payment_notification(user, amount, currency).deliver
 
       else
 
@@ -67,6 +68,7 @@ class StripeController < ApplicationController
       user.update_column(:membership_level, "free")
       message = "Ended subscription for #{user.email}"
       AppMailer.subscription_cancel(user).deliver
+      AppMailer.notify_admin_of_subscription_cancel(user).deliver
       
     else
       message = "Tried to cancel subscription, but "

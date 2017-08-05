@@ -181,6 +181,10 @@ describe StripeController do
         post :index, charge_succeeded_json
       end
 
+      after do
+        ActionMailer::Base.deliveries.clear
+      end
+
       it "adds a charge object" do     
         expect(Payment.count).to eq(1)
       end
@@ -194,12 +198,11 @@ describe StripeController do
       end 
 
       it "sends an email to the user" do
-
+        expect(ActionMailer::Base.deliveries.first.to).to eq([paying_user.email])
       end
 
       it "sends an email to the admin" do
-
-
+        expect(ActionMailer::Base.deliveries.last.to).to eq([ENV['ADMIN_EMAIL']])
       end
 
     end # successful charge
@@ -209,16 +212,20 @@ describe StripeController do
         post :index, delete_subscription
       end
 
+       after do
+        ActionMailer::Base.deliveries.clear
+      end
+
       it "makes the user a free member" do
         expect(sub_running_out_user.reload.membership_level).to eq("free")
       end
 
       it "sends an email to the user" do
-
+        expect(ActionMailer::Base.deliveries.first.to).to eq([sub_running_out_user.email])
       end 
 
       it "sends an email to the admin" do
-
+        expect(ActionMailer::Base.deliveries.last.to).to eq([ENV['ADMIN_EMAIL']])
       end
     end #user subscription runs out
 

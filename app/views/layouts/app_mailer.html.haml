@@ -1,5 +1,11 @@
-
+- if @user
+  ="#{@user.name}, "
 =yield
 %p 好好學習！加油！
 %i 李老師, Josh Lee 
+- if @user
+  - if @user.is_paid_member?
+    %h4=link_to "上課!", courses_url
+  - else
+    %h4= link_to "升級帳戶，並獲得上百個課程，課堂筆記，測驗等等！", upgrade_url
 %p="不要回复此電子郵件。如果您需要幫助，請發送電子郵件至  #{ENV['ADMIN_EMAIL']}"

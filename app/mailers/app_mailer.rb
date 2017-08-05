@@ -34,8 +34,12 @@ class AppMailer < ActionMailer::Base
     @user = user
     @amount = amount
     @currency = currency
-    binding.pry
-    mail to: ENV["ADMIN_EMAIL"], from: "billing@yingwenxuexiao.com", subject: "英文學校 (Taiwan English School) Monthly charge"
+    mail to: ENV["ADMIN_EMAIL"], from: "billing@yingwenxuexiao.com", subject: "#{currency} #{amount/100} paid from #{user.email}"
+  end
+
+  def notify_admin_of_subscription_cancel(user)
+    @user = user
+    mail to: ENV["ADMIN_EMAIL"], from: "billing@yingwenxuexiao.com", subject: "SUB Cancel #{user.email}"
   end
 
 end
