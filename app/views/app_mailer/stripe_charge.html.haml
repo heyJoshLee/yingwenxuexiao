@@ -1,0 +1,9 @@
+!!! 5
+%html(lang="en-US")
+  %body
+    .email_body
+      %p= "您的帳戶已收取#{@currency} #{@amount/100}課程的每月費用"
+
+      = link_to courses_url do
+        %h2 現在上課!
+         

@@ -26,7 +26,7 @@
           %script.stripe-button{"data-alipay" => "true", "data-amount" => "75000", "data-currency" => "ntd", "data-description" => "課程費: $750 NTD / 月", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "升級", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
           %p 當您是會員時，您可以看視頻，下載備註，考小考和問教師問題
           %p 您每月將收取750台幣(NTD)，直到您取消
-          %p 如果您沒有信用卡或支付寶(Alipay)您可以通過銀行轉帳付款。請發送電子郵件至 TaiwanEnglishSchool@gmail.com
+          %p="如果您沒有信用卡或支付寶(Alipay)您可以通過銀行轉帳付款。請發送電子郵件至 #{ENV['ADMIN_EMAIL']}"
 
       - else
         = link_to sign_up_path do

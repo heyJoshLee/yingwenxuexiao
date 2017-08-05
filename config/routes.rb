@@ -24,10 +24,10 @@ Rails.application.routes.draw do
   # help
   get "help/tos", to: "help#tos", as: "tos"
   get "help/privacy_policy", to: "help#privacy_policy", as: "privacy_policy"
-  # post "stripe_webhook", to: "subscribers#stripe_charge"
   
-  post 'stripe_webhook' => 'subscribers#stripe_charge'
+  post "stripe_webhook_1122", to: "stripe#index"
 
+  post 'stripe_webhook' => 'subscribers#stripe_charge'
 
   %w(404 422 500 503).each do |code|
     get code, to: "pages#error", code: code
@@ -66,7 +66,6 @@ Rails.application.routes.draw do
   get "expired_password_token", to: "forgot_passwords#expired"
 
   resources :forgot_passwords, only: [:create, :new]
-
   get "forgot_password_confirmation", to: "forgot_passwords#confirm"
 
   get "my_words", to: "user_vocabulary_words#show"
