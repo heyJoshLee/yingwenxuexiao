@@ -1,0 +1,39 @@
+%h1 Payments
+:javascript
+  $(function() {
+    $('.datepicker').datepicker();
+  });
+
+=form_tag "/admin/dashboard/reports/payments", method: "GET" do
+  %label{:for => "start_date"} Start Date
+  %label{:for => "end_date", style: "margin-left: 110px;"} End Date
+  = hidden_field_tag 'filter', true
+  %br/
+  %input.datepicker#start_date{type: "text", style: "margin-bottom: 170px;",  name: "start_date"}
+  %input.datepicker#end_date{type: "text", style: "margin-bottom: 170px;",  name: "end_date"}
+  = submit_tag "Filter", class: "btn btn-primary"
+
+
+- if @start_date && @end_date
+  %h2= "#{@start_date} - #{@end_date}"
+- else
+  %h2 Showing All Payments
+
+%table.table.table-bordered
+  %thead
+    %td Email
+    %td Username
+    %td Stripe ID
+    %td Currency
+    %td Amount
+    %td Date
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= payment.user.email
+        %td= payment.user.name 
+        %td= payment.user.stripeid
+        %td= payment.currency 
+        %td= payment.amount / 100 
+        %td= payment.created_at 
+        
