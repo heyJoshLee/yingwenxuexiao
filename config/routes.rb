@@ -120,6 +120,11 @@ Rails.application.routes.draw do
     resources :articles
     resources :article_topics
     namespace :dashboard do
+      namespace :reports do
+      get "/", to: "reports#index", as: "reports"
+      get "/payments", to: "reports#payments", as: "payments"
+      get "/new_users", to: "reports#new_users", as: "new_users"
+      end
       resources :notifications do
         collection do
           get "check_all"
