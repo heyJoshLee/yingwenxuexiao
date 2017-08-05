@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  default_scope { order('created_at ASC') }
   has_secure_password validations: false
 
   validates :email, presence: true

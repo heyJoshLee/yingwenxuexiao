@@ -1,0 +1,35 @@
+%h1 New Members
+:javascript
+  $(function() {
+    $('.datepicker').datepicker();
+  });
+
+=form_tag "/admin/dashboard/reports/new_users", method: "GET" do
+  %label{:for => "start_date"} Start Date
+  %label{:for => "end_date", style: "margin-left: 110px;"} End Date
+  = hidden_field_tag 'filter', true
+  %br/
+  %input.datepicker#start_date{type: "text", style: "margin-bottom: 170px;",  name: "start_date"}
+  %input.datepicker#end_date{type: "text", style: "margin-bottom: 170px;",  name: "end_date"}
+  = submit_tag "Filter", class: "btn btn-primary"
+
+
+- if @start_date && @end_date
+  %h2= "#{@start_date} - #{@end_date}"
+- else
+  %h2 Showing All Users
+
+%table.table.table-bordered
+  %thead
+    %td Email
+    %td Username
+    %td Membership Status
+    %td Sign Up Date
+  %tbody
+    - @users.reverse.each do |user|
+      %tr
+        %td= user.email
+        %td= user.name 
+        %td= user.membership_level 
+        %td= user.created_at 
+        
