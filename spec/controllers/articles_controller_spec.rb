@@ -5,6 +5,7 @@ describe ArticlesController do
   describe "GET index" do
     let!(:article_1) { Fabricate(:article, published: true, created_at: 1.day.ago) }
     let!(:article_2) { Fabricate(:article) }
+    let(:admin) { Fabricate(:user, role: "admin")}
 
     it "should only show published articles" do
       get :index
@@ -13,7 +14,8 @@ describe ArticlesController do
     end
 
     it "shows all articles if admin is logged in" do
-      set_current_user(Fabricate(:user, role: "admin"))
+      set_current_user(admin)
+      get :index
       expect(assigns(:articles)).to match_array([article_2, article_1])
     end
   end

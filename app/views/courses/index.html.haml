@@ -1,17 +1,28 @@
-%h1 課程 - Courses
-%ul.row
-- if logged_in? && !current_user.is_paid_member?
-  .well.center
-    %h5 需要使用付费帐号才能参加课程
-    / %h5 You must upgrade your account to a paid account to enroll in classes.
-    = link_to upgrade_path do
-      .btn.btn-primary Upgrade Account
-- elsif !logged_in?
-  .well.center
-    %h5 需要使用付费帐号才能参加课程
-    / %h5 You must have a paid account to enroll in classes.
-    = link_to sign_up_path do
-      .btn.btn-primary Sign Up
+.row
+  %h1 免費課程
+- if !logged_in?
+  .row
+    .well.center
+      %h5 您必須先登錄才能參加免費課程。
+      / %h5 You must be logged in to take a free class.
+      = link_to sign_in_path do
+        .btn.btn-primary Sign in
 
-- @courses.each do |course|
-  = render "course_preview", course: course
+.row
+  - @free_courses.each do |course|
+    = render "course_preview", course: course
+
+%hr/
+.row
+  %h1 高級課程
+- if !logged_in? || (logged_in? && !current_user.is_paid_member?)
+  .row
+    .well.center
+      %h5 您必須擁有一個高級帳戶才能上高級課程。
+      / %h5 You must upgrade your account to a paid account to enroll in classes.
+      = link_to upgrade_path do
+        .btn.btn-primary 升級
+
+.row
+  - @premium_courses.each do |course|
+    = render "course_preview", course: course

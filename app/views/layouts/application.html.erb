@@ -12,6 +12,15 @@
 
 </head>
 <body>
+
+<% if logged_in? && !current_user.is_admin? && !current_user.is_paid_member? %>
+  <%= link_to upgrade_path do %>
+    <div id="upgrade_footer">
+      Upgrade
+    </div>
+  <% end %>
+<% end %>
+
 <%= render "shared/admin_header" %>
 <%= render "shared/header" %>
 <%= render "shared/nav" %>
@@ -22,8 +31,12 @@
 <main> 
   <%= yield %>
 </main>
+
+
+
 <%= render 'shared/footer' %>
 <%= render 'shared/level_up_container' %>
+
 
 </body>
 </html>

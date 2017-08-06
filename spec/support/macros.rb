@@ -5,3 +5,7 @@ end
 def sign_in_paid_member(user=nil)
   session[:user_id] = (user || Fabricate(:user, membership_level: "paid") ).id
 end
+
+def sign_in_free_member(user=nil)
+  session[:user_id] = (user || Fabricate(:user, membership_level: "free") ).id
+end

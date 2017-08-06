@@ -5,7 +5,8 @@ class LessonsController < ApplicationController
 
   before_action :set_breadcrumbs, only: [:show]
 
-  before_action :require_paid_membership
+  before_action :check_user_membership_and_course_paid_or_free
+  before_action :check_enrollment_status
   
   def complete
     @lesson = Lesson.find_by(slug: params[:lesson_id])
@@ -34,6 +35,18 @@ class LessonsController < ApplicationController
 
   private
 
+  def check_user_membership_and_course_paid_or_free
+    if !logged_in?
+      redirect_to sign_in_path
+    elsif !current_user.is_paid_member?
+      redirect_to upgrade_path if @course.premium_course?
+    end      
+  end
+
+  def check_enrollment_status
+    redirect_to course_path(@course) unless current_user.is_enrolled_in?(@course)
+  end
+
   def set_breadcrumbs
     add_breadcrumb "Courses", courses_path
     add_breadcrumb @course.name, course_path(@course)
@@ -44,7 +57,6 @@ class LessonsController < ApplicationController
   end
 
       # @video = VideoDecorator.decorate(Video.find(params[:id]))
-
 
   def set_course
     @course = Course.find_by(slug: params[:course_id])
