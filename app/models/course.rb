@@ -31,8 +31,12 @@ class Course < ActiveRecord::Base
     lessons.where(published: true)
   end
 
-  def self.published_courses
-    where(published: true)
+  def self.free_published_courses
+    where(published: true, premium_course: false)
+  end
+
+  def self.premium_published_courses
+    where(published: true, premium_course: true)
   end
 
   def destroy_and_destroy_all_children

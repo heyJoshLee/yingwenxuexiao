@@ -1,7 +1,11 @@
 - if @lesson.vocabulary_words.count != 0
-  = link_to course_lesson_path(@course, @lesson, format: "pdf") do
-    .btn.btn-primary 下載備註
-    -# .btn.btn-primary Download Notes
+  - if current_user.is_paid_member?
+    = link_to course_lesson_path(@course, @lesson, format: "pdf") do
+      .btn.btn-primary 下載備註
+      -# .btn.btn-primary Download Notes
+  - else
+    .btn.btn-primary 下載備註 
+    %h4 免費用戶無法下載課堂筆記。升級到下載備註。
 
   -if current_user.is_admin?
     = link_to course_lesson_path(@course, @lesson, format: "pdf", admin: true) do

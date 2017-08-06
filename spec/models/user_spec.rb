@@ -50,9 +50,77 @@ describe User do
     end
   end # is_admin?
 
+  describe "#enroll_in(course)" do
+    let!(:free_user) { Fabricate(:user) }
+    let!(:paid_user) { Fabricate(:user, membership_level: "paid") }
+    let!(:free_published_course) { Fabricate(:course, published: true, premium_course: false)}
+    let!(:free_unpublished_course) { Fabricate(:course, published: false, premium_course: false)}
+    let!(:paid_published_course) { Fabricate(:course, published: true, premium_course: true)}
+    let!(:paid_unpublished_course) { Fabricate(:course, published: false, premium_course: true)}
+
+    context "free user enroll in free courses" do
+      it "adds course to users course" do
+        free_user.enroll_in(free_published_course)
+        expect(free_user.courses).to include(free_published_course)
+      end
+
+      it "doesn't add course to user's courses if user is already enrolled" do
+        free_user.enroll_in(free_published_course)
+        free_user.enroll_in(free_published_course)
+        expect(free_user.courses).to eq([free_published_course])
+      end
+
+      it "doesn't add course to user's course if course is not published" do
+        free_user.enroll_in(free_unpublished_course)
+        expect(free_user.courses).to eq([])
+      end
+    end # free user enroll in free courses
+
+    context "free user enroll in paid course" do
+      it "doesn't add course to user's courses" do
+        free_user.enroll_in(paid_published_course)
+        expect(free_user.courses).to eq([])
+      end
+    end
+
+    context "paid user enroll in course" do
+      it "adds free course to user's course" do
+        paid_user.enroll_in(free_published_course)
+        expect(paid_user.courses).to include(free_published_course)
+      end
+
+      it "adds premium course to user's course" do
+        paid_user.enroll_in(paid_published_course)
+        expect(paid_user.courses).to include(paid_published_course)
+      end
+
+      it "doesn't add free course if user is already enrolled" do
+        paid_user.enroll_in(free_published_course)
+        paid_user.enroll_in(free_published_course)
+        expect(paid_user.courses).to eq([free_published_course])
+      end
+
+      it "doesn't add paid course if user is already enrolled" do
+        paid_user.enroll_in(paid_published_course)
+        paid_user.enroll_in(paid_published_course)
+        expect(paid_user.courses).to eq([paid_published_course])
+      end
+
+      it "doesn't add unpublished free course" do
+        paid_user.enroll_in(free_unpublished_course)
+        expect(paid_user.courses).to eq([])
+      end
+      
+      it "doesn't add unpublished paid course" do
+        paid_user.enroll_in(paid_unpublished_course)
+        expect(paid_user.courses).to eq([])
+      end
+    end #paid user enroll in course
+  end # #enroll_in
+
   describe "#is_enrolled_in?" do
     let(:user) { Fabricate(:user) }
-    let(:course) { Fabricate(:course) }
+    let(:course) { Fabricate(:course, published: true, premium_course: false) }
 
     it "should return false if user is not enrolled in the course" do
       expect(user.is_enrolled_in?(course)).to be_falsey

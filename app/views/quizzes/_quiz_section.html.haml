@@ -2,26 +2,29 @@
   .row
     .col-sm-12#quiz_section
       %h5 Quiz
-      = form_tag course_lesson_quiz_attempt_quiz_path(@course, @lesson, @lesson.quiz) do
-        - @lesson.quiz.questions.each_with_index do |question, index|
-          .quiz_question
-            = question.body
-            - unless question.image_url.blank?
-              = image_tag(question.image_url)
-            %ol
-              .question_choices
-                - question.choices.each do |choice|
-                  .row.question_choice
-                    .col-sm-1
-                      = radio_button_tag "questions[#{question.id}]", choice.id, current_user.selected_choice?(choice), class: "choice_radio_button"
-                    .col-sm-7
-                      - if current_user.answered_question?(question)
-                        - if current_user.answered_correctly?(question) && choice.correct?
-                          .choice_body.correct_answer= choice.body
-                        - elsif current_user.selected_choice?(choice) && !choice.correct?
-                          .choice_body.incorrect_answer= choice.body
-                        - else
+      - if !current_user.is_paid_member?
+        %h5 免費用戶無法參加測驗。
+      - else
+        = form_tag course_lesson_quiz_attempt_quiz_path(@course, @lesson, @lesson.quiz) do
+          - @lesson.quiz.questions.each_with_index do |question, index|
+            .quiz_question
+              = question.body
+              - unless question.image_url.blank?
+                = image_tag(question.image_url)
+              %ol
+                .question_choices
+                  - question.choices.each do |choice|
+                    .row.question_choice
+                      .col-sm-1
+                        = radio_button_tag "questions[#{question.id}]", choice.id, current_user.selected_choice?(choice), class: "choice_radio_button"
+                      .col-sm-7
+                        - if current_user.answered_question?(question)
+                          - if current_user.answered_correctly?(question) && choice.correct?
+                            .choice_body.correct_answer= choice.body
+                          - elsif current_user.selected_choice?(choice) && !choice.correct?
+                            .choice_body.incorrect_answer= choice.body
+                          - else
+                            .choice_body= choice.body
+                        -else
                           .choice_body= choice.body
-                      -else
-                        .choice_body= choice.body
-        = submit_tag "Submit quiz", class: "btn btn-primary"
+          = submit_tag "Submit quiz", class: "btn btn-primary"
