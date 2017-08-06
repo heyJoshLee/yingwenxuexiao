@@ -300,6 +300,24 @@ HEADER
 }
 
 /*********
+UPGRADE_FOOTER
+**********/
+
+#upgrade_footer {
+  background: rgb(232, 34, 228);
+  width: 100%;
+  position: fixed !important;
+  top: 0px;
+  height: 30px;
+  text-align: center;
+  z-index: 10;
+  padding-top: 5px;
+  color: white;
+  margin: 0 !important;
+  font-size: 18px;
+}
+
+/*********
 ADMIN_NAV
 **********/
 
@@ -682,6 +700,7 @@ FOOTER
   height: 140px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 
 /*********
 COURSE

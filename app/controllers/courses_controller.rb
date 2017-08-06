@@ -1,33 +1,19 @@
 class CoursesController < ApplicationController
 
-  before_action :require_paid_membership, except: [:index, :enroll]
   before_action :set_course, only: [:enroll, :show]
+  before_action :check_user_membership_and_course_paid_or_free, only: [:enroll, :show]
 
   add_breadcrumb "Home", :root_path
   add_breadcrumb "Courses"
 
 
   def index
-    @courses = Course.published_courses
+    @free_courses = Course.free_published_courses
+    @premium_courses = Course.premium_published_courses
   end
   
-  def new
-    @course = Course.new
-  end
-
   def show
   end
-
-  # def create
-  #   @course = Course.new(course_params)
-  #   if @course.save
-  #     flash[:success] = "course was saved"
-  #     redirect_to course_path(@course)
-  #   else
-  #     flash.now[:danger] = "There was a problem and the course was not saved"
-  #     render :new
-  #   end
-  # end
 
   def enroll
     current_user.enroll_in(@course)
@@ -38,10 +24,19 @@ class CoursesController < ApplicationController
 
   def set_course
     @course = Course.find_by(slug: params[:id])
+    redirect_to courses_path unless @course.published?
   end
 
   def course_params
     params.require(:course).permit()
+  end
+
+  def check_user_membership_and_course_paid_or_free
+    if !logged_in?
+      redirect_to sign_in_path
+    elsif !current_user.is_paid_member?
+      redirect_to upgrade_path if @course.premium_course?
+    end      
   end
 
 end

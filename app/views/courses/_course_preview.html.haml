@@ -5,6 +5,7 @@
     = link_to course_level_path(course_level) do
       .badge{style: "background-color: #{course_level.color}" }= course_level.name
   %p= course.preview_text[1..105] unless course.preview_text.nil?
+
   - if logged_in? && current_user.is_admin?
     = link_to admin_course_path(course) do
       .btn.btn-primary.enter_class_button Edit Class
@@ -15,3 +16,17 @@
     - else
       .btn.btn-success.v_margin.enter_class_button
         = link_to "Enroll In Class", enroll_course_path(course), method: "post"
+  - elsif logged_in? && !current_user.is_paid_member?
+    - if course.premium_course?
+      = link_to upgrade_path do
+        .btn.btn-primary.v_margin.enter_class_button 升級
+    - else
+      - if current_user.is_enrolled_in?(course)
+        .btn.btn-primary.v_margin.enter_class_button
+          = link_to "Go to class", course_lesson_path(course, current_user.next_lesson_in_course(course))
+      - else
+        .btn.btn-success.v_margin.enter_class_button
+          = link_to "Enroll In Class", enroll_course_path(course), method: "post"
+  - else
+    = link_to sign_up_path do
+      .btn.btn-primary.v_margin.enter_class_button 註冊
