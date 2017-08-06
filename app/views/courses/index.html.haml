@@ -15,7 +15,7 @@
 %hr/
 .row
   %h1 高級課程
-- if logged_in? && !current_user.is_paid_member?
+- if !logged_in? || (logged_in? && !current_user.is_paid_member?)
   .row
     .well.center
       %h5 您必須擁有一個高級帳戶才能上高級課程。

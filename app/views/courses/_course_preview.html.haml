@@ -12,10 +12,10 @@
   - elsif logged_in? && current_user.is_paid_member?
     - if current_user.is_enrolled_in?(course)
       .btn.btn-primary.v_margin.enter_class_button
-        = link_to "Go to class", course_lesson_path(course, current_user.next_lesson_in_course(course))
+        = link_to "上課", course_lesson_path(course, current_user.next_lesson_in_course(course))
     - else
       .btn.btn-success.v_margin.enter_class_button
-        = link_to "Enroll In Class", enroll_course_path(course), method: "post"
+        = link_to "報名上課", enroll_course_path(course), method: "post"
   - elsif logged_in? && !current_user.is_paid_member?
     - if course.premium_course?
       = link_to upgrade_path do
@@ -23,10 +23,10 @@
     - else
       - if current_user.is_enrolled_in?(course)
         .btn.btn-primary.v_margin.enter_class_button
-          = link_to "Go to class", course_lesson_path(course, current_user.next_lesson_in_course(course))
+          = link_to "上課", course_lesson_path(course, current_user.next_lesson_in_course(course))
       - else
         .btn.btn-success.v_margin.enter_class_button
-          = link_to "Enroll In Class", enroll_course_path(course), method: "post"
+          = link_to "報名上課", enroll_course_path(course), method: "post"
   - else
     = link_to sign_up_path do
       .btn.btn-primary.v_margin.enter_class_button 註冊
