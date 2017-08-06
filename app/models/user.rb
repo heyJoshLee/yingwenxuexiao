@@ -63,7 +63,11 @@ class User < ActiveRecord::Base
   end
 
   def enroll_in(course)
-    CourseUser.create(course_id: course.id, user_id: self.id)
+    if course.published? 
+      if is_paid_member? || (!is_paid_member? && !course.premium_course?)
+        CourseUser.create(course_id: course.id, user_id: self.id)      
+      end
+    end 
   end
 
   def is_enrolled_in?(course)
