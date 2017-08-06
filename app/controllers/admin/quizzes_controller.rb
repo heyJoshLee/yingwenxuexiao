@@ -23,13 +23,12 @@ class Admin::QuizzesController < AdminController
     end
   end
 
-  def destroy
+  def destroy    
     @quiz.questions.each do |question|
       question.choices.destroy_all
     end
     @quiz.questions.destroy_all
     @quiz.destroy
-    
     flash[:success] = "Quiz was deleted."
     redirect_to edit_admin_course_lesson_path(@course, @lesson)
   end

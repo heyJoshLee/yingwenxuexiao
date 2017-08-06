@@ -5,7 +5,6 @@
 * show cards based on recall time
 * different recall types
 * write more tests
-* Add feature tests for payment
-* Stying for upgrade path
+* edit question
 
 * Write API
