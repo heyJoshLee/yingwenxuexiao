@@ -100,6 +100,32 @@ def handle_success_invoice(user)
   user.update_column(:membership_level, "paid")
 end
 
+  # binding.pry
+  # stripe web hook
+
+  # user User.find_by(stripeid: params[:stripe_id)
+
+  # if request.good?
+  #   user.keep_membership
+  # else
+  #   user.to_free_membership
+  # end
+
+    # binding.pry
+
+    # user.paid_member?
+
+
+
+# def destroy
+
+#   # add a delete method for the subscription
+#   sub = Stripe::Subscription.retrieve(user.subscriptionid)
+#   sub.delete
+
+#   user.membership_level = "free"
+#   # end delete method
+
 # end
 
 end #class

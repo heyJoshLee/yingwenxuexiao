@@ -9,7 +9,3 @@ end
 def sign_in_free_member(user=nil)
   session[:user_id] = (user || Fabricate(:user, membership_level: "free") ).id
 end
-
-def sign_in_admin(user=nil)  
-  session[:user_id] = (user || Fabricate(:user, role: "admin") ).id
-end

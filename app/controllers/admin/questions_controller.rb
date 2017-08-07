@@ -1,9 +1,9 @@
 class Admin::QuestionsController < AdminController
 
-  before_action :set_course, only: [:create, :destroy, :edit, :update]
-  before_action :set_lesson, only: [:create, :destroy, :edit, :update]
-  before_action :set_quiz, only: [:create, :destroy, :update]
-  before_action :set_question, only: [:destroy, :update]
+  before_action :set_course, only: [:create, :destroy, :edit]
+  before_action :set_lesson, only: [:create, :destroy, :edit]
+  before_action :set_quiz, only: [:create, :destroy]
+  before_action :set_question, only: [:destroy]
 
 
   def create
@@ -17,14 +17,6 @@ class Admin::QuestionsController < AdminController
     end
     respond_to do |format|
       format.js
-    end
-  end
-
-  def update
-    respond_to do |format|
-      format.js do
-        @question.update(question_params)
-      end
     end
   end
 

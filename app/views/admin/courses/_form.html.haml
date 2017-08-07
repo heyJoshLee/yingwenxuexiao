@@ -4,12 +4,10 @@
 
 = bootstrap_form_for([:admin, @course]) do |f|
   = f.text_field :name
-  = f.radio_button(:published, true, inline: true)
-  = f.label(:published, "Published", for: "course_published_true")
-  %br/
-
-  = f.radio_button(:published, false, inline: true)
-  = label(:published, "Not Published", for: "course_published_false")
+  = f.label(:published, "Published")
+  = f.radio_button(:published, true)
+  = label(:published, "Not Published")
+  = f.radio_button(:published, false)
   = f.text_area :description
   = f.text_area :preview_text
   = f.file_field :main_image_url, class: "btn btn-file"

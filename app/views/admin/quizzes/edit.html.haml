@@ -1,25 +1,20 @@
 %h3= "Editing quiz for #{@lesson.name} in #{@course.name} course"
 = link_to edit_admin_course_lesson_path(@course, @lesson) do
-  .btn.btn-primary Back to edit lesson
-%br/
-%br/
+  .small Back to edit lesson
 .row
   .container
     .row
-      %button.btn.btn-success.btn-lg{"data-target" => "#new_question_container", "data-toggle" => "collapse", :type => "button"} New Question
-      .collapse{id: "new_question_container"}
-        = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question], remote: true) do |f|
-          = f.file_field :image_url, label: "Image", class: "btn btn-file"
-          = f.text_field :value
-          = f.text_area :body, class: "form-control"
-          .row
-            .col-sm-2
-              = f.text_field :value, value: 10
-          = f.submit "Add Question", class: "btn btn-primary"
-    
+      %h5 New Question
+      = bootstrap_form_for([:admin, @course, @lesson, @quiz, @question], remote: true) do |f|
+        = f.file_field :image_url, label: "Image", class: "btn btn-file"
+        = f.text_area :body, class: "form-control"
+
+        .row
+          .col-sm-2
+            = f.text_field :value, value: 10
+        = f.submit "Add Question", class: "btn btn-primary"
     .col-sm-7
       %h5 Questions for this lesson:
       #editing_questions_container
         - @quiz.questions.order("created_at DESC").each do |question|
-          .quiz_container{id: "question_container-#{question.slug}"}
-            = render "question", question: question
+          = render "question", question: question
