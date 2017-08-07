@@ -1,17 +1,33 @@
 .quiz_question{id: "question-#{question.slug}"}
   .row
     .col-sm-8
+      %button.btn.btn-info{"data-target" => "#question-collapse-#{question.slug}", "data-toggle" => "collapse", :type => "button"} Edit
+      .collapse{id: "question-collapse-#{question.slug}"}
+
+        = bootstrap_form_for [:admin, @lesson.course, @lesson, @quiz, question], method: "PUT", remote: true do |f|
+          = f.file_field :image_url, label: "Image", class: "btn btn-file"
+          = f.text_area :body, class: "form-control"
+          = f.text_field :value
+          = f.submit "Update", class: "btn btn-primary btn-xs"
+        %hr/
+        %br/
+      .quiz_question_container{id: "question-#{question.slug}"}
       = question.body.html_safe
-    .col-sm-4
-      = "Value: #{question.value}"
+      %br/
+      %strong= "Value: #{question.value}"
+  %br/
   - unless question.image_url.blank?
     .row
       .col-sm-12
         =image_tag(question.image_url)
+
+
+
+
     %ol.question_choices
       - question.choices.each do |choice|
         %div{id: "choice-#{choice}"}
-        = render "choice", choice: choice, question: question
+        = render "admin/quizzes/choice", choice: choice, question: question
 
     .row
   = bootstrap_form_for [:admin, @course, @lesson, @quiz, question, Choice.new], remote: true do |f|
