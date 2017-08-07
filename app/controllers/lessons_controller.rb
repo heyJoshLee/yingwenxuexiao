@@ -38,13 +38,13 @@ class LessonsController < ApplicationController
   def check_user_membership_and_course_paid_or_free
     if !logged_in?
       redirect_to sign_in_path
-    elsif !current_user.is_paid_member?
+    elsif !current_user.is_paid_member? && !current_user.is_admin?
       redirect_to upgrade_path if @course.premium_course?
     end      
   end
 
   def check_enrollment_status
-    redirect_to course_path(@course) unless current_user.is_enrolled_in?(@course)
+    redirect_to course_path(@course) unless current_user.is_enrolled_in?(@course) || current_user.is_admin?
   end
 
   def set_breadcrumbs

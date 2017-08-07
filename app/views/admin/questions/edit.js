@@ -1,0 +1,1 @@
+console.log("Start editing <%= #{@question.slug}.%>")
