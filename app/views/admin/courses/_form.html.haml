@@ -3,20 +3,23 @@
     .btn.btn-danger Delete
 
 = bootstrap_form_for([:admin, @course]) do |f|
+  = render "shared/errors", object: @course
   = f.text_field :name
-  = f.radio_button(:published, true, inline: true)
-  = f.label(:published, "Published", for: "course_published_true")
+  = f.radio_button :published, true, inline: true
+  = f.label :published, "Published", for: "course_published_true"
   %br/
-
-  = f.radio_button(:published, false, inline: true)
-  = label(:published, "Not Published", for: "course_published_false")
+  = f.radio_button :published, false, inline: true
+  = label :published, "Not Published", for: "course_published_false"
   = f.text_area :description
   = f.text_area :preview_text
   = f.file_field :main_image_url, class: "btn btn-file"
-  = label :premium_course, 'Premium Course'
-  = f.radio_button :premium_course, true, class: "radio-inline"
-  = label :premium_course, 'Free Course'
-  = f.radio_button :premium_course, false, class: "radio-inline"
+
+  = f.radio_button :premium_course, true, inline: true
+  = label :premium_course, 'Premium Course', for: "course_premium_course_true"
+  %br/
+  = f.radio_button :premium_course, false, inline: true
+  = label :premium_course, 'Free Course', for: "course_premium_course_false"
+
   = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
     - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
   = f.submit @course.new_record? ? "Create Course" : "Save course", class: "btn btn-primary"

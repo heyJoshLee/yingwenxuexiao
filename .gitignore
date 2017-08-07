@@ -15,5 +15,3 @@
 # Ignore application configuration
 /config/application.yml
 config/initializers/01_development_env.rb
-
-public/temp/*

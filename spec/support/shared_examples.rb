@@ -29,12 +29,3 @@ shared_examples_for "unpublished course or lesson for paid" do
     expect(response).to redirect_to courses_path
   end
 end
-
-shared_examples_for "requires admin" do
-  it "redirects to sign_in path" do
-    session[:user_id] = nil
-    sign_in_free_member
-    action
-    expect(response).to redirect_to root_path
-  end 
-end
