@@ -1,44 +1,28 @@
 .quiz_question{id: "question-#{question.slug}"}
   .row
     .col-sm-8
-      %button.btn.btn-info{"data-target" => "#question-collapse-#{question.slug}", "data-toggle" => "collapse", :type => "button"} Edit
-      .collapse{id: "question-collapse-#{question.slug}"}
-
-        = bootstrap_form_for [:admin, @lesson.course, @lesson, @quiz, question], method: "PUT", remote: true do |f|
-          = f.file_field :image_url, label: "Image", class: "btn btn-file"
-          = f.text_area :body, class: "form-control"
-          = f.text_field :value
-          = f.submit "Update", class: "btn btn-primary btn-xs"
-        %hr/
-        %br/
-      .quiz_question_container{id: "question-#{question.slug}"}
       = question.body.html_safe
-      %br/
-      %strong= "Value: #{question.value}"
-  %br/
+    .col-sm-4
+      = "Value: #{question.value}"
   - unless question.image_url.blank?
     .row
       .col-sm-12
         =image_tag(question.image_url)
-
-
-
-
     %ol.question_choices
       - question.choices.each do |choice|
         %div{id: "choice-#{choice}"}
-        = render "admin/quizzes/choice", choice: choice, question: question
+        = render "choice", choice: choice, question: question
 
     .row
   = bootstrap_form_for [:admin, @course, @lesson, @quiz, question, Choice.new], remote: true do |f|
     = f.text_field :body
     .row
       .col-sm-6
-        = label :correct, 'Correct Answer', for: question.slug + "-true"
-        = f.radio_button :correct, true, checked: false, inline: true, class: "radio-inline", id: question.slug + "-true"
+        = label :correct, 'Correct Answer'
+        = f.radio_button :correct, true, checked: false, class: "radio-inline"
       .col-sm-6
-        = label :correct, 'Not Correct Answer', for: question.slug + "-false"
-        = f.radio_button :correct, false, checked: true, inline: true, class: "radio-inline", id: question.slug + "-false"
+        = label :correct, 'Not Correct Answer'
+        = f.radio_button :correct, false, checked: true, class: "radio-inline"
     = f.submit "Add choice", class: "btn btn-primary"
     = link_to admin_course_lesson_quiz_question_path(@course, @lesson, @quiz, question), method: :delete, remote: true, data: {confirm: "Are you sure you want to delete this question?"} do
       .btn.btn-danger.pull-right Delete Question
