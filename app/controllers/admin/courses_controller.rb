@@ -76,6 +76,10 @@ class Admin::CoursesController < AdminController
     redirect_to edit_admin_course_path(@course)
   end
 
+  def fetch_course_information_from_google_drive
+    binding.pry
+  end
+
 
   private
 

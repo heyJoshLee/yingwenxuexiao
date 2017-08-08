@@ -2,6 +2,12 @@
   = link_to admin_course_path(@course), method: "DELETE", data: {confirm: "Are you sure you want to delete this Course?"} do
     .btn.btn-danger Delete
 
+%br/
+%h5 Fetch info from google drive
+= form_tag "fetch_course_information_from_google_drive", method: "GET" do
+  = text_field_tag "Google Drive Url", :google_drive_url
+  = submit_tag "Fetch", class: "btn btn-success btn-sm"
+%br/
 = bootstrap_form_for([:admin, @course]) do |f|
   = render "shared/errors", object: @course
   = f.text_field :name
@@ -21,8 +27,10 @@
   = f.radio_button :premium_course, false, inline: true
   = label :premium_course, 'Free Course', for: "course_premium_course_false"
 
-  = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
-    - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
+  - unless @course.new_record?
+
+    = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
+      - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
   = f.submit @course.new_record? ? "Create Course" : "Save course", class: "btn btn-primary"
 
 
