@@ -2,6 +2,8 @@ class SubscribersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:stripe_charge]
   before_action :require_user
 
+  layout "application"
+
 def create
 
   user = current_user
