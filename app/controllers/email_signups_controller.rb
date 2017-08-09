@@ -15,8 +15,7 @@ class EmailSignupsController < ApplicationController
       @email_signup.save
       if params[:download_id]
         @download_link = DownloadLink.create(email: @email_signup.email, download_id: params[:download_id]) if params[:download_id]
-        @download_link.send_email
-
+        SendDownloadLinkEmailWorker.perform_async(@download_link.id)
         render :download_confirm
       else
         render :confirm

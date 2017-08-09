@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       flash[:success] = "您已成功註冊。您現在已經登錄。"
       # flash[:success] = "You have successfully registered. You are now logged in."
       session[:user_id] = @user.id
-      AppMailer.send_welcome_email(@user).deliver
+      SendWelcomeEmailWorker.perform_async(@user.id)
       redirect_to blog_path
       # redirect_to upgrade_path  #Uncomment with payment becomes available
 

@@ -6,7 +6,7 @@ class DownloadLink < ActiveRecord::Base
 
 
   def send_email
-    AppMailer.send_download_link(self).deliver
+    AppMailer.send_download_link(self).deliver_later
   end
 
   def generate_random_slug
