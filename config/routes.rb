@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'pages#index'
 
+  require "sidekiq/web"
+  mount Sidekiq::Web => "sidekiq"
   # sessions
   get "signin", to: "sessions#new", as: "sign_in"
   post "signin", to: "sessions#create"

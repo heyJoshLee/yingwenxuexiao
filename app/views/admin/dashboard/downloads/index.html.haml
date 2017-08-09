@@ -3,7 +3,8 @@
 %ul
   - @downloads.each do |download|
     %li= link_to download.name, admin_dashboard_download_path(download)
-.small= link_to "New Download", new_admin_dashboard_download_path
+= link_to new_admin_dashboard_download_path do
+  .btn.btn-success New Download
 %table.table.table-bordered
   %thead
     %td Name

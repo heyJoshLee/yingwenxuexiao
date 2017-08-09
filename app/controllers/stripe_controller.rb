@@ -2,7 +2,6 @@ class StripeController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    puts "Hit stripe webhook"
     type = params["type"]
     if type == "customer.subscription.deleted"
       delete_subscription 
@@ -40,8 +39,10 @@ class StripeController < ApplicationController
           user_id: user.id,
           amount: amount
         )
-      AppMailer.stripe_charge(user, amount, currency).deliver
-      AppMailer.admin_payment_notification(user, amount, currency).deliver
+
+      SendStripeChargeEmailWorker.perform_async(user.id, amount, currency)
+
+      SendAdminPaymentNotificationEmailWorker.perform_async(user.id, amount, currency)
 
       else
 
@@ -67,8 +68,8 @@ class StripeController < ApplicationController
     if user 
       user.update_column(:membership_level, "free")
       message = "Ended subscription for #{user.email}"
-      AppMailer.subscription_cancel(user).deliver
-      AppMailer.notify_admin_of_subscription_cancel(user).deliver
+      SendSubscriptionCancelEmailWorker.perform_async(user.id)
+      SendNotifyAdminOfSubscriptionCancelEmailWorker.perform_async(user.id)
       
     else
       message = "Tried to cancel subscription, but "
