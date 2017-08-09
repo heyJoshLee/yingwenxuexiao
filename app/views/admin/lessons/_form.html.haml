@@ -2,10 +2,13 @@
   .col-xs-5
     = bootstrap_form_for([:admin, @course, @lesson]) do |f|
       = f.text_field :name
-      = f.radio_button(:published, true)
+
+      = f.radio_button(:published, true, inline: true)
       = f.label(:published, "Published")
-      = f.radio_button(:published, false)
+      %br/
+      = f.radio_button(:published, false, inline: true)
       = label(:published, "Not Published")
+
       = f.text_area :script_english
       = f.text_area :script_chinese
       = f.text_field :video_url
@@ -14,6 +17,7 @@
       = f.bootsy_area :instructions, class: "form-control default_formatting", rows: 20
 
       = hidden_field_tag :course_id, @course.id
+      %br/
       = f.submit @lesson.new_record? ? "Add Lesson to Course" : "Save Edits", class: "btn btn-primary pull-right"
   #vocabulary_words_container
     = render "vocabulary_words_container"
