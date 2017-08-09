@@ -44,7 +44,7 @@ class LessonsController < ApplicationController
   end
 
   def check_enrollment_status
-    redirect_to course_path(@course) unless current_user.is_enrolled_in?(@course)
+    redirect_to course_path(@course) unless current_user.is_enrolled_in?(@course) || current_user.is_admin?
   end
 
   def set_breadcrumbs

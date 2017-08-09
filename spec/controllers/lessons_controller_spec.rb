@@ -39,8 +39,6 @@ describe LessonsController do
         sign_in_paid_member
         get :show, course_id: paid_published_course.slug, id: lesson_7.slug
         expect(response).to redirect_to course_path(paid_published_course)
-
-
       end
 
     end
@@ -81,6 +79,23 @@ describe LessonsController do
       it "assigns comment" do
         expect(assigns(:comment)).not_to be_nil
       end
+    end
+
+    context "admin logged in" do
+      before do
+        sign_in_admin
+      end
+
+      it "allows user to view paid unpublished lesson when not enrolled" do
+        get :show, course_id: paid_unpublished_course.slug, id: lesson_12.slug
+        expect(assigns(:lesson)).to eq(lesson_12)
+      end
+      
+      it "allows user to view free unpublished lesson when not enrolled" do
+        get :show, course_id: free_unpublished_course.slug, id: lesson_6.slug
+        expect(assigns(:lesson)).to eq(lesson_6)
+      end
+
     end
   end # GET show
 
