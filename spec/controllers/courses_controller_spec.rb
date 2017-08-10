@@ -28,14 +28,6 @@ describe CoursesController do
       it_behaves_like "requires sign in" do
         let(:action) { get :show, id: free_published_course.slug }
       end
-
-      it_behaves_like "unpublished course or lesson for paid" do
-        let(:action) { get :show, id: paid_unpublished_course.slug }
-      end
-
-      it_behaves_like "unpublished course or lesson for free" do
-        let(:action) { get :show, id: free_unpublished_course.slug }
-      end
     end
 
     context "free user logged in" do
@@ -86,6 +78,32 @@ describe CoursesController do
       end
     end #with paid member logged in
 
+
+    context "admin sign in" do 
+      before do
+        sign_in_admin
+      end
+
+      it "is able to view free published courses"  do
+        get :show, id: free_published_course.slug
+        expect(assigns(:course)).to eq(free_published_course)
+      end
+
+      it "is able to view free unpublished courses" do
+        get :show, id: free_unpublished_course.slug
+        expect(assigns(:course)).to eq(free_unpublished_course)
+      end
+
+      it "is able to view paid published courses" do
+        get :show, id: paid_published_course.slug
+        expect(assigns(:course)).to eq(paid_published_course)
+      end
+
+      it "is able to view paid unpublished courses" do
+        get :show, id: paid_unpublished_course.slug
+        expect(assigns(:course)).to eq(paid_unpublished_course)
+      end
+    end
   end # GET show
 
 
