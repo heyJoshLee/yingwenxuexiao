@@ -3,11 +3,6 @@
     .btn.btn-danger Delete
 
 %br/
-%h5 Fetch info from google drive
-= form_tag "fetch_course_information_from_google_drive", method: "GET" do
-  = text_field_tag "Google Drive Url", :google_drive_url
-  = submit_tag "Fetch", class: "btn btn-success btn-sm"
-%br/
 = bootstrap_form_for([:admin, @course]) do |f|
   = render "shared/errors", object: @course
   = f.text_field :name

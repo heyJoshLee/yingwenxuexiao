@@ -28,4 +28,5 @@ shared_examples_for "unpublished course or lesson for paid" do
     action
     expect(response).to redirect_to courses_path
   end
+
 end

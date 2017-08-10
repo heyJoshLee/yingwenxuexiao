@@ -157,7 +157,7 @@ Rails.application.routes.draw do
       get "/", to: "dashboard#index"
     end
     resources :courses do
-      get "/fetch_course_information_from_google_drive", to: "courses#fetch_course_information_from_google_drive"
+      # get "/fetch_course_information_from_google_drive", to: "courses#fetch_course_information_from_google_drive"
       resources :units
       member do
         get "/rearrange", to: "courses#rearrange"

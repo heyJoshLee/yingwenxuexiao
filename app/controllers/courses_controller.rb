@@ -23,8 +23,12 @@ class CoursesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by(slug: params[:id])
-    redirect_to courses_path unless @course.published? || !current_user.is_admin?
+    if !logged_in?
+      redirect_to sign_in_path
+    else
+      @course = Course.find_by(slug: params[:id])
+      redirect_to courses_path unless @course.published? || current_user.is_admin?
+    end
   end
 
   def course_params
