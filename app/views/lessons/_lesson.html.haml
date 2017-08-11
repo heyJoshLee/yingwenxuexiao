@@ -11,7 +11,7 @@
     %br/
     %br/
 
-    %h1= @lesson.name
+    %h1.center= @lesson.name
     = render "lessons/video"
     = render "lessons/vocabulary_words"
 
@@ -28,7 +28,7 @@
     
     .article_comments_section
       %h2 Comments
-      - if current_user.is_paid_member?
+      - if current_user.is_paid_member? || current_user.is_admin?
         = bootstrap_form_for [@lesson.course, @lesson, Comment.new], remote: true do |f|
           = f.text_area :body
           = f.submit "Create Comment", class: "btn btn-primary"
