@@ -1,25 +1,5 @@
 %h1#help_top Help
 
-%iframe#vzvd-9361978.vzaar-video-player{:allowfullscreen => "", :allowtransparency => "true", :frameborder => "0", :height => "324", :mozallowfullscreen => "", :name => "vzvd-9361978", :src => "//view.vzaar.com/9361978/player", :title => "vzaar video player", :type => "text/html", :webkitallowfullscreen => "", :width => "576"}
-
-
-#video_container
-:javascript
-  var playerInstance = jwplayer("video_container");
-  playerInstance.setup({
-      file: "http://content.jwplatform.com/videos/a7OY0aJO-ler3Z0AF.mp4",
-      tracks: [{ 
-            file: "https://content.jwplatform.com/tracks/4Rgr50sU.vtt", 
-            label: "English",
-            kind: "captions",
-            "default": true 
-        },{ 
-            file: "/assets/captions-fr.vtt", 
-            kind: "captions",
-            label: "French"
-        }]
-  });
-
 - @questions.each do |question|
   %ul
     %a{:href => "##{question[:question]}"}
