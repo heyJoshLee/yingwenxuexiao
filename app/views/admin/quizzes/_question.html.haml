@@ -8,10 +8,10 @@
     .row
       .col-sm-12
         =image_tag(question.image_url)
-    %ol.question_choices
-      - question.choices.each do |choice|
-        %div{id: "choice-#{choice}"}
-        = render "choice", choice: choice, question: question
+  %ol.question_choices
+    - question.choices.each do |choice|
+      %div{id: "choice-#{choice}"}
+      = render "choice", choice: choice, question: question
 
     .row
   = bootstrap_form_for [:admin, @course, @lesson, @quiz, question, Choice.new], remote: true do |f|
