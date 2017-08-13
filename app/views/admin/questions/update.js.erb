@@ -1,0 +1,3 @@
+console.log("update");
+console.log("<%= @question.slug %>")
+$("#question_container-<%=@question.slug%>").html("<%= j (render partial: 'admin/quizzes/question', locals: {question: @question} )%>");

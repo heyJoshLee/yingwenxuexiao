@@ -17,4 +17,5 @@
       %h5 Questions for this lesson:
       #editing_questions_container
         - @quiz.questions.order("created_at DESC").each do |question|
-          = render "question", question: question
+          %div{id: "question_container-#{question.slug}"}
+            = render "question", question: question
