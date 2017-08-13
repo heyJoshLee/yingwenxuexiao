@@ -31,6 +31,7 @@ class Quiz < ActiveRecord::Base
 
     if lesson 
       Quiz.create(lesson_id: lesson.id) unless lesson.has_quiz?
+      binding.pry
       quiz_id = lesson.quiz.id
     end
 
