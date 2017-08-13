@@ -12,7 +12,7 @@
         %hr/
         %br/
       .quiz_question_container{id: "question-#{question.slug}"}
-      = question.body.html_safe
+        = question.body.html_safe
       %br/
       %strong= "Value: #{question.value}"
   %br/
@@ -20,14 +20,10 @@
     .row
       .col-sm-12
         =image_tag(question.image_url)
-
-
-
-
-    %ol.question_choices
-      - question.choices.each do |choice|
-        %div{id: "choice-#{choice}"}
-        = render "admin/quizzes/choice", choice: choice, question: question
+  %ol.question_choices
+    - question.choices.each do |choice|
+      %div{id: "choice-#{choice}"}
+      = render "admin/quizzes/choice", choice: choice, question: question
 
     .row
   = bootstrap_form_for [:admin, @course, @lesson, @quiz, question, Choice.new], remote: true do |f|
