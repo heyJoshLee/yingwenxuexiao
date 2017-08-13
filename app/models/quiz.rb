@@ -31,7 +31,7 @@ class Quiz < ActiveRecord::Base
 
     if lesson 
       Quiz.create(lesson_id: lesson.id) unless lesson.has_quiz?
-      quiz_id = lesson.quiz.id
+      quiz_id = lesson.reload.quiz.id
     end
 
     (2..spreadsheet.last_row).each do |i|

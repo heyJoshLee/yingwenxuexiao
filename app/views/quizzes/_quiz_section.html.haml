@@ -1,7 +1,7 @@
 - if @lesson.has_quiz?
   .row
     .col-sm-12#quiz_section
-      %h5 Quiz
+      %h4 Quiz
       - if !current_user.is_paid_member?
         %h5 免費用戶無法參加測驗。
       - else
