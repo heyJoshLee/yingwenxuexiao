@@ -2,7 +2,8 @@ require "rails_helper"
 
 describe CommentsController do
   let(:article) { Fabricate(:article) }
-  let(:alice) { Fabricate(:user) }
+  let!(:alice) { Fabricate(:user) }
+  let!(:admin) { Fabricate(:user, role: "admin") }
 
   describe "POST create" do
     it "doesn't create a comment if the user is not logged in" do
@@ -29,7 +30,6 @@ describe CommentsController do
     end
 
     it "creates a notification for the admin" do
-      skip
       set_current_user(alice)
       post :create, article_id: article.slug, comment: {body: "nice article"}, format: :js
       expect(CommentNotification.count).to eq(1)

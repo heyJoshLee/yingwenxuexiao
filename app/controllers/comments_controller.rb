@@ -9,19 +9,12 @@ class CommentsController < ApplicationController
       @lesson = Lesson.find_by(slug: params[:lesson_id])
       @comment = @lesson.comments.build(comment_params)
       @comment.author = current_user
-
       if @comment.save
         respond_to { |format| format.js }
-        
-        # flash[:success] = "Your comment was saved"
-        # redirect_to course_lesson_path(@course, @lesson)
       else
         respond_to do |format| 
           format.js { render "error" }
         end
-
-        # flash.now[:danger] = "Your comment was not saved"
-        # render "lessons/show"
       end
 
     elsif params[:article_id]
@@ -31,11 +24,7 @@ class CommentsController < ApplicationController
 
       if @comment.save
         respond_to { |format| format.js }
-        # flash[:success] = "Your comment was saved"
-        # redirect_to article_path(@article)
       else
-        # flash.now[:danger] = "There was a problem and the comment was not saved"
-        # render "articles/show"
         respond_to do |format| 
           format.js { render "error" }
         end
