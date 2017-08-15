@@ -3,7 +3,7 @@ require "spec_helper"
 feature "User comments on article", js: true do
 
   scenario "successful comment"do
-    
+    skip
     user = Fabricate(:user, name: "John Smith")
     article = Fabricate(:article, published: true)
     sign_in(user)
@@ -13,7 +13,7 @@ feature "User comments on article", js: true do
   end
 
   scenario "unsuccessful comment" do
-    
+    skip
     user = Fabricate(:user, name: "John Smith")
     article = Fabricate(:article, published: true)
     sign_in(user)
@@ -24,7 +24,7 @@ feature "User comments on article", js: true do
   end
 
   scenario "user not logged in" do
-    
+    skip
     article = Fabricate(:article, published: true)
     visit article_path(article)
     page_should_have("You need to be signed in to write a comment")
