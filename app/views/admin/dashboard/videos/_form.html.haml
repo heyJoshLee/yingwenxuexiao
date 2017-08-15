@@ -1,0 +1,5 @@
+=bootstrap_form_for [:admin, :dashboard, @video] do |f|
+  = render "shared/errors", object: @video
+  = f.text_field :title
+  = f.text_field :url
+  = f.submit "Save Video" , class: "btn btn-primary"

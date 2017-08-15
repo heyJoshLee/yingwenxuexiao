@@ -1,3 +1,4 @@
-#video_container.jwplayer_container
-  %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
-    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => @lesson.video_url, :style => "position:absolute;", :width => "100%"}
+- unless @lesson.video_url.blank?
+  #video_container.jwplayer_container
+    %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => @lesson.video_url, :style => "position:absolute;", :width => "100%"}
