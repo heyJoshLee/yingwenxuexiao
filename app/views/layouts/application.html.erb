@@ -3,8 +3,6 @@
 <head>
   <title>英文學校 - English School</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'swfobject' %>
   <script src='https://content.jwplatform.com/libraries/qESISdXY.js'> </script>
 
   <%= csrf_meta_tags %>
@@ -36,6 +34,8 @@
 
 <%= render 'shared/footer' %>
 <%= render 'shared/level_up_container' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'swfobject' %>
 
 
 </body>
