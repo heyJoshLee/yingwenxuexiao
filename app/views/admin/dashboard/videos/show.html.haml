@@ -1,0 +1,10 @@
+%h2= @video.title
+= link_to edit_admin_dashboard_video_path(@video) do
+  .btn.btn-success.btn-small Edit
+%br/
+%br/
+
+#video_container.jwplayer_container
+  %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => @video.url, :style => "position:absolute;", :width => "100%"}
+

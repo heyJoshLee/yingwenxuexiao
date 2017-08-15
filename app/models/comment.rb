@@ -13,8 +13,10 @@ class Comment < ActiveRecord::Base
 
   def create_notification
     User.where(role: "admin").each do |admin|
-      notification = CommentNotification.new(comment_id: id, user: admin)
-      notification.message = "New comment on article #{notification.comment.commentable.title}. #{notification.comment.author.name} says '#{notification.comment.body}'."
+      notification = CommentNotification.new(comment_id: id, user_id: admin.id)
+      c_object = notification.comment.commentable 
+      title = c_object.has_attribute?(:title) ? c_object.title : c_object.name
+      notification.message = "New comment on article #{title}. #{notification.comment.author.name} says '#{notification.comment.body}'."
       notification.save
     end
   end

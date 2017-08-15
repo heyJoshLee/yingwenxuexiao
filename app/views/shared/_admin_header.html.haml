@@ -25,7 +25,8 @@
           = link_to "Affiliates", admin_dashboard_affiliates_path
         .col-sm-1
           = link_to admin_dashboard_comment_notifications_path do
-            - if unread_notifications_count > 0
-              .notifications_circle= unread_notifications_count
+            - notification_count = current_user.comment_notifications.where(read: false).count
+            - if notification_count > 0
+              .notifications_circle= notification_count
             - else
-              .notifications_circle.green-bkg= unread_notifications_count
+              .notifications_circle.green-bkg= notification_count

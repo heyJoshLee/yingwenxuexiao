@@ -122,6 +122,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :article_topics
     namespace :dashboard do
+      resources :videos
       namespace :reports do
       get "/", to: "reports#index", as: "reports"
       get "/payments", to: "reports#payments", as: "payments"

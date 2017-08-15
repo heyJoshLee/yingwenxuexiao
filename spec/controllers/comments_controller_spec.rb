@@ -27,6 +27,13 @@ describe CommentsController do
       post :create, article_id: article.slug, comment: {body: "nice article"}, format: :js
       expect(Comment.last.commentable_id).to eq(article.id)
     end
+
+    it "creates a notification for the admin" do
+      skip
+      set_current_user(alice)
+      post :create, article_id: article.slug, comment: {body: "nice article"}, format: :js
+      expect(CommentNotification.count).to eq(1)
+    end
   end
 
 end
