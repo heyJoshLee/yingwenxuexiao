@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804142526) do
+ActiveRecord::Schema.define(version: 20170814130125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -364,6 +364,14 @@ ActiveRecord::Schema.define(version: 20170804142526) do
     t.text     "bio",                  default: "This user has not filled out a bio yet."
     t.string   "stripeid"
     t.string   "subscriptionid"
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url"
+    t.string   "title"
+    t.string   "slug"
   end
 
   create_table "vocabulary_wordable_vocabulary_words", force: :cascade do |t|

@@ -1,0 +1,10 @@
+%h1 Videos
+
+=link_to new_admin_dashboard_video_path do 
+  .btn.btn-primary New Video
+%br/
+%br/
+%ul
+  - Video.all.each do |video|
+    %li
+      %h3= link_to video.title, admin_dashboard_video_path(video)
