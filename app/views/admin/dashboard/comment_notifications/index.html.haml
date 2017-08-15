@@ -16,7 +16,10 @@
       %tr
         %td= notification.comment.author.name
         %td= notification.comment.commentable.class
-        %td= link_to notification.comment.commentable.title, article_path(notification.comment.commentable, anchor: notification.comment.slug)
+        - if notification.comment.commentable.class.name == "Lesson"
+          %td= link_to notification.comment.commentable.name, course_lesson_path(notification.comment.commentable.course, notification.comment.commentable, anchor: notification.comment.slug)
+        - else
+          %td= link_to notification.comment.commentable.title, article_path(notification.comment.commentable, anchor: notification.comment.slug)
         %td= notification.comment.body
         %td.center
           = link_to toggle_admin_dashboard_comment_notification_path(notification) do
