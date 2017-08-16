@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require turbolinks
@@ -108,9 +109,7 @@ $(document).on("keyup", "#add_vocabulary_word_main", function(e) {
 
 // jQuery UI
 
-$(function() {
-    // $("#sortable_lessons").sortable({
-
+$(document).on("turbolinks:load", function() {
   $(".sortable_lessons").sortable({
     axis: "y",
     update: function() {
@@ -129,7 +128,10 @@ $(function() {
 });
 
 
-  $("#course_level_color").minicolors({theme: "bootstrap"});
+
+
+
+$("#course_level_color").minicolors({theme: "bootstrap"});
 
 
 
