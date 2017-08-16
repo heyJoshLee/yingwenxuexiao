@@ -4,10 +4,10 @@
       = f.text_field :name
 
       = f.radio_button(:published, true, inline: true)
-      = f.label(:published, "Published")
+      = f.label(:published, "Published", for: "lesson_published_true")
       %br/
       = f.radio_button(:published, false, inline: true)
-      = label(:published, "Not Published")
+      = label(:published, "Not Published", for: "lesson_published_false")
 
       = f.text_area :script_english
       = f.text_area :script_chinese
