@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     role == "admin"
   end
 
+  def make_paid_member
+    update_column(:membership_level, "paid")
+  end
+
   def enroll_in(course)
     if course.published? 
       if is_paid_member? || (!is_paid_member? && !course.premium_course?)
