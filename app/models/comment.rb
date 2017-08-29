@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true, length: {minimum: 1, maximum: 500}
 
   before_create :generate_random_slug
+
+  before_destroy :delete_related_comment_notifications
   after_create :create_notification
 
   def create_notification
@@ -23,6 +25,9 @@ class Comment < ActiveRecord::Base
 
   private
 
+  def delete_related_comment_notifications
+    CommentNotification.where(comment_id: id).destroy_all
+  end
 
   def generate_random_slug
     self.slug = SecureRandom.urlsafe_base64
