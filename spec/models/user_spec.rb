@@ -50,6 +50,8 @@ describe User do
     end
   end # is_admin?
 
+
+
   describe "#enroll_in(course)" do
     let!(:free_user) { Fabricate(:user) }
     let!(:paid_user) { Fabricate(:user, membership_level: "paid") }
@@ -876,6 +878,16 @@ describe User do
       level_2_user.add_points(100)
       expect(level_2_user.leveled_up?(100)).to be_truthy
     end
+  end
+
+  describe "#make_paid_member" do
+    let(:user)  { Fabricate(:user, membership_level: "free") }
+
+    it "should make the member paid level" do 
+      user.make_paid_member
+      expect(user.is_paid_member?).to be_truthy
+    end
+  
   end
 
 
