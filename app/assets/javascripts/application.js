@@ -129,6 +129,12 @@ $(document).on("turbolinks:load", function() {
 
 
 
+$(document).on("click", ".question_choice_edit_button", function() {
+  var $this = $(this);
+  console.log($this.siblings("li"));
+  $this.parent().parent().parent().next(".question_choice_form").toggle();
+});
+
 
 
 $("#course_level_color").minicolors({theme: "bootstrap"});
@@ -144,6 +150,7 @@ $(document).on("keyup", "#course_level_name", function(e) {
 $(document).on("change", "#course_level_color", function(e) {
   $("#course_level_color_preview").css("backgroundColor", $(e.target).val());
 });
+
 
 
 

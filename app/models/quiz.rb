@@ -2,7 +2,7 @@ class Quiz < ActiveRecord::Base
   before_create :generate_random_slug
 
   belongs_to :lesson
-  has_many :questions
+  has_many :questions, -> {order("created_at ASC")}
 
   has_many :user_questions
   has_many :users, through: :user_questions
