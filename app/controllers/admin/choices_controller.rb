@@ -23,6 +23,19 @@ class Admin::ChoicesController < AdminController
     end
   end
 
+
+  def update
+    @choice = Choice.find(params[:id])
+    @choice.update(choice_params)
+    @question = @choice.question
+    @lesson = @question.quiz.lesson
+    @quiz = @lesson.quiz
+    @course = @lesson.course
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def destroy
     @course = Course.find_by(slug: params[:course_id])
     @lesson = Lesson.find_by(slug: params[:lesson_id])
