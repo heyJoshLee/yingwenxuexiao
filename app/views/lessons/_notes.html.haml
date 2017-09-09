@@ -8,5 +8,7 @@
     %h4{style: "color: red; text-align: center;"} 免費用戶無法下載課堂筆記。升級到下載備註。
 
   -if current_user.is_admin?
+    %br/
     = link_to course_lesson_path(@course, @lesson, format: "pdf", admin: true) do
       .btn.btn-primary Admin Notes
+%br/
