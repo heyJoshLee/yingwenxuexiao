@@ -35,6 +35,11 @@ def create
   if session[:affiliate_link_code]
     affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
     user.update_column(:affiliate_link_id, affiliate_link.id) if affiliate_link
+    payment = AffiliatePayment.new
+
+    payment.affiliate_link_id = affiliate_link.id
+    payment.user_id = user.id
+    payment.save
   end
 
 

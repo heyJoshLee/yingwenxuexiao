@@ -15,4 +15,6 @@ feature "User attempts to subscribe", js: true do
     sleep 10
     page_should_have("Your card's expiration year is invalid.")
   end
+
+  
 end
