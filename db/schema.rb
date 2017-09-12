@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911142709) do
+ActiveRecord::Schema.define(version: 20170912113817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20170911142709) do
     t.text     "instructions"
     t.boolean  "published",      default: false
     t.integer  "unit_id"
+    t.string   "audio_source"
   end
 
   create_table "levels", force: :cascade do |t|

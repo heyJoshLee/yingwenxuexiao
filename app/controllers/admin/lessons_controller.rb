@@ -108,7 +108,7 @@ class Admin::LessonsController < AdminController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:bootsy_image_gallery_id, :name, :script_english, :script_chinese, :video_url, :notes_url, :description, :course_id, :lesson_number, :published, :instructions)
+    params.require(:lesson).permit(:bootsy_image_gallery_id, :name, :audio_source, :script_english, :script_chinese, :video_url, :notes_url, :description, :course_id, :lesson_number, :published, :instructions)
   end
 
 end
