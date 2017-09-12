@@ -17,15 +17,14 @@
 
     %h3 Links
     %h5 New Link
-    = bootstrap_form_for [:admin, :dashboard, @affiliate, AffiliateLink.new] do |f|
-      = f.text_field :name
-      = f.submit "Create Link", class: "btn btn-primary"
+
+    = render "/admin/dashboard/affiliate_links/form", affiliate: @affiliate, affiliate_link: AffiliateLink.new
     %br/
     %br/
     %table.table.table-bordered
       %thead
-        %td Link Name
-        %td Url
+        %td Name
+        %td Code
         %td Signups
         %td Created at
         %td Sign up Message
@@ -33,9 +32,8 @@
       %tbody
         - @affiliate.affiliate_links.each do |affiliate_link|
           %tr
-            %td
-              =link_to affiliate_link.name, edit_admin_dashboard_affiliate_affiliate_link_path(@affiliate, affiliate_link)
-            %td= affiliate_link.url
+            %td=link_to affiliate_link.name, edit_admin_dashboard_affiliate_affiliate_link_path(@affiliate, affiliate_link)
+            %td= affiliate_link.code
             %td= affiliate_link.users.count
             %td= affiliate_link.created_at
             %td= affiliate_link.sign_up_message

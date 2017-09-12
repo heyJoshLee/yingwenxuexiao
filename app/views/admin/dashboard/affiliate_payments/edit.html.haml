@@ -1,0 +1,4 @@
+%h2 Affiliate Payment
+%h4= link_to "Affiliate: #{@affiliate_payment.affiliate_link.affiliate.name}", admin_dashboard_affiliate_path(@affiliate_payment.affiliate_link.affiliate)
+%h4= link_to "Affiliate Link: #{@affiliate_payment.affiliate_link.name}", edit_admin_dashboard_affiliate_affiliate_link_path(@affiliate_payment.affiliate_link.affiliate, @affiliate_payment.affiliate_link)
+= render "form", affiliate_payment: @affiliate_payment

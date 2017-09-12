@@ -10,7 +10,7 @@ feature "User signs up" do
 
   scenario "user signs up with a free account with affiliate link and is associated with the link" do
     affiliate = Fabricate(:affiliate)
-    affiliate_link = Fabricate(:affiliate_link, affiliate_id: affiliate.id)
+    affiliate_link = Fabricate(:affiliate_link, affiliate_id: affiliate.id, code: "SPECIAL")
     visit "/signup/" + affiliate_link.code
     fill_in "user_email", with: "Johnsmith@google.com"
     fill_in "user_name", with: "Dr. John Smith"
@@ -18,6 +18,8 @@ feature "User signs up" do
     click_button "Sign Up"
     expect(User.last.affiliate_link_id).to eq(affiliate_link.id)
   end
+
+
 
   scenario "user tries to upgrade without having an account" do
     visit upgrade_path
@@ -29,6 +31,7 @@ feature "User signs up" do
     expect(page).to have_content("您的帳戶未創建。")
     # expect(page).to have_content("Your account was not created.")
   end
+
 end
 
 def sign_up

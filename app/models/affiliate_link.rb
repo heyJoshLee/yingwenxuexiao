@@ -7,7 +7,6 @@ class AffiliateLink < ActiveRecord::Base
 
   def generate_random_slug
     self.slug = SecureRandom.urlsafe_base64
-    self.code = slug
   end
 
   def to_param

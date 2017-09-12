@@ -1,0 +1,34 @@
+%h1 Affiliate Payments
+
+%table.table.table-bordered
+  %thead
+    %td Username
+    %td Sign Up Date
+    %td Paid ?
+    %td Payment Details
+    %td Payment Receipt Number
+    %td Payment Amount
+    %td Affiliate Link
+    %td Affiliate
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= link_to payment.user.name, edit_admin_dashboard_affiliate_payment_path(payment)
+        %td= payment.created_at
+
+        - if payment.paid?
+          %td= payment.paid_date
+        - else
+          %td
+            = link_to pay_admin_dashboard_affiliate_payment_path(payment), method: "POST", data: {confirm: "Are you sure you want to mark this as paid?"} do
+              .btn.btn-danger Pay
+
+
+
+        %td= payment.details
+        %td= payment.receipt_number
+        %td= payment.amount
+        %td= payment.affiliate_link.name
+        %td= payment.affiliate_link.affiliate.name
+
+

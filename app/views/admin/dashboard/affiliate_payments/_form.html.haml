@@ -1,0 +1,9 @@
+= bootstrap_form_for([:admin, :dashboard, affiliate_payment]) do |f|
+  %h4= "Username: #{affiliate_payment.user.name}"
+  = f.text_area :details
+  = f.text_field :receipt_number
+  = f.text_field :amount
+  = affiliate_payment.paid? ? affiliate_payment.paid_date : "Not yet paid."
+  %br/
+  %br/
+  = f.submit (affiliate_payment.new_record? ? "Create Payment" : "Save Payment"), class: "btn btn-primary"

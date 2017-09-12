@@ -1,0 +1,4 @@
+- unless @lesson.audio_source.blank?
+  .lesson_audio.center
+    %h4 Audio
+    =audio_tag(@lesson.audio_source, controls: true)

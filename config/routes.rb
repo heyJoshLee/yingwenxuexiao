@@ -123,6 +123,11 @@ Rails.application.routes.draw do
     resources :article_topics
     namespace :dashboard do
       resources :videos
+      resources :affiliate_payments do
+        member do
+          post "pay"
+        end
+      end
       namespace :reports do
       get "/", to: "reports#index", as: "reports"
       get "/payments", to: "reports#payments", as: "payments"

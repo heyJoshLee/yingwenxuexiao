@@ -25,7 +25,8 @@ class Games::FlashCardsController < ApplicationController
 
 
     if @answered_correctly 
-      current_user.add_points(2)
+      # current_user.add_points(2)
+      # Need to fix adding points
       old_correct = user_word.definition_correct
       new_correct = old_correct + 1
       user_word.update_column(:definition_correct, new_correct)
@@ -43,8 +44,9 @@ class Games::FlashCardsController < ApplicationController
   end
 
   def index
+    session[:flash_card_study_type] = "english_to_chinese"
     if current_user.user_vocabulary_words.length == 0
-      flash[:danger] = "You don't have any vocabulary words. You need to take get vocabulary words from a lesson before you can play this game."
+      flash[:danger] = "你沒有任何詞彙單詞。在玩這個遊戲之前，您需要從課上獲取詞彙單詞"
       redirect_to games_path
     else
       @word = current_user.user_vocabulary_words.sample

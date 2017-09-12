@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814130125) do
+ActiveRecord::Schema.define(version: 20170912113817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20170814130125) do
     t.text     "sign_up_message"
     t.text     "upgrade_message"
     t.string   "code"
+  end
+
+  create_table "affiliate_payments", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "paid_date"
+    t.text     "details"
+    t.string   "receipt_number"
+    t.string   "amount"
+    t.string   "slug"
+    t.integer  "affiliate_link_id"
+    t.integer  "user_id"
+    t.boolean  "paid",              default: false
   end
 
   create_table "affiliates", force: :cascade do |t|
@@ -231,6 +244,7 @@ ActiveRecord::Schema.define(version: 20170814130125) do
     t.text     "instructions"
     t.boolean  "published",      default: false
     t.integer  "unit_id"
+    t.string   "audio_source"
   end
 
   create_table "levels", force: :cascade do |t|
