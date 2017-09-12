@@ -51,7 +51,6 @@ class Admin::CoursesController < AdminController
       redirect_to admin_course_path(@course)
     else
       flash.now[:danger] = "There was a problem and the course was not saved"
-      binding.pry
       render :new
     end
   end
