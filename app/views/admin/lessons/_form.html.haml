@@ -15,6 +15,7 @@
       = f.text_field :audio_source
       = f.text_field :notes_url
       = f.text_area :description
+      %strong Instructions
       = f.bootsy_area :instructions, class: "form-control default_formatting", rows: 20
 
       = hidden_field_tag :course_id, @course.id
