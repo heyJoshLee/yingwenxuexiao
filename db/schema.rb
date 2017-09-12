@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911142709) do
+ActiveRecord::Schema.define(version: 20170912123152) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +245,7 @@ ActiveRecord::Schema.define(version: 20170911142709) do
     t.text     "instructions"
     t.boolean  "published",      default: false
     t.integer  "unit_id"
+    t.string   "audio_source"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -344,7 +346,7 @@ ActiveRecord::Schema.define(version: 20170911142709) do
   create_table "user_vocabulary_words", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "vocabulary_word_id"
-    t.datetime "review_time",                  default: '2016-08-13 00:00:00'
+    t.datetime "review_time",                  default: '2017-09-12 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "english_to_chinese_attempted", default: 0
@@ -385,13 +387,6 @@ ActiveRecord::Schema.define(version: 20170911142709) do
     t.string   "url"
     t.string   "title"
     t.string   "slug"
-  end
-
-  create_table "vocabulary_wordable_vocabulary_words", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "vocabulary_word_id"
-    t.integer  "vocabulary_wordable_id"
   end
 
   create_table "vocabulary_words", force: :cascade do |t|
