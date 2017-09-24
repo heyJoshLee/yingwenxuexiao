@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912123152) do
-
+ActiveRecord::Schema.define(version: 20170924123633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170912123152) do
     t.text     "sign_up_message"
     t.text     "upgrade_message"
     t.string   "code"
+    t.boolean  "active",          default: true
   end
 
   create_table "affiliate_payments", force: :cascade do |t|

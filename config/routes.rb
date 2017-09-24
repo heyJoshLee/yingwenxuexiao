@@ -74,7 +74,11 @@ Rails.application.routes.draw do
 
   resources :password_resets, only: [:show, :create]
   
-  resources :users, only: [:create, :edit, :update]
+  resources :users, only: [:create, :edit, :update] do
+    collection do
+     get "new_account"
+   end
+  end
   resources :notifications, only: [:index, :show] do
     collection do
       get "check_all"

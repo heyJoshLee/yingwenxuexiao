@@ -25,6 +25,11 @@ class Admin::Dashboard::AffiliatesController < AdminController
   def edit
   end
 
+  def show
+    add_breadcrumb "Affiliates", admin_dashboard_affiliates_path
+    add_breadcrumb @affiliate.name, admin_dashboard_affiliate_path(@affiliate)
+  end
+
   def update
     if @affiliate.update(@affiliate_params)
       flash[:success] = "affiliate was saved"

@@ -30,5 +30,9 @@
           %p="如果您沒有信用卡或支付寶(Alipay)您可以通過銀行轉帳付款。請發送電子郵件至 #{ENV['ADMIN_EMAIL']}"
 
       - else
-        = link_to sign_up_path do
-          .btn.btn-xlarge.btn-primary 註冊
+        .row
+          .col-xs-12.col-xs-offset-4.col-sm-offset-2
+            = link_to sign_up_path do
+              .btn.btn-lg.btn-primary 註冊
+            %br/
+            %br/

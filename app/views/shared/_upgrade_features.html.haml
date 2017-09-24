@@ -5,28 +5,28 @@
       / %h1 Improve Your English Right Now
       %h4 透過影片和有趣的測驗等來學習英文！
       / %h4 Learn English with Video Lessons, Fun Quizzes and more!
-
-
-- if @affiliate_link
-  .row
-    .well.affiliate_link_message=@affiliate_link.upgrade_message
-= render "shared/pay_subscription_button"
-      
+      .row
+        .col-xs-6
+          = link_to sign_up_path  do
+            .btn.btn-primary.btn-block 註冊
+        .col-xs-6
+          = link_to sign_in_path do
+            .btn.btn-success.btn-block 登入
 
 %section.row.spash_highlights
   .container
-    .col-sm-1
+    .col-sm-1.col-sm-offset-2
       %i.fa.fa-video-camera
-    .col-sm-2 超過8小時的影片課程
-    / .col-sm-2 Over 10 hours of video lessons
+    .col-sm-2 超過200堂的課
+    / .col-sm-2 Over 200 video lessons
     .col-sm-1
       %i.fa.fa-check-circle
     .col-sm-2 幾百個測驗問題幫助你加強學習過的內容
 
     / .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
-    .col-sm-1
-      %i.fa.fa-mobile-phone
-    .col-sm-2 用手機app練習英文
+    -# .col-sm-1
+    -#   %i.fa.fa-mobile-phone
+    -# .col-sm-2 用手機app練習英文
 
     / .col-sm-2 Smartphone APPS to practice your English
     .col-sm-1
@@ -74,6 +74,7 @@
         %p 不在電腦前時，可以使用我們的手機app練習英文。
 
         / %p With our smart phone app you can practice English when you are away from your computer.
+        
 %section.row.meet_your_teacher
   .container
     .row.h_padding
@@ -91,9 +92,9 @@
           %li
             %h4 學識淵博
             / %h4 Knowledgeable
-            %p 擁有學士學位、MBA和劍橋大學或其他組織的英語教學證書。Josh現在是教英文博士班的學生。
+            %p 擁有學士學位、MBA和劍橋大學或其他組織的英語教學證書。Josh現在是教英文博士班的學生。現在他是教英文博士班的學生。
 
-            / %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations.
+            / %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations. Right now he is a teaching English PhD student.
 %section.row.course_splash_preview
   .container
     %h1 高級課程

@@ -17,52 +17,11 @@
   .row
     .col-xs-12
       = bootstrap_form_for @user do |f|
-        / .row
-        /   .col-xs-12
-        /     .btn-group{"data-toggle" => "buttons"}
-        /       .membership_level_choice_div.col-xs-12.col-md-5.active
-        /         .row
-        /           .col-xs-12.membership_name
-        /             %h2 Free
-        /         .row
-        /           .col-xs-12.membership_features
-        /             %ul.membership_feature_list
-        /               = render partial: "shared/membership_feature", locals: { feature: "Read Articles", able: true}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Comment on Articles", able: true}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Enroll in Courses"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "View Lessons"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Take Quizzes"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Use Study Tools"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Ask the teacher questions"}
-        /         .row
-        /           .col-xs-4.col-xs-offset-3
-        /             .btn.black-bkg.membership_level_choice_button Choose Plan
-        /             .btn.btn-primary.membership_level_chosen_button.active Selected Plan
-        /       .membership_level_choice_div.col-xs-12.col-md-5.col-md-offset-1.active
-        /         .row
-        /           .col-xs-12.membership_name
-        /             %h2 Premium
-        /         .row
-        /           .col-xs-12.membership_features
-        /             %ul.membership_feature_list
-        /               = render partial: "shared/membership_feature", locals: { feature: "Read Articles", able: true}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Comment on Articles", able: true}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Enroll in Courses"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "View Lessons"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Take Quizzes"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Use Study Tools"}
-        /               = render partial: "shared/membership_feature", locals: { feature: "Ask the teacher questions"}
-        /         .row
-        /           .col-xs-4.col-xs-offset-3
-        /             .btn.black-bkg.membership_level_choice_button Choose Plan
-        /             .btn.btn-primary.membership_level_chosen_button.active Selected Plan
-        /       = f.radio_button :membership_level, "free", checked: false, class: "membership_radio_button"
-
-
-        = f.email_field :email
-        = f.text_field :name
-        = f.password_field :password
+        = f.email_field :email, label: "電子郵件"
+        = f.text_field :name, label: "用户名"
+        = f.password_field :password, label: "密碼"
         = f.submit "Sign Up", class: "btn btn-primary pull-right"
+= render "shared/upgrade_features"
 
 
 
