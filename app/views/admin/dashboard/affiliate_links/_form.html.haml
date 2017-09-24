@@ -3,6 +3,14 @@
   = f.text_field :code
   = f.text_area :sign_up_message
   = f.text_area :upgrade_message
+  = f.text_field :data_amount
+  %small ex: 75000
+  = f.text_field :data_currency
+  %small ex: ntd   
+  = f.text_field :data_description  
+  = f.text_field :stripe_plan_id
+  %small Get from Stripe Dashboard  
+  %br/
   = f.radio_button(:active, true, inline: true)
   = f.label(:active, "Active", for: "affiliate_link_active_true")
   %br/

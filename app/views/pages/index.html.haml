@@ -1,1 +1,15 @@
+%section#main_splash.row
+  .container
+    .col-sm-5.col-sm-offset-4
+      %h1 即刻增進您的英文能力
+      / %h1 Improve Your English Right Now
+      %h4 透過影片和有趣的測驗等來學習英文！
+      / %h4 Learn English with Video Lessons, Fun Quizzes and more!
+      .row
+        .col-xs-6
+          = link_to sign_up_path  do
+            .btn.btn-primary.btn-block 註冊
+        .col-xs-6
+          = link_to sign_in_path do
+            .btn.btn-success.btn-block 登入
 = render "shared/upgrade_features"

@@ -318,6 +318,18 @@ UPGRADE_FOOTER
 }
 
 /*********
+Stripe Payment Button
+**********/
+
+
+.stripe-button-el span {
+  display: block;
+  width: 100%;
+  width: 300px;
+  height: 150px;
+}
+
+/*********
 ADMIN_NAV
 **********/
 
