@@ -1,7 +1,7 @@
 .row
   .scripts_container
 
-    - if @lesson.script_english != "" && !@lesson.script_english.nil?
+    - unless @lesson.script_english.blank?
       .col-sm-6
         %p
           %a.btn.btn-primary.btn-lg.btn-block{"aria-controls" => "english_script", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#english_script", :style => "color: white !important;"}
@@ -12,7 +12,7 @@
               %p= @lesson.script_english
 
 
-    - if @lesson.script_chinese != "" && !@lesson.script_chinese.nil?
+    - unless @lesson.script_chinese.blank?
       .col-sm-6
         %p
           %a.btn.btn-primary.btn-lg.btn-block{"aria-controls" => "chinese_script", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#chinese_script", :style => "color: white !important;"}

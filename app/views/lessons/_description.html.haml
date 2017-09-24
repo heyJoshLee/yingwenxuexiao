@@ -1,4 +1,4 @@
-- if @lesson.description != ""
+- unless @lesson.description.blank?
   .description_container.well
     %h5 Description
     %p= @lesson.description

@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   def new
     session[:affiliate_link_code] = params[:affiliate_signup_code] if params[:affiliate_signup_code]
-    @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code]) if session[:affiliate_link_code]
+    # @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code]) if session[:affiliate_link_code]
+    link = AffiliateLink.where("code ILIKE ?", session[:affiliate_link_code]).first if session[:affiliate_link_code]
+    @affiliate_link = link if link && link.active?
     @user = User.new
   end
 
@@ -22,7 +24,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if session[:affiliate_link_code]
-      @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
+      # @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
+      link = AffiliateLink.where("code ILIKE ?", session[:affiliate_link_code]).first if session[:affiliate_link_code]
+      @affiliate_link = link if link && link.active?
       @user.affiliate_link_id = @affiliate_link.id if @affiliate_link
     end
     if @user.save
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
       # flash[:success] = "You have successfully registered. You are now logged in."
       session[:user_id] = @user.id
       SendWelcomeEmailWorker.perform_async(@user.id)
-      redirect_to blog_path
+      redirect_to new_account_users_path
       # redirect_to upgrade_path  #Uncomment with payment becomes available
 
     else
@@ -38,6 +42,10 @@ class UsersController < ApplicationController
       # flash.now[:error] = "Your account was not created."
       render :new
     end
+  end
+
+  def new_account
+    @video = Video.find_by(title: "How to take classes")
   end
 
   def update

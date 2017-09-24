@@ -1,5 +1,5 @@
 %h1= @affiliate.name
-%h5 Affiliate Info
+%h3 Affiliate Info
 .row
   .container
     %table.table.table-bordered
@@ -29,6 +29,7 @@
         %td Created at
         %td Sign up Message
         %td Upgrade Message
+        %td Active
       %tbody
         - @affiliate.affiliate_links.each do |affiliate_link|
           %tr
@@ -38,5 +39,5 @@
             %td= affiliate_link.created_at
             %td= affiliate_link.sign_up_message
             %td= affiliate_link.upgrade_message
-
+            %td= affiliate_link.active?
 

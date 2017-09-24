@@ -1,2 +1,2 @@
-- unless @lesson.instructions == "" || @lesson.instructions.nil? 
+- unless @lesson.instructions.blank? 
   .well.lesson_instructions= @lesson.instructions.html_safe
