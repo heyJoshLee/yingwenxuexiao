@@ -23,17 +23,20 @@ def create
     )
   end
 
+  affiliate_link = AffiliateLink.where("code ILIKE ?", session[:affiliate_link_code]).first if session[:affiliate_link_code]
+  plan_id = affiliate_link.stripe_plan_id if affiliate_link && affiliate_link.active?
+  plan_id ||= "basic_plan_with_discount"
+
   stripe_subscription = Stripe::Subscription.create(
     :customer => stripe_id || customer.id, 
     :items => [
-      {:plan => "1"}
+      {:plan => plan_id}
       ]  
     )
   user.update_column(:membership_level, "paid")
-  user.update_column(:stripeid, customer.id)
+  user.update_column(:stripeid, customer.id) if customer
 
-  if session[:affiliate_link_code]
-    affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code] )
+  if affiliate_link
     user.update_column(:affiliate_link_id, affiliate_link.id) if affiliate_link
     payment = AffiliatePayment.new
 

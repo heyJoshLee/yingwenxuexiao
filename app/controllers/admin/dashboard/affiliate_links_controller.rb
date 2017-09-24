@@ -20,6 +20,8 @@ class Admin::Dashboard::AffiliateLinksController < AdminController
   end
 
   def edit
+    add_breadcrumb "Affiliates", admin_dashboard_affiliates_path
+    add_breadcrumb @affiliate.name, admin_dashboard_affiliate_path(@affiliate)
   end
 
   def update

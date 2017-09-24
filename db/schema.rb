@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912123152) do
-
+ActiveRecord::Schema.define(version: 20170924133757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +20,18 @@ ActiveRecord::Schema.define(version: 20170912123152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "affiliate_id"
-    t.integer  "signups",         default: 0
+    t.integer  "signups",          default: 0
     t.string   "url"
     t.string   "slug"
     t.string   "name"
     t.text     "sign_up_message"
     t.text     "upgrade_message"
     t.string   "code"
+    t.boolean  "active",           default: true
+    t.string   "data_amount",      default: "75000"
+    t.string   "data_currency",    default: "ntd"
+    t.string   "data_description", default: "英文學校課程費用"
+    t.string   "stripe_plan_id",   default: "1"
   end
 
   create_table "affiliate_payments", force: :cascade do |t|

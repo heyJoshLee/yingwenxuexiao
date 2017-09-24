@@ -6,6 +6,8 @@
     - @course.course_levels.each do |course_level|
       .badge{style: "background-color: #{course_level.color}" }= course_level.name
     %br/
+    %br/
     - if current_user.is_admin?
-      = link_to "Edit course", edit_admin_course_path(@course)
+      = link_to edit_admin_course_path(@course) do
+        .btn.btn-primary Edit course
     = image_tag(@course.main_image_url)
