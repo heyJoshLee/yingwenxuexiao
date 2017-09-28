@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   has_many :comment_notifications
   has_many :payments
 
+  has_many :user_actions
+
   belongs_to :affiliate_payment
 
   before_create :generate_random_slug

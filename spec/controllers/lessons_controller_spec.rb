@@ -3,6 +3,36 @@ require "rails_helper"
 describe LessonsController do
 
   describe "POST complete" do
+    let!(:course) { Fabricate(:course, published: true, premium_course: false) }
+    let!(:lesson) { Fabricate(:lesson, course_id: course.id, published: true) }
+
+    let!(:course_2) { Fabricate(:course, published: true, premium_course: true) }
+    let!(:lesson_2) { Fabricate(:lesson, course_id: course_2.id, published: true) }
+
+    let!(:user) { Fabricate(:user) }
+    let!(:paid_user) { Fabricate(:user, membership_level: "paid") }
+
+    context "free user" do
+      it "Creates a UserAction object" do
+        sign_in_free_member(user)
+        user.enroll_in(course)
+        post :complete, course_id: course.slug, lesson_id: lesson.slug
+        expect(UserAction.count).to eq(1)
+      end
+    end
+
+
+    context "paid user" do
+      it "Creates a UserAction object" do
+        sign_in_paid_member(paid_user)
+        paid_user.enroll_in(course_2)
+        post :complete, course_id: course_2.slug, lesson_id: lesson_2.slug
+        expect(UserAction.count).to eq(1)
+      end
+    end
+
+
+
   end
 
 

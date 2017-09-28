@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
     current_user.complete_lesson(@lesson)
     @lesson = current_user.next_lesson_in_course(@lesson.course)
     @comment = Comment.new
-
+    UserAction.create_user_action(current_user.id, {action_type: "completed lesson", lesson_id: @lesson.id})
     redirect_to course_lesson_path(@course, current_user.next_lesson_in_course(@course))
   end
 
