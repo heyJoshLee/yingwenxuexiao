@@ -32,7 +32,8 @@
       .accordion
         - @course.units.each do |unit|
           -next unless unit.has_published_lessons?
-          %h6{style: "color: black"}=unit.name
+          %h6.unit_header_in_lesson_panel{class: ("current_lesson" if @lesson && @lesson.unit_id == unit.id)}=unit.name
+
           %div.lesson_link_in_lesson_panel
             %ol
               - unit.published_lessons.each do |lesson|
