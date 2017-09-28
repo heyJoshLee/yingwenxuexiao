@@ -26,6 +26,7 @@
 
     = f.collection_check_boxes :course_level_ids, CourseLevel.all, :id, :name do |cb|
       - cb.label(class: "inline article_category_checkbox") {cb.check_box(class: "article_category_checkbox") + cb.text}
+  %br/
   = f.submit @course.new_record? ? "Create Course" : "Save course", class: "btn btn-primary"
 
 

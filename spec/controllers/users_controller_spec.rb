@@ -26,5 +26,10 @@ describe UsersController do
       post :create, user: {name: "John Doe", password: "Coolpass123", email: "John@google.com"}
       expect(User.last.affiliate_link_id).to eq(affiliate_link.id)
     end
+
+    it "creates a user action" do
+      post :create, user: {name: "John Doe", password: "Coolpass123", email: "John@google.com"}
+      expect(UserAction.count).to eq(1)      
+    end
   end
 end

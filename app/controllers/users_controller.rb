@@ -34,8 +34,8 @@ class UsersController < ApplicationController
       # flash[:success] = "You have successfully registered. You are now logged in."
       session[:user_id] = @user.id
       SendWelcomeEmailWorker.perform_async(@user.id)
+      UserAction.create_user_action(@user.id, {action_type: "signed up"})
       redirect_to new_account_users_path
-      # redirect_to upgrade_path  #Uncomment with payment becomes available
 
     else
       flash.now[:error] = "您的帳戶未創建。"

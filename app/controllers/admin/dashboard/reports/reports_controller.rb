@@ -25,8 +25,11 @@ class Admin::Dashboard::Reports::ReportsController < AdminController
       @users = User.where(created_at: @start_date..@end_date)
     else
       @users = User.all
-    end
-    
+    end    
+  end
+
+  def user_actions
+    @user_actions = UserAction.all.reverse
   end
 
 end

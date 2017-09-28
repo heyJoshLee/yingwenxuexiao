@@ -136,6 +136,7 @@ Rails.application.routes.draw do
       get "/", to: "reports#index", as: "reports"
       get "/payments", to: "reports#payments", as: "payments"
       get "/new_users", to: "reports#new_users", as: "new_users"
+      get "/user_actions", to: "reports#user_actions"
       end
       resources :notifications do
         collection do

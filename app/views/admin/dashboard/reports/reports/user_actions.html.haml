@@ -1,0 +1,13 @@
+%h1 User Actions
+
+%table.table.table-bordered
+  %thead
+    %td Actions
+    %td Type
+  %tbody
+    - @user_actions.each do |u|
+      %tr
+        %td
+          %h5= u.body
+        %td
+          %h5= u.action_type
