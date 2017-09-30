@@ -24,12 +24,15 @@
           %li= link_to "Privacy Policy", privacy_policy_path
     .row.footer_social
       .col-xs-12
-        %h5.center Social
-      .col-xs-12
-        .col-xs-3
-          Facebok
-        .col-xs-3
-          Wechat
+        %h4.center Social
+    .row
+      .col-xs-12.center
+        = link_to "https://www.facebook.com/yingwenxuexiao/" do
+          .social_media_button.facebook_social_button
+        = link_to "https://www.youtube.com/channel/UCexchUgVhcG7X29v93EZk6w?view_as=subscriber" do     
+          .social_media_button.youtube_social_button
+        = link_to "https://twitter.com/EnglishSchoolTW/" do     
+          .social_media_button.twitter_social_button       
     .row
       .center.v_margin
         © 2016 Yingwenxuexiao All Rights Reserved.

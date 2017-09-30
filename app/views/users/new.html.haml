@@ -3,17 +3,20 @@
     .row
       .well.affiliate_link_message= @affiliate_link.sign_up_message
   .row
-    %h1 免费注册
-    / %h1 Sign Up For Free
-    %ul.sign_up_features
-      %li <i class="fa fa-check"></i> 免费课程
-      / Free Lessons
-      %li <i class="fa fa-check"></i> 评论文章
-      / Comment on articles
-      %li <i class="fa fa-check"></i> 不错过任何文章
-      / Never miss an article
-      %li <i class="fa fa-check"></i> 和英文老师沟通
-      / Communicate with English teachers
+    .col-xs-6
+      %h1 免費註冊
+      / %h1 Sign Up For Free
+      %ul.sign_up_features
+        %li <i class="fa fa-check"></i> 免費課程
+        / Free Lessons
+        %li <i class="fa fa-check"></i> 評論文章
+        / Comment on articles
+        %li <i class="fa fa-check"></i> 不錯過任何文章
+        / Never miss an article
+        %li <i class="fa fa-check"></i> 和英文老師溝通
+        / Communicate with English teachers
+    .col-xs-6
+      = render "shared/help_video", source: @video.url
   .row
     .col-xs-12
       = bootstrap_form_for @user do |f|
