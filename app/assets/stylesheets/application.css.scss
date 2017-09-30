@@ -714,6 +714,28 @@ FOOTER
 }
 
 
+.social_media_button {
+  width: 90px;
+  display: inline-block;
+  height: 100px;
+  background-image: url("icons/social_media_buttons.jpg");
+}
+
+.facebook_social_button {
+  background-position: -363px -20px;
+}
+
+.youtube_social_button {
+  background-position: -363px -230px;
+}
+
+
+.twitter_social_button {
+  background-position: -143px -230px;
+}
+
+
+
 /*********
 COURSE
 **********/

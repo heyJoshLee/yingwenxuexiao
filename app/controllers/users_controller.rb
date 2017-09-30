@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     # @affiliate_link = AffiliateLink.find_by(code: session[:affiliate_link_code]) if session[:affiliate_link_code]
     link = AffiliateLink.where("code ILIKE ?", session[:affiliate_link_code]).first if session[:affiliate_link_code]
     @affiliate_link = link if link && link.active?
+    set_sign_up_video
     @user = User.new
   end
 
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
       redirect_to new_account_users_path
 
     else
+      set_sign_up_video
       flash.now[:error] = "您的帳戶未創建。"
       # flash.now[:error] = "Your account was not created."
       render :new
@@ -62,6 +64,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+
+  def set_sign_up_video
+    @video = Video.where(title: "Sign Up").first
+  end
 
   def set_user
     @user = current_user
