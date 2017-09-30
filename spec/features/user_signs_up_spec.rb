@@ -3,6 +3,7 @@ require "spec_helper"
 feature "User signs up" do
   before do
     Video.create(title: "How to take classes", url: "test")
+    Video.create(title: "Sign Up", url: "test")
   end
 
   scenario "successful sign up" do
