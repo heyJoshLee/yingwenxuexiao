@@ -1,23 +1,26 @@
-%section.row.spash_highlights
-  .container
-    .col-sm-1.col-sm-offset-2
-      %i.fa.fa-video-camera
-    .col-sm-2 超過200堂的課
-    / .col-sm-2 Over 200 video lessons
-    .col-sm-1
-      %i.fa.fa-check-circle
-    .col-sm-2 幾百個測驗問題幫助你加強學習過的內容
+%section.spash_highlights
+  .row
+    .container
+      .col-sm-1.col-sm-offset-2
+        %i.fa.fa-video-camera
+      .col-sm-2 超過200堂的課
+      / .col-sm-2 Over 200 video lessons
+      .col-sm-1
+        %i.fa.fa-check-circle
+      .col-sm-2 幾百個測驗問題幫助你加強學習過的內容
 
-    / .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
-    -# .col-sm-1
-    -#   %i.fa.fa-mobile-phone
-    -# .col-sm-2 用手機app練習英文
+      / .col-sm-2 Hundreds of quiz questions to reinforce what you have learned
+      -# .col-sm-1
+      -#   %i.fa.fa-mobile-phone
+      -# .col-sm-2 用手機app練習英文
 
-    / .col-sm-2 Smartphone APPS to practice your English
-    .col-sm-1
-      %i.fa.fa-question
-    .col-sm-2 有問題時可隨時問老師
-    / .col-sm-2 Ask the teacher if you have questions
+      / .col-sm-2 Smartphone APPS to practice your English
+      .col-sm-1
+        %i.fa.fa-question
+      .col-sm-2 有問題時可隨時問老師
+      / .col-sm-2 Ask the teacher if you have questions
+
+
 %section.large_splash_highlights
   .container
     .row
@@ -54,7 +57,7 @@
         .icon_wrapper.center
           = image_tag("icons/smartphone")
       .col-sm-5.col
-        %h4.center 手机App
+        %h4.center 手機App
         / %h4.center Smart Phone App
         %p 不在電腦前時，可以使用我們的手機app練習英文。
 
@@ -64,7 +67,7 @@
   .container
     .row.h_padding
       .col-sm-6.col-sm-offset-4
-        %h1 教师团队 - Josh Lee 李老師
+        %h1 教師團隊 - Josh Lee 李老師
         / %h1 Meet Your Teacher - Josh Lee
         = image_tag("josh_main_placeholder", class: "img-circle")
         %ul
@@ -80,56 +83,58 @@
             %p 擁有學士學位、MBA和劍橋大學或其他組織的英語教學證書。Josh現在是教英文博士班的學生。現在他是教英文博士班的學生。
 
             / %p Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations. Right now he is a teaching English PhD student.
-%section.row.course_splash_preview
+
+
+%h2.center Example Videos
+
+%section.row
   .container
-    %h1 高級課程
+    .col-xs-12.col-md-6
+      %h3.center 成語
+      %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => "//content.jwplatform.com/players/GPqJ5I8D-qESISdXY.html", :style => "position:absolute;", :width => "100%"}
+    .col-xs-12.col-md-6
+      %h3.center 閱讀練習
+      %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => "//content.jwplatform.com/players/4d7qBDGV-qESISdXY.html", :style => "position:absolute;", :width => "100%"}
+    .col-xs-12.col-md-6
+      %h3.center 語法
+      %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => "//content.jwplatform.com/players/pEJ8cXAr-qESISdXY.html", :style => "position:absolute;", :width => "100%"}
+    .col-xs-12.col-md-6
+      %h3.center 短語
+      %div{:style => "position:relative; padding-bottom:56.25%; overflow:hidden;"}
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :scrolling => "auto", :src => "//content.jwplatform.com/players/PJBlg3Fm-qESISdXY.html", :style => "position:absolute;", :width => "100%"}
 
-    / %h1 Premium Courses
-    .row
+%section.row
+  %h2.center Features
+  .container
+    .xs-col-12.col-md-6
+      %h3.center Flash Cards
+      =image_tag("flash_cards_gif")
+    .xs-col-12.col-md-6
+      %h3.center Ask Questions
+      =image_tag("ask_questions_gif")
+    .xs-col-12.col-md-6.col-md-offset-3
+      %h3.center Download Notes
+      =image_tag("download_notes_gif")
 
-      .col-sm-3
-        .ielts_test_prep.course_preview
-          = image_tag("sales_page/white_board")
-          %h4 雅思考試準備
 
-          / %h4 IELTS test preparation
-          %p 高分通過雅思測驗
 
-          / %p Pass the IELTS and get a high score.
-          %small 即將推出
+%br/
+%section.row.course_splash_preview
+  .row
+    %h2.center 課程
+  .row
+    .container-fluid.center
+      - Course.premium_published_courses.each do |course|
+        = render "courses/course_preview", course: course
 
-          / %small Coming soon
-      .col-sm-3
-        .business_english.course_preview
-          = image_tag("sales_page/meeting")
-          %h4 商用英語
 
-          / %h4 Business English
-          %p 學習如何用英語談判、做生意
-
-          / %p Learn how to do business, negotiate be speak the language of business.
-          %small 即將推出
-
-          / %small Coming soon
-      .col-sm-3
-        .beginner_english.course_preview
-          = image_tag("sales_page/letter_cubes")
-          %h4 初級英語
-          / %h4 Beginner English
-          %p 初學者適用
-          / %p For complete beginners.
-          %small 現在上課！
-
-          / %small open now
-      .col-sm-3
-        .english_idioms.course_preview
-          = image_tag("sales_page/notebook")
-          %h4 英文俚語
-
-          / %h4 English Idioms
-          %p 跟著我們的課程一起學習如何很自然地說英語
-
-          / %p Learn how to talk like a native speaker with this class.
-          %small 即將推出
-
-          / %small Coming soon
+%br/
+.row
+  .container
+    .col-xs-8.col-xs-offset-2.col-md-6.col-md-offset-3
+      %h3.center Sign up for free!
+      = link_to sign_up_path  do
+        .btn.btn-primary.btn-block 註冊

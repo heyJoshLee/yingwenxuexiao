@@ -37,7 +37,6 @@ gem 'prawn-rails'
 gem 'jquery-minicolors-rails'
 gem 'remotipart'
 
-
 group :production do
   gem 'rails_12factor'
 end
