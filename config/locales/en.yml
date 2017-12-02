@@ -20,4 +20,34 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  shared:
+    upgrade_features:
+      over_200_video_lessons: "Over 200 video lessons"
+      hundreds_of_quiz_questions: "Hundreds of quiz questions to reinforce what you have learned"
+      ask_the_teacher_if_you_have_questions: "Ask the teacher if you have questions"
+      watch_video_lessons: "Watch video lessons and hear native English speakers. New courses are continuously being added to cover new topics like CET, IELTES, idioms and business English. You can take any course as long as you are a member."
+      practice_what_you_have_learned: "Practice what you have learned by taking quizzes and testing yourself. Each lesson has questions covering the material."
+      each_lesson_contains_notes: "Each lesson contains notes that you can download and print off so you can study later."
+      with_our_smart_phone_app: "With our smart phone app you can practice English when you are away from your computer."
+      video_lessons: "Video Lessons"
+      quizzes: "Quizzes"
+      lesson_notes: "Download Lesson Notes"
+      smart_phone_app: "Smart phone app"
+      meet_your_teacher: "Meet Your Teacher - Josh Lee"
+      experienced: "Experienced"
+      taught_over_2000_students: "Taught over 2,000 Chinese students at Universities, Training Centers and Online. Josh has even lead training sessions for other TEFL teachers."
+      knowledgeable: "Knowledgeable"
+      holds_a_ba: "Holds a BA, MBA and various English teaching certifications from Cambridge and other organizations. Right now he is a Teaching English PhD student."
+      example_videos: "Example Videos"
+      idioms: "Idioms"
+      reading_practice: "Reading Practice"
+      grammar: "Grammar"
+      phrases: "Phrases"
+      features: "Features"
+      flash_cards: "Flashcards"
+      ask_questions: "Ask Questions"
+      download_notes: "Download Notes"
+      courses: "Courses"
+      sign_up_for_free: "Sign up for free!"
+      sign_up: "Sign Up"
+

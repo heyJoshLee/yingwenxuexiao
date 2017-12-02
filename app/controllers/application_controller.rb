@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :logged_in?, :current_user, :practice_option_check, :require_paid_membership, :unread_notifications_count
 
+  before_filter :set_locale
+
   def unread_notifications_count
     CommentNotification.all_unread.count
   end
@@ -42,5 +44,15 @@ class ApplicationController < ActionController::Base
       # flash[:danger] = "You do not have permission to do that."
       redirect_to root_path
     end
+  end
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+  end
+
+  def default_url_options(options = {})
+    {locale: I18n.locale}
   end
 end
