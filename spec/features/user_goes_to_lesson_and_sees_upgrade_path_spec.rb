@@ -2,6 +2,7 @@ require "spec_helper"
 
 feature "Free users on free lessons see upgrade links and cannot take quizzes" do
 
+
   scenario "Free user can go to course and lesson" do
     free_user = Fabricate(:user)
     free_course = Fabricate(:course, premium_course: false, published: true)
@@ -10,9 +11,9 @@ feature "Free users on free lessons see upgrade links and cannot take quizzes" d
     quiz = Fabricate(:quiz, lesson_id: free_lesson.id)
 
     enroll_in_course(free_user, free_course)
-    visit course_path(free_course)
+    visit course_path(id: free_course)
     page_should_have(free_course.name)
-    visit course_lesson_path(free_course, free_lesson)
+    visit course_lesson_path(course_id: free_course, id: free_lesson)
     page_should_have(free_lesson.name)
   end
 
@@ -26,7 +27,7 @@ feature "Free users on free lessons see upgrade links and cannot take quizzes" d
     before do
       free_lesson.add_vocabulary_word(vocabulary_word)
       enroll_in_course(free_user, free_course)
-      visit course_lesson_path(free_course, free_lesson)
+      visit course_lesson_path(course_id: free_course, id: free_lesson)
     end
 
     scenario "Free users can't download class notes notification" do
@@ -55,7 +56,7 @@ feature "Free users on free lessons see upgrade links and cannot take quizzes" d
     before do
       free_lesson.add_vocabulary_word(vocabulary_word_2)
       enroll_in_course(paid_user, free_course)
-      visit course_lesson_path(free_course, free_lesson)
+      visit course_lesson_path(course_id: free_course, id: free_lesson)
     end
 
     scenario "Paid users go to a premium class to download notes" do
@@ -83,7 +84,7 @@ feature "Free users on free lessons see upgrade links and cannot take quizzes" d
     before do
       paid_lesson.add_vocabulary_word(vocabulary_word_2)
       enroll_in_course(paid_user, paid_course)
-      visit course_lesson_path(paid_course, paid_lesson)
+      visit course_lesson_path(course_id: paid_course, id: paid_lesson)
     end
 
     scenario "Paid users go to a premium class to download notes" do
