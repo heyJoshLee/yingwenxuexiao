@@ -2,26 +2,47 @@
   %footer.footer#main_footer
     .row
       .col-xs-4
-        %h5 英文學校
-        / %h5 English School
+        %h5= t ".name_of_website"
         %ul
-          %li=link_to "工作機會", careers_path # Careers
+          %li
+            =link_to careers_path do
+              = t ".careers"
+
           %li=link_to "Blog", blog_path
-          %li=link_to "相關公司", affiliates_path # Affiliates
+
+          %li
+            =link_to affiliates_path do
+              = t ".affiliates"
       .col-xs-4
-        %h5 條款和協助
-        / %h5 Terms and help
+        %h5= t ".terms_and_help"
         %ul
-          %li=link_to "隱私權政策", "/privacy_policy" # Privacy Terms
-          %li=link_to "條款和協助", "/help" # Help
-          %li=link_to "聯絡", contact_path # Contact
+          %li
+            =link_to privacy_policy_path do
+              = t ".privacy_policy"
+
+          %li
+            =link_to "/help" do
+              = t ".help"
+
+          %li
+            =link_to contact_path  do
+              = t ".contact"
       .col-xs-4
-        %h5 Account
+        %h5= t ".account"
         %ul
-          %li= link_to "我的帳號", account_path # My Account
-          %li= link_to "升級", root_path # Upgrade
-          %li= link_to "Terms and Service", tos_path
-          %li= link_to "Privacy Policy", privacy_policy_path
+          %li
+            = link_to account_path do
+              = t ".account"
+          %li
+            = link_to root_path do
+              = t ".upgrade"
+          %li
+            = link_to tos_path do
+              = t ".terms_and_service"
+          %li
+            =link_to privacy_policy_path do
+              = t ".privacy_policy"
+
     .row.footer_social
       .col-xs-12
         %h4.center Social
@@ -34,5 +55,4 @@
         = link_to "https://twitter.com/EnglishSchoolTW/" do     
           .social_media_button.twitter_social_button       
     .row
-      .center.v_margin
-        © 2016 Yingwenxuexiao All Rights Reserved.
+      .center.v_margin= t ".all_rights_reserved"

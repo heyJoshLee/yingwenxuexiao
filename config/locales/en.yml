@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   shared:
     upgrade_features:
@@ -50,4 +29,32 @@ en:
       courses: "Courses"
       sign_up_for_free: "Sign up for free!"
       sign_up: "Sign Up"
-
+    campaign_modal:
+      enter_your_email: "Enter your email to get the book for free!"
+      when_you_enter_your_email: "When you enter your email I will send you an email to get the book. I will also send you a few emails about the upcoming course I am working on. I won't send you spam.  "
+      get_the_book:
+      close:
+    footer:
+      name_of_website: "English School"
+      careers: "Careers"
+      blog:
+      affiliates: "Affiliates"
+      terms_and_help: "Terms and Help"
+      privacy_policy: "Privacy Policy"
+      help: "Help"
+      contact: "Contact"
+      account: "My Account"
+      upgrade: "Upgrade"
+      terms_and_service: "Terms and Service"
+      all_rights_reserved: "© 2017 English School - All Rights Reserved."
+    header:
+      free_gift: "Free Gift"
+      free: "Free"
+      games: "Games"
+      courses: "Courses"
+      my_words: "My Words"
+      upgrade: "Upgrade"
+      sign_out: "Sign Out"
+      sign_in: "Sign In"
+      account: "My Account"
+      sign_up: "Sign Up"

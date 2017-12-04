@@ -29,3 +29,30 @@ zh-Hant:
       courses: "課程"
       sign_up_for_free: "免費註冊！"
       sign_up: "註冊"
+    campaign_modal:
+      enter_your_email: "輸入您的email可獲得免費書籍！"
+      when_you_enter_your_email: "输入您的﻿mail之後，我会回mail附上书籍。另外我也会﻿mail您，告诉您未来的新课程。别担心，我不会寄送任何垃圾信件。"
+    footer:
+      name_of_website: "英文學校"
+      careers: "職業生涯"
+      blog:
+      affiliates: "相關公司"
+      terms_and_help: "條款和協助"
+      privacy_policy: "隱私權政策"
+      help: "條款和協助"
+      contact: "聯絡"
+      account: "我的帳號"
+      upgrade: "升級"
+      terms_and_service: "條款和服務"
+      all_rights_reserved: "© 2017 英文學校 - Yingwenxuexiao - English School All Rights Reserved."
+    header:
+      free_gift: "免費禮物"
+      free: "免費"
+      games: "遊戲"
+      courses: "課程"
+      my_words:
+      upgrade: "高级会员"
+      sign_out: "登出"
+      sign_in: "登入"
+      account: "我的帳號"
+      sign_up: "註冊"
