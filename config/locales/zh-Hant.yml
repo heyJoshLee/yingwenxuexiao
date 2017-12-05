@@ -1,4 +1,29 @@
 zh-Hant:
+  pages:
+    error:
+      sorry: "對不起"
+      cannont_find_page: "我們找不到您要尋找的頁面。"
+    free:
+      free_downloads: "免費下載"
+      get_300_lessons: "即刻獲得300個免費課程"
+      get_joshs_new_book: "免費獲得Josh的新書 'English Idioms - Book One'！"
+      get_the_book: "领取书籍"
+    index:
+      improve_your_english_right_now: "即刻增進您的英文能力"
+      learn_english_with_video_lessons: "透過影片和有趣的測驗等來學習英文！"
+      sign_up: "註冊"
+      sign_in: " 登入"
+    our_method:
+      our_method: "我們的方法"
+      our_method_includes: "我們的方法包括視頻，測驗，筆記和間隔重複練習"
+    upgrade:
+      improve_your_english_right_now: "即刻增進您的英文能力"
+      learn_english_with_video_lessons: "透過影片和有趣的測驗等來學習英文！" 
+    upgrade_confirmation:
+      congratulations: "恭喜！你現在是高級會員."
+      go_ahead_and_enroll: "繼續參加我們的課程。"
+      view_courses: "瀏覽課程"
+     
   shared:
     upgrade_features:
       over_200_video_lessons: "超過200堂的課"
@@ -56,3 +81,26 @@ zh-Hant:
       sign_in: "登入"
       account: "我的帳號"
       sign_up: "註冊"
+    nav:
+      free: "免費"
+      games: "遊戲"
+      courses: "課程"
+      my_words:
+      upgrade: "高级会员"
+    pay_subscription_button:
+      you_are_already_a_paid_number: "你已經是優質會員了。"
+      course_fee: "課程費: $1000 NTD / 月"
+      special_discount: "特價:"
+      course_fee_after_discount: "課程費: $750 NTD / 月"
+      membership_features: "當您是會員時，您可以看視頻，下載備註，考小考和問教師問題"
+      monthly_billing: "您每月將收取750台幣(NTD)，直到您取消"
+      alterntaive_payment: "如果您沒有信用卡或支付寶(Alipay)您可以通過銀行轉帳付款。請發送電子郵件至"
+      sign_up: "註冊"
+    sidebar:
+      get_300_lessons: "即刻獲得300個免費課程"
+      get_joshs_new_book: "免費獲得Josh的新書 'English Idioms - Book One'！"
+      get_the_book: "领取书籍"
+      sign_up_to_our_mailing_list: "加入我們的﻿mail郵寄清單"
+      never_miss_a_lesson_or_article: "不錯過任何課程或文章."
+      we_wont_spam_you:  "我們不會給您垃圾信件."
+

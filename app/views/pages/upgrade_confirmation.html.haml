@@ -1,7 +1,5 @@
-%h1 恭喜！你現在是高級會員.
--# %h1 Congratulations! You are now a premium member.
+%h1= t ".congratulations"
 %well
-  %h5 繼續參加我們的課程。
-  -# %h5 Go ahead and enroll in our classes.
+  %h5= t ".go_ahead_and_enroll"
   = link_to courses_path do
-    .btn.btn-primary View Courses
+    .btn.btn-primary= t ".view_courses"

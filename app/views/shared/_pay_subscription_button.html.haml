@@ -1,8 +1,8 @@
 .row
   .container
-    .col-xs-12.col-sm-offset-3.col-lg-offset-4
+    .col-xs-12.col-sm-offset-4.col-sm-4
       - if logged_in? && current_user.is_paid_member?
-        %h5 你已經是優質會員了。
+        %h5= t ".you_are_already_a_paid_member"
         = link_to courses_path do
           .btn.btn-primary 上課
       - elsif logged_in? && !current_user.is_paid_member? 
@@ -12,27 +12,27 @@
               #error_explanation
                 %p= flash[:error]
             %label.amount.center
-              %h3{style: "text-decoration: line-through"} 課程費: $1000 NTD / 月
-              %h3 特價:
+              %h3{style: "text-decoration: line-through"}= t ".course_fee"
+              %h3= t ".special_discount"
 
               - if @affiliate_link
                 %h3= "課程費: $#{@affiliate_link.data_amount.to_i/100} NTD / 月"
               - else
-                %h3 課程費: $750 NTD / 月
+                %h3= t ".course_fee_after_discount"
 
           - if @affiliate_link
-            %script.stripe-button{"data-alipay" => "true", "data-amount" => @affiliate_link.data_amount.to_i, "data-currency" => @affiliate_link.data_currency, "data-description" => @affiliate_link.data_description, "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "升級", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
+            %script.stripe-button{"data-alipay" => "true", "data-amount" => @affiliate_link.data_amount.to_i, "data-currency" => @affiliate_link.data_currency, "data-description" => @affiliate_link.data_description, "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "Upgrade", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
           - else
-            %script.stripe-button{"data-alipay" => "true", "data-amount" => "75000", "data-currency" => "ntd", "data-description" => "英文學校課程費用", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "升級", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
+            %script.stripe-button{"data-alipay" => "true", "data-amount" => "75000", "data-currency" => "ntd", "data-description" => "英文學校課程費用", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "Upgrade", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}
 
-          %p 當您是會員時，您可以看視頻，下載備註，考小考和問教師問題
-          %p 您每月將收取750台幣(NTD)，直到您取消
-          %p="如果您沒有信用卡或支付寶(Alipay)您可以通過銀行轉帳付款。請發送電子郵件至 #{ENV['ADMIN_EMAIL']}"
+          %p.center= t ".membership_features"
+          %p.center= t ".monthly_billing"
+          -# # %p= t (".alterntaive_payment") + ENV['ADMIN_EMAIL']
 
       - else
         .row
           .col-xs-12.col-xs-offset-4.col-sm-offset-2
             = link_to sign_up_path do
-              .btn.btn-lg.btn-primary 註冊
+              .btn.btn-lg.btn-primary= t ".sign_up"
             %br/
             %br/

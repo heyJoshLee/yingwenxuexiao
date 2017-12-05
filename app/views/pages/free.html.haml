@@ -1,11 +1,9 @@
-%h1 Free Downloads
+%h1= t ".free_downloads"
 %hr.v_margin
 .row
   .col-xs-12.col-sm-6.col-md-4.col-lg-3
     .widget.ebook_sign_up{style: "border: 1px solid black"}
-      .topline 現在獲得250個免費課程!
-      -# .topline Get 250 Free Lessons Right Now
+      .topline= t ".get_300_lessons"
       .widget_body
-        %p 免費獲得喬希的新書“250+英語成語”!
-        -# %p Get Josh's new book "250+ English Idioms" for free!
-        %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"} Get the book
+        %p= t ".get_joshs_new_book"
+        %button.btn.btn-primary.btn-lg{"data-target" => "#campaign_modal", "data-toggle" => "modal", :type => "button"}= t ".get_the_book"

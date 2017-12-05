@@ -1,4 +1,28 @@
 en:
+  pages:
+    error:
+      sorry: "Sorry"
+      cannont_find_page: "We couldn't find the page you were looking for."
+    free:
+      free_downloads: "Free downloads"
+      get_300_lessons: "Get 300 Free Lessons Right Now"
+      get_joshs_new_book: "Get Josh's new book '50+ English Idioms' for free!"
+      get_the_book: "Get the book"
+    index:
+      improve_your_english_right_now: "Improve Your English Right Now"
+      learn_english_with_video_lessons: "Learn English with Video Lessons, Fun Quizzes and more!"
+      sign_up: "Sign Up"
+      sign_in: "Sign In"
+    our_method:
+      our_method: "Our Method"
+      our_method_includes: "Our method includes videos, quizzes, notes and spaced-repetition practice."
+    upgrade:
+      improve_your_english_right_now: "Improve Your English Right Now"
+      learn_english_with_video_lessons: "Learn English with Video Lessons, Fun Quizzes and more!"      
+    upgrade_confirmation:
+      congratulations: "Congratulations! You are now a premium member."
+      go_ahead_and_enroll: "Go ahead and enroll in our classes."
+      view_courses: "View Courses"
   shared:
     upgrade_features:
       over_200_video_lessons: "Over 200 video lessons"
@@ -58,3 +82,27 @@ en:
       sign_in: "Sign In"
       account: "My Account"
       sign_up: "Sign Up"
+    nav:
+      free: "Free"
+      games: "Games"
+      courses: "Courses"
+      my_words:
+      upgrade: "Upgrade"
+    pay_subscription_button:
+      you_are_already_a_paid_number: "You are already a paid member."
+      course_fee: "Course fee: $25.00 USD"
+      special_discount: "Special Discount"
+      course_fee_after_discount: "Course fee: $20.00 USD"
+      membership_features: "Premium membership lets you watch all video lessons, download notes, take quizzes, play games and as the teacher questions."
+      monthly_billing: "You will be billed $20.00 USD every month. You can cancel any time."
+      alterntaive_payment:
+      sign_up: "Sign Up"
+    sidebar:
+      get_300_lessons: "Get 300 Free Lessons Right Now"
+      get_joshs_new_book: "Get Josh's new book '50+ English Idioms' for free!"
+      get_the_book: "Get the book"
+      sign_up_to_our_mailing_list: "Sign up to our mailing list"
+      never_miss_a_lesson_or_article: "Never miss a lesson or article."
+      we_wont_spam_you:  "We won't spam you."
+
+

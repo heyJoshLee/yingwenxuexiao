@@ -72,7 +72,8 @@ feature "User signs up" do
 
   scenario "user tries to upgrade without having an account" do
     visit upgrade_path
-    expect(page).to have_content("註冊")
+    expect(page).to have_content  I18n.t('shared.pay_subscription_button.sign_up')
+
   end
 
   scenario "unsuccessful sign up" do
