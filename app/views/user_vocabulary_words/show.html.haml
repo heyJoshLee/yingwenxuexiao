@@ -1,17 +1,13 @@
-%h1 My Words
-%table.table.table-bordered
+- if logged_in?
+  %h1 My Words
+  %table.table.table-bordered
   %thead
-    %td 英語
-    -# %td Word
-    %td 中文
-    -# %td Chinese
-    %td 部分講話
-    -# %td Part of speech
+    %td= t ".word"
+    %td= t ".translation"
+    %td= t ".part_of_speech"
     %td Ipa
-    %td 定義
-    -# %td Definition
-    %td 樣本句子
-    -# %td Sample Sentence
+    %td= t ".definition"
+    %td= t ".sample_sentence"
     - if current_user.is_admin?
       %td Review Time
   %tbody

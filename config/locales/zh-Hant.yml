@@ -103,4 +103,68 @@ zh-Hant:
       sign_up_to_our_mailing_list: "加入我們的﻿mail郵寄清單"
       never_miss_a_lesson_or_article: "不錯過任何課程或文章."
       we_wont_spam_you:  "我們不會給您垃圾信件."
+    vocabulary_words:
+      log_in_with_a_premium_membership: "使用高級會員登錄，將單詞添加到您的學習列表中。"
+      upgrade_account: "升級帳戶"
+      sign_up: "註冊"
+  users:
+    show:
+      account: "帳戶"
+      edit_profile: "編輯個人資料"
+      account_name: "用戶名"
+      account_email: "電子郵件"
+      paid_member: "優質會員"
+      upgrade: "升級"
+      member_until: "會員直到"
+      next_payment_due: "下一個付款日期"
+      cancel_membership: "取消會員資格"
+      cancel_membership_confirmation:
+      user_level: "水平"
+      user_points: "分"
+      my_courses:  "我的課程"
+      you_havent_signed_up_for_any_lessons: "你還沒有報名課程。"
+      browse_classes: "找課程"
+  user_vocabulary_words:
+    show:
+      word: "英語"
+      translation: "中文"
+      part_of_speech: "部分講話"
+      definition: "定義"
+      sample_sentence: "樣本句子"
+  users:
+    new_account: 
+      welcome: "歡迎光臨"
+      please_watch_this_video: "請看這部影片."
+    new:
+      sign_up_for_free: "免費註冊"
+      free_lessons: "免費課程"
+      comment_on_articles: "評論文章"
+      never_miss_an_article: "不錯過任何文章"
+      communicate_with_english_teachers: "和英文老師溝通"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

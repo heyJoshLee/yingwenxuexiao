@@ -17,10 +17,10 @@
     %hr/
 
     .center
-      %h4 Log in with a premium membership to add words to your study list.
+      %h4= t ".log_in_with_a_premium_membership"
       - if logged_in? && !current_user.is_paid_member?
         = link_to sign_up_path do
-          .btn.btn-primary Upgrade Account
+          .btn.btn-primary= t ".upgrade_account"
       -else
         = link_to sign_up_path do
-          .btn.btn-primary Sign Up
+          .btn.btn-primary= t ".sign_up"

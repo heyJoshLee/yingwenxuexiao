@@ -1,4 +1,4 @@
 .center
-  %h1 Welcome!
-  %h2 請看這部影片
+  %h1= t ".welcome"
+  %h2= t ".please_watch_this_video"
 = render "shared/help_video", source: @video.url

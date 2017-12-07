@@ -4,25 +4,28 @@
       .well.affiliate_link_message= @affiliate_link.sign_up_message
   .row
     .col-xs-12.col-md-6.center
-      %h1 免費註冊
-      / %h1 Sign Up For Free
+      %h1= t ".sign_up_for_free"
       %ul.sign_up_features
-        %li <i class="fa fa-check"></i> 免費課程
-        / Free Lessons
-        %li <i class="fa fa-check"></i> 評論文章
-        / Comment on articles
-        %li <i class="fa fa-check"></i> 不錯過任何文章
-        / Never miss an article
-        %li <i class="fa fa-check"></i> 和英文老師溝通
-        / Communicate with English teachers
+        %li 
+          <i class="fa fa-check"></i> 
+          = t ".free_lessons"
+        %li 
+          <i class="fa fa-check"></i>
+          = t ".comment_on_articles"
+        %li 
+          <i class="fa fa-check"></i>
+          = t ".never_miss_an_article"
+        %li 
+          <i class="fa fa-check"></i>
+          = t ".communicate_with_english_teachers"
     .col-xs-12.col-md-6
       = render "shared/help_video", source: @video.url
   .row
     .col-xs-12.col-md-6.col-md-offset-3
       = bootstrap_form_for @user do |f|
-        = f.email_field :email, label: "電子郵件"
-        = f.text_field :name, label: "用户名"
-        = f.password_field :password, label: "密碼"
+        = f.email_field :email, label: "Email"
+        = f.text_field :name, label: "Name"
+        = f.password_field :password, label: "Password"
         = f.submit "Sign Up", class: "btn btn-primary pull-right"
 
 = render "shared/upgrade_features"

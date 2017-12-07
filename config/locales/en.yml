@@ -104,5 +104,74 @@ en:
       sign_up_to_our_mailing_list: "Sign up to our mailing list"
       never_miss_a_lesson_or_article: "Never miss a lesson or article."
       we_wont_spam_you:  "We won't spam you."
+    vocabulary_words:
+      log_in_with_a_premium_membership: "Log in with a premium membership to add words to your study list."
+      upgrade_account: "Upgrade Account"
+      sign_up: "Sign Up"
+  users:
+    show:
+      account: "Account"
+      edit_profile: "Edit Profile"
+      account_name: "Account Name"
+      account_email: "Account Email"
+      paid_member: "You are a paid member"
+      upgrade: "Upgrade"
+      member_until: "Member until"
+      next_payment_due: "Next billing due"
+      cancel_membership: "Cancel Membership"
+      cancel_membership_confirmation:
+      user_level: "User Level"
+      user_points: "User points"
+      my_courses: "My Courses"
+      you_havent_signed_up_for_any_lessons: "You haven't signed up for any classes yet."
+      browse_classes: "Browse Classes"
+  user_vocabulary_words:
+    show:
+      word: "Word"
+      translation: "Translation"
+      part_of_speech: "Part of Speech"
+      definition: "Definition"
+      sample_sentence: "Sentence"
+  users:
+    new_account: 
+      welcome: "Welcome"
+      please_watch_this_video: "Please watch this video."
+    new:
+      sign_up_for_free: "Sign up for free"
+      free_lessons: "Free lessons"
+      comment_on_articles: "Comment on articles"
+      never_miss_an_article: "Never miss an article"
+      communicate_with_english_teachers: "Communicate with English teachers"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
