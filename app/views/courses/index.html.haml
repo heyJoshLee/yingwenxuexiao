@@ -1,12 +1,12 @@
 .row
-  %h1 免費課程
+  %h1= t "free_courses"
 - if !logged_in?
   .row
     .well.center
-      %h5 您必須先登錄才能參加免費課程。
+      %h5= t "you_must_be_logged_in_to_take_a_free_class"
       / %h5 You must be logged in to take a free class.
       = link_to sign_in_path do
-        .btn.btn-primary Sign in
+        .btn.btn-primary= t "sign_in"
 
 .row
   - @free_courses.each do |course|
@@ -14,14 +14,14 @@
 
 %hr/
 .row
-  %h1 高級課程
+  %h1= t "premium_courses"
 - if !logged_in? || (logged_in? && !current_user.is_paid_member?)
   .row
     .well.center
-      %h5 您必須擁有一個高級帳戶才能上高級課程。
+      %h5= t "you_must_upgrade_your_account_to_a_paid_account_to_enroll_in_classes"
       / %h5 You must upgrade your account to a paid account to enroll in classes.
       = link_to upgrade_path do
-        .btn.btn-primary 升級
+        .btn.btn-primary= t "upgrade"
 
 .row
   - @premium_courses.each do |course|

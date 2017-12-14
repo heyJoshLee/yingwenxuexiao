@@ -14,7 +14,7 @@
     .row
       .replies
         = render comment.replies
-    %a.comment_reply_launcher 回覆
+    %a.comment_reply_launcher= t "reply"
     / %a.comment_reply_launcher Reply to this comment
     .row
       .comment_reply_form.col-xs-11.col-xs-offset-1{id: "reply_form_#{comment.slug}"}
@@ -26,4 +26,4 @@
         - elsif comment.commentable_type == "Lesson"
           = bootstrap_form_for [@course, @lesson, comment, Reply.new], remote: true do |f|
             = f.text_area :body, id: "reply-#{comment.slug}"
-            = f.submit "Reply", class: "btn btn-primary"
+            = f.submit class: "btn btn-primary"

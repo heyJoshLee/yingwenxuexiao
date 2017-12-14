@@ -8,5 +8,5 @@
       = image_tag(@download.main_image_url, class: "download_image")
       .well.download_description= @download.description
       = link_to start_download_path(@download_link), method: "post" do
-        .col-xs-offset-4.col-sm-offset-5.btn.btn-primary 下载
+        .col-xs-offset-4.col-sm-offset-5.btn.btn-primary= t "download"
         / Dowload

@@ -38,7 +38,7 @@
     = render "quizzes/quiz_section"
     - if !@lesson.has_quiz? || current_user.taken_quiz?(@lesson.quiz)
       = link_to course_lesson_complete_lesson_path(@course, @lesson), method: "post" do 
-        .btn.btn-success.pull-right Next Lesson
+        .btn.btn-success.pull-right= t "next_lesson"
 
     
     .article_comments_section
@@ -49,4 +49,4 @@
           = f.submit "Create Comment", class: "btn btn-primary"
         = render "comments/comments_section", object: @lesson
       - else 
-        %h5 免費用戶不能問老師問題。  爲了問老師問題升級。 
+        %h5= t "free_accounts_cannot_ask_questions"

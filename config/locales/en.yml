@@ -142,6 +142,24 @@ en:
       comment_on_articles: "Comment on articles"
       never_miss_an_article: "Never miss an article"
       communicate_with_english_teachers: "Communicate with English teachers"
+  download: "Download"
+  free_courses: "Free Courses"
+  you_must_be_logged_in_to_take_a_free_class: "You must be logged in to take a free course."
+  sign_in: "Sign In"
+  premium_courses: "Premium Courses"
+  you_must_upgrade_ysour_account_to_a_paid_account_to_enroll_in_classes: "You must upgrade your account to enroll in premium classes."
+  upgrade: "Upgrade"
+  free_accounts_cannot_ask_questions: "Free accounts cannot ask questions. Please upgrade your account to ask the teacher questions."
+  free_users_cannot_download_notes: "Free users cannot download class notes. Please upgrade your account to ask questions."
+  download_notes: "Download Notes"
+  next_lesson: "Next Lesson"
+  reply: "Reply"
+  helpers:
+    submit:
+      reply:
+        create: "Reply"
+
+
 
 
 

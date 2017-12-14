@@ -141,13 +141,22 @@ zh-Hant:
       comment_on_articles: "評論文章"
       never_miss_an_article: "不錯過任何文章"
       communicate_with_english_teachers: "和英文老師溝通"
-
-
-
-
-
-
-
+  download: "下载"
+  free_courses: "免費課程"
+  you_must_be_logged_in_to_take_a_free_class: "您必須先登錄才能參加免費課程。"
+  sign_in: "登入"
+  premium_courses: "高級課程"
+  you_must_upgrade_your_account_to_a_paid_account_to_enroll_in_classes: "您必須擁有一個高級帳戶才能上高級課程。"
+  upgrade: "升級"
+  free_accounts_cannot_ask_questions: "免費用戶不能問老師問題。  爲了問老師問題升級。"
+  free_users_cannot_download_notes: "免費用戶無法下載課堂筆記。升級到下載備註。"
+  download_notes: "下載備註"
+  next_lesson: "下一課"
+  reply: "回覆"
+  helpers:
+    submit:
+      reply:
+        create: "回覆"
 
 
 
