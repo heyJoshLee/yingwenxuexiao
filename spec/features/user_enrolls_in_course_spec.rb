@@ -8,8 +8,10 @@ feature "User enrolls in course" do
 
   scenario "not logged in" do
     visit courses_path
-    expect(page).to have_content("您必須先登錄才能參加免費課程。")
-    expect(page).to have_content("您必須擁有一個高級帳戶才能上高級課程。")
+    expect(page).to have_content I18n.t('you_must_be_logged_in_to_take_a_free_class')
+    expect(page).to have_content I18n.t('you_must_upgrade_your_account_to_a_paid_account_to_enroll_in_classes')
+    # expect(page).to have_content("您必須先登錄才能參加免費課程。")
+    # expect(page).to have_content("您必須擁有一個高級帳戶才能上高級課程。")
   end
 
   scenario "free user logged in enrolls into free course" do

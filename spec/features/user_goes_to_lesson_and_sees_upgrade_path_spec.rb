@@ -31,13 +31,13 @@ feature "Free users on free lessons see upgrade links and cannot take quizzes" d
     end
 
     scenario "Free users can't download class notes notification" do
-      # page_should_have("Free users cannot download class notes. Upgrade to download notes.")
-      page_should_have("免費用戶無法下載課堂筆記。升級到下載備註。")
+      expect(page).to have_content I18n.t('free_users_cannot_download_notes')
+      # # page_should_have("Free users cannot download class notes. Upgrade to download notes.")
+      # page_should_have("免費用戶無法下載課堂筆記。升級到下載備註。")
     end
 
     scenario "Free users can't comment on lessons notification" do
-      page_should_have("免費用戶不能問老師問題。  爲了問老師問題升級。")
-      # page_should_have("Free users cannot ask the teacher questions. Upgrade to ask the teacher questions.")
+      expect(page).to have_content I18n.t('free_accounts_cannot_ask_questions')
     end
 
     scenario "Free users cannot take quizzes" do
