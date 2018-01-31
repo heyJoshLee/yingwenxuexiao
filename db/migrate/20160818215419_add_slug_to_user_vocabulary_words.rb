@@ -3,3 +3,4 @@ class AddSlugToUserVocabularyWords < ActiveRecord::Migration
     add_column :user_vocabulary_words, :slug, :string
   end
 end
+ 

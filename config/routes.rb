@@ -125,6 +125,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
     resources :article_topics
+    resources :ebooks
     namespace :dashboard do
       resources :videos
       resources :affiliate_payments do

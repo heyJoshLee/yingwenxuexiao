@@ -1152,6 +1152,54 @@ button::-moz-focus-inner {
   font-weight: bolder;
 }
 
+/**********
+.ebook
+*********/
+
+.admin-book-preview {
+  text-align: center;
+}
+
+
+
+.admin-ebook-preview-img {
+  width: 150px;
+  height: 200px;
+}
+
+.pdf_viewer {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.pdf-viwer-toolbar {
+  width: 100%;
+  height: 60px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: rgba(0,182,245, 1);
+  color: white;
+  text-align: center;
+}
+
+
+#pdf-view-closer {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#pdf-view-closer:hover {
+  cursor: pointer;
+}
+
 // iphone 6 plus
 @media screen and (max-width: 415px) {
   .comment_author_image {
