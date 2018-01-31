@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_vocabulary_words, only: [:create]
-  
+  resources :ebooks, only: [:index, :show]
   resources :affiliates, only: [:index, :show]
   resources :course_levels, only: [:show]
   

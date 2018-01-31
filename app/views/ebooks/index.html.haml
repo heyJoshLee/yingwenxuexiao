@@ -1,0 +1,8 @@
+%h1 書架
+
+- @ebooks.each do |book|
+  .book-preview
+    %h4= book.title
+    = link_to ebook_path(book) do 
+      = image_tag(book.cover_img, class: "admin-ebook-preview-img")
+

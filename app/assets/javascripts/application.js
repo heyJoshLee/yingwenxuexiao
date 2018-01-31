@@ -59,7 +59,7 @@ $(document).on("click", "#pdf-view-closer", function() {
 });
 
 
-$(document).on("click", "#pdf-admin-open", function() {
+$(document).on("click", "#pdf-admin-open, #open-pdf-viewer", function() {
   console.log("should show")
   $(".pdf_viewer").show();
 });

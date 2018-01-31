@@ -1168,12 +1168,12 @@ button::-moz-focus-inner {
 }
 
 .pdf_viewer {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: 0px;
   left: 5px;
   right: 5px;
-  bottom: 5px;
+  bottom: 0px;
 }
 
 .pdf-viwer-toolbar {
@@ -1199,6 +1199,7 @@ button::-moz-focus-inner {
 #pdf-view-closer:hover {
   cursor: pointer;
 }
+
 
 // iphone 6 plus
 @media screen and (max-width: 415px) {

@@ -1,0 +1,15 @@
+%h1= @ebook.title
+.row
+  .col-12
+    .ebook-cover-image
+      = image_tag(@ebook.cover_img)
+
+
+
+%p= @ebook.description
+.btn.btn-primary.btn-block#open-pdf-viewer 讀
+.pdf_viewer
+  .pdf-viwer-toolbar
+    %h2= @ebook.title
+    #pdf-view-closer X
+  %iframe#ebook-view{src: @ebook.src, width: "100%", height: "100%"}
