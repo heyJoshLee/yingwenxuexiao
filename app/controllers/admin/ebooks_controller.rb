@@ -41,7 +41,7 @@ class Admin::EbooksController < AdminController
 
 
   def set_ebook
-    @ebook = Ebook.find_by(params[:slug])    
+    @ebook = Ebook.find_by(slug: params[:id])    
   end
 
   def ebook_params
