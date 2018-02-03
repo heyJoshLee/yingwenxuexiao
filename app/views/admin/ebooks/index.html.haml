@@ -1,0 +1,11 @@
+%h1 Ebooks
+
+= link_to new_admin_ebook_path do
+  .btn.btn-primary New Book
+
+- @ebooks.each do |book|
+  .admin-book-preview
+    %h4= book.title
+    = link_to edit_admin_ebook_path(book) do 
+      = image_tag(book.cover_img, class: "admin-ebook-preview-img")
+

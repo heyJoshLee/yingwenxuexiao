@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928125421) do
+ActiveRecord::Schema.define(version: 20180131145156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,16 @@ ActiveRecord::Schema.define(version: 20170928125421) do
     t.string   "file_download_url"
     t.string   "slug"
     t.string   "name"
+  end
+
+  create_table "ebooks", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.string   "cover_img"
+    t.string   "src"
+    t.text     "description"
+    t.string   "slug"
   end
 
   create_table "email_signups", force: :cascade do |t|

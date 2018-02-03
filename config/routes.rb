@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_vocabulary_words, only: [:create]
-  
+  resources :ebooks, only: [:index, :show]
   resources :affiliates, only: [:index, :show]
   resources :course_levels, only: [:show]
   
@@ -125,6 +125,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
     resources :article_topics
+    resources :ebooks
     namespace :dashboard do
       resources :videos
       resources :affiliate_payments do

@@ -1,0 +1,6 @@
+= bootstrap_form_for([:admin, @ebook]) do |f|
+  = f.text_field :title
+  = f.text_area :description
+  = f.file_field :cover_img, class: "btn btn-file"
+  = f.file_field :src, class: "btn btn-file"
+  = submit_tag "Create", class: "btn btn-primary"
