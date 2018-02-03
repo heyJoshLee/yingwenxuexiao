@@ -42,6 +42,9 @@
               = link_to "My Words", my_words_path # My Words
             - else
               = link_to "高级会员", upgrade_path # Premium Membership
+          %li.hidden-sm.hidden-md.hidden-lg
+            = link_to "書架", ebooks_path
+
           %li
             - if logged_in?
               = link_to "登出", sign_out_path # Sign Out

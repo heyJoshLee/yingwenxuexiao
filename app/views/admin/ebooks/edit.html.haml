@@ -1,0 +1,14 @@
+%h1 Editing Ebook
+
+
+
+#pdf-admin-open.btn.btn-primary View Ebook
+
+.pdf_viewer
+  .pdf-viwer-toolbar
+    %h2= @ebook.title
+    #pdf-view-closer X
+  %iframe#ebook-view{src: @ebook.src, width: "100%", height: "100%"}
+
+
+= render "form"

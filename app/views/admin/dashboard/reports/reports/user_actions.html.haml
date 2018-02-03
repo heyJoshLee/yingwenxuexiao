@@ -4,6 +4,7 @@
   %thead
     %td Actions
     %td Type
+    %td Date
   %tbody
     - @user_actions.each do |u|
       %tr
@@ -11,3 +12,5 @@
           %h5= u.body
         %td
           %h5= u.action_type
+        %td
+          %h5= u.created_at
