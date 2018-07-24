@@ -134,10 +134,11 @@ Rails.application.routes.draw do
         end
       end
       namespace :reports do
-      get "/", to: "reports#index", as: "reports"
-      get "/payments", to: "reports#payments", as: "payments"
-      get "/new_users", to: "reports#new_users", as: "new_users"
-      get "/user_actions", to: "reports#user_actions"
+        get "/", to: "reports#index", as: "reports"
+        get "/payments", to: "reports#payments", as: "payments"
+        get "/new_users", to: "reports#new_users", as: "new_users"
+        get "/user_actions", to: "reports#user_actions"
+        delete "/user_action", to: "reports#delete_user_action"
       end
       resources :notifications do
         collection do
