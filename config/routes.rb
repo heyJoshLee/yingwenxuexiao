@@ -191,7 +191,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :email_signups, only: [:index]
+    resources :email_signups, only: [:index, :destroy]
     resources :users
     resources :categories
   end

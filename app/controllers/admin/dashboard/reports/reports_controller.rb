@@ -35,7 +35,7 @@ class Admin::Dashboard::Reports::ReportsController < AdminController
   def delete_user_action
     @action_id = params[:id]
     user_action = UserAction.find(@action_id)
-    user_action.delete
+    user_action.destroy
     respond_to do |format|
       format.js
     end
