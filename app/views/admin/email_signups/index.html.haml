@@ -8,10 +8,14 @@
             %th Created at
             %th Page
             %th Campagin 
+            %th Delete
         %tbody
           - @email_signups.each do |email_signup|
-            %tr
+            %tr{id: "email-signup-#{email_signup.id}"}
               %td= email_signup.email
               %td= email_signup.created_at
               %td= email_signup.page
               %td= email_signup.campaign
+              %td
+                =link_to admin_email_signup_path(email_signup), method: :delete, remote: true do
+                  .btn.btn-danger Delete

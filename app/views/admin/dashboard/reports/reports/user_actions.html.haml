@@ -5,12 +5,16 @@
     %td Actions
     %td Type
     %td Date
+    %td Delete
   %tbody
     - @user_actions.each do |u|
-      %tr
+      %tr{id: "user-action-#{u.id}"}
         %td
           %h5= u.body
         %td
           %h5= u.action_type
         %td
           %h5= u.created_at
+        %td
+          = link_to admin_dashboard_reports_user_action_path(id: u.id), method: :delete, remote: true do
+            .btn.btn-danger Delete
