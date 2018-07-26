@@ -34,7 +34,9 @@ class UsersController < ApplicationController
       flash[:success] = "您已成功註冊。您現在已經登錄。"
       # flash[:success] = "You have successfully registered. You are now logged in."
       session[:user_id] = @user.id
-      SendWelcomeEmailWorker.perform_async(@user.id)
+      AppMailer.send_welcome_email(User.find(@user.id)).deliver_now
+      # SendWelcomeEmailWorker.perform_async(@user.id) // comment out so I can downgrade worker plan on heroku. 
+      # TODO: Add this back in once I get customers
       UserAction.create_user_action(@user.id, {action_type: "signed up"})
       redirect_to new_account_users_path
 
